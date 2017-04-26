@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jessie_Zou’s Homepage</title>
+  <subtitle>学习笔记</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-26T08:01:21.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Jessie Zou</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/04/26/markdown/"/>
+    <id>http://yoursite.com/2017/04/26/markdown/</id>
+    <published>2017-04-26T06:47:02.000Z</published>
+    <updated>2017-04-26T08:01:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="初识MacDown"><a href="#初识MacDown" class="headerlink" title="初识MacDown"></a>初识MacDown</h1><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
+<h2 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h2><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
+<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">创始人 John Gruber 的 Markdown 语法说明</a></p>
+<p><a href="http://wowubuntu.com/markdown/#list" target="_blank" rel="external">Markdown 中文版语法说明</a></p>
+<h2 id="特色"><a href="#特色" class="headerlink" title="特色"></a>特色</h2><p>代码高亮</p>
+<p>Mou 和 MacDown 都支持 fenced code blocks（前后三个反引号可以表示代码块），但 MacDown 支持加语言标识符实现代码高亮，这对程序员来说简直是福音啊，非常棒的功能。</p>
+<p>MacDown 支持代码高亮<br>MacDown 支持代码高亮<br>GFM Task List 支持</p>
+<p>MacDown 支持 Task list，有了这个功能，你可以将你的 MD 编辑器立马变成 TODO list，是不是很赞？</p>
+<p>MacDown 对 Task list 的支持<br>MacDown 对 Task list 的支持<br>Jekyll Front-matter 支持</p>
+<p>很多人使用 Jekyll 作为博客引擎，这时 Jekyll 的前面那段该怎么去渲染呢？MacDown 和 github 一样可以支持。</p>
+<p>MacDown 对 Jekyll front-matter 的支持<br>MacDown 对 Jekyll front-matter 的支持</p>
+<h2 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h2><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;初识MacDown&quot;&gt;&lt;a href=&quot;#初识MacDown&quot; class=&quot;headerlink&quot; title=&quot;初识MacDown&quot;&gt;&lt;/a&gt;初识MacDown&lt;/h1&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
