@@ -110,17 +110,19 @@
 
 
 
-<meta name="description" content="基础排序算法及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
+<meta name="description" content="基础排序算法及其Java实现##前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
 <meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法基础篇：排序（一）">
 <meta property="og:url" content="http://yoursite.com/2017/04/27/算法基础篇：排序（一）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="基础排序算法及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
-<meta property="og:updated_time" content="2017-04-27T08:51:59.000Z">
+<meta property="og:description" content="基础排序算法及其Java实现##前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
+<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif">
+<meta property="og:updated_time" content="2017-04-27T09:37:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法基础篇：排序（一）">
-<meta name="twitter:description" content="基础排序算法及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
+<meta name="twitter:description" content="基础排序算法及其Java实现##前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif">
 
 
 
@@ -407,14 +409,14 @@
       
 
       
-        <h1 id="基础排序算法及其Java实现"><a href="#基础排序算法及其Java实现" class="headerlink" title="基础排序算法及其Java实现"></a>基础排序算法及其Java实现</h1><p>  前言：看完了牛客网上的买的算法课程，准备首先从基础的<strong>数据结构</strong>和<strong>算法</strong>开始写。  </p>
-<p>  本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
+        <h1 id="基础排序算法及其Java实现"><a href="#基础排序算法及其Java实现" class="headerlink" title="基础排序算法及其Java实现"></a>基础排序算法及其Java实现</h1><p>##前言<br>&#160; &#160; &#160; &#160;看完了牛客网上的买的算法课程，准备首先从基础的<font color="red"><strong>数据结构</strong></font>和<font color="red"><strong>算法</strong></font>开始写。  </p>
+<p>  &#160; &#160; &#160; &#160;本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
   <a id="more"></a>
 <h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="算法思路："><a href="#算法思路：" class="headerlink" title="算法思路："></a>算法思路：</h3><p>  1.<em>第一次循环</em>：从0到n-2（即0&lt;=i&lt;n-1-0），每个位置上的数拿本身和后一位相比，如果比后一位大就交换两个位置的值。</p>
 <p>  2.<em>第二次循环</em>：从0到n-3即（即0&lt;=i&lt;n-1-1），操作同第一次循环一样。</p>
 <p>  ….多次循环后….</p>
 <p>  3.<em>第n-1次循环</em>：0位置上的数（即0&lt;=i&lt;n-1-(n-2)），操作同第一次循环。</p>
-<p>  说明：为了实现本身和后一位相比直到最后，要用内层循环实现，范围区间已在上面给出，外层共有n-1次循环，我们可以写出代码如下。</p>
+<p>  &#160; &#160; &#160; &#160;说明：为了实现本身和后一位相比直到最后，要用内层循环实现，范围区间已在上面给出，外层共有n-1次循环，我们可以写出代码如下。</p>
 <h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><pre><code>public static int[] BubbleSort(int[] A, int n) {
 
     // 给变量赋初识值
@@ -438,7 +440,7 @@
 <p>  2.<em>第二次循环</em>：从1到n-1（即2&lt;=i&lt;n），选出最小值放到位置1上。</p>
 <p>  ….多次循环后….</p>
 <p>  3.<em>第n-1次循环</em>：从n-2到n-1（即n-2&lt;=i&lt;n），选出最小值放在位置n-2上。</p>
-<p>  说明：内层循环选取区间内的最小值，循环区间上面已给出，利用附加空间的int k来存储最小值的索引，最后和对应位置值交换，外层循环循环n-1次。根据以上思路可以写出实现代码。</p>
+<p>  &#160; &#160; &#160; &#160;说明：内层循环选取区间内的最小值，循环区间上面已给出，利用附加空间的int k来存储最小值的索引，最后和对应位置值交换，外层循环循环n-1次。根据以上思路可以写出实现代码。</p>
 <h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] selectSort(int[] data){
 //初始化变量，需要额外的k存最小智的索引
     int i, j, k, tmp = 0;
@@ -464,7 +466,7 @@
 <p>  2.<em>第二次循环</em>：从位置2上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——2区间一定有序。</p>
 <p>  ….多次循环后….</p>
 <p>  3.<em>第n-1次循环</em>：从位置n-1上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——n-1区间即整个数列就有序了。</p>
-<p>  说明：外层循环循环n-1次。从1到n-1，即1&lt;=i&lt;n。内层循环首先取当前索引的前一位索引，与当前索引位置的值比较，如果当前索引位置较小就交换当前索引和前一位的值，并从它的前一位开始继续向前比较。根据以上思路可以写出实现代码。</p>
+<p>  &#160; &#160; &#160; &#160;说明：外层循环循环n-1次。从1到n-1，即1&lt;=i&lt;n。内层循环首先取当前索引的前一位索引，与当前索引位置的值比较，如果当前索引位置较小就交换当前索引和前一位的值，并从它的前一位开始继续向前比较。根据以上思路可以写出实现代码。</p>
 <h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] insertionSort(int[] A, int n) {
     // 外层循环从1——n-1，共n-1次。
     for(int i=1;i&lt;n;++i){
@@ -484,7 +486,9 @@
     }
     return A;
 }
-</code></pre>
+</code></pre><p>明天讲其他几种，最后试着插入一个动图！！！</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" alt="亦菲表演机器猫"></p>
+
       
     </div>
 
