@@ -92,12 +92,10 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="“街灯晚餐的学习历程”" />
+  <meta name="keywords" content="算法," />
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Jessie_Zou’s Homepage" type="application/atom+xml" />
@@ -112,16 +110,17 @@
 
 
 
-<meta name="description" content="p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px &apos;PT Mono&apos;; color: #999999; -webkit-text-stroke: #999999; background-color: #f8f8f8}     p.p2 {margin:">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Jessie_Zou’s Homepage">
-<meta property="og:url" content="http://yoursite.com/404.html">
+<meta name="description" content="基础排序及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。 冒泡排序public static int[] bubbleSort(int[] A, int n) {      // write code here     int temp = 0;     for(int i">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法基础篇：排序（一）">
+<meta property="og:url" content="http://yoursite.com/2017/04/27/算法基础篇：排序（一）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px &apos;PT Mono&apos;; color: #999999; -webkit-text-stroke: #999999; background-color: #f8f8f8}     p.p2 {margin:">
-<meta property="og:updated_time" content="2017-04-26T13:19:32.000Z">
+<meta property="og:description" content="基础排序及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。 冒泡排序public static int[] bubbleSort(int[] A, int n) {      // write code here     int temp = 0;     for(int i">
+<meta property="og:updated_time" content="2017-04-27T04:51:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jessie_Zou’s Homepage">
-<meta name="twitter:description" content="p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px &apos;PT Mono&apos;; color: #999999; -webkit-text-stroke: #999999; background-color: #f8f8f8}     p.p2 {margin:">
+<meta name="twitter:title" content="算法基础篇：排序（一）">
+<meta name="twitter:description" content="基础排序及其Java实现  前言：看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。 冒泡排序public static int[] bubbleSort(int[] A, int n) {      // write code here     int temp = 0;     for(int i">
 
 
 
@@ -149,13 +148,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/404.html"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/27/算法基础篇：排序（一）/"/>
 
 
 
 
 
-  <title> | Jessie_Zou’s Homepage</title>
+  <title>算法基础篇：排序（一） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -180,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -295,60 +294,223 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
 
-	<h1 class="post-title" itemprop="name headline"></h1>
+  
 
+  
+  
+  
 
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/27/算法基础篇：排序（一）/">
 
-</header>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jessie Zou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jessie_Zou’s Homepage">
+    </span>
 
     
-    
-      <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="1504.82">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px 'PT Mono'; color: #999999; -webkit-text-stroke: #999999; background-color: #f8f8f8}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px 'PT Mono'; color: #000080; -webkit-text-stroke: #000080; background-color: #f8f8f8}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px 'PT Mono'; color: #dd1144; -webkit-text-stroke: #dd1144; background-color: #f8f8f8}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 15.0px; font: 13.0px 'PT Mono'; color: #008080; -webkit-text-stroke: #008080; background-color: #f8f8f8}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #333333; -webkit-text-stroke: 0px #333333}
-    span.s3 {font-kerning: none; color: #000080; -webkit-text-stroke: 0px #000080}
-    span.s4 {font-kerning: none; color: #008080; -webkit-text-stroke: 0px #008080}
-    span.s5 {font-kerning: none; color: #dd1144; -webkit-text-stroke: 0px #dd1144}
-    span.s6 {font: 13.0px 'PingFang SC'; font-kerning: none; color: #dd1144; -webkit-text-stroke: 0px #dd1144}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1"><b>&lt;!DOCTYPE HTML&gt;</b></span></p>
-<p class="p2"><span class="s1">&lt;html&gt;</span></p>
-<p class="p2"><span class="s1">&lt;head&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;meta </span><span class="s4">http-equiv</span><span class="s3">=</span><span class="s1">"content-type"</span><span class="s3"> </span><span class="s4">content</span><span class="s3">=</span><span class="s1">"text/html;charset=utf-8;"</span><span class="s3">/&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;meta </span><span class="s4">http-equiv</span><span class="s3">=</span><span class="s1">"X-UA-Compatible"</span><span class="s3"> </span><span class="s4">content</span><span class="s3">=</span><span class="s1">"IE=edge,chrome=1"</span><span class="s3"> /&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;meta </span><span class="s4">name</span><span class="s3">=</span><span class="s1">"robots"</span><span class="s3"> </span><span class="s4">content</span><span class="s3">=</span><span class="s1">"all"</span><span class="s3"> /&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;meta </span><span class="s4">name</span><span class="s3">=</span><span class="s1">"robots"</span><span class="s3"> </span><span class="s4">content</span><span class="s3">=</span><span class="s1">"index,follow"</span><span class="s3">/&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;link </span><span class="s4">rel</span><span class="s3">=</span><span class="s1">"stylesheet"</span><span class="s3"> </span><span class="s4">type</span><span class="s3">=</span><span class="s1">"text/css"</span><span class="s3"> </span><span class="s4">href</span><span class="s3">=</span><span class="s1">"https://qzone.qq.com/gy/404/style/404style.css"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p2"><span class="s1">&lt;body&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;script </span><span class="s4">type</span><span class="s3">=</span><span class="s1">"text/plain"</span><span class="s3"> </span><span class="s4">src</span><span class="s3">=</span><span class="s1">"http://www.qq.com/404/search_children.js"</span></p>
-<p class="p4"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s1">charset</span><span class="s3">=</span><span class="s5">"utf-8"</span><span class="s3"> </span><span class="s1">homePageUrl</span><span class="s3">=</span><span class="s5">"/"</span></p>
-<p class="p4"><span class="s3"><span class="Apple-converted-space">          </span></span><span class="s1">homePageName</span><span class="s3">=</span><span class="s5">"</span><span class="s6">回到我的主页</span><span class="s5">"</span><span class="s3">&gt;</span></p>
-<p class="p2"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s1">&lt;/script&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;script </span><span class="s4">src</span><span class="s3">=</span><span class="s1">"https://qzone.qq.com/gy/404/data.js"</span><span class="s3"> </span><span class="s4">charset</span><span class="s3">=</span><span class="s1">"utf-8"</span><span class="s3">&gt;&lt;/script&gt;</span></p>
-<p class="p3"><span class="s2"><span class="Apple-converted-space">  </span></span><span class="s3">&lt;script </span><span class="s4">src</span><span class="s3">=</span><span class="s1">"https://qzone.qq.com/gy/404/page.js"</span><span class="s3"> </span><span class="s4">charset</span><span class="s3">=</span><span class="s1">"utf-8"</span><span class="s3">&gt;&lt;/script&gt;</span></p>
-<p class="p2"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p2"><span class="s1">&lt;/html&gt;</span></p>
-</body>
-</html>
+      <header class="post-header">
 
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                算法基础篇：排序（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T12:19:38+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/27/算法基础篇：排序（一）/" class="leancloud_visitors" data-flag-title="算法基础篇：排序（一）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
     
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基础排序及其Java实现"><a href="#基础排序及其Java实现" class="headerlink" title="基础排序及其Java实现"></a>基础排序及其Java实现</h1><p>  前言：看完了牛客网上的买的算法课程，准备首先从基础的<strong>数据结构</strong>和<strong>算法</strong>开始写。  </p>
+<p>  本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><pre><code>public static int[] bubbleSort(int[] A, int n) {
+
+    // write code here
+    int temp = 0;
+    for(int i = 0;i &lt; n-1;i++){
+        for(int j = 0;j&lt;n-i-1;j++){
+            if(A [j] &gt; A [j+1]){
+                temp = A[j];
+                A[j] = A[j+1];
+                A[j+1] = temp;
+            }
+        }
+    }
+    return A;
+}
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechatpay.png" alt="Jessie Zou WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="Jessie Zou Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/27/hexo搭建个人博客/" rel="prev" title="hexo搭建个人博客">
+                hexo搭建个人博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -381,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -471,6 +642,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础排序及其Java实现"><span class="nav-number">1.</span> <span class="nav-text">基础排序及其Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.1.</span> <span class="nav-text">冒泡排序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -605,6 +792,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T02:30:47.000Z</updated>
+  <updated>2017-04-27T04:51:00.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>算法基础篇：排序（一）</title>
+    <link href="http://yoursite.com/2017/04/27/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%8E%92%E5%BA%8F%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/04/27/算法基础篇：排序（一）/</id>
+    <published>2017-04-27T04:19:38.000Z</published>
+    <updated>2017-04-27T04:51:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基础排序及其Java实现"><a href="#基础排序及其Java实现" class="headerlink" title="基础排序及其Java实现"></a>基础排序及其Java实现</h1><p>  前言：看完了牛客网上的买的算法课程，准备首先从基础的<strong>数据结构</strong>和<strong>算法</strong>开始写。  </p>
+<p>  本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
+<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><pre><code>public static int[] bubbleSort(int[] A, int n) {
+
+    // write code here
+    int temp = 0;
+    for(int i = 0;i &lt; n-1;i++){
+        for(int j = 0;j&lt;n-i-1;j++){
+            if(A [j] &gt; A [j+1]){
+                temp = A[j];
+                A[j] = A[j+1];
+                A[j+1] = temp;
+            }
+        }
+    }
+    return A;
+}
+</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;基础排序及其Java实现&quot;&gt;&lt;a href=&quot;#基础排序及其Java实现&quot; class=&quot;headerlink&quot; title=&quot;基础排序及其Java实现&quot;&gt;&lt;/a&gt;基础排序及其Java实现&lt;/h1&gt;&lt;p&gt;  前言：看完了牛客网上的买的算法课程，准备首先从基础的&lt;s
+    
+    </summary>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo搭建个人博客</title>
     <link href="http://yoursite.com/2017/04/27/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2017/04/27/hexo搭建个人博客/</id>
     <published>2017-04-27T02:14:11.000Z</published>
-    <updated>2017-04-27T02:30:47.000Z</updated>
+    <updated>2017-04-27T04:31:14.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="git-nodejs-markdown搭建hexo"><a href="#git-nodejs-markdown搭建hexo" class="headerlink" title="git+nodejs+markdown搭建hexo"></a>git+nodejs+markdown搭建hexo</h1><h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h2><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
 <h3 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h3><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
@@ -44,7 +83,7 @@
     
     </summary>
     
-      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+      <category term="hexo相关" scheme="http://yoursite.com/categories/hexo%E7%9B%B8%E5%85%B3/"/>
     
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
