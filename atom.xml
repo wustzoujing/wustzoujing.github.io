@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T02:16:03.000Z</updated>
+  <updated>2017-04-27T02:26:23.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,32 +20,34 @@
     <link href="http://yoursite.com/2017/04/27/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2017/04/27/hexo搭建个人博客/</id>
     <published>2017-04-27T02:14:11.000Z</published>
-    <updated>2017-04-27T02:16:03.000Z</updated>
+    <updated>2017-04-27T02:26:23.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="初识MacDown"><a href="#初识MacDown" class="headerlink" title="初识MacDown"></a>初识MacDown</h1><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
-<h2 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h2><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
+    <content type="html"><![CDATA[<h1 id="git-nodejs-markdown搭建hexo"><a href="#git-nodejs-markdown搭建hexo" class="headerlink" title="git+nodejs+markdown搭建hexo"></a>git+nodejs+markdown搭建hexo</h1><h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h2><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
+<h3 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h3><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
 <p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">创始人 John Gruber 的 Markdown 语法说明</a></p>
 <p><a href="http://wowubuntu.com/markdown/#list" target="_blank" rel="external">Markdown 中文版语法说明</a></p>
-<h2 id="特色"><a href="#特色" class="headerlink" title="特色"></a>特色</h2><p>代码高亮</p>
+<h3 id="Mac下的编辑器Mou和MacDown"><a href="#Mac下的编辑器Mou和MacDown" class="headerlink" title="Mac下的编辑器Mou和MacDown"></a>Mac下的编辑器Mou和MacDown</h3><p>代码高亮</p>
 <p>Mou 和 MacDown 都支持 fenced code blocks（前后三个反引号可以表示代码块），但 MacDown 支持加语言标识符实现代码高亮，这对程序员来说简直是福音啊，非常棒的功能。</p>
 <p>MacDown 支持代码高亮<br>MacDown 支持代码高亮<br>GFM Task List 支持</p>
 <p>MacDown 支持 Task list，有了这个功能，你可以将你的 MD 编辑器立马变成 TODO list，是不是很赞？</p>
 <p>MacDown 对 Task list 的支持<br>MacDown 对 Task list 的支持<br>Jekyll Front-matter 支持</p>
 <p>很多人使用 Jekyll 作为博客引擎，这时 Jekyll 的前面那段该怎么去渲染呢？MacDown 和 github 一样可以支持。</p>
 <p>MacDown 对 Jekyll front-matter 的支持<br>MacDown 对 Jekyll front-matter 的支持</p>
-<h2 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h2><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
+<h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
+<h2 id="nodejs-git-并安装hexo"><a href="#nodejs-git-并安装hexo" class="headerlink" title="nodejs+git 并安装hexo"></a>nodejs+git 并安装hexo</h2><h3 id="这个教程很多，下面给个链接"><a href="#这个教程很多，下面给个链接" class="headerlink" title="这个教程很多，下面给个链接"></a>这个教程很多，下面给个链接</h3><p><a href="http://www.jianshu.com/p/ecd51e8ef2fa" target="_blank" rel="external">参考链接</a></p>
+<h2 id="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"><a href="#next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。" class="headerlink" title="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"></a>next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">官方文档</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;初识MacDown&quot;&gt;&lt;a href=&quot;#初识MacDown&quot; class=&quot;headerlink&quot; title=&quot;初识MacDown&quot;&gt;&lt;/a&gt;初识MacDown&lt;/h1&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
+      &lt;h1 id=&quot;git-nodejs-markdown搭建hexo&quot;&gt;&lt;a href=&quot;#git-nodejs-markdown搭建hexo&quot; class=&quot;headerlink&quot; title=&quot;git+nodejs+markdown搭建hexo&quot;&gt;&lt;/a&gt;git+nodejs+markdown搭建hexo&lt;/h1&gt;&lt;h2 id=&quot;markdown语法&quot;&gt;&lt;a href=&quot;#markdown语法&quot; class=&quot;headerlink&quot; title=&quot;markdown语法&quot;&gt;&lt;/a&gt;markdown语法&lt;/h2&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
     
     </summary>
     
       <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
     
     
-      <category term="-hexo -github" scheme="http://yoursite.com/tags/hexo-github/"/>
+      <category term="-hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   
