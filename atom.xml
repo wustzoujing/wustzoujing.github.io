@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T01:52:24.000Z</updated>
+  <updated>2017-04-27T02:03:43.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,11 +20,9 @@
     <link href="http://yoursite.com/2017/04/26/markdown/"/>
     <id>http://yoursite.com/2017/04/26/markdown/</id>
     <published>2017-04-26T06:47:02.000Z</published>
-    <updated>2017-04-27T01:52:24.000Z</updated>
+    <updated>2017-04-27T02:03:43.000Z</updated>
     
-    <content type="html"><![CDATA[<p>–<br>title: 测试标题 </p>
-<p>date：2017-4-26</p>
-<h2 id="tag-hexo"><a href="#tag-hexo" class="headerlink" title="tag: hexo"></a>tag: hexo</h2><h1 id="初识MacDown"><a href="#初识MacDown" class="headerlink" title="初识MacDown"></a>初识MacDown</h1><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h1 id="初识MacDown"><a href="#初识MacDown" class="headerlink" title="初识MacDown"></a>初识MacDown</h1><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
 <h2 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h2><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
 <p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">创始人 John Gruber 的 Markdown 语法说明</a></p>
 <p><a href="http://wowubuntu.com/markdown/#list" target="_blank" rel="external">Markdown 中文版语法说明</a></p>
@@ -40,9 +38,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;–&lt;br&gt;title: 测试标题 &lt;/p&gt;
-&lt;p&gt;date：2017-4-26&lt;/p&gt;
-&lt;h2 id=&quot;tag-hexo&quot;&gt;&lt;a href=&quot;#tag-hexo&quot; class=&quot;headerlink&quot; title=&quot;tag: hexo&quot;&gt;&lt;/a&gt;tag: hexo&lt;/h2&gt;&lt;h1 id=&quot;初识MacDown&quot;&gt;&lt;a href=&quot;#初识MacDown&quot; class=&quot;headerlink&quot; title=&quot;初识MacDown&quot;&gt;&lt;/a&gt;初识MacDown&lt;/h1&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
+      &lt;h1 id=&quot;初识MacDown&quot;&gt;&lt;a href=&quot;#初识MacDown&quot; class=&quot;headerlink&quot; title=&quot;初识MacDown&quot;&gt;&lt;/a&gt;初识MacDown&lt;/h1&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
     
     </summary>
     
