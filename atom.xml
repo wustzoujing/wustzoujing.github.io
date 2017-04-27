@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T02:03:43.000Z</updated>
+  <updated>2017-04-27T02:16:03.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2017/04/26/markdown/"/>
-    <id>http://yoursite.com/2017/04/26/markdown/</id>
-    <published>2017-04-26T06:47:02.000Z</published>
-    <updated>2017-04-27T02:03:43.000Z</updated>
+    <title>hexo搭建个人博客</title>
+    <link href="http://yoursite.com/2017/04/27/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2017/04/27/hexo搭建个人博客/</id>
+    <published>2017-04-27T02:14:11.000Z</published>
+    <updated>2017-04-27T02:16:03.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="初识MacDown"><a href="#初识MacDown" class="headerlink" title="初识MacDown"></a>初识MacDown</h1><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
 <h2 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h2><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
@@ -42,6 +42,10 @@
     
     </summary>
     
+      <category term="hexo" scheme="http://yoursite.com/categories/hexo/"/>
+    
+    
+      <category term="-hexo -github" scheme="http://yoursite.com/tags/hexo-github/"/>
     
   </entry>
   
