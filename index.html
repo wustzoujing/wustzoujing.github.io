@@ -411,86 +411,14 @@
 
       
         
-          
-            <h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<a href="http://zh.visualgo.net" target="_blank" rel="external">学习利器</a></p>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>&#160; &#160; &#160;&#160; 快速排序（Quicksort）是对<em>冒泡排序</em>的一种改进。</p>
-<p>&#160; &#160; &#160;&#160; 快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。快速排序对海量数据来说，相对其他排序方式是较快的， 他的时间复杂度比经典排序小且常系数也比较小才称为快速排序。以数组{49,38,65,97,76,13,27,49}为例，选择第一个元素49为基准,初始化关键字： [49,38,65,97,76,13,27,49]</p>
-<p>&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="http://img.blog.csdn.net/20160426213936501" alt=""></p>
-<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 首先随机选择数列中的一个数（可用随机数产生，但也可以就选第一个数），然后进行一个partition函数，他的思想是扫描一遍数列把大于这个基数的数都放在右边，小于这个基数的数都放在左边。最后利用分治的思想，对基数的右边和左边分别在进行这个partition操作，最后数列就有序了。我这里为了代码尽量简洁，写出以下代码。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>//快速排序，s代表数列，l是数列第一项索引，r是数列最后一项的索引
-public static void quicksort(int[] s,int l,int r){
-//用i，j接住首位和末位，后面分别代表小于区间和🐠等于区间。x代表基数，这里用首位代表基数，没有随机产生
-    int i=l,j=r,x=s[l];
-    //执行操作条件
-    if(l&lt;r){
-        //循环结束条件
-        while(i&lt;j){
-            //从右至左找小于基数的数
-            while(i&lt;j&amp;&amp;s[j]&gt;=x)
-                j--;//如果大于等于基数j--，因为它们顺序正确
-             //找到之后放在左边，此处精妙的使用i++
-            if(i&lt;j)
-                s[i++]=s[j];
-            //从左至右找大于等于基数的数
-            while(i&lt;j&amp;&amp;s[i]&lt;x)
-                i++;
-            //放在
-            if(i&lt;j)
-                s[j--]=s[i];
-        }
-        //最后把基数放在i位置上，完成了partition操作
-        s[i]=x;
-        //对数列左边和右边分别递归
-        quicksort(s,l,i-1);
-        quicksort(s,i+1,r);
-    }
-}
-</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 基本原理如下：对于给定的一组记录，利用递归与分治技术将数据序列划分成为越来越小的半子表，在对半子表排序，最后再用递归方法将排好序的半子表合并成为越来越大的有序序列。 经过第一轮比较后得到最小的记录，然后将该记录的位置与第一个记录的位置交换；接着对不包括第一个记录以外的其他记录进行第二次比较，得到最小记录并与第二个位置记录交换；重复该过程，直到进行比较的记录只剩下一个为止。</p>
-<p>&#160; &#160; &#160;&#160;以数组{50,10,90,30,70,40,80,60,20}为例，排序过程如下图：</p>
-<p><img src="http://img.blog.csdn.net/20160427172905073" alt=""></p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>public static void merge(int[] a, int low, int mid, int high) {
-    int[] temp = new int[high - low + 1];
-    int i = low;// 左指针
-    int j = mid + 1;// 右指针
-    int k = 0;
-    // 把较小的数先移到新数组中
-    while (i &lt;= mid &amp;&amp; j &lt;= high) {
-        if (a[i] &lt; a[j]) {
-            temp[k++] = a[i++];
-        } else {
-            temp[k++] = a[j++];
-        }
-    }
-    // 把左边剩余的数移入数组
-    while (i &lt;= mid) {
-        temp[k++] = a[i++];
-    }
-    // 把右边边剩余的数移入数组
-    while (j &lt;= high) {
-        temp[k++] = a[j++];
-    }
-    // 把新数组中的数覆盖nums数组
-    for (int k2 = 0; k2 &lt; temp.length; k2++) {
-        a[k2 + low] = temp[k2];
-    }
-}
-
-public static void mergeSort(int[] a, int low, int high) {
-    int mid = (low + high) / 2;
-    if (low &lt; high) {
-        // 左边
-        mergeSort(a, low, mid);
-        // 右边
-        mergeSort(a, mid + 1, high);
-        // 左右归并
-        merge(a, low, mid, high);
-        System.out.println(Arrays.toString(a));
-    }
-
-}
-</code></pre><p> &#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493531505656&amp;di=3fcca775d3be2b21bad6ac93d3a7ade9&amp;imgtype=0&amp;src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif" alt=""></p>
-
-          
+          <h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color=red><a href="http://zh.visualgo.net"><strong>学习利器</strong></a></font></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/04/30/算法基础篇：排序（二）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
