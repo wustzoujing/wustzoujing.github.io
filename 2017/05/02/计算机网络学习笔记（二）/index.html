@@ -121,10 +121,10 @@
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494294197&di=f001c8f32c69d084119f3968d732d922&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bo56.com%2Fwp-content%2Fuploads%2F2014%2F11%2Fip_class.png">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493700242235&di=3a2d74e813de29bb1f389b000b2f6e86&imgtype=0&src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F672098%2F201501%2F082256050466766.png">
 <meta property="og:image" content="http://s1.sinaimg.cn/middle/4b503921475bd7925f320&690">
-<meta property="og:image" content="http://yoursite.com/2017/05/02/计算机网络学习笔记（二）/ziwangyanma.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084039266.jpeg">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084048370.jpeg">
-<meta property="og:updated_time" content="2017-05-02T04:58:01.000Z">
+<meta property="og:updated_time" content="2017-05-02T05:03:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（二）">
 <meta name="twitter:description" content="计算机网络-网络层（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本节介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建">
@@ -449,7 +449,7 @@
 <h3 id="子网划分、路由表、超网——解决怎么转发"><a href="#子网划分、路由表、超网——解决怎么转发" class="headerlink" title="子网划分、路由表、超网——解决怎么转发"></a>子网划分、路由表、超网——<strong>解决怎么转发</strong></h3><h4 id="原始做法："><a href="#原始做法：" class="headerlink" title="原始做法："></a>原始做法：</h4><p>&#160; &#160; &#160; &#160;<em>数据报在网络层怎么转发</em>：分组转发算法。数据报在IP层转发分组就是从一个路由器转发到下一个路由器，直到到达目的主机。路由器中有路由表保存下面两个信息：（目的网络地址，下一跳地址），也有默认路由，中间可能经过多次的间接交付。</p>
 <p>&#160; &#160; &#160; &#160;<em>存在的问题</em>：因为，第一：IP地址空间的利用率有时很低；第二：路由表太大导致性能变坏；第三：两级IP地址不够灵活。</p>
 <p>&#160; &#160; &#160; &#160;<em>策略</em>：<font color="red">划分子网，采用三级IP地址。</font>IP地址表示为{&lt;网络号&gt;,&lt;子网号&gt;,&lt;主机号&gt;}，子网在外看仍然表现成一个网络，内部确感觉划分了若干个子网。增加灵活性，减少主机数。子网掩码：和IP按位与运算得到网络地址。在路由表中加入<font color="red">子网掩码信息</font>。</p>
-<p><img src="ziwangyanma.png" alt=""></p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png" alt=""></p>
 <h4 id="在划分子网情况下，路由器转发分组算法"><a href="#在划分子网情况下，路由器转发分组算法" class="headerlink" title="在划分子网情况下，路由器转发分组算法"></a>在划分子网情况下，路由器转发分组算法</h4><p>（1）从分组的首部提取目的IP地址D</p>
 <p>（2）先用与该路由器直接相连的网络的子网掩码与D进行与运算，看结果是否与相应的网络 地址相匹配。若匹配，则进行直接交付。否则就是间接交付，马上执行3</p>
 <p>（3）若路由表中有一条到目的主机D的特定路由，则将分组转发给其指明的下一跳路由器。否则执行4</p>
