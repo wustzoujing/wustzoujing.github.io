@@ -120,6 +120,7 @@
 <meta property="og:description" content="计算机网络-运输层（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。本">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%8D%8F%E8%AE%AE%E6%A0%88.png">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%BA%94%E7%94%A8.png">
+<meta property="og:image" content="http://img.blog.csdn.net/20151018103115179">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/UDP.png">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/UDP%E9%A6%96%E9%83%A8.png">
@@ -129,7 +130,7 @@
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/476810/201605/476810-20160508190456874-770659297.png">
 <meta property="og:image" content="http://images2015.cnblogs.com/blog/476810/201605/476810-20160508190555749-856898339.png">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201204/10/1334044170_5136.jpg">
-<meta property="og:updated_time" content="2017-05-03T07:14:40.000Z">
+<meta property="og:updated_time" content="2017-05-03T11:59:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（三）">
 <meta name="twitter:description" content="计算机网络-运输层（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。本">
@@ -427,6 +428,8 @@
 <p>&#160; &#160; &#160; &#160;运输层提供应用进程之间的逻辑通信。意思是：运输层之间的通信好像是沿着水平方向传送数据，但实际并没有物理连接。数据在多个层次之间传送。（网络层是主机之间的逻辑通信），如之前所讲运输层还进行差错检测等，运输层向高层屏蔽了下面网络核心的细节，它使应用进程看见的好像是两个运输实体之间一条端到端的逻辑通信，当然运输层协议不同对上层的表现也很大不同。</p>
 <h3 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h3><h4 id="概述和相关应用"><a href="#概述和相关应用" class="headerlink" title="概述和相关应用"></a>概述和相关应用</h4><p>&#160; &#160; &#160; &#160;运输层的两个主要协议：用户数据报协议UDP和传输控制协议TCP。UDP面向无连接，不提供可靠交付，但是却是一种最有效的工作方式。TCP提供面向连接的，可靠的服务。TCP不提供多播服务，依赖额外的开销进行，确认、流量控制、计时器、连接管理等，协议数据单元的首部变大，也占用了很多处理机资源。下面给出两种协议在应用层的相关应用。</p>
 <p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%BA%94%E7%94%A8.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;两者之间的区别如下：</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://img.blog.csdn.net/20151018103115179" alt=""></p>
 <h4 id="端口的由来"><a href="#端口的由来" class="headerlink" title="端口的由来"></a>端口的由来</h4><p>&#160; &#160; &#160; &#160;运输层和应用层采用了复用和分用，应用层所有的应用进程都可以利用运输层传到IP层，运输层从IP层收到数据后在指定某个进程交付通信。现在重点是给每个应用进程赋予一个非常明确的标志。然而不同的操作系统有不同的进程标识符（一个不大的整数），所以TCP／IP体系对进程统一标志。即使是这样，还存在问题，比如要和因特网上的某个邮件服务器通信，我在不知道对方的进程没法完成通信，显然是不科学的，解决方法是：<font color="red">在运输层使用<em>协议端口号</em>，虽然说通信终点是应用进程，但是我们只用把数据送到指定端口，剩下来的工作交给TCP去完成。</font>常见的端口号如下：</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
 <h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>1.无连接，减小了开销和时延。</p>
@@ -588,8 +591,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
+              <a href="/2017/01/03/计算机网络学习笔记（四）/" rel="next" title="计算机网络学习笔记（四）">
+                <i class="fa fa-chevron-left"></i> 计算机网络学习笔记（四）
               </a>
             
           </div>
@@ -673,7 +676,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

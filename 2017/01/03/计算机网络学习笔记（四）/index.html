@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="算法," />
+  <meta name="keywords" content="计算机网络," />
 
 
 
@@ -111,19 +111,20 @@
 
 
 
-<meta name="description" content="基础排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
-<meta name="keywords" content="算法">
+<meta name="description" content="计算机网络-应用层（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。 &amp;#16">
+<meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法基础篇：排序（一）">
-<meta property="og:url" content="http://yoursite.com/2016/12/01/算法基础篇：排序（一）/index.html">
+<meta property="og:title" content="计算机网络学习笔记（四）">
+<meta property="og:url" content="http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="基础排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
-<meta property="og:image" content="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif">
-<meta property="og:updated_time" content="2017-05-03T07:13:19.000Z">
+<meta property="og:description" content="计算机网络-应用层（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。 &amp;#16">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493828954099&di=d72c9e6fbec5a560b82ad6cce92d2359&imgtype=0&src=http%3A%2F%2Fwww.eeing.com%2FUploadFile%2F20137810550682.jpg">
+<meta property="og:updated_time" content="2017-05-03T14:02:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法基础篇：排序（一）">
-<meta name="twitter:description" content="基础排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的数据结构和算法开始写。     &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有冒泡排序，选择排序和 插入排序。">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif">
+<meta name="twitter:title" content="计算机网络学习笔记（四）">
+<meta name="twitter:description" content="计算机网络-应用层（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。 &amp;#16">
+<meta name="twitter:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg">
 
 
 
@@ -151,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/01/算法基础篇：排序（一）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/"/>
 
 
 
 
 
-  <title>算法基础篇：排序（一） | Jessie_Zou’s Homepage</title>
+  <title>计算机网络学习笔记（四） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/01/算法基础篇：排序（一）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -327,7 +328,7 @@
             
             
               
-                算法基础篇：排序（一）
+                计算机网络学习笔记（四）
               
             
           </h1>
@@ -342,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-01T12:19:38+08:00">
-                2016-12-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-03T18:33:32+08:00">
+                2017-01-03
               </time>
             
 
@@ -365,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -382,7 +383,7 @@
 
           
           
-             <span id="/2016/12/01/算法基础篇：排序（一）/" class="leancloud_visitors" data-flag-title="算法基础篇：排序（一）">
+             <span id="/2017/01/03/计算机网络学习笔记（四）/" class="leancloud_visitors" data-flag-title="计算机网络学习笔记（四）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,85 +411,35 @@
       
 
       
-        <h1 id="基础排序算法及其Java实现"><a href="#基础排序算法及其Java实现" class="headerlink" title="基础排序算法及其Java实现"></a>基础排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看完了牛客网上的买的算法课程，准备首先从基础的<font color="red"><strong>数据结构</strong></font>和<font color="red"><strong>算法</strong></font>开始写。  </p>
-<p>  &#160; &#160; &#160; &#160;本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
+        <h1 id="计算机网络-应用层（四）"><a href="#计算机网络-应用层（四）" class="headerlink" title="计算机网络-应用层（四）"></a>计算机网络-应用层（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。</p>
+<p>&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
   <a id="more"></a>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="算法思路："><a href="#算法思路：" class="headerlink" title="算法思路："></a>算法思路：</h3><p>  1.<em>第一次循环</em>：从0到n-2（即0&lt;=i&lt;n-1-0），每个位置上的数拿本身和后一位相比，如果比后一位大就交换两个位置的值。</p>
-<p>  2.<em>第二次循环</em>：从0到n-3即（即0&lt;=i&lt;n-1-1），操作同第一次循环一样。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：0位置上的数（即0&lt;=i&lt;n-1-(n-2)），操作同第一次循环。</p>
-<p>  &#160; &#160; &#160; &#160;说明：为了实现本身和后一位相比直到最后，要用内层循环实现，范围区间已在上面给出，外层共有n-1次循环，我们可以写出代码如下。</p>
-<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><pre><code>public static int[] BubbleSort(int[] A, int n) {
-
-    // 给变量赋初识值
-    int temp,i = 0,j = 0;
-    //外层循环计数如上面算法思想的减数部分
-    for(;i &lt; n-1;++i){
-    //内层循环来实现相邻两个比较
-        for(;j&lt;n-i-1;++j){
-        //前一个比后一个大，冒泡到最后
-        //说明：逆序排列的话条件相反
-            if(A [j] &gt; A [j+1]){
-                temp = A[j];
-                A[j] = A[j+1];
-                A[j+1] = temp;
-            }
-        }
-    }
-    return A;
-}
-</code></pre><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p> 1.<em>第一次循环</em>：从0到n-1（即1&lt;=i&lt;n），选出区间最小值放到位置0上。</p>
-<p>  2.<em>第二次循环</em>：从1到n-1（即2&lt;=i&lt;n），选出最小值放到位置1上。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：从n-2到n-1（即n-2&lt;=i&lt;n），选出最小值放在位置n-2上。</p>
-<p>  &#160; &#160; &#160; &#160;说明：内层循环选取区间内的最小值，循环区间上面已给出，利用附加空间的int k来存储最小值的索引，最后和对应位置值交换，外层循环循环n-1次。根据以上思路可以写出实现代码。</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] selectSort(int[] data){
-//初始化变量，需要额外的k存最小智的索引
-    int i, j, k, tmp = 0;
-    //外层循环，0-n-2，循环n-2次
-    for (i = 0; i &lt; data.length - 1; i++) {
-        //记录下区间第一个值
-        k = i;
-        //内层循环从区间第二个值开始比较
-        for (j = i + 1; j &lt; data.length; j++)
-        //更新最小值索引
-            if (data[j] &lt; data[k])
-                k = j;
-        //如果最小值索引不是当前位置，交换他们的值
-        if (k != i) {
-            tmp = data[i];
-            data[i] = data[k];
-            data[k] = tmp;
-        }
-    }
-    return data;
-}
-</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p> 1.<em>第一次循环</em>：从位置1上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——1区间一定有序。</p>
-<p>  2.<em>第二次循环</em>：从位置2上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——2区间一定有序。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：从位置n-1上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——n-1区间即整个数列就有序了。</p>
-<p>  &#160; &#160; &#160; &#160;说明：外层循环循环n-1次。从1到n-1，即1&lt;=i&lt;n。内层循环首先取当前索引的前一位索引，与当前索引位置的值比较，如果当前索引位置较小就交换当前索引和前一位的值，并从它的前一位开始继续向前比较。根据以上思路可以写出实现代码。</p>
-<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] insertionSort(int[] A, int n) {
-    // 外层循环从1——n-1，共n-1次。
-    for(int i=1;i&lt;n;++i){
-        //j从当前索引i前一位开始，每次比较后j递减更新当前索引位置
-        for(int j=i-1;j&gt;=0;--j){
-            //比较前一位和当前索引位置，如果当前位置小则交换
-            if(A[j]&gt;A[j+1]){
-                int temp=A[j];
-                A[j]=A[j+1];
-                A[j+1]=temp;
-            }
-            //如果当前位置大，停止内层循环
-            else
-                break;
-        }
-
-    }
-    return A;
-}
-</code></pre><p>明天讲其他几种，最后试着插入一个动图！！！</p>
-<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" alt="亦菲表演机器猫"></p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="域名系统DNS"><a href="#域名系统DNS" class="headerlink" title="域名系统DNS"></a>域名系统DNS</h3><h4 id="DNS的由来"><a href="#DNS的由来" class="headerlink" title="DNS的由来"></a>DNS的由来</h4><p>&#160; &#160; &#160; &#160;DNS是因特网使用的命名系统，用来把便于使用的机器名字转换成IP地址。其实就是名字系统，之所以加上域，是因为命名系统中使用了很多的域。也不适合直接就使用域名系统，因为使用者方便了，机器处理起来就麻烦了，但是机器处理IP就比较方便，固定长度。</p>
+<p>&#160; &#160; &#160; &#160;DNS被设计成为一个联机分布式数据库系统，并采用客户端服务器方式，大多数名字在本地进行解析，仅少量的需要在因特网上涌现，所以效率很高。</p>
+<p>&#160; &#160; &#160; &#160;域名到IP地址的解析过程的要点如下：当某一个应用程序要把主机名解析为IP地址，该应用进程就跳用解析程序，并称为一个DNS客户，把待解析的域名放在DNS请求报文中，以 <strong>UDP</strong> 用户数据报方式发给本地域名服务器，本地域名服务器在查找域名后，把对应的ip地址放在回答报文中，应用程序获得目的主机的IP地址后即可进行通信。若本地域名服务器不能回答该请求，则此域名服务器暂时成为DNS中的另一个客户，向其他域名服务器发送查询请求。</p>
+<h4 id="DNS的结构"><a href="#DNS的结构" class="headerlink" title="DNS的结构"></a>DNS的结构</h4><p>&#160; &#160; &#160; &#160;mail.cctv.com中mail、cctv、com分别为三级域名、二级域名、顶级域名。每个不要超过63个字符，其实最好不要超过12个方便记忆。不区分大小写，总共不超过255个。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493828954099&amp;di=d72c9e6fbec5a560b82ad6cce92d2359&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.eeing.com%2FUploadFile%2F20137810550682.jpg" alt=""></p>
+<h3 id="文件传送协议"><a href="#文件传送协议" class="headerlink" title="文件传送协议"></a>文件传送协议</h3><h4 id="FTP和NFS"><a href="#FTP和NFS" class="headerlink" title="FTP和NFS"></a>FTP和NFS</h4><p>&#160; &#160; &#160; &#160;FTP提供交互式的访问，允许客户指明文件的类型和格式，并允许文件具有的存取权限，它屏蔽了各计算机系统的细节，因而适合在于异构网络中任意计算机之间传送文件。分别有基于TCP和UDP的FTP，这是文件共享协议中的一大类，即复制整个文件；另外一类是联机访问，意味着允许多个程序同时对一个文件进行存取。和数据库系统不同的是用户不需要调用一个特殊的客户进程，而是由操作系统提供对原地共享文件进行访问的服务。</p>
+<p>&#160; &#160; &#160; &#160;FTP主要功能是消除或减少在不同操作系统下处理文件的不兼容性。</p>
+<p>&#160; &#160; &#160; &#160;FTP并非对所有数据传输都是最佳的，例如计算机A上运行的应用程序要在原地计算机B的很大一个文件末尾添加一行信息，使用FTP来回传很花时间。这时NFS网络文件系统就起作用了，NFS允许应用进程打开一个原地文件，并能在该文件的特定位置开始读写数据，在网络上传送的只是少量的修改数据。</p>
+<h4 id="TFTP简单文件传送协议"><a href="#TFTP简单文件传送协议" class="headerlink" title="TFTP简单文件传送协议"></a>TFTP简单文件传送协议</h4><p>&#160; &#160; &#160; &#160;属于TCP／IP协议族，很小但是抑郁实现的文件传送协议。使用UDP协议，工作模式很像停止等待协议。端口号为69.</p>
+<h4 id="远程终端协议-TELENT"><a href="#远程终端协议-TELENT" class="headerlink" title="远程终端协议 TELENT"></a>远程终端协议 TELENT</h4><p>&#160; &#160; &#160; &#160;用户用TELENT就可以在所在地使用TCP连接注册到远地的另一个主机上。其中有NVT网络虚拟终端，屏蔽了操作系统的差异。port：23</p>
+<h3 id="万维网"><a href="#万维网" class="headerlink" title="万维网"></a>万维网</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>&#160; &#160; &#160; &#160;万维网是一个大规模联机式的信息储藏所，英文简称Web，万维网用链接的方法能非常方便地从因特网上的一个站点访问另一个站点，主动按序获取丰富的信息。1993年第一个图形界面的浏览器开发成功，叫做Mosaic，万维网是一个分布式的超媒体系统，它是超文本系统的扩展，就是所有网站的集合，用浏览器来访问其他站点的网站。万维网要解决的问题如下：</p>
+<ol>
+<li>怎么标志分布在整个因特网上的万维网文档？</li>
+<li>用什么用的协议来实现万维网上各种链接？</li>
+<li>怎样使用不同作战创作的不同风格的万维网文档都能在因特网上的各种主机上显示出来，同时使用户清楚知道什么地方存在着链接？</li>
+<li>怎样使用户能够很方便的找到所需的信息？</li>
+</ol>
+<h4 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h4><p>&#160; &#160; &#160; &#160;为了解决第一个问题，万维网使用统一资源定位符URL来标志万维网上的各种文档，并使每一个文档在整个因特网的范围内唯一标识符。</p>
+<p>&#160; &#160; &#160; &#160;为了解决第二个问题，我们采用HTTP超文本传送协议，是一个应用层协议，使用TCP链接进行可靠的传送。</p>
+<p>&#160; &#160; &#160; &#160;为了解决第三个问题，万维网使用HTML超文本标记语言，使设计者很方便地使用链接从本页面的某处链接到因特网的任何一个万维网页面</p>
+<p>&#160; &#160; &#160; &#160;第四个问题，搜索工具应运而生，帮助我们在万维网上查找自己所需的信息。</p>
+<p>&#160; &#160; &#160; &#160;下面看看在此实现思路基础上的具体的实现方式。</p>
+<h4 id="URL格式"><a href="#URL格式" class="headerlink" title="URL格式"></a>URL格式</h4><p>&#160; &#160; &#160; &#160;一般形式：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;。其中协议一般是http、https、ftp等，主机是域名，或者主机的外网ip，端口和路径有时可以省略。</p>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>&#160; &#160; &#160; &#160;HTTP协议定义了浏览器即万维网客户进程怎么样向万维网服务器请求万维网文档，以及服务器怎么样把文档传送给浏览器。HTTP是面向事务的应用层协议。通常基于TCP协议的，每个万维网网点都有一个服务器进程，不断监听TCP的端口80，以便发现是否有浏览器向他发出连接请求。一旦监听到建立TCP连接，通信结束后释放。交互必须遵循HTTP，它规定每次交互都由一个ASCII码串构成的请求和一个类MIME的响应。</p>
+<p>tips：浏览器敲入百度网址到响应的过程。</p>
+<h5 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h5><p>&#160; &#160; &#160; &#160;参考这篇博文：<a href="http://blog.csdn.net/zhangliang_571/article/details/23508953" target="_blank" rel="external">http请求报文和响应报文</a>。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -540,7 +491,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/计算机网络/" rel="tag"># 计算机网络</a>
           
         </div>
       
@@ -553,8 +504,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/06/算法基础篇：排序（二）/" rel="next" title="算法基础篇：排序（二）">
-                <i class="fa fa-chevron-left"></i> 算法基础篇：排序（二）
+              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
               </a>
             
           </div>
@@ -563,8 +514,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/27/hexo搭建个人博客/" rel="prev" title="hexo搭建个人博客">
-                hexo搭建个人博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/12/22/计算机网络学习笔记（三）/" rel="prev" title="计算机网络学习笔记（三）">
+                计算机网络学习笔记（三） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -722,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基础排序算法及其Java实现"><span class="nav-number">1.</span> <span class="nav-text">基础排序算法及其Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.2.</span> <span class="nav-text">冒泡排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思路："><span class="nav-number">1.2.1.</span> <span class="nav-text">算法思路：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现："><span class="nav-number">1.2.2.</span> <span class="nav-text">代码实现：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择排序"><span class="nav-number">1.3.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">1.3.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-number">1.3.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插入排序"><span class="nav-number">1.4.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现-1"><span class="nav-number">1.4.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络-应用层（四）"><span class="nav-number">1.</span> <span class="nav-text">计算机网络-应用层（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">1.2.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#域名系统DNS"><span class="nav-number">1.2.1.</span> <span class="nav-text">域名系统DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS的由来"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">DNS的由来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS的结构"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">DNS的结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件传送协议"><span class="nav-number">1.2.2.</span> <span class="nav-text">文件传送协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FTP和NFS"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">FTP和NFS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TFTP简单文件传送协议"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">TFTP简单文件传送协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#远程终端协议-TELENT"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">远程终端协议 TELENT</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#万维网"><span class="nav-number">1.2.3.</span> <span class="nav-text">万维网</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现思路"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">实现思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL格式"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">URL格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">1.2.3.4.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#概述"><span class="nav-number">1.2.3.4.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP报文"><span class="nav-number">1.2.3.4.2.</span> <span class="nav-text">HTTP报文</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
