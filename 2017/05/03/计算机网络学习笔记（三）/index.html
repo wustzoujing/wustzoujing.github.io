@@ -118,10 +118,19 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/03/计算机网络学习笔记（三）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
 <meta property="og:description" content="计算机网络-运输层（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。">
-<meta property="og:updated_time" content="2017-05-03T00:34:06.000Z">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%8D%8F%E8%AE%AE%E6%A0%88.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%BA%94%E7%94%A8.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/UDP.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/UDP%E9%A6%96%E9%83%A8.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/TCP%E9%A6%96%E9%83%A8.png">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201204/10/1334044170_5136.jpg">
+<meta property="og:updated_time" content="2017-05-03T02:57:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（三）">
 <meta name="twitter:description" content="计算机网络-运输层（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。">
+<meta name="twitter:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%8D%8F%E8%AE%AE%E6%A0%88.png">
 
 
 
@@ -410,7 +419,42 @@
       
         <h1 id="计算机网络-运输层（三）"><a href="#计算机网络-运输层（三）" class="headerlink" title="计算机网络-运输层（三）"></a>计算机网络-运输层（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。</p>
   <a id="more"></a>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="进程之间的通信"><a href="#进程之间的通信" class="headerlink" title="进程之间的通信"></a>进程之间的通信</h3><p>&#160; &#160; &#160; &#160;从通信和信息处理的角度看，运输层向它上面的应用层提供通信服务，它是面向通信部分的最高层，也是用户功能的最低层。当网络的边缘部分的两个主机利用网络的核心部分的功能进行端到端的通信时，<font color="red">只有主机的协议栈才有运输层</font>，而网络核心部分中的路由器在转发分组的时候都只用到了下面三层的功能。</p>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="进程之间的通信"><a href="#进程之间的通信" class="headerlink" title="进程之间的通信"></a>进程之间的通信</h3><p>&#160; &#160; &#160; &#160;从通信和信息处理的角度看，运输层向它上面的应用层提供通信服务，它是面向通信部分的最高层，也是用户功能的最低层。当网络的边缘部分的两个主机利用网络的核心部分的功能进行端到端的通信时，<font color="red">只有主机的协议栈才有运输层</font>，而网络核心部分中的路由器在转发分组的时候都只用到了下三层的功能。<br><img src="http://opb7t58xj.bkt.clouddn.com/%E5%8D%8F%E8%AE%AE%E6%A0%88.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;从上图可知：从IP层来说，通信的是主机，但是两个主机之间通信的说法还不够清楚，这是因为，真正进行通信的实体是两个主机上的进程，从运输层来看并不是主机而是主机上的进程。</p>
+<p>&#160; &#160; &#160; &#160;运输层提供应用进程之间的逻辑通信。意思是：运输层之间的通信好像是沿着水平方向传送数据，但实际并没有物理连接。数据在多个层次之间传送。（网络层是主机之间的逻辑通信），如之前所讲运输层还进行差错检测等，运输层向高层屏蔽了下面网络核心的细节，它使应用进程看见的好像是两个运输实体之间一条端到端的逻辑通信，当然运输层协议不同对上层的表现也很大不同。</p>
+<h3 id="TCP和UDP"><a href="#TCP和UDP" class="headerlink" title="TCP和UDP"></a>TCP和UDP</h3><h4 id="概述和相关应用"><a href="#概述和相关应用" class="headerlink" title="概述和相关应用"></a>概述和相关应用</h4><p>&#160; &#160; &#160; &#160;运输层的两个主要协议：用户数据报协议UDP和传输控制协议TCP。UDP面向无连接，不提供可靠交付，但是却是一种最有效的工作方式。TCP提供面向连接的，可靠的服务。TCP不提供多播服务，依赖额外的开销进行，确认、流量控制、计时器、连接管理等，协议数据单元的首部变大，也占用了很多处理机资源。下面给出两种协议在应用层的相关应用。</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%BA%94%E7%94%A8.png" alt=""></p>
+<h4 id="端口的由来"><a href="#端口的由来" class="headerlink" title="端口的由来"></a>端口的由来</h4><p>&#160; &#160; &#160; &#160;运输层和应用层采用了复用和分用，应用层所有的应用进程都可以利用运输层传到IP层，运输层从IP层收到数据后在指定某个进程交付通信。现在重点是给每个应用进程赋予一个非常明确的标志。然而不同的操作系统有不同的进程标识符（一个不大的整数），所以TCP／IP体系对进程统一标志。即使是这样，还存在问题，比如要和因特网上的某个邮件服务器通信，我在不知道对方的进程没法完成通信，显然是不科学的，解决方法是：<font color="red">在运输层使用<em>协议端口号</em>，虽然说通信终点是应用进程，但是我们只用把数据送到指定端口，剩下来的工作交给TCP去完成。</font>常见的端口号如下：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
+<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h5><p>1.无连接，减小了开销和时延。</p>
+<p>2.最大努力交付，不保证可靠交付，不需要维持复杂的状态连接表。</p>
+<p>3.面向报文，对于应用层的报文，只添加首部，保留边界，一次性交付，所以应用程序要选择合适大小的报文，太长或太短都会降低IP层效率，长了会分片，短了首部相对就太长。</p>
+<p>4.没有拥塞控制，支持一对一，一对多，多对多的交互通信，首部开销小。</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/UDP.png" alt=""></p>
+<h5 id="首部格式"><a href="#首部格式" class="headerlink" title="首部格式"></a>首部格式</h5><p>&#160; &#160; &#160; &#160;UDP首部较为简单，包含四个部分，其中伪首部是计算检验和时临时添加，并不向上或向下传递，如下图：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/UDP%E9%A6%96%E9%83%A8.png" alt=""></p>
+<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><h5 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h5><p>1.面向连接。先建立连接在通信，最后释放连接。就像打电话一样。</p>
+<p>2.连接只能是一对一点对点。</p>
+<p>3.提供可靠交付，无差错、不丢失、不重复、按序到达。</p>
+<p>4.全双工通信，双方任何时候都能发送，两端都设有发送和接收缓存。</p>
+<p>5.面向字节流。TCP并不知道所传数据的含义，统一当成无结构的字节流，存在发送方发送10个数据块，接收方只用了4个数据块就把收到的字节流交付给应用层。当然接收方的应用程序必须有能力识别收到的字节流并还原成应用层数据。</p>
+<h4 id="可靠传输的工作原理"><a href="#可靠传输的工作原理" class="headerlink" title="可靠传输的工作原理"></a>可靠传输的工作原理</h4><h5 id="停止等待协议–应用：ARQ自动重传请求"><a href="#停止等待协议–应用：ARQ自动重传请求" class="headerlink" title="停止等待协议–应用：ARQ自动重传请求"></a>停止等待协议–应用：ARQ自动重传请求</h5><p>&#160; &#160; &#160; &#160;每发送完一个分组就停止发送，等待对方确认，收到确认在发送下一个分组。</p>
+<p>&#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;如果出现差错，就要<font color="red">超时重传</font>，为了实现这一功能，需要做以下工作：</p>
+<p>&#160; &#160; &#160; &#160;1.设计超时计时器，且超时时间比平均往返时间更长。（超时时间设定是个复杂问题）</p>
+<p>&#160; &#160; &#160; &#160;2.必须保留已发送分组的副本。</p>
+<p>&#160; &#160; &#160; &#160;3.对发送的分组编号，才知道哪个没发送成功。</p>
+<p>&#160; &#160; &#160; &#160;4.确认丢失和确认迟到。也许超时之后，接收方还是收到了，这时候就会丢弃重复的分组，进行确认，分为确认丢失和确认迟到，所以说，发送方总是会收到确认，如果总是收不到说明通信线路太差不能通信。</p>
+<h5 id="TCP首部格式"><a href="#TCP首部格式" class="headerlink" title="TCP首部格式"></a>TCP首部格式</h5><p>&#160; &#160; &#160; &#160;虽然TCP是面向字节流的，但是TCP传送的数据单元缺失报文段。20+4N的格式，20是固定的，根据需要以4N字节增加。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/TCP%E9%A6%96%E9%83%A8.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;</p>
+<p>1.源端口和目的端口，各占2个字节，分别写入源端口号和目的端口号。</p>
+<p>2.序号 占4个字节，范围时0到2^32-1，采用mod 2^32运算。</p>
+<p>3.确认号 期望收到对方下一个报文段的第一个数据字节的序号。</p>
+<p>4.数据偏移 </p>
+<h3 id="socket通信"><a href="#socket通信" class="headerlink" title="socket通信"></a>socket通信</h3><p>&#160; &#160; &#160; &#160;Socket是应用层与TCP/IP协议族通信的中间软件抽象层，它是一组接口。在设计模式中，Socket其实就是一个门面模式，它把复杂的TCP/IP协议族隐藏在Socket接口后面，对用户来说，一组简单的接口就是全部，让Socket去组织数据，以符合指定的协议。</p>
+<p>&#160; &#160; &#160; &#160;注意：其实socket也没有层的概念，它只是一个facade设计模式的应用，让编程变的更简单。是一个软件抽象层。在网络编程中，我们大量用的都是通过socket实现的。</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://img.my.csdn.net/uploads/201204/10/1334044170_5136.jpg" alt=""></p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -640,7 +684,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络-运输层（三）"><span class="nav-number">1.</span> <span class="nav-text">计算机网络-运输层（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">1.2.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程之间的通信"><span class="nav-number">1.2.1.</span> <span class="nav-text">进程之间的通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络-运输层（三）"><span class="nav-number">1.</span> <span class="nav-text">计算机网络-运输层（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">1.2.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程之间的通信"><span class="nav-number">1.2.1.</span> <span class="nav-text">进程之间的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP和UDP"><span class="nav-number">1.2.2.</span> <span class="nav-text">TCP和UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述和相关应用"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">概述和相关应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#端口的由来"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">端口的由来</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点："><span class="nav-number">1.2.2.3.1.</span> <span class="nav-text">特点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#首部格式"><span class="nav-number">1.2.2.3.2.</span> <span class="nav-text">首部格式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#特点"><span class="nav-number">1.2.2.4.1.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠传输的工作原理"><span class="nav-number">1.2.2.5.</span> <span class="nav-text">可靠传输的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#停止等待协议–应用：ARQ自动重传请求"><span class="nav-number">1.2.2.5.1.</span> <span class="nav-text">停止等待协议–应用：ARQ自动重传请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP首部格式"><span class="nav-number">1.2.2.5.2.</span> <span class="nav-text">TCP首部格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket通信"><span class="nav-number">1.2.3.</span> <span class="nav-text">socket通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>

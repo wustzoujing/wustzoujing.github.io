@@ -125,7 +125,7 @@
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084039266.jpeg">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084048370.jpeg">
-<meta property="og:updated_time" content="2017-05-03T00:16:53.000Z">
+<meta property="og:updated_time" content="2017-05-03T01:48:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（二）">
 <meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术">
@@ -460,7 +460,7 @@
 <h4 id="CIDR-无分类编址（构造超网）"><a href="#CIDR-无分类编址（构造超网）" class="headerlink" title="CIDR 无分类编址（构造超网）"></a>CIDR 无分类编址（构造超网）</h4><p>出现问题：IP地址都快分完了。</p>
 <p>解决办法：CIDR，特点：消除传统的A、B、C类地址以及划分子网的概念，回到二级地址，网络前缀+主机号，还可采用斜线法，斜线数字代表前缀中1的个数。</p>
 <h4 id="ipv4和ipv6"><a href="#ipv4和ipv6" class="headerlink" title="ipv4和ipv6"></a>ipv4和ipv6</h4><p>&#160; &#160; &#160; &#160;两者比较可参考这个博文：<a href="http://tech.hexun.com/2015-01-10/172249335.html" target="_blank" rel="external">ipv4和ipv6之间区别比较</a>，但是当前主流的仍然是v4，为什么，这个我看了下知乎上的答案：<a href="http://tech.hexun.com/2015-01-10/172249335.html" target="_blank" rel="external">IPv6的概念都出来好久了，为什么现在的主流还是IPv4？</a>,感觉主要是已经大范围的使用，如果要更新，很多软硬件需要换代，这样成本太高。。。</p>
-<h3 id="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><a href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠" class="headerlink" title="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"></a>ICMP网际控制报文协议——<strong>解决怎么尽最大限度的保证可靠</strong></h3><p>&#160; &#160; &#160; &#160;为了更有效的转发IP数据和提高交付机会，使用ICMP，IP层协议。它的应用有常用<font color="red">ping</font>。<br>详细细节参考博文：<a href="http://www.cnblogs.com/Akagi201/archive/2012/03/26/2418475.html" target="_blank" rel="external">ping原理和ICMP协议</a>，<a href="http://network.chinabyte.com/23/13155523.shtml" target="_blank" rel="external">ICMP协议基础讲解</a>。</p>
+<h3 id="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><a href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠" class="headerlink" title="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"></a>ICMP网际控制报文协议——<strong>解决怎么尽最大限度的保证可靠</strong></h3><p>&#160; &#160; &#160; &#160;为了更有效的转发IP数据和提高交付机会，使用ICMP，IP层协议。应用于IP主机和路由器之间传递控制消息。它的应用有常用<font color="red">ping</font>。<br>详细细节参考博文：<a href="http://www.cnblogs.com/Akagi201/archive/2012/03/26/2418475.html" target="_blank" rel="external">ping原理和ICMP协议</a>，<a href="http://network.chinabyte.com/23/13155523.shtml" target="_blank" rel="external">ICMP协议基础讲解</a>。</p>
 <h3 id="因特网路由选择协议——解决路由选择"><a href="#因特网路由选择协议——解决路由选择" class="headerlink" title="因特网路由选择协议——解决路由选择"></a>因特网路由选择协议——<strong>解决路由选择</strong></h3><p>&#160; &#160; &#160; &#160;目前的因特网中，一个大的ISP（信息服务提供者）就是一个AS（自治系统），分两类内部网关协议IGP和外部网关协议EGP，自治系统之间的路由也叫做域间路由选择，内部叫做域内路由选择。</p>
 <h4 id="内部网关协议RIP和OSPF"><a href="#内部网关协议RIP和OSPF" class="headerlink" title="内部网关协议RIP和OSPF"></a>内部网关协议RIP和OSPF</h4><p>&#160; &#160; &#160; &#160;两者的内容和比较可以参考博文：<a href="http://www.2cto.com/net/201210/161420.html" target="_blank" rel="external">RIP和OSPF的区别比较</a>。</p>
 <h4 id="外部网关协议-BGP"><a href="#外部网关协议-BGP" class="headerlink" title="外部网关协议 BGP"></a>外部网关协议 BGP</h4><p>BGP是不同自治系统的路由器之间交换路由信息的协议。只能是力求寻找一条能够到达目的网络且比较好的路由，而并非要找到一条最佳。</p>
