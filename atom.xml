@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-02T09:14:48.000Z</updated>
+  <updated>2017-05-03T00:34:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计算机网络学习笔记（三）</title>
+    <link href="http://yoursite.com/2017/05/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/05/03/计算机网络学习笔记（三）/</id>
+    <published>2017-05-03T00:09:00.000Z</published>
+    <updated>2017-05-03T00:34:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="计算机网络-运输层（三）"><a href="#计算机网络-运输层（三）" class="headerlink" title="计算机网络-运输层（三）"></a>计算机网络-运输层（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。</p>
+  <a id="more"></a>
+<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="进程之间的通信"><a href="#进程之间的通信" class="headerlink" title="进程之间的通信"></a>进程之间的通信</h3><p>&#160; &#160; &#160; &#160;从通信和信息处理的角度看，运输层向它上面的应用层提供通信服务，它是面向通信部分的最高层，也是用户功能的最低层。当网络的边缘部分的两个主机利用网络的核心部分的功能进行端到端的通信时，<font color="red">只有主机的协议栈才有运输层</font>，而网络核心部分中的路由器在转发分组的时候都只用到了下面三层的功能。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;计算机网络-运输层（三）&quot;&gt;&lt;a href=&quot;#计算机网络-运输层（三）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-运输层（三）&quot;&gt;&lt;/a&gt;计算机网络-运输层（三）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>剑指offer：二维数组中的查找</title>
@@ -88,11 +114,11 @@
     <link href="http://yoursite.com/2017/05/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/05/02/计算机网络学习笔记（二）/</id>
     <published>2017-05-02T00:36:05.000Z</published>
-    <updated>2017-05-02T09:12:10.000Z</updated>
+    <updated>2017-05-03T00:16:53.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="计算机网络-网络层（二）"><a href="#计算机网络-网络层（二）" class="headerlink" title="计算机网络-网络层（二）"></a>计算机网络-网络层（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;本节介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是他制定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，他能实现TCP／IP协议的通信，具体在下面结合图和实例阐述。</p>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
+<h1 id="计算机网络-网络层（二）"><a href="#计算机网络-网络层（二）" class="headerlink" title="计算机网络-网络层（二）"></a>计算机网络-网络层（二）</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h3><p>即虚电路服务和数据报服务。</p>
   <a id="more"></a>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h3><p>即虚电路服务和数据报服务。</p>
 <p>&#160; &#160; &#160; &#160;虚电路：面向连接的，建立虚电路，以保证双方通信所需的一切资源，这是一条逻辑上的连接，不同于电话交换的物理连接，如果再使用可靠的网络传输协议，就可使所发送的分组无差错按步序到达终点。</p>
 <p>&#160; &#160; &#160; &#160;数据报服务：无连接的通信方式，只提供尽最大能力交付的数据报服务。</p>
 <p>&#160; &#160; &#160; &#160;这两种方式，在当时很有争议，焦点就是到底可靠的交付是在网络层还是运输层，有人觉得借助电信网成功经验，而互联网先驱却提出崭新的设计思路：<font color="red">交给上层即计算机来进行差错处理，充分利用了计算机的处理能力。</font>多年实践证明，当时决定在交给上层去实现可靠传输就是正确决定。由于在网络层要保证可靠的传输成本很大，而现在只需成本较低的路由器就行。将可靠的交付交给运输层来解决，即我们的TCP协议。</p>
@@ -107,7 +133,7 @@
 <h3 id="ARP和RARP协议"><a href="#ARP和RARP协议" class="headerlink" title="ARP和RARP协议"></a>ARP和RARP协议</h3><p>&#160; &#160; &#160; &#160;地址解析协议ARP，和逆地址解析协议RARP。来实现IP地址和硬件地址的相互转换。<font color="red">现在RARP的功能在DHCP中已经完成，所以没人再单独使用了。</font></p>
 <h4 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h4><p>&#160; &#160; &#160; &#160;ARP高速缓存，请求的时候广播，得到结果保存到缓存中，且定时更新，因为如果请求的主机网络适配器坏了，它的硬件地址也就坏了，改变了，定时更新防止这种情况。</p>
 <p>详细细节参考这篇博文。<a href="http://www.cnblogs.com/luckyxiaoxuan/p/3395527.html" target="_blank" rel="external">ARP协议详解</a></p>
-<h3 id="IP数据报的格式"><a href="#IP数据报的格式" class="headerlink" title="IP数据报的格式"></a>IP数据报的格式</h3><p><img src="http://s1.sinaimg.cn/middle/4b503921475bd7925f320&amp;690" alt=""></p>
+<h3 id="IP数据报的格式"><a href="#IP数据报的格式" class="headerlink" title="IP数据报的格式"></a>IP数据报的格式</h3><p><img src="http://opb7t58xj.bkt.clouddn.com/3B60552E-D2CB-41B7-B487-247D91DB9423.png" alt=""></p>
 <p>（1） 版本（version）：包含IP地址的版本号，4个比特。</p>
 <p>（2） 首部长度（header length）：表示IP数据报头长度，4个比特。</p>
 <p>（3） 优先级与服务器类型（priority and type of service）:用于表示数据包的优先级和服务器类型，8个比特。</p>
@@ -147,12 +173,13 @@
 <p>&#160; &#160; &#160; &#160;现在有一个问题就是，在专用网内部的主机有一个专用地址，但是又想和因特网上的主机通信，那么该怎么办？</p>
 <p>&#160; &#160; &#160; &#160;网络地址转换NAT(Network Address Translation)，就用来解决这个问题。这种方法首先需要在专用网连接到因特网的路由器上安装NAT软件。就是当专用网的主机和外部网进行通信的时候，数据包经过NAT路由器的时，NAT路由器将专用网地址转换为一个全球地址，然后并记录下这个转换对。当收到发往某全球地址的数据包时候，再将此数据包转发到内部网中得某主机（与该地址对应的内部主机）。如下图：<br><img src="http://up.2cto.com/2013/0805/20130805084048370.jpeg" alt=""></p>
 <p>&#160; &#160; &#160; &#160;如果NAT路由器有N个全球地址的话，那么就可以支持专用网内部N台主机同时与因特网进行通信。这样就可以使得专用网内较多的主机轮流使用这N个全球地址。注意：因为地址转换的关系，所以通过NAT路由器的通信必须由专用网内的主机发起。理解???因为一开始不知道如何转换。所以专用网内部的主机是不可以作为服务器的。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处不好说明，无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;计算机网络-网络层（二）&quot;&gt;&lt;a href=&quot;#计算机网络-网络层（二）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-网络层（二）&quot;&gt;&lt;/a&gt;计算机网络-网络层（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;本节介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是他制定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，他能实现TCP／IP协议的通信，具体在下面结合图和实例阐述。&lt;/p&gt;
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。&lt;/p&gt;
+&lt;h1 id=&quot;计算机网络-网络层（二）&quot;&gt;&lt;a href=&quot;#计算机网络-网络层（二）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-网络层（二）&quot;&gt;&lt;/a&gt;计算机网络-网络层（二）&lt;/h1&gt;&lt;h2 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h2&gt;&lt;h3 id=&quot;网络层提供的两种服务&quot;&gt;&lt;a href=&quot;#网络层提供的两种服务&quot; class=&quot;headerlink&quot; title=&quot;网络层提供的两种服务&quot;&gt;&lt;/a&gt;网络层提供的两种服务&lt;/h3&gt;&lt;p&gt;即虚电路服务和数据报服务。&lt;/p&gt;
     
     </summary>
     
@@ -168,7 +195,7 @@
     <link href="http://yoursite.com/2017/05/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/05/01/计算机网络学习笔记（一）/</id>
     <published>2017-05-01T01:05:46.000Z</published>
-    <updated>2017-05-02T05:43:49.000Z</updated>
+    <updated>2017-05-03T00:30:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="计算机网络-概述（一）"><a href="#计算机网络-概述（一）" class="headerlink" title="计算机网络-概述（一）"></a>计算机网络-概述（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;非计算机专业，有过计算机网络的课程，但是理解的很浅显，最近面试感觉这方面确实要加强，因为主要的学习方向是Java Web，但是却连计算机网络的知识都不扎实，确实也说不过去，希望能系统的学习一下，查阅了网上的资料，下载了相关视频，书籍和ppt，学的是《计算机网络》谢希仁版的教材，下面记录学习中的重点部分和理解。</p>
   <a id="more"></a>
@@ -210,7 +237,7 @@
 　　</p>
 <h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>&#160; &#160; &#160; &#160;如下图，各层分布如下，我们在下一节中重点了解网络层ip、运输层tcp，udp和应用层的相关知识。<br>　　<br><img src="https://uploadfiles.nowcoder.com/images/20160825/537870_1472105349302_FEE2F1DA56B2D9B0ED608E700E39130D" alt=""></p>
 <p>本文参考连接:<a href="http://www.cnblogs.com/maybe2030/p/4781555.html" target="_blank" rel="external">计算机网络知识总结</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处不好说明，无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
@@ -231,7 +258,7 @@
     <link href="http://yoursite.com/2017/04/30/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%8E%92%E5%BA%8F%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/04/30/算法基础篇：排序（二）/</id>
     <published>2017-04-30T02:07:42.000Z</published>
-    <updated>2017-05-02T05:43:38.000Z</updated>
+    <updated>2017-05-03T00:31:06.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color="red"><a href="http://zh.visualgo.net" target="_blank" rel="external"><strong>学习利器</strong></a></font></p>
   <a id="more"></a>
@@ -311,7 +338,7 @@ public static void mergeSort(int[] a, int low, int high) {
 
 }
 </code></pre><p> &#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493531505656&amp;di=3fcca775d3be2b21bad6ac93d3a7ade9&amp;imgtype=0&amp;src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif" alt=""></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处不好说明，无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
@@ -332,7 +359,7 @@ public static void mergeSort(int[] a, int low, int high) {
     <link href="http://yoursite.com/2017/04/27/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%8E%92%E5%BA%8F%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/04/27/算法基础篇：排序（一）/</id>
     <published>2017-04-27T04:19:38.000Z</published>
-    <updated>2017-05-02T08:24:15.000Z</updated>
+    <updated>2017-05-03T00:31:19.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="基础排序算法及其Java实现"><a href="#基础排序算法及其Java实现" class="headerlink" title="基础排序算法及其Java实现"></a>基础排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看完了牛客网上的买的算法课程，准备首先从基础的<font color="red"><strong>数据结构</strong></font>和<font color="red"><strong>算法</strong></font>开始写。  </p>
 <p>  &#160; &#160; &#160; &#160;本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
@@ -413,7 +440,7 @@ public static void mergeSort(int[] a, int low, int high) {
 }
 </code></pre><p>明天讲其他几种，最后试着插入一个动图！！！</p>
 <p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" alt="亦菲表演机器猫"></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处不好说明，无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
@@ -435,7 +462,7 @@ public static void mergeSort(int[] a, int low, int high) {
     <link href="http://yoursite.com/2017/04/27/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
     <id>http://yoursite.com/2017/04/27/hexo搭建个人博客/</id>
     <published>2017-04-27T02:14:11.000Z</published>
-    <updated>2017-05-02T09:12:30.000Z</updated>
+    <updated>2017-05-03T00:31:52.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="git-nodejs-markdown搭建hexo"><a href="#git-nodejs-markdown搭建hexo" class="headerlink" title="git+nodejs+markdown搭建hexo"></a>git+nodejs+markdown搭建hexo</h1><h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h2><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
 <h3 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h3><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
@@ -451,7 +478,7 @@ public static void mergeSort(int[] a, int low, int high) {
 <h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
 <h2 id="nodejs-git-并安装hexo"><a href="#nodejs-git-并安装hexo" class="headerlink" title="nodejs+git 并安装hexo"></a>nodejs+git 并安装hexo</h2><h3 id="这个教程很多，下面给个链接"><a href="#这个教程很多，下面给个链接" class="headerlink" title="这个教程很多，下面给个链接"></a>这个教程很多，下面给个链接</h3><p><a href="http://www.jianshu.com/p/ecd51e8ef2fa" target="_blank" rel="external">参考链接</a></p>
 <h2 id="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"><a href="#next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。" class="headerlink" title="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"></a>next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">官方文档</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处不好说明，无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
