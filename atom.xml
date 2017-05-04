@@ -126,7 +126,7 @@
     <link href="http://yoursite.com/2017/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/</id>
     <published>2017-01-03T10:33:32.000Z</published>
-    <updated>2017-05-04T03:48:15.000Z</updated>
+    <updated>2017-05-04T06:25:17.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="计算机网络-应用层（四）"><a href="#计算机网络-应用层（四）" class="headerlink" title="计算机网络-应用层（四）"></a>计算机网络-应用层（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。</p>
 <p>&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
@@ -183,6 +183,8 @@
 <h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><h4 id="SMTP、POP3、IMAP"><a href="#SMTP、POP3、IMAP" class="headerlink" title="SMTP、POP3、IMAP"></a>SMTP、POP3、IMAP</h4><p>&#160; &#160; &#160; &#160;简单邮件传送协议，只能传送可打印的7位ASCII码邮件，后来又出现MIME通用互联网邮件扩充，后来还进行了修订。</p>
 <p>&#160; &#160; &#160; &#160;电子邮件系统应该具有三个重要的组成构件，用户代理，邮件服务器，以及邮件发送协议。区别：IMAP在服务器保存副本。参考博文：<a href="http://blog.csdn.net/ladybai/article/details/509882050" target="_blank" rel="external">电子邮件协议之SMTP、POP3和IMAP</a>。</p>
 <h3 id="DHCP动态主机配置协议"><a href="#DHCP动态主机配置协议" class="headerlink" title="DHCP动态主机配置协议"></a>DHCP动态主机配置协议</h3><p>&#160; &#160; &#160; &#160;基于UDP，为了把协议软件做成通用的和便于移植，协议软件的编写者不会把所有细节都固定在源代码中。相反会把协议软件参数化。前身是BOOTP引导程序协议，需要人工参与，DHCP是即插即用，对服务器和客户端都适用。</p>
+<h3 id="简单网络管理协议SNMP"><a href="#简单网络管理协议SNMP" class="headerlink" title="简单网络管理协议SNMP"></a>简单网络管理协议SNMP</h3><p>被管对象上运行的SNMP服务器不断监听来自管理站的SNMP客户端请求，一旦发现立即返回管理站所需信息，或者执行某个动作。</p>
+<h3 id="跨越网络的应用进程通信"><a href="#跨越网络的应用进程通信" class="headerlink" title="跨越网络的应用进程通信"></a>跨越网络的应用进程通信</h3><p>当很多的应用层协议还不能满足我们的需求，于是开放了相关的系统调用和应用程序编程接口，即网络socket编程。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
