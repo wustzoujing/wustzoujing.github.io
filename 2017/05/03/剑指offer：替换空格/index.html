@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 分析&amp;#160; &amp;#160; &amp;#160; &amp;#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有">
+<meta name="description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
 <meta name="keywords" content="剑指offer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="剑指offer：替换空格">
 <meta property="og:url" content="http://yoursite.com/2017/05/03/剑指offer：替换空格/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 分析&amp;#160; &amp;#160; &amp;#160; &amp;#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有">
-<meta property="og:updated_time" content="2017-05-03T07:41:16.000Z">
+<meta property="og:description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
+<meta property="og:updated_time" content="2017-05-04T13:56:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="剑指offer：替换空格">
-<meta name="twitter:description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。 分析&amp;#160; &amp;#160; &amp;#160; &amp;#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有">
+<meta name="twitter:description" content="二维数组中的查找题目&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。">
 
 
 
@@ -409,9 +409,9 @@
 
       
         <h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+  <a id="more"></a>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：<a href="http://blog.csdn.net/qh_java/article/details/46382265" target="_blank" rel="external">从源码角度分析Java三种字符串</a>。</p>
 <p>&#160; &#160; &#160; &#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。</p>
-  <a id="more"></a>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>public String replaceSpace(StringBuffer str) {
     StringBuilder newstr =new StringBuilder();
     for(int i=0;i&lt;str.length();i++){

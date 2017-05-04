@@ -111,13 +111,13 @@
 
 
 
-<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术">
+<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络学习笔记（二）">
 <meta property="og:url" content="http://yoursite.com/2016/12/15/计算机网络学习笔记（二）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494293515&di=f0143bb189d8a9c8cde2a47f038d8133&imgtype=jpg&er=1&src=http%3A%2F%2Fblog.chinaunix.net%2Fattachment%2F201402%2F14%2F26275986_1392346156Z19P.png">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494294197&di=f001c8f32c69d084119f3968d732d922&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bo56.com%2Fwp-content%2Fuploads%2F2014%2F11%2Fip_class.png">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493700242235&di=3a2d74e813de29bb1f389b000b2f6e86&imgtype=0&src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F672098%2F201501%2F082256050466766.png">
@@ -125,10 +125,10 @@
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084039266.jpeg">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084048370.jpeg">
-<meta property="og:updated_time" content="2017-05-03T07:14:25.000Z">
+<meta property="og:updated_time" content="2017-05-04T13:57:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（二）">
-<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494293515&di=f0143bb189d8a9c8cde2a47f038d8133&imgtype=jpg&er=1&src=http%3A%2F%2Fblog.chinaunix.net%2Fattachment%2F201402%2F14%2F26275986_1392346156Z19P.png">
 
 
@@ -416,9 +416,10 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。</p>
+ <a id="more"></a>
+<p>&#160; &#160; &#160; &#160;TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
 <h1 id="计算机网络-网络层（二）"><a href="#计算机网络-网络层（二）" class="headerlink" title="计算机网络-网络层（二）"></a>计算机网络-网络层（二）</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h3><p>即虚电路服务和数据报服务。</p>
-  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;虚电路：面向连接的，建立虚电路，以保证双方通信所需的一切资源，这是一条逻辑上的连接，不同于电话交换的物理连接，如果再使用可靠的网络传输协议，就可使所发送的分组无差错按步序到达终点。</p>
 <p>&#160; &#160; &#160; &#160;数据报服务：无连接的通信方式，只提供尽最大能力交付的数据报服务。</p>
 <p>&#160; &#160; &#160; &#160;这两种方式，在当时很有争议，焦点就是到底可靠的交付是在网络层还是运输层，有人觉得借助电信网成功经验，而互联网先驱却提出崭新的设计思路：<font color="red">交给上层即计算机来进行差错处理，充分利用了计算机的处理能力。</font>多年实践证明，当时决定在交给上层去实现可靠传输就是正确决定。由于在网络层要保证可靠的传输成本很大，而现在只需成本较低的路由器就行。将可靠的交付交给运输层来解决，即我们的TCP协议。</p>

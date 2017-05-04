@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-04T13:27:13.000Z</updated>
+  <updated>2017-05-04T13:55:27.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://yoursite.com/2017/05/04/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
     <id>http://yoursite.com/2017/05/04/剑指offer：从尾到头打印链表/</id>
     <published>2017-05-04T12:41:39.000Z</published>
-    <updated>2017-05-04T13:27:13.000Z</updated>
+    <updated>2017-05-04T13:55:27.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本体就给出了链表默认类。—-源自<em>百度百科</em>，觉得讲的很清楚。</p>
 <h1 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入一个链表，从尾到头打印链表每个节点的值。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;从头到尾输出链表比较简单，因为是题目要求是打印且是从尾到头，打印一般不允许我们改原链表结构的，所以反向链表在从头打印不行的，我们有两个思路：</p>
@@ -30,9 +31,7 @@
 <li>考虑用递归来实现，链表最后一个节点的next节点为空，这也是我们递归结束条件。如果链表当前节点的next不为空，我们递归先打印它的next节点，但是递归都怕栈溢出。</li>
 </ol>
 <ol>
-<li><p>考虑到这个类似先进后出，可用数据结构栈来实现这种顺序,但是没有递归简洁，而且先要遍历一遍存入栈，然后在出栈。</p>
-<a id="more"></a>
-</li>
+<li>考虑到这个类似先进后出，可用数据结构栈来实现这种顺序,但是没有递归简洁，而且先要遍历一遍存入栈，然后在出栈。</li>
 </ol>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> import java.util.ArrayList;</div><div class="line"> public class Solution &#123;</div><div class="line"> </div><div class="line">    ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        //递归结束条件  </div><div class="line">        if(listNode!=null)&#123;</div><div class="line">            //递归打印它的next数组</div><div class="line">            this.printListFromTailToHead(listNode.next);</div><div class="line">            arrayList.add(listNode.val);</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.Stack;</div><div class="line">public class Solution &#123;</div><div class="line">    </div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">        Stack&lt;Integer&gt; s=new Stack&lt;Integer&gt;();</div><div class="line">        //链表依次进栈</div><div class="line">        while(listNode!=null)&#123;</div><div class="line">            s.push(listNode.val);</div><div class="line">            listNode=listNode.next;</div><div class="line">        &#125;</div><div class="line">        //依次出栈到输出动态数组完成逆序打印</div><div class="line">        while(!s.empty())&#123;</div><div class="line">            arrayList.add(s.pop());</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
@@ -40,14 +39,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。&lt;/p&gt;
-&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本体就给出了链表默认类。—-源自&lt;em&gt;百度百科&lt;/em&gt;，觉得讲的很清楚。&lt;/p&gt;
-&lt;h1 id=&quot;从尾到头打印链表&quot;&gt;&lt;a href=&quot;#从尾到头打印链表&quot; class=&quot;headerlink&quot; title=&quot;从尾到头打印链表&quot;&gt;&lt;/a&gt;从尾到头打印链表&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;输入一个链表，从尾到头打印链表每个节点的值。&lt;/p&gt;
-&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;从头到尾输出链表比较简单，因为是题目要求是打印且是从尾到头，打印一般不允许我们改原链表结构的，所以反向链表在从头打印不行的，我们有两个思路：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;考虑用递归来实现，链表最后一个节点的next节点为空，这也是我们递归结束条件。如果链表当前节点的next不为空，我们递归先打印它的next节点，但是递归都怕栈溢出。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;考虑到这个类似先进后出，可用数据结构栈来实现这种顺序,但是没有递归简洁，而且先要遍历一遍存入栈，然后在出栈。&lt;/p&gt;
     
     </summary>
     
@@ -63,12 +54,12 @@
     <link href="http://yoursite.com/2017/05/03/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
     <id>http://yoursite.com/2017/05/03/剑指offer：替换空格/</id>
     <published>2017-05-03T07:23:15.000Z</published>
-    <updated>2017-05-03T07:41:16.000Z</updated>
+    <updated>2017-05-04T13:56:00.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+  <a id="more"></a>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：<a href="http://blog.csdn.net/qh_java/article/details/46382265" target="_blank" rel="external">从源码角度分析Java三种字符串</a>。</p>
 <p>&#160; &#160; &#160; &#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。</p>
-  <a id="more"></a>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>public String replaceSpace(StringBuffer str) {
     StringBuilder newstr =new StringBuilder();
     for(int i=0;i&lt;str.length();i++){
@@ -84,8 +75,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;二维数组中的查找&quot;&gt;&lt;a href=&quot;#二维数组中的查找&quot; class=&quot;headerlink&quot; title=&quot;二维数组中的查找&quot;&gt;&lt;/a&gt;二维数组中的查找&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。&lt;/p&gt;
-&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：&lt;a href=&quot;http://blog.csdn.net/qh_java/article/details/46382265&quot;&gt;从源码角度分析Java三种字符串&lt;/a&gt;。&lt;/p&gt;
-&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。&lt;/p&gt;
     
     </summary>
     
@@ -101,12 +90,12 @@
     <link href="http://yoursite.com/2017/05/02/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/"/>
     <id>http://yoursite.com/2017/05/02/剑指offer：二维数组中的查找/</id>
     <published>2017-05-02T08:28:06.000Z</published>
-    <updated>2017-05-03T07:14:57.000Z</updated>
+    <updated>2017-05-04T13:56:16.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。</p>
+  <a id="more"></a>
 <h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;遍历数组能解决问题，但是由于所给数组已经部分排序，我们可以利用这个排序规则进行不必要的比较剔除，进行优化。试想如果起点是左下角，同目标值比较，如果大于目标值，整行我们就不用比较了，如果小于目标值，本行之前也都不用比较了。</p>
-  <a id="more"></a>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>&#160; &#160; &#160; &#160;以右上角为起点，代码如下：</p>
 <pre><code>public boolean Find(int target, int [][] a) {
     // 右上角初始值，第一行最后一列。
@@ -152,8 +141,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。&lt;/p&gt;
-&lt;h1 id=&quot;二维数组中的查找&quot;&gt;&lt;a href=&quot;#二维数组中的查找&quot; class=&quot;headerlink&quot; title=&quot;二维数组中的查找&quot;&gt;&lt;/a&gt;二维数组中的查找&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。&lt;/p&gt;
-&lt;h2 id=&quot;分析&quot;&gt;&lt;a href=&quot;#分析&quot; class=&quot;headerlink&quot; title=&quot;分析&quot;&gt;&lt;/a&gt;分析&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;遍历数组能解决问题，但是由于所给数组已经部分排序，我们可以利用这个排序规则进行不必要的比较剔除，进行优化。试想如果起点是左下角，同目标值比较，如果大于目标值，整行我们就不用比较了，如果小于目标值，本行之前也都不用比较了。&lt;/p&gt;
     
     </summary>
     
@@ -193,11 +180,11 @@
     <link href="http://yoursite.com/2017/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/</id>
     <published>2017-01-03T10:33:32.000Z</published>
-    <updated>2017-05-04T06:25:17.000Z</updated>
+    <updated>2017-05-04T13:55:44.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="计算机网络-应用层（四）"><a href="#计算机网络-应用层（四）" class="headerlink" title="计算机网络-应用层（四）"></a>计算机网络-应用层（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。</p>
-<p>&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
   <a id="more"></a>
+<p>&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
 <h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="域名系统DNS"><a href="#域名系统DNS" class="headerlink" title="域名系统DNS"></a>域名系统DNS</h3><h4 id="DNS的由来"><a href="#DNS的由来" class="headerlink" title="DNS的由来"></a>DNS的由来</h4><p>&#160; &#160; &#160; &#160;DNS是因特网使用的命名系统，用来把便于使用的机器名字转换成IP地址。其实就是名字系统，之所以加上域，是因为命名系统中使用了很多的域。也不适合直接就使用域名系统，因为使用者方便了，机器处理起来就麻烦了，但是机器处理IP就比较方便，固定长度。</p>
 <p>&#160; &#160; &#160; &#160;DNS被设计成为一个联机分布式数据库系统，并采用客户端服务器方式，大多数名字在本地进行解析，仅少量的需要在因特网上涌现，所以效率很高。</p>
 <p>&#160; &#160; &#160; &#160;域名到IP地址的解析过程的要点如下：当某一个应用程序要把主机名解析为IP地址，该应用进程就跳用解析程序，并称为一个DNS客户，把待解析的域名放在DNS请求报文中，以 <strong>UDP</strong> 用户数据报方式发给本地域名服务器，本地域名服务器在查找域名后，把对应的ip地址放在回答报文中，应用程序获得目的主机的IP地址后即可进行通信。若本地域名服务器不能回答该请求，则此域名服务器暂时成为DNS中的另一个客户，向其他域名服务器发送查询请求。</p>
@@ -258,7 +245,6 @@
     <summary type="html">
     
       &lt;h1 id=&quot;计算机网络-应用层（四）&quot;&gt;&lt;a href=&quot;#计算机网络-应用层（四）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-应用层（四）&quot;&gt;&lt;/a&gt;计算机网络-应用层（四）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。&lt;/p&gt;
-&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;&lt;img src=&quot;http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -403,11 +389,12 @@
     <link href="http://yoursite.com/2016/12/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2016/12/15/计算机网络学习笔记（二）/</id>
     <published>2016-12-15T00:36:05.000Z</published>
-    <updated>2017-05-03T07:14:25.000Z</updated>
+    <updated>2017-05-04T13:57:16.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。</p>
+ <a id="more"></a>
+<p>&#160; &#160; &#160; &#160;TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
 <h1 id="计算机网络-网络层（二）"><a href="#计算机网络-网络层（二）" class="headerlink" title="计算机网络-网络层（二）"></a>计算机网络-网络层（二）</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h3><p>即虚电路服务和数据报服务。</p>
-  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;虚电路：面向连接的，建立虚电路，以保证双方通信所需的一切资源，这是一条逻辑上的连接，不同于电话交换的物理连接，如果再使用可靠的网络传输协议，就可使所发送的分组无差错按步序到达终点。</p>
 <p>&#160; &#160; &#160; &#160;数据报服务：无连接的通信方式，只提供尽最大能力交付的数据报服务。</p>
 <p>&#160; &#160; &#160; &#160;这两种方式，在当时很有争议，焦点就是到底可靠的交付是在网络层还是运输层，有人觉得借助电信网成功经验，而互联网先驱却提出崭新的设计思路：<font color="red">交给上层即计算机来进行差错处理，充分利用了计算机的处理能力。</font>多年实践证明，当时决定在交给上层去实现可靠传输就是正确决定。由于在网络层要保证可靠的传输成本很大，而现在只需成本较低的路由器就行。将可靠的交付交给运输层来解决，即我们的TCP协议。</p>
@@ -467,8 +454,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。&lt;/p&gt;
-&lt;h1 id=&quot;计算机网络-网络层（二）&quot;&gt;&lt;a href=&quot;#计算机网络-网络层（二）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-网络层（二）&quot;&gt;&lt;/a&gt;计算机网络-网络层（二）&lt;/h1&gt;&lt;h2 id=&quot;知识点&quot;&gt;&lt;a href=&quot;#知识点&quot; class=&quot;headerlink&quot; title=&quot;知识点&quot;&gt;&lt;/a&gt;知识点&lt;/h2&gt;&lt;h3 id=&quot;网络层提供的两种服务&quot;&gt;&lt;a href=&quot;#网络层提供的两种服务&quot; class=&quot;headerlink&quot; title=&quot;网络层提供的两种服务&quot;&gt;&lt;/a&gt;网络层提供的两种服务&lt;/h3&gt;&lt;p&gt;即虚电路服务和数据报服务。&lt;/p&gt;
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。&lt;/p&gt;
     
     </summary>
     
