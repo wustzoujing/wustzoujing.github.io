@@ -153,6 +153,84 @@
   
   <entry>
     <title>深入理解mysql（一）</title>
+    <link href="http://yoursite.com/2017/01/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BC%98%E5%8C%96/"/>
+    <id>http://yoursite.com/2017/01/12/深入理解mysql（二）优化/</id>
+    <published>2017-01-12T05:44:47.000Z</published>
+    <updated>2017-05-05T09:22:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mysql学习笔记（二）"><a href="#mysql学习笔记（二）" class="headerlink" title="mysql学习笔记（二）"></a>mysql学习笔记（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;之前已经了解过mysql的基本原理，重点是我们该从哪些方面去改善数据库性能，或者从设计开始怎么样去合适的设计，可以使用哪些工具和方法去帮助我们监测数据库，并根据在数据库原理的理解基础上，对不同的业务需求不同的软硬件环境，尽量做出最优的优化策略。下面就看下有哪些优化方法和适用场景，可以根据实际选用其中一部分进行优化，而且优化是一个整体的，所以不是改变一个方法就能大幅提升性能，也没有确定的套路。本文在看了传智mysql优化课程之后记录的学习笔记。</p>
+  <a id="more"></a>
+<h2 id="mysql优化"><a href="#mysql优化" class="headerlink" title="mysql优化"></a>mysql优化</h2><p>对mysql优化时一个综合性的技术，主要包括：</p>
+<ol>
+<li><p>表的设计合理化(符合3NF)</p>
+</li>
+<li><p>添加适当索引(index) [四种: 普通索引、主键索引、唯一索引unique、全文索引]</p>
+</li>
+<li>分表技术(水平分割、垂直分割)</li>
+<li>读写[写: update/delete/add]分离</li>
+<li>存储过程 [模块化编程，可以提高速度]</li>
+<li>对mysql配置优化 [配置最大并发数my.ini, 调整缓存大小 ]</li>
+<li>mysql服务器硬件升级</li>
+<li>定时的去清除不需要的数据,定时进行碎片整理(MyISAM) </li>
+</ol>
+<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><p>表的范式，是首先符合1NF, 才能满足2NF , 进一步满足3NF</p>
+<p>&#160; &#160; &#160; &#160;1NF: 即表的列的具有原子性,不可再分解，即列的信息，不能分解, 只有数据库是关系型数据库(mysql/oracle/db2/informix/sysbase/sql server)，就自动的满足1NF。</p>
+<p>&#160; &#160; &#160; &#160;2NF: 表中的记录是唯一的, 就满足2NF, 通常我们设计一个主键来实现。</p>
+<p>&#160; &#160; &#160; &#160;3NF: 即表中不要有冗余数据, 就是说，表的信息，如果能够被推导出来，就不应该单独的设计一个字段来存放. 比如下面的设计就是不满足3NF:</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/3NF.png" alt=""></p>
+<p>需要修改成以下，消除依赖：<br><img src="http://opb7t58xj.bkt.clouddn.com/3NF2.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;反3NF : 但是，没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低范式标准，适当保留冗余数据。具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，允许冗余。 </p>
+<p>案例 ：<br><img src="http://opb7t58xj.bkt.clouddn.com/%E5%8F%8D3NF.png" alt=""></p>
+<h3 id="show-status"><a href="#show-status" class="headerlink" title="show status"></a>show status</h3><p>&#160; &#160; &#160; &#160;查看mysql配置参数。我的运行环境是Mac，mysql5.7.18，如下图：<br><img src="http://opb7t58xj.bkt.clouddn.com/showstatus.png" alt=""><br>从图中可知，有356个变量，其中我们需要熟悉一部分，知道它代表的意义，可用下面指令查具体的：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/show%20like.png" alt=""></p>
+<p>注意：这里结束符非常重要，区分中英文符号，是结束一条命令的标志。。。。。存储过程中还要改。因为存储过程中就有分号。</p>
+<p>这里放两个链接：<a href="http://www.cnblogs.com/zhangzhu/archive/2013/07/04/3172486.html" target="_blank" rel="external">mysql 命令大全</a>，<a href="http://blog.itpub.net/15480802/viewspace-764968/" target="_blank" rel="external">mysql较为重要的状态变量</a>。</p>
+<p>&#160; &#160; &#160; &#160;那我们如何从一个大项目中，迅速的定位执行速度慢的语句. (定位慢查询)，比如首先我们了解mysql数据库的一些运行状态如何查询(比如想知道当前mysql运行的时间/一共执行了多少次select/update/delete.. / 当前连接)。实现如下：</p>
+<p><em>show status</em></p>
+<ol>
+<li><p>常用的:<br>show status like ‘uptime’ ;<br>show  stauts like ‘com_select’  show stauts like ‘com_insert’ …类推 update  delete</p>
+</li>
+<li><p>show [session|global] status like …. 如果你不写  [session|global] 默认是session 会话，指取出当前窗口的执行，如果你想看所有(从mysql 启动到现在，则应该 global)</p>
+</li>
+<li><p>show status like ‘connections’; </p>
+</li>
+<li><p>show status like ‘slow_queries’;//显示慢查询次数</p>
+</li>
+</ol>
+<h3 id="压力测试脚本生成"><a href="#压力测试脚本生成" class="headerlink" title="压力测试脚本生成"></a>压力测试脚本生成</h3><p>&#160; &#160; &#160; &#160;如何去定位慢查询呢，我们想还原一个场景，那我们就要构建一个大表(400 万)，我们采用存储过程构建，默认情况下，mysql认为10秒才是一个慢查询.所以我们要修改mysql的慢查询时间.使用以下命令：</p>
+<p>show variables like ‘long_query_time’ ; //可以显示当前慢查询时间</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/60AEBD45-4A1C-4709-90F9-04324FBB4197.png" alt=""></p>
+<p>set long_query_time=1 ;//可以修改慢查询时间</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/manchaxun.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;而且我们构建的大表中记录是有要求的,为了满足真实性，我们采取了随机生成的方法 ，使记录不同从而使测试效果和真实的相差不大。存储过程源码我放在了GitHub上，地址如下，无耻的求个star或者fork：<a href="https://github.com/wustzoujing/BetterMysqlTestDemo" target="_blank" rel="external">wustzoujing/BetterMysqlTestDemo</a>；简要的记录下我的执行过程；<br>首先写了两个随机函数，产生指定长度的两个字符串或者数字。其中rand_string()执行结果如下：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;上图可以知道：其中dual是亚元表，就是空表，已经随机生成了6位字符串。接下来看看存储过程执行成功如下：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/cunshuguochen.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;最后我们调用存储过程，执行几分钟后，看下结果，已经插入成功。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/shuju.png" alt=""></p>
+<h3 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h3><p>这时我们已经有慢查询的次数了，就是插入数据这条：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;long_query_time&apos;</div><div class="line"></div><div class="line">    -&gt; ;</div><div class="line">    </div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">| Variable_name   | Value    |</div><div class="line"></div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">| long_query_time | 1.000000 |</div><div class="line"></div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">1 row in set (0.01 sec)</div></pre></td></tr></table></figure>
+<p>&#160; &#160; &#160; &#160;然后我们需要开启慢查询日志（不同操作系统不同设置方式和文件路径，百度应该有很多），然后重启mysql，上面就会记录着我们的慢查询语句是什么。如下图，这是我的结果。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-05-05%20%E4%B8%8B%E5%8D%885.16.25.png" alt=""></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;这里我们主要是形成测试样本，利用慢查询工具，这只是一个例子，还有很多命令方法工具帮助我们来找出问题，可以参考手册来。下篇博客讲讲发现问题了，我们如何优化。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;mysql学习笔记（二）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（二）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（二）&quot;&gt;&lt;/a&gt;mysql学习笔记（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;之前已经了解过mysql的基本原理，重点是我们该从哪些方面去改善数据库性能，或者从设计开始怎么样去合适的设计，可以使用哪些工具和方法去帮助我们监测数据库，并根据在数据库原理的理解基础上，对不同的业务需求不同的软硬件环境，尽量做出最优的优化策略。下面就看下有哪些优化方法和适用场景，可以根据实际选用其中一部分进行优化，而且优化是一个整体的，所以不是改变一个方法就能大幅提升性能，也没有确定的套路。本文在看了传智mysql优化课程之后记录的学习笔记。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
+    
+    
+      <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解mysql（一）</title>
     <link href="http://yoursite.com/2017/01/08/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/08/深入理解mysql（一）/</id>
     <published>2017-01-08T13:44:47.000Z</published>
