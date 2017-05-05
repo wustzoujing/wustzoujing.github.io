@@ -111,18 +111,18 @@
 
 
 
-<meta name="description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。 &amp;#160; &amp;#160; &amp;#160; &amp;#160;索引能使查询变快的原理">
+<meta name="description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。">
 <meta name="keywords" content="mysql优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解mysql（三）">
 <meta property="og:url" content="http://yoursite.com/2017/01/18/深入理解mysql（三）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。 &amp;#160; &amp;#160; &amp;#160; &amp;#160;索引能使查询变快的原理">
+<meta property="og:description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86.png">
-<meta property="og:updated_time" content="2017-05-05T12:02:59.000Z">
+<meta property="og:updated_time" content="2017-05-05T12:06:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解mysql（三）">
-<meta name="twitter:description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。 &amp;#160; &amp;#160; &amp;#160; &amp;#160;索引能使查询变快的原理">
+<meta name="twitter:description" content="mysql学习笔记（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。">
 <meta name="twitter:image" content="http://opb7t58xj.bkt.clouddn.com/%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86.png">
 
 
@@ -410,11 +410,10 @@
       
 
       
-        <h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。</p>
+        <h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。<br>  <a id="more"></a></p>
 <p>&#160; &#160; &#160; &#160;<font color="red">索引能使查询变快的原理</font>：先建了一个索引文件，就是MYI文件，然后建立查找二叉树（也叫B树，二叉搜索树，二叉排序树）。利用了二叉树算法，使搜索性能逼近二分查找，但是他比连续内存空间的二分查找优点是，插入和删除不需要移动大量数据，通常是常数开销。记录下了对应索引数值的物理位置，所以数据库换了路径，索引也失效了。</p>
 <p>&#160; &#160; &#160; &#160;学会用并利用explain来分析语句。</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86.png" alt=""></p>
-  <a id="more"></a>
 <h2 id="建立适当的索引"><a href="#建立适当的索引" class="headerlink" title="建立适当的索引"></a>建立适当的索引</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>当一张表，把某个列设为主键的时候，则该列就是主键索引。主键不能为null且不允许重复。</p>
 <pre><code>create table aaa
 
