@@ -152,11 +152,92 @@
   </entry>
   
   <entry>
+    <title>深入理解mysql（四）</title>
+    <link href="http://yoursite.com/2017/01/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/01/22/深入理解mysql（四）/</id>
+    <published>2017-01-22T12:34:17.000Z</published>
+    <updated>2017-05-05T13:12:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mysql学习笔记（四）"><a href="#mysql学习笔记（四）" class="headerlink" title="mysql学习笔记（四）"></a>mysql学习笔记（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经讲了怎么去建立索引，对索引的基本操作，这篇讲如果去适当的使用索引。我们先了解索引的优缺点，然后在这个基础上分析使用索引的恰当时机。</p>
+  <a id="more"></a>
+<h2 id="索引的优缺点"><a href="#索引的优缺点" class="headerlink" title="索引的优缺点"></a>索引的优缺点</h2><p>&#160; &#160; &#160; &#160;创建索引可以大大提高系统的性能。</p>
+<ol>
+<li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。</li>
+<li>可以大大加快数据的检索速度，这也是创建索引的最主要的原因。</li>
+<li>可以加速表和表之间的连接，特别是在实现数据的参考完整性方面特别有意义。</li>
+<li>在使用分组和排序子句进行数据检索时，同样可以显著减少查询中分组和排序的时间。</li>
+<li>通过使用索引，可以在查询的过程中，使用优化隐藏器，提高系统的性能。 </li>
+</ol>
+<p>&#160; &#160; &#160; &#160;也许会有人要问：增加索引有如此多的优点，为什么不对表中的每一个列创建一个索引呢？因为，增加索引也有许多不利的方面。</p>
+<ol>
+<li>创建索引和维护索引要耗费时间，这种时间随着数据量的增加而增加。</li>
+<li>索引需要占物理空间，除了数据表占数据空间之外，每一个索引还要占一定的物理空间，如果要建立聚簇索引，那么需要的空间就会更大。</li>
+<li>当对表中的数据进行增加、删除和修改的时候，索引也要动态的维护，这样就降低了数据的维护速度。</li>
+</ol>
+<h2 id="适合建立索引的情况"><a href="#适合建立索引的情况" class="headerlink" title="适合建立索引的情况"></a>适合建立索引的情况</h2><p>一般来说，应该在这些列上创建索引：</p>
+<ol>
+<li>在经常需要搜索的列上，可以加快搜索的速度；</li>
+<li>在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构；</li>
+<li>在经常用在连接的列上，这些列主要是一些外键，可以加快连接的速度；</li>
+<li>在经常需要根据范围进行搜索的列上创建索引，因为索引已经排序，其指定的范围是连续的；</li>
+<li>在经常需要排序的列上创建索引，因为索引已经排序，这样查询可以利用索引的排序，加快排序查询时间；</li>
+<li>在经常使用在WHERE子句中的列上面创建索引，加快条件的判断速度。</li>
+</ol>
+<h2 id="不适合建立索引的情况"><a href="#不适合建立索引的情况" class="headerlink" title="不适合建立索引的情况"></a>不适合建立索引的情况</h2><p>一般来说，不应该创建索引的的这些列具有下列特点：</p>
+<ol>
+<li>对于那些在查询中很少使用或者参考的列不应该创建索引。这是因为，既然这些列很少使用到，因此有索引或者无索引，并不能提高查询速度。相反，由于增加了索引，反而降低了系统的维护速度和增大了空间需求。</li>
+<li>对于那些只有很少数据值的列也不应该增加索引。这是因为，由于这些列的取值很少，例如人事表的性别列，在查询的结果中，结果集的数据行占了表中数据行的很大比例，即需要在表中搜索的数据行的比例很大。增加索引，并不能明显加快检索速度。</li>
+<li>对于那些定义为text, image和bit数据类型的列不应该增加索引。这是因为，这些列的数据量要么相当大，要么取值很少。</li>
+<li>当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。</li>
+</ol>
+<p><a href="http://blog.csdn.net/kennyrose/article/details/7532032" target="_blank" rel="external">此处为参考链接</a>。</p>
+<h2 id="索引的使用实例"><a href="#索引的使用实例" class="headerlink" title="索引的使用实例"></a>索引的使用实例</h2><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>&#160; &#160; &#160; &#160;下图说明利用这个指令出现的每项及其含义：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/explain.png" alt=""></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>alter table dept add index my_ind (dname,loc); //  dname 左边的列,loc就是右边的列
+</code></pre><p>说明，如果我们的表中有复合索引(索引作用在多列上)， 此时我们注意:</p>
+<ol>
+<li><p>对于创建的多列索引，只要查询条件使用了最左边的列，索引一般就会被使用。</p>
+<p> explain select * from dept where loc=’aaa’\G  //此处就不会使用到索引</p>
+</li>
+<li><p>对于使用like的查询，查询如果是  ‘%aaa’ 不会使用到索引,‘aaa%’ 会使用到索引。</p>
+<p> explain select * from dept where dname like ‘%aaa’\G</p>
+<p> 不能使用索引，即，在like查询时，关键的 ‘关键字’ , 最前面，不能使用 % 或者 _这样的字符.， 如果一定要前面有变化的值，则考虑使用 全文索引-&gt;sphinx.</p>
+</li>
+<li><p>如果条件中有or，即使其中有条件带索引也不会使用。换言之，就是要求使用的所有字段，都必须建立索引, 我们建议大家尽量避免使用or 关键字</p>
+<p>select * from dept where dname=’xxx’ or loc=’xx’ or deptno=45</p>
+</li>
+<li><p>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来。否则不使用索引。(添加时,字符串必须’’), 也就是，如果列是字符串类型，就一定要用 ‘’ 把他包括起来.</p>
+</li>
+<li><p>如果mysql估计使用全表扫描要比使用索引快，则不使用索引。</p>
+</li>
+</ol>
+<h3 id="查询索引使用情况"><a href="#查询索引使用情况" class="headerlink" title="查询索引使用情况"></a>查询索引使用情况</h3><p>&#160; &#160; &#160; &#160;如何查看索引使用的情况:</p>
+<pre><code>show status like ‘Handler_read%’;
+</code></pre><p>大家可以注意：</p>
+<pre><code>handler_read_key:这个值越高越好，越高表示使用索引查询到的次数。
+handler_read_rnd_next:这个值越高，说明查询低效。
+</code></pre><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;mysql学习笔记（四）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（四）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（四）&quot;&gt;&lt;/a&gt;mysql学习笔记（四）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经讲了怎么去建立索引，对索引的基本操作，这篇讲如果去适当的使用索引。我们先了解索引的优缺点，然后在这个基础上分析使用索引的恰当时机。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
+    
+    
+      <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深入理解mysql（三）</title>
     <link href="http://yoursite.com/2017/01/18/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/18/深入理解mysql（三）/</id>
     <published>2017-01-18T09:26:32.000Z</published>
-    <updated>2017-05-05T12:31:12.000Z</updated>
+    <updated>2017-05-05T12:43:24.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。<br>  <a id="more"></a></p>
 <p>&#160; &#160; &#160; &#160;<font color="red">索引能使查询变快的原理</font>：先建了一个索引文件，就是MYI文件，然后建立查找二叉树（也叫B树，二叉搜索树，二叉排序树）。利用了二叉树算法，使搜索性能逼近二分查找，但是他比连续内存空间的二分查找优点是，插入和删除不需要移动大量数据，通常是常数开销。记录下了对应索引数值的物理位置，所以数据库换了路径，索引也失效了。</p>
