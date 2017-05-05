@@ -775,6 +775,166 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/18/深入理解mysql（三）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jessie Zou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jessie_Zou’s Homepage">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/18/深入理解mysql（三）/" itemprop="url">
+                  深入理解mysql（三）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-18T17:26:32+08:00">
+                2017-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深入理解mysql/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解mysql</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/01/18/深入理解mysql（三）/" class="leancloud_visitors" data-flag-title="深入理解mysql（三）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。</p>
+<p>&#160; &#160; &#160; &#160;<font color=red>索引能使查询变快的原理</font>：先建了一个索引文件，就是MYI文件，然后建立查找二叉树（也叫B树，二叉搜索树，二叉排序树）。利用了二叉树算法，使搜索性能逼近二分查找，但是他比连续内存空间的二分查找优点是，插入和删除不需要移动大量数据，通常是常数开销。记录下了对应索引数值的物理位置，所以数据库换了路径，索引也失效了。</p>
+<p>&#160; &#160; &#160; &#160;学会用并利用explain来分析语句。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86.png" alt=""></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/18/深入理解mysql（三）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/12/深入理解mysql（二）优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -798,7 +958,7 @@
               
                 
                 <a class="post-title-link" href="/2017/01/12/深入理解mysql（二）优化/" itemprop="url">
-                  深入理解mysql（一）
+                  深入理解mysql（二）
                 </a>
               
             
@@ -854,7 +1014,7 @@
 
           
           
-             <span id="/2017/01/12/深入理解mysql（二）优化/" class="leancloud_visitors" data-flag-title="深入理解mysql（一）">
+             <span id="/2017/01/12/深入理解mysql（二）优化/" class="leancloud_visitors" data-flag-title="深入理解mysql（二）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1668,167 +1828,10 @@
 
       
         
-          <h1 id="计算机网络-概述（一）"><a href="#计算机网络-概述（一）" class="headerlink" title="计算机网络-概述（一）"></a>计算机网络-概述（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;非计算机专业，有过计算机网络的课程，但是理解的很浅显，最近面试感觉这方面确实要加强，因为主要的学习方向是Java Web，但是却连计算机网络的知识都不扎实，确实也说不过去，希望能系统的学习一下，查阅了网上的资料，下载了相关视频，书籍和ppt，学的是《计算机网络》谢希仁版的教材，下面记录学习中的重点部分和理解。</p>
+          <h1 id="计算机网络-概述（一）"><a href="#计算机网络-概述（一）" class="headerlink" title="计算机网络-概述（一）"></a>计算机网络-概述（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;非计算机专业，有过计算机网络的课程，但是理解的很浅显，最近从很多的学习过程中感觉这方面确实要加强，因为主要的学习方向是Java Web，但是却连计算机网络的知识都不扎实，确实也说不过去，希望能系统的学习一下，查阅了网上的资料，下载了相关视频，书籍和ppt，学的是《计算机网络》谢希仁版的教材，下面记录学习中的重点部分和理解。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/12/08/计算机网络学习笔记（一）/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jessie Zou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jessie_Zou’s Homepage">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/06/算法基础篇：排序（二）/" itemprop="url">
-                  算法基础篇：排序（二）
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-06T10:07:42+08:00">
-                2016-12-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2016/12/06/算法基础篇：排序（二）/" class="leancloud_visitors" data-flag-title="算法基础篇：排序（二）">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color=red><a href="http://zh.visualgo.net"><strong>学习利器</strong></a></font></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/06/算法基础篇：排序（二）/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1913,7 +1916,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
