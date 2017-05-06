@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="mysql," />
+  <meta name="keywords" content="mysql优化," />
 
 
 
@@ -111,19 +111,21 @@
 
 
 
-<meta name="description" content="mysql学习笔记（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已">
-<meta name="keywords" content="mysql">
+<meta name="description" content="mysql学习笔记（五）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。">
+<meta name="keywords" content="mysql优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解mysql（一）">
-<meta property="og:url" content="http://yoursite.com/2017/01/08/深入理解mysql（一）/index.html">
+<meta property="og:title" content="深入理解mysql（五）">
+<meta property="og:url" content="http://yoursite.com/2017/02/05/深入理解mysql（五）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="mysql学习笔记（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已">
-<meta property="og:image" content="http://img1.51cto.com/attachment/201308/111054362.png?_=3641983">
-<meta property="og:updated_time" content="2017-05-05T05:03:59.000Z">
+<meta property="og:description" content="mysql学习笔记（五）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/group1.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/group1.png">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png">
+<meta property="og:updated_time" content="2017-05-06T13:48:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解mysql（一）">
-<meta name="twitter:description" content="mysql学习笔记（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已">
-<meta name="twitter:image" content="http://img1.51cto.com/attachment/201308/111054362.png?_=3641983">
+<meta name="twitter:title" content="深入理解mysql（五）">
+<meta name="twitter:description" content="mysql学习笔记（五）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。">
+<meta name="twitter:image" content="http://opb7t58xj.bkt.clouddn.com/group1.png">
 
 
 
@@ -151,13 +153,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/01/08/深入理解mysql（一）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/05/深入理解mysql（五）/"/>
 
 
 
 
 
-  <title>深入理解mysql（一） | Jessie_Zou’s Homepage</title>
+  <title>深入理解mysql（五） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +308,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/08/深入理解mysql（一）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/05/深入理解mysql（五）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -327,7 +329,7 @@
             
             
               
-                深入理解mysql（一）
+                深入理解mysql（五）
               
             
           </h1>
@@ -342,8 +344,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-01-08T21:44:47+08:00">
-                2017-01-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-05T19:35:48+08:00">
+                2017-02-05
               </time>
             
 
@@ -382,7 +384,7 @@
 
           
           
-             <span id="/2017/01/08/深入理解mysql（一）/" class="leancloud_visitors" data-flag-title="深入理解mysql（一）">
+             <span id="/2017/02/05/深入理解mysql（五）/" class="leancloud_visitors" data-flag-title="深入理解mysql（五）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,66 +412,46 @@
       
 
       
-        <h1 id="mysql学习笔记（一）"><a href="#mysql学习笔记（一）" class="headerlink" title="mysql学习笔记（一）"></a>mysql学习笔记（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已经接触过了，之后将做一个总结的笔记。</p>
+        <h1 id="mysql学习笔记（五）"><a href="#mysql学习笔记（五）" class="headerlink" title="mysql学习笔记（五）"></a>mysql学习笔记（五）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。</p>
   <a id="more"></a>
-<h2 id="数据库的种类"><a href="#数据库的种类" class="headerlink" title="数据库的种类"></a>数据库的种类</h2><ol>
-<li>对象数据库 应用领域：地理信息系统、科学与统计数据库、多媒体系统、XML文档仓库。</li>
-<li>对象关系数据库 了解一下</li>
-<li>关系数据库，例如mysql、oracle、sql server、db2等。我们以mysql为例深入了解关系数据库。</li>
-<li>介于关系数据库与非关系数据库之间的MongoDB和完全的非关系数据库NoSql的Redis。Redis是我们了解的重点。</li>
-</ol>
-<h2 id="mysql数据库系统"><a href="#mysql数据库系统" class="headerlink" title="mysql数据库系统"></a>mysql数据库系统</h2><p>&#160; &#160; &#160; &#160;mysql由SQL接口、解析器、查询优化器、查询缓存（缓存和缓冲区）、存储引擎等几个子系统构成。</p>
-<p><img src="http://img1.51cto.com/attachment/201308/111054362.png?_=3641983" alt=""></p>
-<p>&#160; &#160; &#160; &#160;图中还有几个部分解释如下：</p>
-<p>connectors：与其他编程语言中的sql 语句进行交互，如php、java等；</p>
-<p>Management Serveices &amp; Utilities：系统管理和控制工具；</p>
-<p>Connection Pool (连接池)：管理缓冲用户连接，线程处理等需要缓存的需求。下面我们一个一个的来了解。</p>
-<h3 id="SQL接口"><a href="#SQL接口" class="headerlink" title="SQL接口"></a>SQL接口</h3><p>&#160; &#160; &#160; &#160;SQL提供了从用户接收命令并把结果返回给用户的机制。关系数据库大都支持SQL标准，基本语句都类似，比如常规的CURD操作，sql server和mysql就差不多。mysql是一个多线程应用，它为每一个连接创建一个线程，每个线程执行都独立于其他线程。接收到SQL命令，解析各个部分存入一个类结构，查询结果通过有关数据写到网络通信协议上传输给客户端。</p>
-<h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p>解析器使用Lex和YACC实现，它能够把一条SQL语句分解为命令字、选项和参数等一系列最基本的语法元素，并将这些存入一个Lex类的结构中，后面查询步骤都会使用这个。规则使用Lex和YACC编写，在使用Bison编译成一个词法解析器。</p>
-<h3 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h3><p>&#160; &#160; &#160; &#160;查询优化策略有很多，也可以设计优化算法，高阶程序员也可以自己写查询优化器代替mysql默认的。sql server使用的查询优化策略是基于开销的，根据一系列等价规则为给定查询生成一系列查询评估计划，然后根据关于执行这个查询所需要的关系和操作性能指标数据中选出开销最小的。mysql是混合使用多种优化技术的数据库系统，围绕着选取-投影-联结策略而设计出来的，从整体上能保证生成好的，但不能保证生成最好的查询语句。属于启发式查询优化机制。</p>
-<p>&#160; &#160; &#160; &#160;具体的 <strong>选取-投影-联结</strong> 策略 ：即先更具有关的限制条件进行选取（select操作）以减少要处理的元组个数，再进行投影以减少被选取元组里的属性字段的个数，最后根据联结条件生成最终的查询结果。</p>
+<h2 id="sql语句的技巧"><a href="#sql语句的技巧" class="headerlink" title="sql语句的技巧"></a>sql语句的技巧</h2><h3 id="group-by和having"><a href="#group-by和having" class="headerlink" title="group by和having"></a>group by和having</h3><p>&#160; &#160; &#160; &#160;在使用group by 分组查询是，默认分组后，还会排序，可能会降低速度.例子如下：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/group1.png" alt=""></p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/group1.png" alt=""><br>&#160; &#160; &#160; &#160;<font color="red">在group by 后面增加 order by null 就可以防止排序.</font></p>
+<p>tips：mysql中group by having 用法需要注意的事项: </p>
 <ol>
-<li>通过计算where子句里的表达式来横向排除多余的数据。</li>
-<li>只保留在属性清单里面列出来的，以及在最后执行连接子句时还需要用到的属性字段，其他数据全部排除。</li>
-<li>根据联结条件生成最终的查询结果。</li>
+<li><p>GROUP BY：<br>group by 有一个原则,就是 select 后面的所有列中,没有使用聚合函数的列,必须出现在 group by后面。<br>比如 select name,sum(point) from table_name<br>这样sql语句会报错，必须写成:<br>select name,sum(point) from table_name GROUP BY name </p>
+</li>
+<li><p>HAVING<br>把 HAVING 加入 SQL 的原因是，WHERE 无法应用于合计函数，而如果没有 HAVING，就无法测试结果条件。<br>select name,sum(point)<br>from table_name GROUP BY name<br>HAVING sum(point)&gt;1000 </p>
+</li>
+<li><p>having通常和group by联合使用.</p>
+</li>
 </ol>
-<p>&#160; &#160; &#160; &#160;优化的第一步检查有关的表是否存在以及用户的访问权限。发现错误返回出错信息并把控制器交给线程管理器，也就是负责监听请求的listener，一旦找到了正确的表，就打开并应用适当的并发控制。<br>&#160; &#160; &#160; &#160;所有的维护和初识化任务完成后，优化器将利用Lex结构对命令中where条件进行处理，其结果作为临时表返回后续步骤做一步处理。如果查询命令里面有UNION操作法，优化器将以循环方式执行完所有的select操作之后再进行下一步。<br>&#160; &#160; &#160; &#160;优化器下一步时执行投影操作。这一步中间结果保存在临时表中且只保存指定列。最后检查Lex结构是否含有Join条件；如果有，调用join优化方法。</p>
-<p>&#160; &#160; &#160; &#160;优化内容：对条件表达式进行简化和求值，消除死分支或恒真恒假条件。总之，在执行联结操作之前，优化器会尽量减小查询命令里的条件。</p>
-<h3 id="查询执行"><a href="#查询执行" class="headerlink" title="查询执行"></a>查询执行</h3><p>&#160; &#160; &#160; &#160;查询的具体执行是由一组库方法实现，每种方法复制一种特点操作，例如CRUD。方法都有一个线程对象参数，可以让那些方法直接找到合线程访问相关的内部查询结构，加快执行速度。</p>
-<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p>&#160; &#160; &#160; &#160;查询缓存，包括查询语句解析结果和查询结果本身。把频率最高的数据放在内存中能够快速的访问来加快。速度。mysql把数据封装成某个结构（不同对象缓存，用来封装的结构不同），再把数据保存为一个链表。缓存友表缓存（为了减少打开读取和关闭表，frm文件）、记录缓存（减少数据读写频率）、键缓存（缓存各索引的热度）、权限缓存（授权信息，存为先进后出的散列表）、主机名缓存（用栈）、其他类似联结缓存。缓存有自己的监控机制，利用LRU最近最少使用页面靠换策略。</p>
-<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><p>&#160; &#160; &#160; &#160;这个是重要的一环，也是mysql最佳功能之一。数据库使用者可以根据需求选择不同的存储引擎，存储引擎是关键的一部，也是数据库管理系统最底层的一个，直接与数据库文件进行交互，也就是对数据库进行IO操作。下面介绍mysql提供的一些存储引擎。</p>
+<p>参考连接：<a href="http://blog.csdn.net/bingogirl/article/details/52559302" target="_blank" rel="external">GROUP BY和HAVING</a></p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>&#160; &#160; &#160; &#160;有些情况下，可以使用连接来替代子查询。因为使用join，MySQL不需要在内存中创建临时表。</p>
+<pre><code>select * from dept, emp where dept.deptno=emp.deptno; //简单处理方式
+
+select * from dept left join emp on dept.deptno=emp.deptno; //左外连接，效果更佳！
+</code></pre><p>参考这篇博客：<a href="http://www.cnblogs.com/BeginMan/p/3754322.html" target="_blank" rel="external">mysql三种连接查询总结和性能分析</a></p>
+<h3 id="exists"><a href="#exists" class="headerlink" title="exists"></a>exists</h3><p> 参考这篇博文：<a href="http://www.cnblogs.com/glory-jzx/archive/2012/07/19/2599215.html" target="_blank" rel="external">exists用法</a></p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>&#160; &#160; &#160; &#160;这里放几个别人整理好的sql优化，从细节上我们要把握。</p>
 <ol>
-<li>MyISAM 是默认的存储引擎，它在ISAM上增加了一些新的缓存和索引机制。为了提高访问速度，这类表还普遍使用了数据压缩和索引优化技术。<font color="red">此外还准备了表级的锁定机制。所以适合检索读性能。</font></li>
-<li>InnoDB 几乎总是用在需要支持事务的应用程序。支持ACID，InnoDB所有索引采用B-树结构，放在叶子节点里。改进了并发控制，提供行级的锁定。所以对频繁更新，添加，删除等类型数据库是首选存储引擎。</li>
-<li>BDB提供页面即的锁。支持散列表、B-树。</li>
-<li>内存存储引擎。HEAP表。</li>
-<li>合并存储引擎。安装特定规则分成很多小表去存储一个大表，搜索的时候可以去搜索特定的小表而不是搜索体积庞大的大表。但是缺点是：只能用相同的myisam表，不允许替换操作，与普通表相比，使用索引访问效率要低。</li>
-<li>档案。把大量数据保存为压缩格式，适合存放和检索那些不需要频繁更新的档案性或历史积累数据。比如系统日志。</li>
-<li>联合存储引擎。适合用在分布式环境</li>
-<li>群集／NDB 。 在一个高可用性和高性能的环境中使用多个mysql服务器提供数据库服务。</li>
-<li>其他的包括：CSV、黑洞、定制的。</li>
+<li><a href="http://www.cnblogs.com/ATree/archive/2011/02/13/sql_optimize_1.html" target="_blank" rel="external">优化sql查询</a>。</li>
 </ol>
-<p>##小结<br>&#160; &#160; &#160; &#160;了解了一下数据库的类型，和mysql的组成，对RDBS的设计有了大致的了解，那么后面将对在此基础上对mysql优化进行一个深度的学习和总结，并找demo来实战。下面对SQL 语句执行过程进行说明：</p>
-<p>   &#160; &#160; &#160; &#160;数据库通常不会被直接使用，而是由其他编程语言通过SQL语句调用mysql，由mysql处理并返回执行结果。那么Mysql接受到SQL语句后，又是如何处理的呢？</p>
-<p>   &#160; &#160; &#160; &#160;首先程序的请求会通过mysql的connectors与其进行交互，请求到处后，会暂时存放在连接池（connection pool)中并由处理器（Management Serveices&amp;Utilities）管理。当该请求从等待队列进入到处理队列，管理器会将该请求丢给SQL接口（SQL Interface）。SQL接口接收到请求后，它会将请求进行hash处理并与缓存中的结果进行对比，如果完全匹配则通过缓存直接返回处理结果；否则，需要完整的走一趟流程：</p>
 <ol>
-<li><p>由SQL接口丢给后面的解释器（Parser），上面已经说到，解释器会判断SQL语句正确与否，若正确则将其转化为数据结构。</p>
+<li><a href="http://www.jb51.net/article/39221.htm" target="_blank" rel="external">sql优化常用的30的技巧</a>。</li>
+</ol>
+<h2 id="选择合适的存储引擎"><a href="#选择合适的存储引擎" class="headerlink" title="选择合适的存储引擎"></a>选择合适的存储引擎</h2><ol>
+<li><p>myisam 存储: 如果表对事务要求不高，同时是以查询和添加为主的，我们考虑使用myisam存储引擎. ,比如 bbs 中的 发帖表，回复表。（要定期碎片整理，因为删除了数据，MYD文件不会变小，整理可用optimize table XXX）。</p>
 </li>
-<li><p>解释器处理完，便来到后面的优化器（Optimizer），它会产生多种执行计划,最终数据库会选择最优化的方案去执行,尽快返会结果。</p>
-</li>
-<li><p>确定最优执行计划后，SQL语句此时便可以交由存储引擎（Engine）处理，存储引擎将会到后端的存储设备中取得相应的数据，并原路返回给程序。</p>
-</li>
-<li><p>这里有几点需要注意：</p>
+<li><p>INNODB 存储: 对事务要求高，保存的数据都是重要数据，我们建议使用INNODB,比如订单表，账号表.</p>
 </li>
 </ol>
-<p>&#160; &#160; &#160; &#160;(1)如何缓存查询数据？</p>
-<p>&#160; &#160; &#160; &#160;存储引擎处理完数据，并将其返回给程序的同时，它还会将一份数据保留在缓存中，以便更快速的处理下一次相同的请求。具体情况是，mysql会将查询的语句、执行结果等进行hash，并保留在cache中，等待下次查询。</p>
-<p>&#160; &#160; &#160; &#160;(2)buffer与cache的区别？</p>
-<p>&#160; &#160; &#160; &#160;从上面的图可以看到，缓存那里实际上有buffer和cache两个，那它们之间是否有什么不同呢？简单的说就是，buffer是写缓存，cache是读缓存。</p>
-<p>&#160; &#160; &#160; &#160;(3)如何判断缓存中是否已缓存需要的数据</p>
-<p>&#160; &#160; &#160; &#160;这里可能有一个误区，觉得处理SQL语句的时候，为了判断是否已缓存查询结果，会将整个流程走一遍，取得执行结果后再与需要的进行对比，看看是否命中，并以此说，既然不管缓存中有没有缓存到查询内容，都要整个流程走一遍，那么缓存的优势又在哪里？？</p>
-<p>&#160; &#160; &#160; &#160;实际上，并非如此，在第一次查询后，mysql便将查询语句以及查询结果进行hash处理并保留在缓存中，SQL查询到达之后，对其进行同样的hash处理后，将两个hash值进行对照，如果一样，则命中，从缓存中返回查询结果；否则，需要整个流程走一遍。</p>
-<p>链接参考：<a href="http://pmghong.blog.51cto.com/3221425/1281970" target="_blank" rel="external">mysql原理</a></p>
+<ol>
+<li>Memory 存储，比如我们数据变化频繁，不需要入库，同时又频繁的查询和修改，我们考虑使用memory, 速度极快. 重启mysql就没有了。。。没有持久化机制，不像redis。</li>
+</ol>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>&#160; &#160; &#160; &#160;下面从几个方面来比较几个存储引擎。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png" alt=""></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;上文列出来了一些途径，但是并不是索引的，比如其实我们还可以从字段的数据结构进行更佳选择，能用定点型，不要用浮点型。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -521,7 +503,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/mysql/" rel="tag"># mysql</a>
+            <a href="/tags/mysql优化/" rel="tag"># mysql优化</a>
           
         </div>
       
@@ -534,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/12/深入理解mysql（二）优化/" rel="next" title="深入理解mysql（二）">
-                <i class="fa fa-chevron-left"></i> 深入理解mysql（二）
+              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
               </a>
             
           </div>
@@ -544,8 +526,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/01/03/计算机网络学习笔记（四）/" rel="prev" title="计算机网络学习笔记（四）">
-                计算机网络学习笔记（四） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/01/22/深入理解mysql（四）/" rel="prev" title="深入理解mysql（四）">
+                深入理解mysql（四） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql学习笔记（一）"><span class="nav-number">1.</span> <span class="nav-text">mysql学习笔记（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库的种类"><span class="nav-number">1.2.</span> <span class="nav-text">数据库的种类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mysql数据库系统"><span class="nav-number">1.3.</span> <span class="nav-text">mysql数据库系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL接口"><span class="nav-number">1.3.1.</span> <span class="nav-text">SQL接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析器"><span class="nav-number">1.3.2.</span> <span class="nav-text">解析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询优化器"><span class="nav-number">1.3.3.</span> <span class="nav-text">查询优化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询执行"><span class="nav-number">1.3.4.</span> <span class="nav-text">查询执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询缓存"><span class="nav-number">1.3.5.</span> <span class="nav-text">查询缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储引擎"><span class="nav-number">1.3.6.</span> <span class="nav-text">存储引擎</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql学习笔记（五）"><span class="nav-number">1.</span> <span class="nav-text">mysql学习笔记（五）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql语句的技巧"><span class="nav-number">1.2.</span> <span class="nav-text">sql语句的技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#group-by和having"><span class="nav-number">1.2.1.</span> <span class="nav-text">group by和having</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-number">1.2.2.</span> <span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exists"><span class="nav-number">1.2.3.</span> <span class="nav-text">exists</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓展"><span class="nav-number">1.2.4.</span> <span class="nav-text">拓展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择合适的存储引擎"><span class="nav-number">1.3.</span> <span class="nav-text">选择合适的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#区别"><span class="nav-number">1.3.1.</span> <span class="nav-text">区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>

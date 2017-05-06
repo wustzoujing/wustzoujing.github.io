@@ -119,7 +119,7 @@
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
 <meta property="og:description" content="mysql学习笔记（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经讲了怎么去建立索引，对索引的基本操作，这篇讲如果去适当的使用索引。我们先了解索引的优缺点，然后在这个基础上分析使用索引的恰当时机。">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/explain.png">
-<meta property="og:updated_time" content="2017-05-05T13:12:41.000Z">
+<meta property="og:updated_time" content="2017-05-06T12:50:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解mysql（四）">
 <meta name="twitter:description" content="mysql学习笔记（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经讲了怎么去建立索引，对索引的基本操作，这篇讲如果去适当的使用索引。我们先了解索引的优缺点，然后在这个基础上分析使用索引的恰当时机。">
@@ -443,30 +443,37 @@
 <li>当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。</li>
 </ol>
 <p><a href="http://blog.csdn.net/kennyrose/article/details/7532032" target="_blank" rel="external">此处为参考链接</a>。</p>
-<h2 id="索引的使用实例"><a href="#索引的使用实例" class="headerlink" title="索引的使用实例"></a>索引的使用实例</h2><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>&#160; &#160; &#160; &#160;下图说明利用这个指令出现的每项及其含义：</p>
+<h2 id="索引的使用分析"><a href="#索引的使用分析" class="headerlink" title="索引的使用分析"></a>索引的使用分析</h2><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>&#160; &#160; &#160; &#160;下图说明利用这个指令出现的每项及其含义：</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/explain.png" alt=""></p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>alter table dept add index my_ind (dname,loc); //  dname 左边的列,loc就是右边的列
-</code></pre><p>说明，如果我们的表中有复合索引(索引作用在多列上)， 此时我们注意:</p>
+<h3 id="使用索引的几个注意事项"><a href="#使用索引的几个注意事项" class="headerlink" title="使用索引的几个注意事项"></a>使用索引的几个注意事项</h3><p>&#160; &#160; &#160; &#160;我们把dept这张表的deptno列设为主键，然后在把dname和loc列设为复合索引。代码如下：</p>
+<pre><code>//添加主键
+alter table dept add primary key(deptno);
+//  dname 左边的列,loc就是右边的列
+alter table dept add index my_ind (dname,loc); 
+</code></pre><ol>
+<li>说明，如果我们的表中有复合索引(索引作用在多列上)， 此时我们注意:对于创建的多列索引，只要查询条件使用了最左边的列，索引一般就会被使用。<pre><code>explain select * from dept where loc=&apos;aaa&apos;\G；//此处就不会使用到索引
+</code></pre></li>
+</ol>
 <ol>
-<li><p>对于创建的多列索引，只要查询条件使用了最左边的列，索引一般就会被使用。</p>
-<p> explain select * from dept where loc=’aaa’\G  //此处就不会使用到索引</p>
-</li>
 <li><p>对于使用like的查询，查询如果是  ‘%aaa’ 不会使用到索引,‘aaa%’ 会使用到索引。</p>
 <p> explain select * from dept where dname like ‘%aaa’\G</p>
 <p> 不能使用索引，即，在like查询时，关键的 ‘关键字’ , 最前面，不能使用 % 或者 _这样的字符.， 如果一定要前面有变化的值，则考虑使用 全文索引-&gt;sphinx.</p>
 </li>
 <li><p>如果条件中有or，即使其中有条件带索引也不会使用。换言之，就是要求使用的所有字段，都必须建立索引, 我们建议大家尽量避免使用or 关键字</p>
+<p>select * from dept where dname=’xxx’ or loc=’xx’</p>
 <p>select * from dept where dname=’xxx’ or loc=’xx’ or deptno=45</p>
+<p>这两个语句执行比较就可以等到结果。</p>
 </li>
 <li><p>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来。否则不使用索引。(添加时,字符串必须’’), 也就是，如果列是字符串类型，就一定要用 ‘’ 把他包括起来.</p>
 </li>
-<li><p>如果mysql估计使用全表扫描要比使用索引快，则不使用索引。</p>
+<li><p>如果mysql估计使用全表扫描要比使用索引快，则不使用索引。情况特殊，比如空表或者记录只有一条的时候。</p>
 </li>
 </ol>
-<h3 id="查询索引使用情况"><a href="#查询索引使用情况" class="headerlink" title="查询索引使用情况"></a>查询索引使用情况</h3><p>&#160; &#160; &#160; &#160;如何查看索引使用的情况:</p>
+<h3 id="查询索引使用情况"><a href="#查询索引使用情况" class="headerlink" title="查询索引使用情况"></a>查询索引使用情况</h3><p>&#160; &#160; &#160; &#160;如何查看索引使用的情况，就像看缓存命中率一样:</p>
 <pre><code>show status like ‘Handler_read%’;
-</code></pre><p>大家可以注意：</p>
+</code></pre><p>tips：</p>
 <pre><code>handler_read_key:这个值越高越好，越高表示使用索引查询到的次数。
+
 handler_read_rnd_next:这个值越高，说明查询低效。
 </code></pre><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
@@ -532,8 +539,8 @@ handler_read_rnd_next:这个值越高，说明查询低效。
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
+              <a href="/2017/02/05/深入理解mysql（五）/" rel="next" title="深入理解mysql（五）">
+                <i class="fa fa-chevron-left"></i> 深入理解mysql（五）
               </a>
             
           </div>
@@ -624,7 +631,7 @@ handler_read_rnd_next:这个值越高，说明查询低效。
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -708,7 +715,7 @@ handler_read_rnd_next:这个值越高，说明查询低效。
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql学习笔记（四）"><span class="nav-number">1.</span> <span class="nav-text">mysql学习笔记（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">1.2.</span> <span class="nav-text">索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适合建立索引的情况"><span class="nav-number">1.3.</span> <span class="nav-text">适合建立索引的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不适合建立索引的情况"><span class="nav-number">1.4.</span> <span class="nav-text">不适合建立索引的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的使用实例"><span class="nav-number">1.5.</span> <span class="nav-text">索引的使用实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#explain"><span class="nav-number">1.5.1.</span> <span class="nav-text">explain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.5.2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询索引使用情况"><span class="nav-number">1.5.3.</span> <span class="nav-text">查询索引使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#mysql学习笔记（四）"><span class="nav-number">1.</span> <span class="nav-text">mysql学习笔记（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的优缺点"><span class="nav-number">1.2.</span> <span class="nav-text">索引的优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#适合建立索引的情况"><span class="nav-number">1.3.</span> <span class="nav-text">适合建立索引的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不适合建立索引的情况"><span class="nav-number">1.4.</span> <span class="nav-text">不适合建立索引的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引的使用分析"><span class="nav-number">1.5.</span> <span class="nav-text">索引的使用分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#explain"><span class="nav-number">1.5.1.</span> <span class="nav-text">explain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用索引的几个注意事项"><span class="nav-number">1.5.2.</span> <span class="nav-text">使用索引的几个注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询索引使用情况"><span class="nav-number">1.5.3.</span> <span class="nav-text">查询索引使用情况</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>

@@ -77,11 +77,11 @@
     <link href="http://yoursite.com/2017/05/04/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
     <id>http://yoursite.com/2017/05/04/剑指offer：从尾到头打印链表/</id>
     <published>2017-05-04T12:41:39.000Z</published>
-    <updated>2017-05-06T10:20:59.000Z</updated>
+    <updated>2017-05-06T12:14:43.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
   <a id="more"></a>
-<p>&#160; &#160; &#160; &#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本体就给出了链表默认类。—-源自<em>百度百科</em>，觉得讲的很清楚。</p>
+<p>&#160; &#160; &#160; &#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本题就给出了链表默认类。—-源自<em>百度百科</em>，觉得讲的很清楚。</p>
 <h1 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入一个链表，从尾到头打印链表每个节点的值。</p>
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;从头到尾输出链表比较简单，因为是题目要求是打印且是从尾到头，打印一般不允许我们改原链表结构的，所以反向链表在从头打印不行的，我们有两个思路：</p>
 <ol>
@@ -209,11 +209,74 @@
   </entry>
   
   <entry>
+    <title>深入理解mysql（五）</title>
+    <link href="http://yoursite.com/2017/02/05/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/02/05/深入理解mysql（五）/</id>
+    <published>2017-02-05T11:35:48.000Z</published>
+    <updated>2017-05-06T13:48:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mysql学习笔记（五）"><a href="#mysql学习笔记（五）" class="headerlink" title="mysql学习笔记（五）"></a>mysql学习笔记（五）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。</p>
+  <a id="more"></a>
+<h2 id="sql语句的技巧"><a href="#sql语句的技巧" class="headerlink" title="sql语句的技巧"></a>sql语句的技巧</h2><h3 id="group-by和having"><a href="#group-by和having" class="headerlink" title="group by和having"></a>group by和having</h3><p>&#160; &#160; &#160; &#160;在使用group by 分组查询是，默认分组后，还会排序，可能会降低速度.例子如下：</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/group1.png" alt=""></p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/group1.png" alt=""><br>&#160; &#160; &#160; &#160;<font color="red">在group by 后面增加 order by null 就可以防止排序.</font></p>
+<p>tips：mysql中group by having 用法需要注意的事项: </p>
+<ol>
+<li><p>GROUP BY：<br>group by 有一个原则,就是 select 后面的所有列中,没有使用聚合函数的列,必须出现在 group by后面。<br>比如 select name,sum(point) from table_name<br>这样sql语句会报错，必须写成:<br>select name,sum(point) from table_name GROUP BY name </p>
+</li>
+<li><p>HAVING<br>把 HAVING 加入 SQL 的原因是，WHERE 无法应用于合计函数，而如果没有 HAVING，就无法测试结果条件。<br>select name,sum(point)<br>from table_name GROUP BY name<br>HAVING sum(point)&gt;1000 </p>
+</li>
+<li><p>having通常和group by联合使用.</p>
+</li>
+</ol>
+<p>参考连接：<a href="http://blog.csdn.net/bingogirl/article/details/52559302" target="_blank" rel="external">GROUP BY和HAVING</a></p>
+<h3 id="join"><a href="#join" class="headerlink" title="join"></a>join</h3><p>&#160; &#160; &#160; &#160;有些情况下，可以使用连接来替代子查询。因为使用join，MySQL不需要在内存中创建临时表。</p>
+<pre><code>select * from dept, emp where dept.deptno=emp.deptno; //简单处理方式
+
+select * from dept left join emp on dept.deptno=emp.deptno; //左外连接，效果更佳！
+</code></pre><p>参考这篇博客：<a href="http://www.cnblogs.com/BeginMan/p/3754322.html" target="_blank" rel="external">mysql三种连接查询总结和性能分析</a></p>
+<h3 id="exists"><a href="#exists" class="headerlink" title="exists"></a>exists</h3><p> 参考这篇博文：<a href="http://www.cnblogs.com/glory-jzx/archive/2012/07/19/2599215.html" target="_blank" rel="external">exists用法</a></p>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><p>&#160; &#160; &#160; &#160;这里放几个别人整理好的sql优化，从细节上我们要把握。</p>
+<ol>
+<li><a href="http://www.cnblogs.com/ATree/archive/2011/02/13/sql_optimize_1.html" target="_blank" rel="external">优化sql查询</a>。</li>
+</ol>
+<ol>
+<li><a href="http://www.jb51.net/article/39221.htm" target="_blank" rel="external">sql优化常用的30的技巧</a>。</li>
+</ol>
+<h2 id="选择合适的存储引擎"><a href="#选择合适的存储引擎" class="headerlink" title="选择合适的存储引擎"></a>选择合适的存储引擎</h2><ol>
+<li><p>myisam 存储: 如果表对事务要求不高，同时是以查询和添加为主的，我们考虑使用myisam存储引擎. ,比如 bbs 中的 发帖表，回复表。（要定期碎片整理，因为删除了数据，MYD文件不会变小，整理可用optimize table XXX）。</p>
+</li>
+<li><p>INNODB 存储: 对事务要求高，保存的数据都是重要数据，我们建议使用INNODB,比如订单表，账号表.</p>
+</li>
+</ol>
+<ol>
+<li>Memory 存储，比如我们数据变化频繁，不需要入库，同时又频繁的查询和修改，我们考虑使用memory, 速度极快. 重启mysql就没有了。。。没有持久化机制，不像redis。</li>
+</ol>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>&#160; &#160; &#160; &#160;下面从几个方面来比较几个存储引擎。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png" alt=""></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;上文列出来了一些途径，但是并不是索引的，比如其实我们还可以从字段的数据结构进行更佳选择，能用定点型，不要用浮点型。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;mysql学习笔记（五）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（五）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（五）&quot;&gt;&lt;/a&gt;mysql学习笔记（五）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
+    
+    
+      <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
     <title>深入理解mysql（四）</title>
     <link href="http://yoursite.com/2017/01/22/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/22/深入理解mysql（四）/</id>
     <published>2017-01-22T12:34:17.000Z</published>
-    <updated>2017-05-05T13:12:41.000Z</updated>
+    <updated>2017-05-06T12:50:07.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="mysql学习笔记（四）"><a href="#mysql学习笔记（四）" class="headerlink" title="mysql学习笔记（四）"></a>mysql学习笔记（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经讲了怎么去建立索引，对索引的基本操作，这篇讲如果去适当的使用索引。我们先了解索引的优缺点，然后在这个基础上分析使用索引的恰当时机。</p>
   <a id="more"></a>
@@ -248,30 +311,37 @@
 <li>当修改性能远远大于检索性能时，不应该创建索引。这是因为，修改性能和检索性能是互相矛盾的。当增加索引时，会提高检索性能，但是会降低修改性能。当减少索引时，会提高修改性能，降低检索性能。因此，当修改性能远远大于检索性能时，不应该创建索引。</li>
 </ol>
 <p><a href="http://blog.csdn.net/kennyrose/article/details/7532032" target="_blank" rel="external">此处为参考链接</a>。</p>
-<h2 id="索引的使用实例"><a href="#索引的使用实例" class="headerlink" title="索引的使用实例"></a>索引的使用实例</h2><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>&#160; &#160; &#160; &#160;下图说明利用这个指令出现的每项及其含义：</p>
+<h2 id="索引的使用分析"><a href="#索引的使用分析" class="headerlink" title="索引的使用分析"></a>索引的使用分析</h2><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><p>&#160; &#160; &#160; &#160;下图说明利用这个指令出现的每项及其含义：</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/explain.png" alt=""></p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>alter table dept add index my_ind (dname,loc); //  dname 左边的列,loc就是右边的列
-</code></pre><p>说明，如果我们的表中有复合索引(索引作用在多列上)， 此时我们注意:</p>
+<h3 id="使用索引的几个注意事项"><a href="#使用索引的几个注意事项" class="headerlink" title="使用索引的几个注意事项"></a>使用索引的几个注意事项</h3><p>&#160; &#160; &#160; &#160;我们把dept这张表的deptno列设为主键，然后在把dname和loc列设为复合索引。代码如下：</p>
+<pre><code>//添加主键
+alter table dept add primary key(deptno);
+//  dname 左边的列,loc就是右边的列
+alter table dept add index my_ind (dname,loc); 
+</code></pre><ol>
+<li>说明，如果我们的表中有复合索引(索引作用在多列上)， 此时我们注意:对于创建的多列索引，只要查询条件使用了最左边的列，索引一般就会被使用。<pre><code>explain select * from dept where loc=&apos;aaa&apos;\G；//此处就不会使用到索引
+</code></pre></li>
+</ol>
 <ol>
-<li><p>对于创建的多列索引，只要查询条件使用了最左边的列，索引一般就会被使用。</p>
-<p> explain select * from dept where loc=’aaa’\G  //此处就不会使用到索引</p>
-</li>
 <li><p>对于使用like的查询，查询如果是  ‘%aaa’ 不会使用到索引,‘aaa%’ 会使用到索引。</p>
 <p> explain select * from dept where dname like ‘%aaa’\G</p>
 <p> 不能使用索引，即，在like查询时，关键的 ‘关键字’ , 最前面，不能使用 % 或者 _这样的字符.， 如果一定要前面有变化的值，则考虑使用 全文索引-&gt;sphinx.</p>
 </li>
 <li><p>如果条件中有or，即使其中有条件带索引也不会使用。换言之，就是要求使用的所有字段，都必须建立索引, 我们建议大家尽量避免使用or 关键字</p>
+<p>select * from dept where dname=’xxx’ or loc=’xx’</p>
 <p>select * from dept where dname=’xxx’ or loc=’xx’ or deptno=45</p>
+<p>这两个语句执行比较就可以等到结果。</p>
 </li>
 <li><p>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来。否则不使用索引。(添加时,字符串必须’’), 也就是，如果列是字符串类型，就一定要用 ‘’ 把他包括起来.</p>
 </li>
-<li><p>如果mysql估计使用全表扫描要比使用索引快，则不使用索引。</p>
+<li><p>如果mysql估计使用全表扫描要比使用索引快，则不使用索引。情况特殊，比如空表或者记录只有一条的时候。</p>
 </li>
 </ol>
-<h3 id="查询索引使用情况"><a href="#查询索引使用情况" class="headerlink" title="查询索引使用情况"></a>查询索引使用情况</h3><p>&#160; &#160; &#160; &#160;如何查看索引使用的情况:</p>
+<h3 id="查询索引使用情况"><a href="#查询索引使用情况" class="headerlink" title="查询索引使用情况"></a>查询索引使用情况</h3><p>&#160; &#160; &#160; &#160;如何查看索引使用的情况，就像看缓存命中率一样:</p>
 <pre><code>show status like ‘Handler_read%’;
-</code></pre><p>大家可以注意：</p>
+</code></pre><p>tips：</p>
 <pre><code>handler_read_key:这个值越高越好，越高表示使用索引查询到的次数。
+
 handler_read_rnd_next:这个值越高，说明查询低效。
 </code></pre><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
@@ -294,7 +364,7 @@ handler_read_rnd_next:这个值越高，说明查询低效。
     <link href="http://yoursite.com/2017/01/18/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yoursite.com/2017/01/18/深入理解mysql（三）/</id>
     <published>2017-01-18T09:26:32.000Z</published>
-    <updated>2017-05-05T12:43:24.000Z</updated>
+    <updated>2017-05-06T12:13:48.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。<br>  <a id="more"></a></p>
 <p>&#160; &#160; &#160; &#160;<font color="red">索引能使查询变快的原理</font>：先建了一个索引文件，就是MYI文件，然后建立查找二叉树（也叫B树，二叉搜索树，二叉排序树）。利用了二叉树算法，使搜索性能逼近二分查找，但是他比连续内存空间的二分查找优点是，插入和删除不需要移动大量数据，通常是常数开销。记录下了对应索引数值的物理位置，所以数据库换了路径，索引也失效了。</p>
@@ -401,7 +471,7 @@ create unique index 索引名  on 表名 (列表..);
 <p>如果删除主键索引。</p>
 <p>alter table 表名 drop primary key </p>
 <h2 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h2><p>先删除再重新创建。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本节介绍的如何操作索引和索引能加快查询的原理。下篇我们看看怎么去适用索引最恰当。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本节介绍的如何操作索引和索引能加快查询的原理。下篇我们看看怎么去分析索引的性能，比如explain用法，然后我们该怎么去适用索引最恰当。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
