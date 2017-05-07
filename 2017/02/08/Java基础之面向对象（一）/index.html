@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="经典算法," />
+  <meta name="keywords" content="面向对象特性," />
 
 
 
@@ -111,21 +111,20 @@
 
 
 
-<meta name="description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta name="keywords" content="经典算法">
+<meta name="description" content="Java面向对象特性（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;后面准备整理一下Java基础、JVM和并发编程的知识，后面再是ssm框架。这些都是基础部分，也是最重要的部分之一。本篇从Java语言的面向对象特性开始讲诉，Java的这个特点和C#很像。Java主要有封装、继承、多态这三个特性，抽象不是特性，但是也很重要。">
+<meta name="keywords" content="面向对象特性">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法基础篇：排序（二）">
-<meta property="og:url" content="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/index.html">
+<meta property="og:title" content="Java基础之面向对象（一）">
+<meta property="og:url" content="http://yoursite.com/2017/02/08/Java基础之面向对象（一）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta property="og:image" content="http://img.blog.csdn.net/20160426213936501">
-<meta property="og:image" content="http://img.blog.csdn.net/20160427172905073">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493531505656&di=3fcca775d3be2b21bad6ac93d3a7ade9&imgtype=0&src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif">
-<meta property="og:updated_time" content="2017-05-06T10:21:48.000Z">
+<meta property="og:description" content="Java面向对象特性（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;后面准备整理一下Java基础、JVM和并发编程的知识，后面再是ssm框架。这些都是基础部分，也是最重要的部分之一。本篇从Java语言的面向对象特性开始讲诉，Java的这个特点和C#很像。Java主要有封装、继承、多态这三个特性，抽象不是特性，但是也很重要。">
+<meta property="og:image" content="http://img.ph.126.net/AYLKMqOoxAgGVZPtqyEAFQ==/2552696563805717290.jpg">
+<meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E7%94%A8%E5%8C%85.png">
+<meta property="og:updated_time" content="2017-05-07T07:17:30.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法基础篇：排序（二）">
-<meta name="twitter:description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160426213936501">
+<meta name="twitter:title" content="Java基础之面向对象（一）">
+<meta name="twitter:description" content="Java面向对象特性（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;后面准备整理一下Java基础、JVM和并发编程的知识，后面再是ssm框架。这些都是基础部分，也是最重要的部分之一。本篇从Java语言的面向对象特性开始讲诉，Java的这个特点和C#很像。Java主要有封装、继承、多态这三个特性，抽象不是特性，但是也很重要。">
+<meta name="twitter:image" content="http://img.ph.126.net/AYLKMqOoxAgGVZPtqyEAFQ==/2552696563805717290.jpg">
 
 
 
@@ -153,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/08/Java基础之面向对象（一）/"/>
 
 
 
 
 
-  <title>算法基础篇：排序（二） | Jessie_Zou’s Homepage</title>
+  <title>Java基础之面向对象（一） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -308,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/08/Java基础之面向对象（一）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -329,7 +328,7 @@
             
             
               
-                算法基础篇：排序（二）
+                Java基础之面向对象（一）
               
             
           </h1>
@@ -344,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-06T10:07:42+08:00">
-                2016-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-08T12:38:25+08:00">
+                2017-02-08
               </time>
             
 
@@ -367,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Java基础/" itemprop="url" rel="index">
+                    <span itemprop="name">Java基础</span>
                   </a>
                 </span>
 
@@ -384,7 +383,7 @@
 
           
           
-             <span id="/2016/12/06/算法基础篇：排序（二）/" class="leancloud_visitors" data-flag-title="算法基础篇：排序（二）">
+             <span id="/2017/02/08/Java基础之面向对象（一）/" class="leancloud_visitors" data-flag-title="Java基础之面向对象（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,84 +411,48 @@
       
 
       
-        <h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color="red"><a href="http://zh.visualgo.net" target="_blank" rel="external"><strong>学习利器</strong></a></font></p>
+        <h1 id="Java面向对象特性（一）"><a href="#Java面向对象特性（一）" class="headerlink" title="Java面向对象特性（一）"></a>Java面向对象特性（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;后面准备整理一下Java基础、JVM和并发编程的知识，后面再是ssm框架。这些都是基础部分，也是最重要的部分之一。本篇从Java语言的面向对象特性开始讲诉，Java的这个特点和C#很像。Java主要有封装、继承、多态这三个特性，抽象不是特性，但是也很重要。</p>
   <a id="more"></a>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>&#160; &#160; &#160;&#160; 快速排序（Quicksort）是对<em>冒泡排序</em>的一种改进。</p>
-<p>&#160; &#160; &#160;&#160; 快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。快速排序对海量数据来说，相对其他排序方式是较快的， 他的时间复杂度比经典排序小且常系数也比较小才称为快速排序。以数组{49,38,65,97,76,13,27,49}为例，选择第一个元素49为基准,初始化关键字： [49,38,65,97,76,13,27,49]</p>
-<p>&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="http://img.blog.csdn.net/20160426213936501" alt=""></p>
-<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 首先随机选择数列中的一个数（可用随机数产生，但也可以就选第一个数），然后进行一个partition函数，他的思想是扫描一遍数列把大于这个基数的数都放在右边，小于这个基数的数都放在左边。最后利用分治的思想，对基数的右边和左边分别在进行这个partition操作，最后数列就有序了。我这里为了代码尽量简洁，写出以下代码。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>//快速排序，s代表数列，l是数列第一项索引，r是数列最后一项的索引
-public static void quicksort(int[] s,int l,int r){
-//用i，j接住首位和末位，后面分别代表小于区间和🐠等于区间。x代表基数，这里用首位代表基数，没有随机产生
-    int i=l,j=r,x=s[l];
-    //执行操作条件
-    if(l&lt;r){
-        //循环结束条件
-        while(i&lt;j){
-            //从右至左找小于基数的数
-            while(i&lt;j&amp;&amp;s[j]&gt;=x)
-                j--;//如果大于等于基数j--，因为它们顺序正确
-             //找到之后放在左边，此处精妙的使用i++
-            if(i&lt;j)
-                s[i++]=s[j];
-            //从左至右找大于等于基数的数
-            while(i&lt;j&amp;&amp;s[i]&lt;x)
-                i++;
-            //放在
-            if(i&lt;j)
-                s[j--]=s[i];
-        }
-        //最后把基数放在i位置上，完成了partition操作
-        s[i]=x;
-        //对数列左边和右边分别递归
-        quicksort(s,l,i-1);
-        quicksort(s,i+1,r);
-    }
+<h2 id="类和对象"><a href="#类和对象" class="headerlink" title="类和对象"></a>类和对象</h2><p>&#160; &#160; &#160; &#160;区分类和对象，由类实例出对象，怎么去定义一个类，怎么通过类的构造器实例一个对象。类中有属性和方法。方法有构造方法和普通方法。属性有成员变量和局部变量。构造器没有返回值，返回值时隐式的。</p>
+<h3 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h3><p>&#160; &#160; &#160; &#160;如果没有构造器，会默认提供一个无参数的构造器，构造器最大的用处是在创建对象时执行，创建一个对象的时候会执行初始化：所有基本类型0，布尔为false，引用类型为null。构造器也不是完全负责创建Java对象，new的时候已经开辟了内存空间，只不过智能字啊构造器中通过this使用，构造器用来返回一个对象，通常还会赋值给一个引用变量。</p>
+<p>&#160; &#160; &#160; &#160;构造器也可以像方法一样重载。</p>
+<h3 id="方法详解"><a href="#方法详解" class="headerlink" title="方法详解"></a>方法详解</h3><p>&#160; &#160; &#160; &#160;方法在逻辑上要么属于类，要么属于对象。方法是类或对象的行为特征的抽象。类似传统结构化程序中的函数。</p>
+<p>&#160; &#160; &#160; &#160;方法的参数可以指定个数，也可以可变个数，就是当成数组传入。参数传递机制有值传递和引用传递。基本类型是值传递，引用类型是引用传递。</p>
+<p>&#160; &#160; &#160; &#160;方法体内调用他自己，该方法就是递归方法。包含了一种隐式的循环，所以理论上递归都可以转为循环。</p>
+<p>&#160; &#160; &#160; &#160;类中方法是可以重载的，就是允许方法名一样，但是参数不一样。</p>
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>&#160; &#160; &#160; &#160;类中的变量分为成员变量和局部变量，成员变量不在方法体内，分为静态和非静态的，即类成员和实力成员变量，而局部变量一般包括形参、方法的局部变量（定义在方法内）、代码块的局部变量（在代码块内，例如for循环内部）。</p>
+<p>&#160; &#160; &#160; &#160;这些的不同必然导致了变量的访问方式、作用范围和生命周期等方面必然有不同。</p>
+<p>&#160; &#160; &#160; &#160;局部变量必须显式的初始化才能使用，而成员变量类加载的时候已经赋了初值。局部变量不属于任何实例或者类，他在方法的栈内存中，往往是基本类型和对象的引用。方法执行完就释放。</p>
+<p>&#160; &#160; &#160; &#160;了解这些之后我们要合适选择变量类型。准确控制变量的作用域。</p>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>&#160; &#160; &#160; &#160;它指将对象的状态信息部分隐藏在对象内部，不允许外部程序直接访问对象内部信息，而是通过该类提供的方法进行操作和访问。具体该怎么实现呢，适用访问控制符。</p>
+<h3 id="访问控制符"><a href="#访问控制符" class="headerlink" title="访问控制符"></a>访问控制符</h3><p>&#160; &#160; &#160; &#160;有下面四种private、default（friendly）、protected、public四种，比较如下图：</p>
+<p><img src="http://img.ph.126.net/AYLKMqOoxAgGVZPtqyEAFQ==/2552696563805717290.jpg" alt=""></p>
+<h3 id="导入包"><a href="#导入包" class="headerlink" title="导入包"></a>导入包</h3><p>&#160; &#160; &#160; &#160;有这三个要掌握：package、import、import static；Java默认导入java.lang包下的所有类。下面列出常用包：</p>
+<p> <img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E7%94%A8%E5%8C%85.png" alt=""></p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>&#160; &#160; &#160; &#160;Java是单继承多接口，用关键字extends实现。子类继承负累所有成员变量和方法，值得指出的是：子类不能获得父类的构造器。</p>
+<h3 id="重写（覆盖）父类方法"><a href="#重写（覆盖）父类方法" class="headerlink" title="重写（覆盖）父类方法"></a>重写（覆盖）父类方法</h3><p>&#160; &#160; &#160; &#160;override，遵守两同两小一大原则：方法名、参数相同；子类返回值类型应该比父类更小或者相等、子类抛出的异常也应该比父类更小或者相等；子类方法的访问权限应该比父类更大或者相等。而且要么都是类方法，要么都是实例方法。</p>
+<h3 id="super和this"><a href="#super和this" class="headerlink" title="super和this"></a>super和this</h3><pre><code>super....//使用父类方法或属性
+this....// 使用类本身方法或属性
+</code></pre><h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><p>&#160; &#160; &#160; &#160;从运行过程上看，创建任何对象时总是从该类所在继承树的最顶层类的构造器开始执行，然后依次向下执行，最后才执行本来的构造器。</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>&#160; &#160; &#160; &#160;Java引用变量有两个类型，一个是编译时类型，一个时运行时类型。编译类型由声明该变量的类型决定，运行时类型由实际赋值给变量的类型决定，如果出现不一致，就可能出现所谓的多态。例如：</p>
+<pre><code>SuperClass base=new SubClass();
+</code></pre><p>&#160; &#160; &#160; &#160;因为子类是一个特殊的父类，因此允许把一个子类对象直接赋值给一个父类的引用类型。无须任何类型转换，精确的说时向上转型，向上转型由系统自动完成。但是编译时父类对象无法调用子类方法（可以利用反射来执行该方法）。</p>
+<h2 id="强制类型转换和instanceof-运算符"><a href="#强制类型转换和instanceof-运算符" class="headerlink" title="强制类型转换和instanceof 运算符"></a>强制类型转换和instanceof 运算符</h2><pre><code>double d=113.4
+long l=(long)d;
+Objext hello=&quot;hello&quot;;
+if(hello instanceof Object){
+....
 }
-</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 基本原理如下：对于给定的一组记录，利用递归与分治技术将数据序列划分成为越来越小的半子表，在对半子表排序，最后再用递归方法将排好序的半子表合并成为越来越大的有序序列。 经过第一轮比较后得到最小的记录，然后将该记录的位置与第一个记录的位置交换；接着对不包括第一个记录以外的其他记录进行第二次比较，得到最小记录并与第二个位置记录交换；重复该过程，直到进行比较的记录只剩下一个为止。</p>
-<p>&#160; &#160; &#160;&#160;以数组{50,10,90,30,70,40,80,60,20}为例，排序过程如下图：</p>
-<p><img src="http://img.blog.csdn.net/20160427172905073" alt=""></p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>public static void merge(int[] a, int low, int mid, int high) {
-    int[] temp = new int[high - low + 1];
-    int i = low;// 左指针
-    int j = mid + 1;// 右指针
-    int k = 0;
-    // 把较小的数先移到新数组中
-    while (i &lt;= mid &amp;&amp; j &lt;= high) {
-        if (a[i] &lt; a[j]) {
-            temp[k++] = a[i++];
-        } else {
-            temp[k++] = a[j++];
-        }
-    }
-    // 把左边剩余的数移入数组
-    while (i &lt;= mid) {
-        temp[k++] = a[i++];
-    }
-    // 把右边边剩余的数移入数组
-    while (j &lt;= high) {
-        temp[k++] = a[j++];
-    }
-    // 把新数组中的数覆盖nums数组
-    for (int k2 = 0; k2 &lt; temp.length; k2++) {
-        a[k2 + low] = temp[k2];
-    }
+if(hello instanceof String){
+....
 }
-
-public static void mergeSort(int[] a, int low, int high) {
-    int mid = (low + high) / 2;
-    if (low &lt; high) {
-        // 左边
-        mergeSort(a, low, mid);
-        // 右边
-        mergeSort(a, mid + 1, high);
-        // 左右归并
-        merge(a, low, mid, high);
-        System.out.println(Arrays.toString(a));
-    }
-
-}
-</code></pre><p> &#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493531505656&amp;di=3fcca775d3be2b21bad6ac93d3a7ade9&amp;imgtype=0&amp;src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif" alt=""></p>
+</code></pre><h2 id="继承和组合"><a href="#继承和组合" class="headerlink" title="继承和组合"></a>继承和组合</h2><p>&#160; &#160; &#160; &#160;继承是实现类复用的重要手段，但继承带来一个最大的坏处：破坏了封装，相比之下，组合也是实现类复用的重要方式。</p>
+<p>&#160; &#160; &#160; &#160;继承在高可用的同时，暴漏了父类的实现细节，且子类还可以任意篡改，所以父类不想子类改变的属性方法应该使用private修饰符，还可以通过final修饰符控制不让子类改变。</p>
+<p>&#160; &#160; &#160; &#160;被final修饰的类时不可变的，不能当作父类，如String。</p>
+<h2 id="初识化块"><a href="#初识化块" class="headerlink" title="初识化块"></a>初识化块</h2><p>&#160; &#160; &#160; &#160;初始化块是类出现的第四种成员，前面依次由成员变量、方法和构造器，一个类里可以有多个初始化块。初始化块的修饰符只能是static，而且创建对象时，总是先执行初始化块，按出现顺序在执行构造器。</p>
+<p>&#160; &#160; &#160; &#160;从某种程度上看，初始化块是构造器的补充。初始化块总是在构造器执行之前执行，系统通用可食用初始化块啦进行对象的初始化操作。</p>
+<p>&#160; &#160; &#160; &#160;静态初始化块：在类加载的时候执行，而不是像之前那种在对象加载的时候执行。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;本章主要介绍了Java面向对象的基本知识，包括如何定义类，如何为类成员添加成员变量、方法，以及如何创建类的对象。深入分析对象和引用变量之间的关系，方法的参数传递机制、重载，访问控制符等，三种面向对象特性的分析。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -541,7 +504,7 @@ public static void mergeSort(int[] a, int low, int high) {
       
         <div class="post-tags">
           
-            <a href="/tags/经典算法/" rel="tag"># 经典算法</a>
+            <a href="/tags/面向对象特性/" rel="tag"># 面向对象特性</a>
           
         </div>
       
@@ -554,8 +517,8 @@ public static void mergeSort(int[] a, int low, int high) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/08/计算机网络学习笔记（一）/" rel="next" title="计算机网络学习笔记（一）">
-                <i class="fa fa-chevron-left"></i> 计算机网络学习笔记（一）
+              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
               </a>
             
           </div>
@@ -564,8 +527,8 @@ public static void mergeSort(int[] a, int low, int high) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/01/算法基础篇：排序（一）/" rel="prev" title="算法基础篇：排序（一）">
-                算法基础篇：排序（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/05/深入理解mysql（五）/" rel="prev" title="深入理解mysql（五）">
+                深入理解mysql（五） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -730,7 +693,7 @@ public static void mergeSort(int[] a, int low, int high) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#改进排序算法及其Java实现"><span class="nav-number">1.</span> <span class="nav-text">改进排序算法及其Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">1.2.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">1.2.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">算法实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">1.3.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java面向对象特性（一）"><span class="nav-number">1.</span> <span class="nav-text">Java面向对象特性（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类和对象"><span class="nav-number">1.2.</span> <span class="nav-text">类和对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#构造器"><span class="nav-number">1.2.1.</span> <span class="nav-text">构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法详解"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.2.3.</span> <span class="nav-text">变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.3.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#访问控制符"><span class="nav-number">1.3.1.</span> <span class="nav-text">访问控制符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#导入包"><span class="nav-number">1.3.2.</span> <span class="nav-text">导入包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">1.4.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重写（覆盖）父类方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">重写（覆盖）父类方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#super和this"><span class="nav-number">1.4.2.</span> <span class="nav-text">super和this</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子类构造器"><span class="nav-number">1.4.3.</span> <span class="nav-text">子类构造器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">1.5.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强制类型转换和instanceof-运算符"><span class="nav-number">1.6.</span> <span class="nav-text">强制类型转换和instanceof 运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承和组合"><span class="nav-number">1.7.</span> <span class="nav-text">继承和组合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识化块"><span class="nav-number">1.8.</span> <span class="nav-text">初识化块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.9.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
