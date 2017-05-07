@@ -213,7 +213,7 @@
     <link href="http://yoursite.com/2017/02/05/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%BA%94%EF%BC%89/"/>
     <id>http://yoursite.com/2017/02/05/深入理解mysql（五）/</id>
     <published>2017-02-05T11:35:48.000Z</published>
-    <updated>2017-05-06T13:48:14.000Z</updated>
+    <updated>2017-05-07T03:28:51.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="mysql学习笔记（五）"><a href="#mysql学习笔记（五）" class="headerlink" title="mysql学习笔记（五）"></a>mysql学习笔记（五）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这篇我们从sql语句优化开始分析，这个时最基础的，可能我们在使用过程中都没有注意，也没有相关经验，但是有了这个意识，我们需要看别人总结的经验，自己去记忆和动手试下实例，加深理解。然后从mysql引擎的选择等方面进行分析，更恰当的去使用mysql。</p>
   <a id="more"></a>
@@ -254,7 +254,12 @@ select * from dept left join emp on dept.deptno=emp.deptno; //左外连接，效
 </ol>
 <h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><p>&#160; &#160; &#160; &#160;下面从几个方面来比较几个存储引擎。</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E.png" alt=""></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;上文列出来了一些途径，但是并不是索引的，比如其实我们还可以从字段的数据结构进行更佳选择，能用定点型，不要用浮点型。</p>
+<h2 id="字段类型"><a href="#字段类型" class="headerlink" title="字段类型"></a>字段类型</h2><p>&#160; &#160; &#160; &#160;<a href="http://www.cnblogs.com/100thMountain/p/4692008.html" target="_blank" rel="external">mysql字段类型选择</a></p>
+<p>##分表分区<br>&#160; &#160; &#160; &#160;分水平分表和垂直分表。5.1版本之后才用分区。</p>
+<p>&#160; &#160; &#160; &#160;<a href="http://www.2cto.com/database/201503/380348.html" target="_blank" rel="external">mysql分表分区详解</a></p>
+<h2 id="读写分离、负载均衡、主从复制"><a href="#读写分离、负载均衡、主从复制" class="headerlink" title="读写分离、负载均衡、主从复制"></a>读写分离、负载均衡、主从复制</h2><p>&#160; &#160; &#160; &#160;这些我们在以后分布式系统构建中在深入学习。</p>
+<p><img src="http://images2015.cnblogs.com/blog/47685/201606/47685-20160605035114867-448644269.jpg" alt=""></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;这里我们就分项的讲诉了许多的优化策略和原理方法，当然并不是全部。要记住这些方法，随时使用。可以参考这篇博文：<a href="http://blog.csdn.net/zls986992484/article/details/52860496" target="_blank" rel="external">mysql优化详解</a></p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
