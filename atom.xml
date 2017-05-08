@@ -209,13 +209,82 @@
   </entry>
   
   <entry>
+    <title>Java虚拟机（一）</title>
+    <link href="http://yoursite.com/2017/02/15/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/02/15/Java虚拟机（一）/</id>
+    <published>2017-02-15T03:09:08.000Z</published>
+    <updated>2017-05-08T08:20:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。</font></p>
+<a id="more"></a>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&#160; &#160; &#160; &#160;在c和c++中的内存管理领域，程序员拥有最高权力的皇帝，拥有每一个对象的所有权，又担负着每一个对象生命开始到结束的责任。对于java程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个new对象配对delete／free代码，而且不太容易出现内存泄漏和溢出。正是因为这样，Java程序员没有了掌控权，排除问题的时候将是异常艰难的工作。了解内存的各个区域，是翻越这个高墙的第一步。</p>
+<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>&#160; &#160; &#160; &#160;虚拟机在执行java程序的时候会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途、创建和销毁的时间。如下图所示：</p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png" alt=""></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ol>
+<li>是一个较小的内存空间，它的作用可以看作是当前线程所执行的字节码的行号指示器。</li>
+<li>字节码解释器工作时就是通过改变这个计数起的值来选取下一条需要执行的字节码指令。</li>
+<li>分支、循环、跳转、异常处理、线程恢复等基础功能都依赖计算器。</li>
+<li>多线程时通过线程轮流切换并分配处理器执行时间的方式来实现的。</li>
+<li>由于在任何一个确定的时刻，一个处理器只能处理一个线程，所以每个线程应该需要一个独立的程序计数器，所以它被称为<font color="red">线程私有。</font></li>
+<li>如果正在执行native方法，程序计数器为空。</li>
+</ol>
+<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ol>
+<li>也是线程私有，生命周期和线程一样。</li>
+<li>虚拟机栈描述的是Java方法执行的内存模型：每个方法一行的时候都会产生一个栈帧，它用于存储局部变量表、操作栈、动态链接、方法出口等信息。每个方法调用直到完成就对应一个栈帧在虚拟机栈入栈道出栈的过程</li>
+<li>局部变量表存放了编译器可知的各种数据类型，包括基本类型和引用类型（这里只是一个地址）和retrunAddress类型（指向一条字节码指令的地址）。</li>
+<li>在这个区域定义了两个异常：StackOverflowError异常，栈深度大于虚拟机所允许的栈深度，栈溢出，和OutOfMemoryError，即OOM，表示动态扩展的虚拟机无法申请到足够内存时会抛出的异常。</li>
+</ol>
+<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>&#160; &#160; &#160; &#160;其实只不过是区别于虚拟机栈所执行方法的不同，虚拟机栈执行Java方法，本地方法栈执行native方法。比如hotspot虚拟机就把本地方法栈和虚拟机合二为一。</p>
+<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><ol>
+<li>是虚拟机所管理的内存中的最大一块，Java堆是被所有线程共享的一块区域，在虚拟机启动时创建。</li>
+<li>存放的都是对象的实例，几乎所有的对象实例都在这里分配内存。随着及时动态编译器jit的发展和逃逸分析技术的逐渐成熟，所有的对象都分配在堆上也不是那么绝对。</li>
+<li>Java堆事垃圾回收的主要区域，也被称为GC堆。垃圾回收一般采用分代收集算法，堆中细分的话可分：新生代、老生代或者、Eden、From Survivor、To Survivor等。</li>
+<li>线程共享的Java堆可能划分出多个线程私有的分配缓冲区，不过存放内容都是对象，进一步划分事为了更好的回收对象。</li>
+</ol>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ol>
+<li>和Java堆一样，是各个线程共享的区域，用于存放已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。是堆的一个逻辑部分，但是别名NonHeap，非堆。</li>
+<li>垃圾收集行为在此区域较少发生，但并非永久代，对常量池的回收和类的卸载。</li>
+<li>此区域无法满足内存分配时，会抛出OOM异常。</li>
+<li>运行时常量池时方法区的一部分，编译期已经确定的字面量和符号引用，类加载完之后就存放到方法区的运行时常量池中。</li>
+<li>不一定都在编译的时候放入常量池，比如string的intern（）方法，可把新的常量放入池中。常量池也会报OOM异常。</li>
+</ol>
+<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><ol>
+<li>直接内存并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范汇总的内存区域，但是被频繁使用，而且可能导致OOM异常，比如NIO，引用了一种基于通道与缓冲区的I／O方式，它可以使用native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用进行操作。这样能显著的提高性能，因为避免了在Java堆和native堆中来回复制数据。</li>
+<li>显然直接内存不会受到堆大小的限制，但是内存都收到系统内存限制。也可能出现OOM。</li>
+</ol>
+<h2 id="对象访问"><a href="#对象访问" class="headerlink" title="对象访问"></a>对象访问</h2><p>&#160; &#160; &#160; &#160;我们分析一下下面这个简单代码的运行过程：</p>
+<pre><code>Object obj=new Object();
+</code></pre><p>&#160; &#160; &#160; &#160;这句代码中，Object obj 这部分的语义将会反映到java栈的本地变量表中，作为一个ref引用类型数据出现，而new Object（）这部分语义反映到堆中，形成一块存储了object类型所有实例数据值的结构内存，具体类型以及虚拟机实现的对象内存分布不同。另外，对象类型、父类、实现的接口、方法等信息存储在方法区中，保证能查找到对象类型数据的地址信息。</p>
+<p>&#160; &#160; &#160; &#160;主流的访问方式有两种：</p>
+<ol>
+<li>使用句柄方式，堆中还会划分出一个内存来作为句柄池，ref中存储的就是对象的句柄地址，句柄中又包含对象实例和对象类型的指针。好处是存储的是稳定的地址，在对象移动时只改变句柄中的，不用改变ref的。</li>
+<li>使用直接指针访问方式，ref中直接存储就是对象地址。最大好处就是速度更快，节省了一次指针定位的时间。hotspot就是采用这种。</li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;a href=&quot;#JVM之自动内存管理机制（一）&quot; class=&quot;headerlink&quot; title=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;/a&gt;JVM之自动内存管理机制（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：&lt;font color=red&gt;Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。&lt;/font&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+      <category term="自动内存管理机制" scheme="http://yoursite.com/tags/%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java基础之面向对象（二）</title>
     <link href="http://yoursite.com/2017/02/10/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/02/10/Java基础之面向对象（二）/</id>
     <published>2017-02-10T07:25:36.000Z</published>
-    <updated>2017-05-08T02:59:24.000Z</updated>
+    <updated>2017-05-08T03:07:19.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Java面向对象特性（二）"><a href="#Java面向对象特性（二）" class="headerlink" title="Java面向对象特性（二）"></a>Java面向对象特性（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。</p>
+  <a id="more"></a>
 <h2 id="自动装箱、拆箱"><a href="#自动装箱、拆箱" class="headerlink" title="自动装箱、拆箱"></a>自动装箱、拆箱</h2><p>&#160; &#160; &#160; &#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把包装类对象直接复制给一个对应的基本数据类型。</p>
 <h2 id="类成员"><a href="#类成员" class="headerlink" title="类成员"></a>类成员</h2><p>&#160; &#160; &#160; &#160;用static关键字修饰的成员就是类成员，static语义代表的是修饰的对象属于整个类而不属于任何实例。</p>
 <p>&#160; &#160; &#160; &#160;Java中只能包括五种：成员变量、方法、构造器、初始化块、内部类（包括接口、枚举）、以static修饰的成员就是类成员，他能修饰除构造器之外的其他四种。</p>
@@ -274,14 +343,14 @@
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/nerxious/archive/2013/01/25/2876489.html" target="_blank" rel="external">匿名内部类总结</a></p>
 <h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>&#160; &#160; &#160; &#160;允许用更简单的代码来创建只有一个抽象方法的接口，即函数式接口。lambda表达式完全可用于简化创建匿名内部类对象。</p>
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/franson-2016/p/5593080.html" target="_blank" rel="external">lambda表达式总结</a></p>
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>&#160; &#160; &#160; &#160;早期会用简单的静态变量来表示枚举，但是类型不安全，没有命名空间，意义不明确，后来用类来封装，但是额外要写代码，JDK1.5之后增加了对枚举类的支持。</p>
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>&#160; &#160; &#160; &#160;早期会用简单的静态变量来表示枚举，但是类型不安全，没有命名空间，意义不明确，后来用类来封装，但是额外要写代码，JDK1.5之后增加了对枚举类的支持。enum。</p>
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/oumyye/p/4232532.html" target="_blank" rel="external">lambda表达式总结</a></p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Java面向对象特性（二）&quot;&gt;&lt;a href=&quot;#Java面向对象特性（二）&quot; class=&quot;headerlink&quot; title=&quot;Java面向对象特性（二）&quot;&gt;&lt;/a&gt;Java面向对象特性（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; cla
+      &lt;h1 id=&quot;Java面向对象特性（二）&quot;&gt;&lt;a href=&quot;#Java面向对象特性（二）&quot; class=&quot;headerlink&quot; title=&quot;Java面向对象特性（二）&quot;&gt;&lt;/a&gt;Java面向对象特性（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。&lt;/p&gt;
     
     </summary>
     

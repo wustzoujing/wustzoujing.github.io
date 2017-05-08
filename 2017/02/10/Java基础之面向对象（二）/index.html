@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。 自动装箱、拆箱&amp;#160; &amp;#160; &amp;#160; &amp;#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把">
+<meta name="description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。">
 <meta name="keywords" content="面向对象特性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础之面向对象（二）">
 <meta property="og:url" content="http://yoursite.com/2017/02/10/Java基础之面向对象（二）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。 自动装箱、拆箱&amp;#160; &amp;#160; &amp;#160; &amp;#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把">
-<meta property="og:updated_time" content="2017-05-08T02:59:24.000Z">
+<meta property="og:description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。">
+<meta property="og:updated_time" content="2017-05-08T03:07:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础之面向对象（二）">
-<meta name="twitter:description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。 自动装箱、拆箱&amp;#160; &amp;#160; &amp;#160; &amp;#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把">
+<meta name="twitter:description" content="Java面向对象特性（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。">
 
 
 
@@ -409,6 +409,7 @@
 
       
         <h1 id="Java面向对象特性（二）"><a href="#Java面向对象特性（二）" class="headerlink" title="Java面向对象特性（二）"></a>Java面向对象特性（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。</p>
+  <a id="more"></a>
 <h2 id="自动装箱、拆箱"><a href="#自动装箱、拆箱" class="headerlink" title="自动装箱、拆箱"></a>自动装箱、拆箱</h2><p>&#160; &#160; &#160; &#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把包装类对象直接复制给一个对应的基本数据类型。</p>
 <h2 id="类成员"><a href="#类成员" class="headerlink" title="类成员"></a>类成员</h2><p>&#160; &#160; &#160; &#160;用static关键字修饰的成员就是类成员，static语义代表的是修饰的对象属于整个类而不属于任何实例。</p>
 <p>&#160; &#160; &#160; &#160;Java中只能包括五种：成员变量、方法、构造器、初始化块、内部类（包括接口、枚举）、以static修饰的成员就是类成员，他能修饰除构造器之外的其他四种。</p>
@@ -467,7 +468,7 @@
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/nerxious/archive/2013/01/25/2876489.html" target="_blank" rel="external">匿名内部类总结</a></p>
 <h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>&#160; &#160; &#160; &#160;允许用更简单的代码来创建只有一个抽象方法的接口，即函数式接口。lambda表达式完全可用于简化创建匿名内部类对象。</p>
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/franson-2016/p/5593080.html" target="_blank" rel="external">lambda表达式总结</a></p>
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>&#160; &#160; &#160; &#160;早期会用简单的静态变量来表示枚举，但是类型不安全，没有命名空间，意义不明确，后来用类来封装，但是额外要写代码，JDK1.5之后增加了对枚举类的支持。</p>
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>&#160; &#160; &#160; &#160;早期会用简单的静态变量来表示枚举，但是类型不安全，没有命名空间，意义不明确，后来用类来封装，但是额外要写代码，JDK1.5之后增加了对枚举类的支持。enum。</p>
 <p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/oumyye/p/4232532.html" target="_blank" rel="external">lambda表达式总结</a></p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
@@ -533,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
+              <a href="/2017/02/15/Java虚拟机（一）/" rel="next" title="Java虚拟机（一）">
+                <i class="fa fa-chevron-left"></i> Java虚拟机（一）
               </a>
             
           </div>
@@ -625,7 +626,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -636,7 +637,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -647,7 +648,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
