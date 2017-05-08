@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="OOM异常," />
 
 
 
@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="git+nodejs+markdown搭建hexomarkdown语法Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。">
-<meta name="keywords" content="hexo">
+<meta name="description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
+<meta name="keywords" content="OOM异常">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo搭建个人博客">
-<meta property="og:url" content="http://yoursite.com/2016/11/27/hexo搭建个人博客/index.html">
+<meta property="og:title" content="OOM异常实战">
+<meta property="og:url" content="http://yoursite.com/2017/02/18/OOM异常实战/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="git+nodejs+markdown搭建hexomarkdown语法Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。">
-<meta property="og:updated_time" content="2017-05-04T12:42:03.000Z">
+<meta property="og:description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
+<meta property="og:updated_time" content="2017-05-08T09:56:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo搭建个人博客">
-<meta name="twitter:description" content="git+nodejs+markdown搭建hexomarkdown语法Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。">
+<meta name="twitter:title" content="OOM异常实战">
+<meta name="twitter:description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/27/hexo搭建个人博客/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/18/OOM异常实战/"/>
 
 
 
 
 
-  <title>hexo搭建个人博客 | Jessie_Zou’s Homepage</title>
+  <title>OOM异常实战 | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/27/hexo搭建个人博客/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/18/OOM异常实战/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -325,7 +325,7 @@
             
             
               
-                hexo搭建个人博客
+                OOM异常实战
               
             
           </h1>
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-27T10:14:11+08:00">
-                2016-11-27
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T16:27:03+08:00">
+                2017-02-18
               </time>
             
 
@@ -363,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo相关/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo相关</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2016/11/27/hexo搭建个人博客/" class="leancloud_visitors" data-flag-title="hexo搭建个人博客">
+             <span id="/2017/02/18/OOM异常实战/" class="leancloud_visitors" data-flag-title="OOM异常实战">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,21 +408,37 @@
       
 
       
-        <h1 id="git-nodejs-markdown搭建hexo"><a href="#git-nodejs-markdown搭建hexo" class="headerlink" title="git+nodejs+markdown搭建hexo"></a>git+nodejs+markdown搭建hexo</h1><h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h2><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
-<h3 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h3><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
-<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">创始人 John Gruber 的 Markdown 语法说明</a></p>
-<p><a href="http://wowubuntu.com/markdown/#list" target="_blank" rel="external">Markdown 中文版语法说明</a></p>
-<h3 id="Mac下的编辑器Mou和MacDown"><a href="#Mac下的编辑器Mou和MacDown" class="headerlink" title="Mac下的编辑器Mou和MacDown"></a>Mac下的编辑器Mou和MacDown</h3><p>代码高亮</p>
-<p>Mou 和 MacDown 都支持 fenced code blocks（前后三个反引号可以表示代码块），但 MacDown 支持加语言标识符实现代码高亮，这对程序员来说简直是福音啊，非常棒的功能。</p>
-<p>MacDown 支持代码高亮<br>MacDown 支持代码高亮<br>GFM Task List 支持</p>
-<p>MacDown 支持 Task list，有了这个功能，你可以将你的 MD 编辑器立马变成 TODO list，是不是很赞？</p>
-<p>MacDown 对 Task list 的支持<br>MacDown 对 Task list 的支持<br>Jekyll Front-matter 支持</p>
-<p>很多人使用 Jekyll 作为博客引擎，这时 Jekyll 的前面那段该怎么去渲染呢？MacDown 和 github 一样可以支持。</p>
-<p>MacDown 对 Jekyll front-matter 的支持<br>MacDown 对 Jekyll front-matter 的支持</p>
-<h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
-<h2 id="nodejs-git-并安装hexo"><a href="#nodejs-git-并安装hexo" class="headerlink" title="nodejs+git 并安装hexo"></a>nodejs+git 并安装hexo</h2><h3 id="这个教程很多，下面给个链接"><a href="#这个教程很多，下面给个链接" class="headerlink" title="这个教程很多，下面给个链接"></a>这个教程很多，下面给个链接</h3><p><a href="http://www.jianshu.com/p/ecd51e8ef2fa" target="_blank" rel="external">参考链接</a></p>
-<h2 id="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"><a href="#next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。" class="headerlink" title="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"></a>next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">官方文档</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+        <h1 id="OOM异常实战"><a href="#OOM异常实战" class="headerlink" title="OOM异常实战"></a>OOM异常实战</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。</p>
+<a id="more"></a>
+<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><p>&#160; &#160; &#160; &#160;有几个重要参数设置如下：</p>
+<ol>
+<li><p>-Xms  堆大小的最小值设置参数</p>
+</li>
+<li><p>-Xmx  堆的大小最大值，如果设置为最小值一样，则不允许自动扩展。</p>
+</li>
+<li><p>-XX：+HeapDumpOnOutOfMemoryError  让内存溢出时Dump出当前内存堆转储快照。</p>
+</li>
+</ol>
+<h3 id="模拟产生方法"><a href="#模拟产生方法" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果我们不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制回收这些对象，就能模拟抛出OOM异常的情景。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>&#160; &#160; &#160; &#160;<br>使用内存映像分析工具：Eclipse Memory Analyzer对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，即要搞明白是内存泄漏还是内存溢出。 </p>
+<ol>
+<li>内存泄漏导致的OOM：new出来的很多对象已经不需要了，但仍然有引用指向，所以垃圾回收机制无法回收。 </li>
+<li>内存溢出：new出来的对象都是需要的，但堆内存太小装不下了。 </li>
+</ol>
+<p>&#160; &#160; &#160; &#160;<font color="red">如果是内存泄漏，通过工具查看泄漏对象到GC Roots的引用链。找到泄漏对象是通过怎样的路径与GC Roots发生关联，然后导致垃圾回收机制无法自动回收的。如果不存在内存泄漏，也就是所有的对象都必须存在，这时候就调大堆内存。</font></p>
+<h2 id="虚拟机栈和本地方法溢出"><a href="#虚拟机栈和本地方法溢出" class="headerlink" title="虚拟机栈和本地方法溢出"></a>虚拟机栈和本地方法溢出</h2><p>&#160; &#160; &#160; &#160;在hotspot中不区分虚拟机和本地方法栈，因此对于hotspot来说，-Xoss参数存在但是无效，栈容量只由-Xss参数决定。</p>
+<p>&#160; &#160; &#160; &#160;书上的实验结果表明；</p>
+<ol>
+<li>在单个线程下，无论是由于栈帧太大还是虚拟机容量太小，当内存无法分配的时候，虚拟机抛出的都是StackOverflowError。</li>
+<li>不限于单线程可以模拟出OOM，但是这种产生的内存溢出与栈空间足够大不存在联系，而且越大反而更容易产生内存溢出。原因：<font color="red">内存有限，每个线程分配到的栈容量越大，可以建立的线程数就越少，建立线程的时候就越容易把剩下的内存耗尽。</font></li>
+<li>所以在多线程开发中特别注意，StackOverflowError有错误堆栈可以阅读，相对排查简单一些。大多数情况下达到1000～2000完全没有问题，对于正常的递归大多数情况下完全够用了。<font color="red">如果是多线程导致内存溢出的话，就只能减少最大堆或者栈的容量来获得更多的线程。</font></li>
+</ol>
+<h2 id="常量池溢出"><a href="#常量池溢出" class="headerlink" title="常量池溢出"></a>常量池溢出</h2><h3 id="模拟产生方法-1"><a href="#模拟产生方法-1" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果要向运行时内存中添加内容，最简单的方式是使用string.intern（）。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：PermSize        &#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：MaxPermSize。溢出后提示信息是PermGen space。</p>
+<h3 id="方法区溢出"><a href="#方法区溢出" class="headerlink" title="方法区溢出"></a>方法区溢出</h3><p>&#160; &#160; &#160; &#160;方法区存放class信息，比如类名、访问修饰符、常量池、字段描述、方法描述等。</p>
+<h3 id="模拟产生方法-2"><a href="#模拟产生方法-2" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;产生许多类区填满方法区，直到溢出。还可以反射和动态代理，还可以用CGLIB直接操作字符码，生成动态类。（框架中精彩需要对类进行增强，都会使用到CGLIB，增强的类越多，就需要越大的方法区保证动态生成的class可以加载入内存）。</p>
+<p>&#160; &#160; &#160; &#160;方法区溢出也是常见的内存溢出，一个类如果要被垃圾收集器回收掉条件是十分苛刻的。在动态生成大量Class文件的应用中，需要特别注意类的回收状况。常见的还有JSP应用。</p>
+<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><p>-XX：MaxDirectMemorySize，如果不指定默认和堆一样大。</p>
 
       
     </div>
@@ -473,7 +489,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag"># hexo</a>
+            <a href="/tags/OOM异常/" rel="tag"># OOM异常</a>
           
         </div>
       
@@ -486,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/01/算法基础篇：排序（一）/" rel="next" title="算法基础篇：排序（一）">
-                <i class="fa fa-chevron-left"></i> 算法基础篇：排序（一）
+              <a href="/2017/02/20/Java虚拟机（二）/" rel="next" title="Java虚拟机（二）">
+                <i class="fa fa-chevron-left"></i> Java虚拟机（二）
               </a>
             
           </div>
@@ -495,6 +511,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/15/Java虚拟机（一）/" rel="prev" title="Java虚拟机（一）">
+                Java虚拟机（一） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -658,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#git-nodejs-markdown搭建hexo"><span class="nav-number">1.</span> <span class="nav-text">git+nodejs+markdown搭建hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#markdown语法"><span class="nav-number">1.1.</span> <span class="nav-text">markdown语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Markdown-官方文档"><span class="nav-number">1.1.1.</span> <span class="nav-text">Markdown 官方文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac下的编辑器Mou和MacDown"><span class="nav-number">1.1.2.</span> <span class="nav-text">Mac下的编辑器Mou和MacDown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#入门指南"><span class="nav-number">1.1.3.</span> <span class="nav-text">入门指南</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs-git-并安装hexo"><span class="nav-number">1.2.</span> <span class="nav-text">nodejs+git 并安装hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#这个教程很多，下面给个链接"><span class="nav-number">1.2.1.</span> <span class="nav-text">这个教程很多，下面给个链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"><span class="nav-number">1.3.</span> <span class="nav-text">next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OOM异常实战"><span class="nav-number">1.</span> <span class="nav-text">OOM异常实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java堆溢出"><span class="nav-number">1.2.</span> <span class="nav-text">Java堆溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">重要参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">模拟产生方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.2.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机栈和本地方法溢出"><span class="nav-number">1.3.</span> <span class="nav-text">虚拟机栈和本地方法溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量池溢出"><span class="nav-number">1.4.</span> <span class="nav-text">常量池溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">模拟产生方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">1.4.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区溢出"><span class="nav-number">1.4.3.</span> <span class="nav-text">方法区溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法-2"><span class="nav-number">1.4.4.</span> <span class="nav-text">模拟产生方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接内存溢出"><span class="nav-number">1.5.</span> <span class="nav-text">直接内存溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">参数</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

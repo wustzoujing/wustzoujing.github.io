@@ -209,13 +209,174 @@
   </entry>
   
   <entry>
+    <title>Java虚拟机（二）</title>
+    <link href="http://yoursite.com/2017/02/20/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/02/20/Java虚拟机（二）/</id>
+    <published>2017-02-20T10:01:02.000Z</published>
+    <updated>2017-05-08T14:14:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JVM之垃圾回收机制（二）"><a href="#JVM之垃圾回收机制（二）" class="headerlink" title="JVM之垃圾回收机制（二）"></a>JVM之垃圾回收机制（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在了解了Java运行时内存区域之后，我们知道虚拟机可能造成内存溢出OOM，虽然有垃圾回收机制，但是可能也不能避免，<font color="red">我们现在就看看Java的垃圾收集机制为例避免内存溢出异常已经做出了哪些努力。</font></p>
+<a id="more"></a>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>说起GC，我们需要做下面三件事情：</p>
+<ol>
+<li>哪些内存需要回收？</li>
+<li>何时回收？</li>
+<li>如何回收？</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;现在内存的动态分配、垃圾回收技术已经相当的成熟，那我们为什么还要去学习内存分配和GC呢？答案：<font color="red">当需要排查各种OOM问题时，当垃圾收集成为系统达到更高并发量的瓶颈时，我就需要对自动化的技术实施必要的监控和调节。</font></p>
+<h2 id="怎么判断对象已死？"><a href="#怎么判断对象已死？" class="headerlink" title="怎么判断对象已死？"></a>怎么判断对象已死？</h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>&#160; &#160; &#160; &#160;给对象添加一个引用计数器，每当有一个地方引用它，计数器就加1；失效就减1；任何时刻为0的对象就是不可能再被使用的。</p>
+<p>&#160; &#160; &#160; &#160;确定：不能解决循环引用的问题。</p>
+<h3 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h3><p>&#160; &#160; &#160; &#160;Java和C#所采用的方式，基本原理：通过一系列名为GC Roots的对象为起点，从这些根节点向下搜索，走过的路径叫引用链，当一个对象到GC Roots没有任何引用链相连，则证明此对象是不可用的。</p>
+<p>&#160; &#160; &#160; &#160;Java语言中可作为GC Roots的对象包括：虚拟机栈中（本地变量表）引用的对象、方法区中的类静态属性引用的对象、方法区中的常量引用对象、本地方法栈中JNI，native方法引用的对象。</p>
+<h2 id="引用的几个类型"><a href="#引用的几个类型" class="headerlink" title="引用的几个类型"></a>引用的几个类型</h2><p>&#160; &#160; &#160; &#160;无论是哪种方式，判断存活都与引用有关。引用概念在JDK1.2之后进行了扩充，包括四种：</p>
+<ol>
+<li>强引用；只要引用存在，垃圾回收器永远不会回收。</li>
+<li>软引用；系统将要发生内存溢出之前，会把这些对象列进回收范围并进行第二次回收。如果还不够菜抛出异常。</li>
+<li>弱引用；只能存活到下一次垃圾回收发生之前。</li>
+<li>虚引用；一个对象是否有虚引用的存在，完全不会对其生命时间构成影响，也无法通过虚引用来获得实例，完全只是为了希望在对这个回收时收到一个系统通知。</li>
+</ol>
+<h2 id="生存还是死亡？"><a href="#生存还是死亡？" class="headerlink" title="生存还是死亡？"></a>生存还是死亡？</h2><p>&#160; &#160; &#160; &#160;根搜索算法不可达的对象也并不是一定被回收，这时候它处于缓刑阶段。至少要经历两次标记过程。如果发现没有引用链，那么标记一次并且进行一次筛选，条件是对象是否有必要执行finalize（），当对象没有覆盖finalize方法，或者已经被虚拟机调用过，都是为没有必要执行。</p>
+<p>&#160; &#160; &#160; &#160;如果判断为有必要执行，就会放置在一个F-Queue队列之中，并在稍后由一条虚拟机自动建立的、低优先级的Finalize线程区执行。但是并不承诺等待它运行结束，原因是：如果一个对象的finalize方法执行缓慢或者死循环了，其他对象将出现永久等待。</p>
+<p>&#160; &#160; &#160; &#160;finalize（）是对象逃脱死亡命运的最后一次机会，稍后GC将对F-Queue中的对象进行第二次标记，如果对象在finalize中拯救自己—只要重新与引用链上的任何一个对象相连即可。只能自救一次，因为finalize最多使用一次。</p>
+<h2 id="回收方法区"><a href="#回收方法区" class="headerlink" title="回收方法区"></a>回收方法区</h2><p>&#160; &#160; &#160; &#160;主要回收内容：废弃常量和无用的类。回收废弃常量与回收Java堆中的对象类似。</p>
+<p>&#160; &#160; &#160; &#160;判断无用的类得满足下面三个条件：</p>
+<ol>
+<li>加载该类的加载器已被回收</li>
+<li>所有类的实例已经被回收</li>
+<li>该类的java.lang.Class对象没有任何地方引用，无法反射得到。</li>
+</ol>
+<p>满足了也不一定回收，常用的参数如下：</p>
+<ol>
+<li>-verbose：class</li>
+<li>-xx：+TraceClassLoading</li>
+<li>-XX：+TraceClassUnLoding</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;在大量使用反射、动态代理、CGLib等bytecode框架的时候，以及JSP、OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能。</p>
+<h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h3><p>&#160; &#160; &#160; &#160;首先标记出所有需要回收的对象，在标记完之后统一回收。</p>
+<p>&#160; &#160; &#160; &#160;缺点：效率低，产生的碎片多。</p>
+<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>&#160; &#160; &#160; &#160;他将可用的内存划分为等大小的两块，每次只使用其中一块，当用完了，把存活的对象都复制到另一半上，然后把第一块的一次性清理。</p>
+<p>缺点：内存利用率低</p>
+<h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h3><p>&#160; &#160; &#160; &#160;让所有存活的对象都向一端移动，然后直接清楚掉端边界以外的内存。</p>
+<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p>&#160; &#160; &#160; &#160;当前商业虚拟机都常用分代收集算法，更具对象的存活周期的不同将内存划分为几块，一般是新生代和老年代，这样就可以根据各个年代的特点采用最适当的<strong>收集算法</strong>。在新生代中，每次都有大批对象死去，只有少量的存活，那就选用复制算法。（复制的内容比较少，复制少量存活对象成本），而老年代中因为对象存活率高，就必须使用标记-清理或者标记-整理。</p>
+<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>&#160; &#160; &#160; &#160;包含的收集器如下：<br><img src="http://img.my.csdn.net/uploads/201210/03/1349278110_8410.jpg" alt=""></p>
+<h3 id="serial"><a href="#serial" class="headerlink" title="serial"></a>serial</h3><p>&#160; &#160; &#160; &#160;单线程收集器，垃圾收集时，必须暂停所有工作线程。“Stop The World”。</p>
+<p>优势：简单而高效，没有线程切换，在客户端模式是个很好选择。</p>
+<h3 id="ParNew"><a href="#ParNew" class="headerlink" title="ParNew"></a>ParNew</h3><p>&#160; &#160; &#160; &#160;是Serial的多线程版本（在新生代垃圾回收的时候采用多GC线程），是服务器模式下首选的新生代收集器，目前只有它能与CMS收集器配合工作。但是作为老年代的收集器，却无法和Parallel Scavenge配合工作。</p>
+<p>&#160; &#160; &#160; &#160;它在单核环境中绝对不会比serial效果好，多核也不能百分之百比serial好。</p>
+<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-10.png" alt=""></p>
+<h3 id="Parallel-Scavenge"><a href="#Parallel-Scavenge" class="headerlink" title="Parallel Scavenge"></a>Parallel Scavenge</h3><p>&#160; &#160; &#160; &#160;是一个新生代收集器，它是使用复制算法的收集器，又是并行的多线程收集器，特别之处是它注重达到一个可控制的吞吐量，可通过设置参数来完成。</p>
+<h3 id="serial-Old"><a href="#serial-Old" class="headerlink" title="serial Old"></a>serial Old</h3><p>&#160; &#160; &#160; &#160;是serial的老年代版本，采用的是标记-整理算法。主要意义是客户端模式下使用。如果使用在服务器模式下，主要有两个用途：搭配Parallel Scavenge使用，或者作为CMS收集器的后备预案。</p>
+<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-9.jpg" alt=""></p>
+<h3 id="Parallel-Old"><a href="#Parallel-Old" class="headerlink" title="Parallel Old"></a>Parallel Old</h3><p>&#160; &#160; &#160; &#160;之前新生代 Parallel Scavenge很尴尬，因为只能喝serial old组，被单线程所拖累。知道Parallel Old出现，吞吐量优先收集器终于有了比较名副其实的应用组合。</p>
+<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-11.jpg" alt=""></p>
+<h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>&#160; &#160; &#160; &#160;是一种以获取最短回收停顿时间为目标的收集器。目前很多一部分的Java应用都集中在服务器上，尤其注重响应速度，希望系统停顿的时间越短越好。CMS就非常符合这个要求。</p>
+<p>&#160; &#160; &#160; &#160;基于标记-清除的，但是改进了分以下四步：</p>
+<ol>
+<li>初识标记；仍需要暂停其他线程，仅仅是标记一下GC Roots能直接关联的对象，速度很快。</li>
+<li>并发标记；进行GC Roots Tracing过程</li>
+<li>重新标记；仍需要暂停其他线程，修正并发标记期间，因用户程序继续运行而导致的一部分改变，会比👨‍🍳标记消耗时间长一些，比并发标记时间短。</li>
+<li>并发清除；消耗时间也较长。</li>
+</ol>
+<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-12.jpg" alt=""></p>
+<h4 id="CMS-优缺点"><a href="#CMS-优缺点" class="headerlink" title="CMS 优缺点"></a>CMS 优缺点</h4><p>&#160; &#160; &#160; &#160;CMS的优点很明显：并发收集、低停顿（由于进行垃圾收集的时间主要耗在并发标记与并发清除这两个过程，虽然初始标记和重新标记仍然需要暂停用户线程，但是从总体上看，这部分占用的时间相比其他两个步骤很小，所以可以认为是低停顿的）。</p>
+<p>&#160; &#160; &#160; &#160;尽管如此，CMS收集器的缺点也是很明显的：</p>
+<p>&#160; &#160; &#160; &#160;1.对CPU资源太敏感，这点可以这么理解，虽然在并发标记阶段用户线程没有暂停，但是由于收集器占用了一部分CPU资源，导致程序的响应速度变慢。（增量式并发收集器i-CMS）</p>
+<p>&#160; &#160; &#160; &#160;2.CMS收集器无法处理浮动垃圾。所谓的“浮动垃圾”，就是在并发标记阶段，由于用户程序在运行，那么自然就会有新的垃圾产生，这部分垃圾被标记过后，CMS无法在当次集中处理它们（为什么？原因在于CMS是以获取最短停顿时间为目标的，自然不可能在一次垃圾处理过程中花费太多时间），只好在下一次GC的时候处理。这部分未处理的垃圾就称为“浮动垃圾”。（调高-XX：CMSInitiatingOccupancyFraction参数，太高又会造成CMF失败，后备预案就是采用Serial收集器对老年代进行，反而效率会降低）。</p>
+<p>&#160; &#160; &#160; &#160;3.由于CMS收集器是基于“标记-清除”算法的，前面说过这个算法会导致大量的空间碎片的产生，一旦空间碎片过多，大对象就没办法给其分配内存,那么即使内存还有剩余空间容纳这个大对象，但是却没有连续的足够大的空间放下这个对象，所以虚拟机就会触发一次Full GC（这个后面还会提到）这个问题的解决是通过控制参数-XX:+UseCMSCompactAtFullCollection，用于在CMS垃圾收集器顶不住要进行FullGC的时候开启空间碎片的合并整理过程。相应停顿也不得不变长。</p>
+<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p>&#160; &#160; &#160; &#160;G1时当前收集器技术中最前沿的成果。相比之前的CMS收集器又两个改进：</p>
+<ol>
+<li>基于标记-整理算法实现，也就是说不会产生碎片。</li>
+<li>精确的控制停顿，在M毫秒哪，收集时间不超过N毫秒，这几乎已经时实时java（RTSJ）的垃圾收集器特征了。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;将整个Java堆划分为多个大小固定的独立区域，并且跟踪这些区域厘米的垃圾堆积程度，后台维护一个优先列表，每次根据允许的收集时间，优先回收垃圾最多的区域，这就是Garbage First的由来。保证有效时间内获得更高的收集效率。</p>
+<h2 id="内存分配与回收策略"><a href="#内存分配与回收策略" class="headerlink" title="内存分配与回收策略"></a>内存分配与回收策略</h2><p>&#160; &#160; &#160; &#160;Java技术体系中所提倡的自动内存管理最终归结为自动化解决了两个问题：给内存分配对象以及回收分配给对象的内存。接下来再来说说内存分配，往大方向讲，就是在堆上分配。<br>根据设置参数和收集器的使用组合不同，内存分配机制可能不同，但是我们讲述一般性规则，分析之前先看看两种GC：</p>
+<ol>
+<li>新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，比较频繁，回收速度也快。</li>
+<li>老年代GC （Full GC／Major GC）：发生在老年代的GC，经常伴随着至少一次Minor GC，但不是绝对，速度较慢，。</li>
+</ol>
+<h3 id="对象优先在Eden中分配"><a href="#对象优先在Eden中分配" class="headerlink" title="对象优先在Eden中分配"></a>对象优先在Eden中分配</h3><p>&#160; &#160; &#160; &#160;大多数情况下，对象优先在新生代Eden区中分配。当Eden没有足够空间的时候，会发起一次Minor GC。</p>
+<h3 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h3><p>&#160; &#160; &#160; &#160;需要大量连续空间的Java对象，很长的字符串及数组等，所以程序中不要写短命大对象。（不进入Eden和Survivor时因为他们采用复制算法）。</p>
+<h3 id="长期存活的对象进入老年代"><a href="#长期存活的对象进入老年代" class="headerlink" title="长期存活的对象进入老年代"></a>长期存活的对象进入老年代</h3><p>&#160; &#160; &#160; &#160;虚拟机给每一个对象一个年龄计数器，默认15岁。</p>
+<h3 id="动态对象年龄判断"><a href="#动态对象年龄判断" class="headerlink" title="动态对象年龄判断"></a>动态对象年龄判断</h3><p>&#160; &#160; &#160; &#160;如果Survivor空间中相同年龄所以对象总和大于空间的一半，年龄大于等于该年龄的进入老年代。</p>
+<h3 id="空间分配担保"><a href="#空间分配担保" class="headerlink" title="空间分配担保"></a>空间分配担保</h3><p>&#160; &#160; &#160; &#160;发生 Minor GC时，虚拟机会检测晋升到老年代的空间是否够，如果不够就发起一次Full GC，如果小于，如果参数HannlePromotionFailure设置允许担保失败，就只会进行Minor GC；</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;本次介绍了垃圾收集算法和多种收集器，以及自动内存分配的一些机制。内存回收与垃圾收集在很多时候都是影响系统性能、并发俄力的主要因素之一，虚拟机提供了多种不同收集器与大量调节参数。必须要了解每个具体收集器行为、优点缺点。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JVM之垃圾回收机制（二）&quot;&gt;&lt;a href=&quot;#JVM之垃圾回收机制（二）&quot; class=&quot;headerlink&quot; title=&quot;JVM之垃圾回收机制（二）&quot;&gt;&lt;/a&gt;JVM之垃圾回收机制（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了Java运行时内存区域之后，我们知道虚拟机可能造成内存溢出OOM，虽然有垃圾回收机制，但是可能也不能避免，&lt;font color=red&gt;我们现在就看看Java的垃圾收集机制为例避免内存溢出异常已经做出了哪些努力。&lt;/font&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+      <category term="垃圾收集器与内存分配策略" scheme="http://yoursite.com/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OOM异常实战</title>
+    <link href="http://yoursite.com/2017/02/18/OOM%E5%BC%82%E5%B8%B8%E5%AE%9E%E6%88%98/"/>
+    <id>http://yoursite.com/2017/02/18/OOM异常实战/</id>
+    <published>2017-02-18T08:27:03.000Z</published>
+    <updated>2017-05-08T09:56:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OOM异常实战"><a href="#OOM异常实战" class="headerlink" title="OOM异常实战"></a>OOM异常实战</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。</p>
+<a id="more"></a>
+<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><p>&#160; &#160; &#160; &#160;有几个重要参数设置如下：</p>
+<ol>
+<li><p>-Xms  堆大小的最小值设置参数</p>
+</li>
+<li><p>-Xmx  堆的大小最大值，如果设置为最小值一样，则不允许自动扩展。</p>
+</li>
+<li><p>-XX：+HeapDumpOnOutOfMemoryError  让内存溢出时Dump出当前内存堆转储快照。</p>
+</li>
+</ol>
+<h3 id="模拟产生方法"><a href="#模拟产生方法" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果我们不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制回收这些对象，就能模拟抛出OOM异常的情景。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>&#160; &#160; &#160; &#160;<br>使用内存映像分析工具：Eclipse Memory Analyzer对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，即要搞明白是内存泄漏还是内存溢出。 </p>
+<ol>
+<li>内存泄漏导致的OOM：new出来的很多对象已经不需要了，但仍然有引用指向，所以垃圾回收机制无法回收。 </li>
+<li>内存溢出：new出来的对象都是需要的，但堆内存太小装不下了。 </li>
+</ol>
+<p>&#160; &#160; &#160; &#160;<font color="red">如果是内存泄漏，通过工具查看泄漏对象到GC Roots的引用链。找到泄漏对象是通过怎样的路径与GC Roots发生关联，然后导致垃圾回收机制无法自动回收的。如果不存在内存泄漏，也就是所有的对象都必须存在，这时候就调大堆内存。</font></p>
+<h2 id="虚拟机栈和本地方法溢出"><a href="#虚拟机栈和本地方法溢出" class="headerlink" title="虚拟机栈和本地方法溢出"></a>虚拟机栈和本地方法溢出</h2><p>&#160; &#160; &#160; &#160;在hotspot中不区分虚拟机和本地方法栈，因此对于hotspot来说，-Xoss参数存在但是无效，栈容量只由-Xss参数决定。</p>
+<p>&#160; &#160; &#160; &#160;书上的实验结果表明；</p>
+<ol>
+<li>在单个线程下，无论是由于栈帧太大还是虚拟机容量太小，当内存无法分配的时候，虚拟机抛出的都是StackOverflowError。</li>
+<li>不限于单线程可以模拟出OOM，但是这种产生的内存溢出与栈空间足够大不存在联系，而且越大反而更容易产生内存溢出。原因：<font color="red">内存有限，每个线程分配到的栈容量越大，可以建立的线程数就越少，建立线程的时候就越容易把剩下的内存耗尽。</font></li>
+<li>所以在多线程开发中特别注意，StackOverflowError有错误堆栈可以阅读，相对排查简单一些。大多数情况下达到1000～2000完全没有问题，对于正常的递归大多数情况下完全够用了。<font color="red">如果是多线程导致内存溢出的话，就只能减少最大堆或者栈的容量来获得更多的线程。</font></li>
+</ol>
+<h2 id="常量池溢出"><a href="#常量池溢出" class="headerlink" title="常量池溢出"></a>常量池溢出</h2><h3 id="模拟产生方法-1"><a href="#模拟产生方法-1" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果要向运行时内存中添加内容，最简单的方式是使用string.intern（）。</p>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：PermSize        &#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：MaxPermSize。溢出后提示信息是PermGen space。</p>
+<h3 id="方法区溢出"><a href="#方法区溢出" class="headerlink" title="方法区溢出"></a>方法区溢出</h3><p>&#160; &#160; &#160; &#160;方法区存放class信息，比如类名、访问修饰符、常量池、字段描述、方法描述等。</p>
+<h3 id="模拟产生方法-2"><a href="#模拟产生方法-2" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;产生许多类区填满方法区，直到溢出。还可以反射和动态代理，还可以用CGLIB直接操作字符码，生成动态类。（框架中精彩需要对类进行增强，都会使用到CGLIB，增强的类越多，就需要越大的方法区保证动态生成的class可以加载入内存）。</p>
+<p>&#160; &#160; &#160; &#160;方法区溢出也是常见的内存溢出，一个类如果要被垃圾收集器回收掉条件是十分苛刻的。在动态生成大量Class文件的应用中，需要特别注意类的回收状况。常见的还有JSP应用。</p>
+<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><p>-XX：MaxDirectMemorySize，如果不指定默认和堆一样大。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;OOM异常实战&quot;&gt;&lt;a href=&quot;#OOM异常实战&quot; class=&quot;headerlink&quot; title=&quot;OOM异常实战&quot;&gt;&lt;/a&gt;OOM异常实战&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JVM" scheme="http://yoursite.com/categories/JVM/"/>
+    
+    
+      <category term="OOM异常" scheme="http://yoursite.com/tags/OOM%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java虚拟机（一）</title>
     <link href="http://yoursite.com/2017/02/15/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/02/15/Java虚拟机（一）/</id>
     <published>2017-02-15T03:09:08.000Z</published>
-    <updated>2017-05-08T08:20:18.000Z</updated>
+    <updated>2017-05-08T08:29:14.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。</font></p>
+    <content type="html"><![CDATA[<h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。</font></p>
 <a id="more"></a>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&#160; &#160; &#160; &#160;在c和c++中的内存管理领域，程序员拥有最高权力的皇帝，拥有每一个对象的所有权，又担负着每一个对象生命开始到结束的责任。对于java程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个new对象配对delete／free代码，而且不太容易出现内存泄漏和溢出。正是因为这样，Java程序员没有了掌控权，排除问题的时候将是异常艰难的工作。了解内存的各个区域，是翻越这个高墙的第一步。</p>
 <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>&#160; &#160; &#160; &#160;虚拟机在执行java程序的时候会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途、创建和销毁的时间。如下图所示：</p>
@@ -265,7 +426,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;a href=&quot;#JVM之自动内存管理机制（一）&quot; class=&quot;headerlink&quot; title=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;/a&gt;JVM之自动内存管理机制（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：&lt;font color=red&gt;Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。&lt;/font&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;a href=&quot;#JVM之自动内存管理机制（一）&quot; class=&quot;headerlink&quot; title=&quot;JVM之自动内存管理机制（一）&quot;&gt;&lt;/a&gt;JVM之自动内存管理机制（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：&lt;font color=red&gt;Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。&lt;/font&gt;&lt;/p&gt;
     
     </summary>
     
@@ -1323,146 +1484,6 @@ public static void mergeSort(int[] a, int low, int high) {
     
     
       <category term="经典算法" scheme="http://yoursite.com/tags/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法基础篇：排序（一）</title>
-    <link href="http://yoursite.com/2016/12/01/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%8E%92%E5%BA%8F%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/12/01/算法基础篇：排序（一）/</id>
-    <published>2016-12-01T04:19:38.000Z</published>
-    <updated>2017-05-06T10:21:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="基础排序算法及其Java实现"><a href="#基础排序算法及其Java实现" class="headerlink" title="基础排序算法及其Java实现"></a>基础排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看完了牛客网上的买的算法课程，准备首先从基础的<font color="red"><strong>数据结构</strong></font>和<font color="red"><strong>算法</strong></font>开始写。  </p>
-<p>  &#160; &#160; &#160; &#160;本篇先从基础的排序开始，需要要掌握的有<em>冒泡排序</em>，<em>选择排序</em>和 <em>插入排序</em>。</p>
-  <a id="more"></a>
-<h2 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h2><h3 id="算法思路："><a href="#算法思路：" class="headerlink" title="算法思路："></a>算法思路：</h3><p>  1.<em>第一次循环</em>：从0到n-2（即0&lt;=i&lt;n-1-0），每个位置上的数拿本身和后一位相比，如果比后一位大就交换两个位置的值。</p>
-<p>  2.<em>第二次循环</em>：从0到n-3即（即0&lt;=i&lt;n-1-1），操作同第一次循环一样。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：0位置上的数（即0&lt;=i&lt;n-1-(n-2)），操作同第一次循环。</p>
-<p>  &#160; &#160; &#160; &#160;说明：为了实现本身和后一位相比直到最后，要用内层循环实现，范围区间已在上面给出，外层共有n-1次循环，我们可以写出代码如下。</p>
-<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><pre><code>public static int[] BubbleSort(int[] A, int n) {
-
-    // 给变量赋初识值
-    int temp,i = 0,j = 0;
-    //外层循环计数如上面算法思想的减数部分
-    for(;i &lt; n-1;++i){
-    //内层循环来实现相邻两个比较
-        for(;j&lt;n-i-1;++j){
-        //前一个比后一个大，冒泡到最后
-        //说明：逆序排列的话条件相反
-            if(A [j] &gt; A [j+1]){
-                temp = A[j];
-                A[j] = A[j+1];
-                A[j+1] = temp;
-            }
-        }
-    }
-    return A;
-}
-</code></pre><h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p> 1.<em>第一次循环</em>：从0到n-1（即1&lt;=i&lt;n），选出区间最小值放到位置0上。</p>
-<p>  2.<em>第二次循环</em>：从1到n-1（即2&lt;=i&lt;n），选出最小值放到位置1上。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：从n-2到n-1（即n-2&lt;=i&lt;n），选出最小值放在位置n-2上。</p>
-<p>  &#160; &#160; &#160; &#160;说明：内层循环选取区间内的最小值，循环区间上面已给出，利用附加空间的int k来存储最小值的索引，最后和对应位置值交换，外层循环循环n-1次。根据以上思路可以写出实现代码。</p>
-<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] selectSort(int[] data){
-//初始化变量，需要额外的k存最小智的索引
-    int i, j, k, tmp = 0;
-    //外层循环，0-n-2，循环n-2次
-    for (i = 0; i &lt; data.length - 1; i++) {
-        //记录下区间第一个值
-        k = i;
-        //内层循环从区间第二个值开始比较
-        for (j = i + 1; j &lt; data.length; j++)
-        //更新最小值索引
-            if (data[j] &lt; data[k])
-                k = j;
-        //如果最小值索引不是当前位置，交换他们的值
-        if (k != i) {
-            tmp = data[i];
-            data[i] = data[k];
-            data[k] = tmp;
-        }
-    }
-    return data;
-}
-</code></pre><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p> 1.<em>第一次循环</em>：从位置1上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——1区间一定有序。</p>
-<p>  2.<em>第二次循环</em>：从位置2上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——2区间一定有序。</p>
-<p>  ….多次循环后….</p>
-<p>  3.<em>第n-1次循环</em>：从位置n-1上的数开始，与它的前一位比较，如果比他小就交换它们的值，并从它的前一位开始继续向前比较，直接当前位置比前一个位置大，停止循环，或者直到和位置0上的数相比，比较结束，此时0——n-1区间即整个数列就有序了。</p>
-<p>  &#160; &#160; &#160; &#160;说明：外层循环循环n-1次。从1到n-1，即1&lt;=i&lt;n。内层循环首先取当前索引的前一位索引，与当前索引位置的值比较，如果当前索引位置较小就交换当前索引和前一位的值，并从它的前一位开始继续向前比较。根据以上思路可以写出实现代码。</p>
-<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>public static int[] insertionSort(int[] A, int n) {
-    // 外层循环从1——n-1，共n-1次。
-    for(int i=1;i&lt;n;++i){
-        //j从当前索引i前一位开始，每次比较后j递减更新当前索引位置
-        for(int j=i-1;j&gt;=0;--j){
-            //比较前一位和当前索引位置，如果当前位置小则交换
-            if(A[j]&gt;A[j+1]){
-                int temp=A[j];
-                A[j]=A[j+1];
-                A[j+1]=temp;
-            }
-            //如果当前位置大，停止内层循环
-            else
-                break;
-        }
-
-    }
-    return A;
-}
-</code></pre><p>明天讲其他几种，最后试着插入一个动图！！！</p>
-<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://ww2.sinaimg.cn/bmiddle/88070423gw1ep30aw8an7g204d04gkgd.gif" alt="亦菲表演机器猫"></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;基础排序算法及其Java实现&quot;&gt;&lt;a href=&quot;#基础排序算法及其Java实现&quot; class=&quot;headerlink&quot; title=&quot;基础排序算法及其Java实现&quot;&gt;&lt;/a&gt;基础排序算法及其Java实现&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;看完了牛客网上的买的算法课程，准备首先从基础的&lt;font color=red&gt;&lt;strong&gt;数据结构&lt;/strong&gt;&lt;/font&gt;和&lt;font color=red&gt;&lt;strong&gt;算法&lt;/strong&gt;&lt;/font&gt;开始写。  &lt;/p&gt;
-&lt;p&gt;  &amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇先从基础的排序开始，需要要掌握的有&lt;em&gt;冒泡排序&lt;/em&gt;，&lt;em&gt;选择排序&lt;/em&gt;和 &lt;em&gt;插入排序&lt;/em&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="经典算法" scheme="http://yoursite.com/tags/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo搭建个人博客</title>
-    <link href="http://yoursite.com/2016/11/27/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://yoursite.com/2016/11/27/hexo搭建个人博客/</id>
-    <published>2016-11-27T02:14:11.000Z</published>
-    <updated>2017-05-04T12:42:03.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="git-nodejs-markdown搭建hexo"><a href="#git-nodejs-markdown搭建hexo" class="headerlink" title="git+nodejs+markdown搭建hexo"></a>git+nodejs+markdown搭建hexo</h1><h2 id="markdown语法"><a href="#markdown语法" class="headerlink" title="markdown语法"></a>markdown语法</h2><p>Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。<br><a id="more"></a></p>
-<h3 id="Markdown-官方文档"><a href="#Markdown-官方文档" class="headerlink" title="Markdown 官方文档"></a>Markdown 官方文档</h3><p>这里可以看到官方的 Markdown 语法规则文档，当然，后文我也会用自己的方式阐述这些语法的具体用法。</p>
-<p><a href="http://daringfireball.net/projects/markdown/syntax" target="_blank" rel="external">创始人 John Gruber 的 Markdown 语法说明</a></p>
-<p><a href="http://wowubuntu.com/markdown/#list" target="_blank" rel="external">Markdown 中文版语法说明</a></p>
-<h3 id="Mac下的编辑器Mou和MacDown"><a href="#Mac下的编辑器Mou和MacDown" class="headerlink" title="Mac下的编辑器Mou和MacDown"></a>Mac下的编辑器Mou和MacDown</h3><p>代码高亮</p>
-<p>Mou 和 MacDown 都支持 fenced code blocks（前后三个反引号可以表示代码块），但 MacDown 支持加语言标识符实现代码高亮，这对程序员来说简直是福音啊，非常棒的功能。</p>
-<p>MacDown 支持代码高亮<br>MacDown 支持代码高亮<br>GFM Task List 支持</p>
-<p>MacDown 支持 Task list，有了这个功能，你可以将你的 MD 编辑器立马变成 TODO list，是不是很赞？</p>
-<p>MacDown 对 Task list 的支持<br>MacDown 对 Task list 的支持<br>Jekyll Front-matter 支持</p>
-<p>很多人使用 Jekyll 作为博客引擎，这时 Jekyll 的前面那段该怎么去渲染呢？MacDown 和 github 一样可以支持。</p>
-<p>MacDown 对 Jekyll front-matter 的支持<br>MacDown 对 Jekyll front-matter 的支持</p>
-<h3 id="入门指南"><a href="#入门指南" class="headerlink" title="入门指南"></a>入门指南</h3><p><a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">参考链接</a></p>
-<h2 id="nodejs-git-并安装hexo"><a href="#nodejs-git-并安装hexo" class="headerlink" title="nodejs+git 并安装hexo"></a>nodejs+git 并安装hexo</h2><h3 id="这个教程很多，下面给个链接"><a href="#这个教程很多，下面给个链接" class="headerlink" title="这个教程很多，下面给个链接"></a>这个教程很多，下面给个链接</h3><p><a href="http://www.jianshu.com/p/ecd51e8ef2fa" target="_blank" rel="external">参考链接</a></p>
-<h2 id="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"><a href="#next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。" class="headerlink" title="next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。"></a>next主题安装，并个性化设置，这个真是走了很多弯路。根据官方文档一步步来。</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">官方文档</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;git-nodejs-markdown搭建hexo&quot;&gt;&lt;a href=&quot;#git-nodejs-markdown搭建hexo&quot; class=&quot;headerlink&quot; title=&quot;git+nodejs+markdown搭建hexo&quot;&gt;&lt;/a&gt;git+nodejs+markdown搭建hexo&lt;/h1&gt;&lt;h2 id=&quot;markdown语法&quot;&gt;&lt;a href=&quot;#markdown语法&quot; class=&quot;headerlink&quot; title=&quot;markdown语法&quot;&gt;&lt;/a&gt;markdown语法&lt;/h2&gt;&lt;p&gt;Markdown 是一种用来写作的轻量级「标记语言」，它用简洁的语法代替排版，而不像一般我们用的字处理软件 Word 或 Pages 有大量的排版、字体设置。它使我们专心于码字，用「标记」语法，来代替常见的排版格式。例如此文从内容到格式，甚至插图，键盘就可以通通搞定了。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="hexo相关" scheme="http://yoursite.com/categories/hexo%E7%9B%B8%E5%85%B3/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   

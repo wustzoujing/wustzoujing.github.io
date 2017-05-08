@@ -111,18 +111,18 @@
 
 
 
-<meta name="description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。">
+<meta name="description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
 <meta name="keywords" content="自动内存管理机制">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java虚拟机（一）">
 <meta property="og:url" content="http://yoursite.com/2017/02/15/Java虚拟机（一）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。">
+<meta property="og:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
 <meta property="og:image" content="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png">
-<meta property="og:updated_time" content="2017-05-08T08:20:18.000Z">
+<meta property="og:updated_time" content="2017-05-08T08:29:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java虚拟机（一）">
-<meta name="twitter:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。">
+<meta name="twitter:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
 <meta name="twitter:image" content="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png">
 
 
@@ -410,7 +410,7 @@
       
 
       
-        <h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里 main的人却想出来。</font></p>
+        <h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。</font></p>
 <a id="more"></a>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&#160; &#160; &#160; &#160;在c和c++中的内存管理领域，程序员拥有最高权力的皇帝，拥有每一个对象的所有权，又担负着每一个对象生命开始到结束的责任。对于java程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个new对象配对delete／free代码，而且不太容易出现内存泄漏和溢出。正是因为这样，Java程序员没有了掌控权，排除问题的时候将是异常艰难的工作。了解内存的各个区域，是翻越这个高墙的第一步。</p>
 <h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>&#160; &#160; &#160; &#160;虚拟机在执行java程序的时候会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途、创建和销毁的时间。如下图所示：</p>
@@ -519,8 +519,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
+              <a href="/2017/02/18/OOM异常实战/" rel="next" title="OOM异常实战">
+                <i class="fa fa-chevron-left"></i> OOM异常实战
               </a>
             
           </div>
@@ -611,7 +611,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -622,7 +622,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -633,7 +633,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
