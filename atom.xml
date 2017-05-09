@@ -360,7 +360,7 @@
     <link href="http://yoursite.com/2017/02/18/OOM%E5%BC%82%E5%B8%B8%E5%AE%9E%E6%88%98/"/>
     <id>http://yoursite.com/2017/02/18/OOM异常实战/</id>
     <published>2017-02-18T08:27:03.000Z</published>
-    <updated>2017-05-08T09:56:08.000Z</updated>
+    <updated>2017-05-09T02:09:43.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="OOM异常实战"><a href="#OOM异常实战" class="headerlink" title="OOM异常实战"></a>OOM异常实战</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。</p>
 <a id="more"></a>
@@ -401,7 +401,7 @@
     
     </summary>
     
-      <category term="JVM" scheme="http://yoursite.com/categories/JVM/"/>
+      <category term="JVM进阶" scheme="http://yoursite.com/categories/JVM%E8%BF%9B%E9%98%B6/"/>
     
     
       <category term="OOM异常" scheme="http://yoursite.com/tags/OOM%E5%BC%82%E5%B8%B8/"/>
