@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="经典算法," />
+  <meta name="keywords" content="类加载机制," />
 
 
 
@@ -111,21 +111,20 @@
 
 
 
-<meta name="description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta name="keywords" content="经典算法">
+<meta name="description" content="JVM之类加载机制（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？。这是我们接下来要学习的内容。">
+<meta name="keywords" content="类加载机制">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法基础篇：排序（二）">
-<meta property="og:url" content="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/index.html">
+<meta property="og:title" content="Java虚拟机（四）">
+<meta property="og:url" content="http://yoursite.com/2017/02/25/Java虚拟机（四）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta property="og:image" content="http://img.blog.csdn.net/20160426213936501">
-<meta property="og:image" content="http://img.blog.csdn.net/20160427172905073">
-<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493531505656&di=3fcca775d3be2b21bad6ac93d3a7ade9&imgtype=0&src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif">
-<meta property="og:updated_time" content="2017-05-06T10:21:48.000Z">
+<meta property="og:description" content="JVM之类加载机制（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？。这是我们接下来要学习的内容。">
+<meta property="og:image" content="http://img.blog.csdn.net/20140105211344671">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201009/25/0_1285421756PHyZ.gif">
+<meta property="og:updated_time" content="2017-05-09T05:07:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="算法基础篇：排序（二）">
-<meta name="twitter:description" content="改进排序算法及其Java实现前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：学习利器">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20160426213936501">
+<meta name="twitter:title" content="Java虚拟机（四）">
+<meta name="twitter:description" content="JVM之类加载机制（四）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？。这是我们接下来要学习的内容。">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20140105211344671">
 
 
 
@@ -153,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/25/Java虚拟机（四）/"/>
 
 
 
 
 
-  <title>算法基础篇：排序（二） | Jessie_Zou’s Homepage</title>
+  <title>Java虚拟机（四） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -308,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/算法基础篇：排序（二）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/25/Java虚拟机（四）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -329,7 +328,7 @@
             
             
               
-                算法基础篇：排序（二）
+                Java虚拟机（四）
               
             
           </h1>
@@ -344,8 +343,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-06T10:07:42+08:00">
-                2016-12-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-25T10:16:03+08:00">
+                2017-02-25
               </time>
             
 
@@ -367,8 +366,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Java虚拟机/" itemprop="url" rel="index">
+                    <span itemprop="name">Java虚拟机</span>
                   </a>
                 </span>
 
@@ -384,7 +383,7 @@
 
           
           
-             <span id="/2016/12/06/算法基础篇：排序（二）/" class="leancloud_visitors" data-flag-title="算法基础篇：排序（二）">
+             <span id="/2017/02/25/Java虚拟机（四）/" class="leancloud_visitors" data-flag-title="Java虚拟机（四）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -412,84 +411,61 @@
       
 
       
-        <h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color="red"><a href="http://zh.visualgo.net" target="_blank" rel="external"><strong>学习利器</strong></a></font></p>
-  <a id="more"></a>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>&#160; &#160; &#160;&#160; 快速排序（Quicksort）是对<em>冒泡排序</em>的一种改进。</p>
-<p>&#160; &#160; &#160;&#160; 快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。快速排序对海量数据来说，相对其他排序方式是较快的， 他的时间复杂度比经典排序小且常系数也比较小才称为快速排序。以数组{49,38,65,97,76,13,27,49}为例，选择第一个元素49为基准,初始化关键字： [49,38,65,97,76,13,27,49]</p>
-<p>&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="http://img.blog.csdn.net/20160426213936501" alt=""></p>
-<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 首先随机选择数列中的一个数（可用随机数产生，但也可以就选第一个数），然后进行一个partition函数，他的思想是扫描一遍数列把大于这个基数的数都放在右边，小于这个基数的数都放在左边。最后利用分治的思想，对基数的右边和左边分别在进行这个partition操作，最后数列就有序了。我这里为了代码尽量简洁，写出以下代码。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>//快速排序，s代表数列，l是数列第一项索引，r是数列最后一项的索引
-public static void quicksort(int[] s,int l,int r){
-//用i，j接住首位和末位，后面分别代表小于区间和🐠等于区间。x代表基数，这里用首位代表基数，没有随机产生
-    int i=l,j=r,x=s[l];
-    //执行操作条件
-    if(l&lt;r){
-        //循环结束条件
-        while(i&lt;j){
-            //从右至左找小于基数的数
-            while(i&lt;j&amp;&amp;s[j]&gt;=x)
-                j--;//如果大于等于基数j--，因为它们顺序正确
-             //找到之后放在左边，此处精妙的使用i++
-            if(i&lt;j)
-                s[i++]=s[j];
-            //从左至右找大于等于基数的数
-            while(i&lt;j&amp;&amp;s[i]&lt;x)
-                i++;
-            //放在
-            if(i&lt;j)
-                s[j--]=s[i];
-        }
-        //最后把基数放在i位置上，完成了partition操作
-        s[i]=x;
-        //对数列左边和右边分别递归
-        quicksort(s,l,i-1);
-        quicksort(s,i+1,r);
-    }
-}
-</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 基本原理如下：对于给定的一组记录，利用递归与分治技术将数据序列划分成为越来越小的半子表，在对半子表排序，最后再用递归方法将排好序的半子表合并成为越来越大的有序序列。 经过第一轮比较后得到最小的记录，然后将该记录的位置与第一个记录的位置交换；接着对不包括第一个记录以外的其他记录进行第二次比较，得到最小记录并与第二个位置记录交换；重复该过程，直到进行比较的记录只剩下一个为止。</p>
-<p>&#160; &#160; &#160;&#160;以数组{50,10,90,30,70,40,80,60,20}为例，排序过程如下图：</p>
-<p><img src="http://img.blog.csdn.net/20160427172905073" alt=""></p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>public static void merge(int[] a, int low, int mid, int high) {
-    int[] temp = new int[high - low + 1];
-    int i = low;// 左指针
-    int j = mid + 1;// 右指针
-    int k = 0;
-    // 把较小的数先移到新数组中
-    while (i &lt;= mid &amp;&amp; j &lt;= high) {
-        if (a[i] &lt; a[j]) {
-            temp[k++] = a[i++];
-        } else {
-            temp[k++] = a[j++];
-        }
-    }
-    // 把左边剩余的数移入数组
-    while (i &lt;= mid) {
-        temp[k++] = a[i++];
-    }
-    // 把右边边剩余的数移入数组
-    while (j &lt;= high) {
-        temp[k++] = a[j++];
-    }
-    // 把新数组中的数覆盖nums数组
-    for (int k2 = 0; k2 &lt; temp.length; k2++) {
-        a[k2 + low] = temp[k2];
-    }
-}
-
-public static void mergeSort(int[] a, int low, int high) {
-    int mid = (low + high) / 2;
-    if (low &lt; high) {
-        // 左边
-        mergeSort(a, low, mid);
-        // 右边
-        mergeSort(a, mid + 1, high);
-        // 左右归并
-        merge(a, low, mid, high);
-        System.out.println(Arrays.toString(a));
-    }
-
-}
-</code></pre><p> &#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493531505656&amp;di=3fcca775d3be2b21bad6ac93d3a7ade9&amp;imgtype=0&amp;src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif" alt=""></p>
+        <h1 id="JVM之类加载机制（四）"><a href="#JVM之类加载机制（四）" class="headerlink" title="JVM之类加载机制（四）"></a>JVM之类加载机制（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。<font color="red">而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？</font>。这是我们接下来要学习的内容。</p>
+ <a id="more"></a>
+<p>&#160; &#160; &#160; &#160;虚拟机把描述类的数据从calss文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。<font color="red">与那些在编译期需要进行连接的工作语言不同，在Java语言里，类加载荷连接过程都是在程序运行期间完成的，这样会在类加载时稍微增加一些性能开销，但是却能为程序提供高度的灵活性</font>，动态扩展的特性也就是依赖运行期间动态加载和动态连接这个特点实现的。如面向接口的编程。</p>
+<h2 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h2><p>&#160; &#160; &#160; &#160;类从加载到虚拟机内存中开始，到卸载出内存为止，它的生命周期共包含七个阶段，如下图：</p>
+<p>&#160; &#160; &#160; &#160;<img src="http://img.blog.csdn.net/20140105211344671" alt=""></p>
+<p>&#160; &#160; &#160; &#160;其中类加载的过程包括了加载、验证、准备、解析、初始化五个阶段。在这五个阶段中，加载、验证、准备和初始化这四个阶段发生的顺序是确定的，而解析阶段则不一定，它在某些情况下可以在初始化阶段之后开始，这是为了支持Java语言的运行时绑定（也成为动态绑定或晚期绑定）。另外注意这里的几个阶段是按顺序开始，而不是按顺序进行或完成，因为这些阶段通常都是互相交叉地混合进行的，通常在一个阶段执行的过程中调用或激活另一个阶段。</p>
+<h3 id="初始化规范"><a href="#初始化规范" class="headerlink" title="初始化规范"></a>初始化规范</h3><p>&#160; &#160; &#160; &#160;虚拟机规范中堆什么情况需要开始类加载的第一个阶段，加载并没有强制约束，但是对初始化阶段，规范了有且只有4种情况必须立即对类进行初始化。</p>
+<ol>
+<li>遇到new、getstatic、putstatic或者invokestatic这4条字节码指令时（比如在使用new创建对象的时候，读取或设置一个类静态字段、调用一个类的静态方法）</li>
+<li>使用java.lang.relect包的方法对类进行反射调用的时候，如果类没有进行初始化，首先出发初始化。</li>
+<li>当初始化一个类，发现父类还没有进行初始化，先出发父类的初始化。</li>
+<li>当虚拟机启动时，用户需要指定一个要执行的主类（包含main方法的哪个类），虚拟机会先初始化这个主类。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;以上四种是对类的主动引用，下面说几种被动引用：</p>
+<ol>
+<li>通过子类来引用父类中定义的静态字段，只会触发父类的初始化而不会触发子类的初始化。</li>
+<li>一个类的成员进入常量池，另一个类引用只是对常量池的引用，两个class就无关了。</li>
+<li>接口加载和类加载稍微有点不同，只有真正使用到父接口的时候才会初始化。</li>
+</ol>
+<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p>&#160; &#160; &#160; &#160;接下来讲解一下类加载的全过程，也就是加载、验证、准备、解析和初始化这五个过程。</p>
+<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
+<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
+<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
+<li>在Java堆中生成一个代表这个类的java.lang.Class对象，作为方法去访问数据的访问入口。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;正是因为没有指明具体的从哪获取，怎么获取，所以充满活力的开发前辈玩出了很多花样：</p>
+<ol>
+<li>从zip包中读取，最后成为jar，EAR，WAR格式的基础。</li>
+<li>从网络中获取，比如Applet</li>
+<li>从计算机运行生成，比如动态代理</li>
+<li>其他文件，比如JSP</li>
+<li>从数据库读取，有些中间件服务器可以把程序安装到数据库中来完成程序代码在集群间的分发。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;相对其他过程，加载是开发期可控性最强的阶段。可以使用系统的加载器，也可以自定义类加载器。</p>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ol>
+<li>文件格式验证；比如魔数、主次版本号；常量池是否含有不支持的常量类型；等等。。。经过验证才会进入内存的方法区进行存储。所以下面的几个验证阶段全部都是基于方法区的存储结构进行的。</li>
+</ol>
+<ol>
+<li>元数据验证；验证点比如：这个类是否有父类，父亲是否成常量不允许基础的类，如果这个类不是抽象类，是否实现了父类或接口之中要求实现的索引方法，类中的字段、方法是否和父类产生了矛盾等。这一阶段主要进行语义检验，保证不存在不符合Java语言规范的元数据信息。</li>
+</ol>
+<ol>
+<li><p>字节码检验；是最复杂的的一个阶段，主要工作是进行数据流和控制流分析。在第二个阶段堆数据类型做完校验之后，这阶段对类的方法体进行校验分析。比如：保证任何时刻操作数类型和指令码序列都能配合工作、保证跳转指令不会跳转到方法体以外的字节码指令、保证类型转换时有效的。如果通过不一定安全，不通过一定不安全。</p>
+</li>
+<li><p>符号引用；对类自身以外的信息进行匹配性校验。比如：全限定名能否找到该类，指定类中是否存在符合方法的字段描述符。</p>
+</li>
+</ol>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>&#160; &#160; &#160; &#160;此阶段时正式为类变量（ 不包括实例变量）分配内存并设置类变量初始值的阶段，这些内存都将在方法区中进行分配，</p>
+<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>&#160; &#160; &#160; &#160;解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法四类符号引用。</p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>&#160; &#160; &#160; &#160;对类的静态变量，静态代码块执行初始化操作。</p>
+<p>参考这边博文：<a href="http://www.cnblogs.com/ITtangtang/p/3978102.html" target="_blank" rel="external">类加载机制及反射</a>。</p>
+<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>&#160; &#160; &#160; &#160;虚拟机设计团队把类加载阶段中的“通过一个类的全限定名来获取描述此类的二进制字节流”这个动作放到Java虚拟机外部去实现，实现这个动作的代码块称为类加载器。它在Java Applet、类层次划分、OSGi、热部署、代码加密等领域大放异彩。</p>
+<p>&#160; &#160; &#160; &#160;对任意一个类都需要由加载它的类加载器和这个类本身一同确定它在虚拟机中的唯一性。对虚拟机里来说只有两种不同的类加载器，一种是启动类加载器由C++实现，另一种就是Java写的，都继承java.lang.ClassLoader。对于开发人员来说它还进一步分为扩展类的和应用程序类的加载器。分别加载／lib/etc目录下的，和calsspath用户路径下的。</p>
+<p><img src="http://img.my.csdn.net/uploads/201009/25/0_1285421756PHyZ.gif" alt=""></p>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>&#160; &#160; &#160; &#160;工作过程：如果一个类加载器接收到了类加载的请求，它首先把这个请求委托给他的父类加载器去完成，每个层次的类加载器都是如此，因此所有的加载请求都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它在搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。在classload的loadclass（）方法中实现。</p>
+<p>&#160; &#160; &#160; &#160;好处：java类随着它的类加载器一起具备了一种带有优先级的层次关系。例如类java.lang.Object，它存放在rt.jar中，无论哪个类加载器要加载这个类，最终都会委派给启动类加载器进行加载，因此Object类在程序的各种类加载器环境中都是同一个类。相反，如果用户自己写了一个名为java.lang.Object的类，并放在程序的Classpath中，那系统中将会出现多个不同的Object类，java类型体系中最基础的行为也无法保证，应用程序也会变得一片混乱。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -541,7 +517,7 @@ public static void mergeSort(int[] a, int low, int high) {
       
         <div class="post-tags">
           
-            <a href="/tags/经典算法/" rel="tag"># 经典算法</a>
+            <a href="/tags/类加载机制/" rel="tag"># 类加载机制</a>
           
         </div>
       
@@ -554,8 +530,8 @@ public static void mergeSort(int[] a, int low, int high) {
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/08/计算机网络学习笔记（一）/" rel="next" title="计算机网络学习笔记（一）">
-                <i class="fa fa-chevron-left"></i> 计算机网络学习笔记（一）
+              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
               </a>
             
           </div>
@@ -564,8 +540,8 @@ public static void mergeSort(int[] a, int low, int high) {
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/01/算法基础篇：排序（一）/" rel="prev" title="算法基础篇：排序（一）">
-                算法基础篇：排序（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/22/Java虚拟机（三）/" rel="prev" title="Java虚拟机（三）">
+                Java虚拟机（三） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -730,7 +706,7 @@ public static void mergeSort(int[] a, int low, int high) {
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#改进排序算法及其Java实现"><span class="nav-number">1.</span> <span class="nav-text">改进排序算法及其Java实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速排序"><span class="nav-number">1.2.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想"><span class="nav-number">1.2.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现"><span class="nav-number">1.2.2.</span> <span class="nav-text">算法实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#归并排序"><span class="nav-number">1.3.</span> <span class="nav-text">归并排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法思想-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">算法思想</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#算法实现-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">算法实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM之类加载机制（四）"><span class="nav-number">1.</span> <span class="nav-text">JVM之类加载机制（四）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载的时机"><span class="nav-number">1.2.</span> <span class="nav-text">类加载的时机</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化规范"><span class="nav-number">1.2.1.</span> <span class="nav-text">初始化规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载的过程"><span class="nav-number">1.3.</span> <span class="nav-text">类加载的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加载"><span class="nav-number">1.3.1.</span> <span class="nav-text">加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">1.3.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备"><span class="nav-number">1.3.3.</span> <span class="nav-text">准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析"><span class="nav-number">1.3.4.</span> <span class="nav-text">解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.3.5.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类加载器"><span class="nav-number">1.4.</span> <span class="nav-text">类加载器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双亲委派模型"><span class="nav-number">1.4.1.</span> <span class="nav-text">双亲委派模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
