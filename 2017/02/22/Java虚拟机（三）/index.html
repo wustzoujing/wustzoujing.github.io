@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="OOM异常," />
+  <meta name="keywords" content="Class文件结构," />
 
 
 
@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
-<meta name="keywords" content="OOM异常">
+<meta name="description" content="JVM之Class文件结构（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，越来越多的程序">
+<meta name="keywords" content="Class文件结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OOM异常实战">
-<meta property="og:url" content="http://yoursite.com/2017/02/18/OOM异常实战/index.html">
+<meta property="og:title" content="Java虚拟机（三）">
+<meta property="og:url" content="http://yoursite.com/2017/02/22/Java虚拟机（三）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
-<meta property="og:updated_time" content="2017-05-08T09:56:08.000Z">
+<meta property="og:description" content="JVM之Class文件结构（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，越来越多的程序">
+<meta property="og:updated_time" content="2017-05-09T02:07:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OOM异常实战">
-<meta name="twitter:description" content="OOM异常实战前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。">
+<meta name="twitter:title" content="Java虚拟机（三）">
+<meta name="twitter:description" content="JVM之Class文件结构（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，越来越多的程序">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/18/OOM异常实战/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/22/Java虚拟机（三）/"/>
 
 
 
 
 
-  <title>OOM异常实战 | Jessie_Zou’s Homepage</title>
+  <title>Java虚拟机（三） | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/18/OOM异常实战/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/22/Java虚拟机（三）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -325,7 +325,7 @@
             
             
               
-                OOM异常实战
+                Java虚拟机（三）
               
             
           </h1>
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-18T16:27:03+08:00">
-                2017-02-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-22T08:36:37+08:00">
+                2017-02-22
               </time>
             
 
@@ -363,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
+                  <a href="/categories/Java虚拟机/" itemprop="url" rel="index">
+                    <span itemprop="name">Java虚拟机</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2017/02/18/OOM异常实战/" class="leancloud_visitors" data-flag-title="OOM异常实战">
+             <span id="/2017/02/22/Java虚拟机（三）/" class="leancloud_visitors" data-flag-title="Java虚拟机（三）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,37 +408,23 @@
       
 
       
-        <h1 id="OOM异常实战"><a href="#OOM异常实战" class="headerlink" title="OOM异常实战"></a>OOM异常实战</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。</p>
+        <h1 id="JVM之Class文件结构（三）"><a href="#JVM之Class文件结构（三）" class="headerlink" title="JVM之Class文件结构（三）"></a>JVM之Class文件结构（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，<font color="red">越来越多的程序语言选择了与操作系统和机器指令无关平台中立的格式作为程序编译之后的存储格式</font>。这也是Java这类语言，平台无关性的基石。而且虚拟机上更有语言无关性的趋势。</p>
 <a id="more"></a>
-<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><p>&#160; &#160; &#160; &#160;有几个重要参数设置如下：</p>
-<ol>
-<li><p>-Xms  堆大小的最小值设置参数</p>
-</li>
-<li><p>-Xmx  堆的大小最大值，如果设置为最小值一样，则不允许自动扩展。</p>
-</li>
-<li><p>-XX：+HeapDumpOnOutOfMemoryError  让内存溢出时Dump出当前内存堆转储快照。</p>
-</li>
-</ol>
-<h3 id="模拟产生方法"><a href="#模拟产生方法" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果我们不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制回收这些对象，就能模拟抛出OOM异常的情景。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>&#160; &#160; &#160; &#160;<br>使用内存映像分析工具：Eclipse Memory Analyzer对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，即要搞明白是内存泄漏还是内存溢出。 </p>
-<ol>
-<li>内存泄漏导致的OOM：new出来的很多对象已经不需要了，但仍然有引用指向，所以垃圾回收机制无法回收。 </li>
-<li>内存溢出：new出来的对象都是需要的，但堆内存太小装不下了。 </li>
-</ol>
-<p>&#160; &#160; &#160; &#160;<font color="red">如果是内存泄漏，通过工具查看泄漏对象到GC Roots的引用链。找到泄漏对象是通过怎样的路径与GC Roots发生关联，然后导致垃圾回收机制无法自动回收的。如果不存在内存泄漏，也就是所有的对象都必须存在，这时候就调大堆内存。</font></p>
-<h2 id="虚拟机栈和本地方法溢出"><a href="#虚拟机栈和本地方法溢出" class="headerlink" title="虚拟机栈和本地方法溢出"></a>虚拟机栈和本地方法溢出</h2><p>&#160; &#160; &#160; &#160;在hotspot中不区分虚拟机和本地方法栈，因此对于hotspot来说，-Xoss参数存在但是无效，栈容量只由-Xss参数决定。</p>
-<p>&#160; &#160; &#160; &#160;书上的实验结果表明；</p>
-<ol>
-<li>在单个线程下，无论是由于栈帧太大还是虚拟机容量太小，当内存无法分配的时候，虚拟机抛出的都是StackOverflowError。</li>
-<li>不限于单线程可以模拟出OOM，但是这种产生的内存溢出与栈空间足够大不存在联系，而且越大反而更容易产生内存溢出。原因：<font color="red">内存有限，每个线程分配到的栈容量越大，可以建立的线程数就越少，建立线程的时候就越容易把剩下的内存耗尽。</font></li>
-<li>所以在多线程开发中特别注意，StackOverflowError有错误堆栈可以阅读，相对排查简单一些。大多数情况下达到1000～2000完全没有问题，对于正常的递归大多数情况下完全够用了。<font color="red">如果是多线程导致内存溢出的话，就只能减少最大堆或者栈的容量来获得更多的线程。</font></li>
-</ol>
-<h2 id="常量池溢出"><a href="#常量池溢出" class="headerlink" title="常量池溢出"></a>常量池溢出</h2><h3 id="模拟产生方法-1"><a href="#模拟产生方法-1" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果要向运行时内存中添加内容，最简单的方式是使用string.intern（）。</p>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：PermSize        &#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：MaxPermSize。溢出后提示信息是PermGen space。</p>
-<h3 id="方法区溢出"><a href="#方法区溢出" class="headerlink" title="方法区溢出"></a>方法区溢出</h3><p>&#160; &#160; &#160; &#160;方法区存放class信息，比如类名、访问修饰符、常量池、字段描述、方法描述等。</p>
-<h3 id="模拟产生方法-2"><a href="#模拟产生方法-2" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;产生许多类区填满方法区，直到溢出。还可以反射和动态代理，还可以用CGLIB直接操作字符码，生成动态类。（框架中精彩需要对类进行增强，都会使用到CGLIB，增强的类越多，就需要越大的方法区保证动态生成的class可以加载入内存）。</p>
-<p>&#160; &#160; &#160; &#160;方法区溢出也是常见的内存溢出，一个类如果要被垃圾收集器回收掉条件是十分苛刻的。在动态生成大量Class文件的应用中，需要特别注意类的回收状况。常见的还有JSP应用。</p>
-<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><p>-XX：MaxDirectMemorySize，如果不指定默认和堆一样大。</p>
+<h2 id="Class类文件的结构"><a href="#Class类文件的结构" class="headerlink" title="Class类文件的结构"></a>Class类文件的结构</h2><p>&#160; &#160; &#160; &#160;Class文件是一组以8位字节为基础的二进制，各个数据项目严格按照顺序紧凑的排列Class文件之间，中间没有添加任何分隔符，这使得整个Class文件中存储的内容几乎全部都是程序运行的必要数据。</p>
+<p>&#160; &#160; &#160; &#160;虚拟机规范：Class文件格式采用一种类似于C语言结构体的伪结构来存储，这种伪结构中还有两种数据结构：无符号和表，后面的解析都要以这两种数据类型为基础。</p>
+<p>&#160; &#160; &#160; &#160;无符号数属于基本的数据类型，用u1,u2,u4,u8分别代表1个字节、2个字节、4个字节、8个字节的无符号数，可以用来描述数字、索引引用、数量值，或者按照UTF-8编码构成字符串值。</p>
+<p>&#160; &#160; &#160; &#160;表是由多个无符号数或其他数据项构成的复合结构数据，整个class文件本质上就是一张表。</p>
+<h3 id="魔数"><a href="#魔数" class="headerlink" title="魔数"></a>魔数</h3><p>&#160; &#160; &#160; &#160;每个class文件的头四个字节被称为魔数，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。很多图片格式在文件头都有魔数。Java中为：0XCAFFBABE；</p>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>&#160; &#160; &#160; &#160;紧接着4个字节存储的是Class文件的版本号：5-6是次版本，7-8是主版本。</p>
+<h3 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h3><p>&#160; &#160; &#160; &#160;主次版本号之后是常量池的入口，也是与其他项目关联最多的数据类型，也是占用class文件空间最大的项目之一，同时还是第一个出现的表类型。主要存放字面量和引用。</p>
+<h3 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h3><p>&#160; &#160; &#160; &#160;在常量池之后，紧接2个字节代表访问标志，包括是接口还是类，是否public，abstract，final等等。</p>
+<h3 id="类索引、父亲索引与接口索引集合"><a href="#类索引、父亲索引与接口索引集合" class="headerlink" title="类索引、父亲索引与接口索引集合"></a>类索引、父亲索引与接口索引集合</h3><p>&#160; &#160; &#160; &#160;类索引和父类索引都是一个u2类型的数据，而接口索引集合是一组u2类型的数据集合。类确定了这个类的全限定名，父亲索引确定这个父类的全限定名。不允许多继承，所以父类索引直邮一个。除了object都有父类。接口索引表示这个类实现了哪些接口。</p>
+<h3 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h3><p>&#160; &#160; &#160; &#160;字段表用于描述接口或类中声明的变量</p>
+<h3 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h3><p>&#160; &#160; &#160; &#160;访问标志、名称索引、描述符索引都表达清楚了，方法里面的代码经过编译器编译成字节码指令之后，存放在方法属性表集合中一个名为code的属性里面，属性表作为class文件格式最具扩展性的一种数据项目。</p>
+<h3 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h3><p>&#160; &#160; &#160; &#160;class文件、字段表、方法表都可以携带自己的属性表集合，以用于描述某些场景专有的信息。</p>
+<h2 id="class文件结构的发展"><a href="#class文件结构的发展" class="headerlink" title="class文件结构的发展"></a>class文件结构的发展</h2><p>&#160; &#160; &#160; &#160;上面这些属性大部分都用于支持Java中许多新出现的语言特性，如枚举、变长参数、泛型、动态注解。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;class文件是Java虚拟机执行引擎的数据入口，也是技术体系的基础支柱之一。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
     </div>
@@ -489,7 +475,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OOM异常/" rel="tag"># OOM异常</a>
+            <a href="/tags/Class文件结构/" rel="tag"># Class文件结构</a>
           
         </div>
       
@@ -502,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/20/Java虚拟机（二）/" rel="next" title="Java虚拟机（二）">
-                <i class="fa fa-chevron-left"></i> Java虚拟机（二）
+              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
+                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
               </a>
             
           </div>
@@ -512,8 +498,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/15/Java虚拟机（一）/" rel="prev" title="Java虚拟机（一）">
-                Java虚拟机（一） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/02/20/Java虚拟机（二）/" rel="prev" title="Java虚拟机（二）">
+                Java虚拟机（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -678,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OOM异常实战"><span class="nav-number">1.</span> <span class="nav-text">OOM异常实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java堆溢出"><span class="nav-number">1.2.</span> <span class="nav-text">Java堆溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要参数"><span class="nav-number">1.2.1.</span> <span class="nav-text">重要参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">模拟产生方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">1.2.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机栈和本地方法溢出"><span class="nav-number">1.3.</span> <span class="nav-text">虚拟机栈和本地方法溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常量池溢出"><span class="nav-number">1.4.</span> <span class="nav-text">常量池溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">模拟产生方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">1.4.2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区溢出"><span class="nav-number">1.4.3.</span> <span class="nav-text">方法区溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟产生方法-2"><span class="nav-number">1.4.4.</span> <span class="nav-text">模拟产生方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接内存溢出"><span class="nav-number">1.5.</span> <span class="nav-text">直接内存溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-1"><span class="nav-number">1.5.1.</span> <span class="nav-text">参数</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM之Class文件结构（三）"><span class="nav-number">1.</span> <span class="nav-text">JVM之Class文件结构（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Class类文件的结构"><span class="nav-number">1.2.</span> <span class="nav-text">Class类文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#魔数"><span class="nav-number">1.2.1.</span> <span class="nav-text">魔数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本号"><span class="nav-number">1.2.2.</span> <span class="nav-text">版本号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量池"><span class="nav-number">1.2.3.</span> <span class="nav-text">常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问标志"><span class="nav-number">1.2.4.</span> <span class="nav-text">访问标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类索引、父亲索引与接口索引集合"><span class="nav-number">1.2.5.</span> <span class="nav-text">类索引、父亲索引与接口索引集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段表集合"><span class="nav-number">1.2.6.</span> <span class="nav-text">字段表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法表集合"><span class="nav-number">1.2.7.</span> <span class="nav-text">方法表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性表集合"><span class="nav-number">1.2.8.</span> <span class="nav-text">属性表集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class文件结构的发展"><span class="nav-number">1.3.</span> <span class="nav-text">class文件结构的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>

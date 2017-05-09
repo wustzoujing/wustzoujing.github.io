@@ -209,6 +209,45 @@
   </entry>
   
   <entry>
+    <title>Java虚拟机（三）</title>
+    <link href="http://yoursite.com/2017/02/22/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/02/22/Java虚拟机（三）/</id>
+    <published>2017-02-22T00:36:37.000Z</published>
+    <updated>2017-05-09T02:07:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JVM之Class文件结构（三）"><a href="#JVM之Class文件结构（三）" class="headerlink" title="JVM之Class文件结构（三）"></a>JVM之Class文件结构（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，<font color="red">越来越多的程序语言选择了与操作系统和机器指令无关平台中立的格式作为程序编译之后的存储格式</font>。这也是Java这类语言，平台无关性的基石。而且虚拟机上更有语言无关性的趋势。</p>
+<a id="more"></a>
+<h2 id="Class类文件的结构"><a href="#Class类文件的结构" class="headerlink" title="Class类文件的结构"></a>Class类文件的结构</h2><p>&#160; &#160; &#160; &#160;Class文件是一组以8位字节为基础的二进制，各个数据项目严格按照顺序紧凑的排列Class文件之间，中间没有添加任何分隔符，这使得整个Class文件中存储的内容几乎全部都是程序运行的必要数据。</p>
+<p>&#160; &#160; &#160; &#160;虚拟机规范：Class文件格式采用一种类似于C语言结构体的伪结构来存储，这种伪结构中还有两种数据结构：无符号和表，后面的解析都要以这两种数据类型为基础。</p>
+<p>&#160; &#160; &#160; &#160;无符号数属于基本的数据类型，用u1,u2,u4,u8分别代表1个字节、2个字节、4个字节、8个字节的无符号数，可以用来描述数字、索引引用、数量值，或者按照UTF-8编码构成字符串值。</p>
+<p>&#160; &#160; &#160; &#160;表是由多个无符号数或其他数据项构成的复合结构数据，整个class文件本质上就是一张表。</p>
+<h3 id="魔数"><a href="#魔数" class="headerlink" title="魔数"></a>魔数</h3><p>&#160; &#160; &#160; &#160;每个class文件的头四个字节被称为魔数，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。很多图片格式在文件头都有魔数。Java中为：0XCAFFBABE；</p>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>&#160; &#160; &#160; &#160;紧接着4个字节存储的是Class文件的版本号：5-6是次版本，7-8是主版本。</p>
+<h3 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h3><p>&#160; &#160; &#160; &#160;主次版本号之后是常量池的入口，也是与其他项目关联最多的数据类型，也是占用class文件空间最大的项目之一，同时还是第一个出现的表类型。主要存放字面量和引用。</p>
+<h3 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h3><p>&#160; &#160; &#160; &#160;在常量池之后，紧接2个字节代表访问标志，包括是接口还是类，是否public，abstract，final等等。</p>
+<h3 id="类索引、父亲索引与接口索引集合"><a href="#类索引、父亲索引与接口索引集合" class="headerlink" title="类索引、父亲索引与接口索引集合"></a>类索引、父亲索引与接口索引集合</h3><p>&#160; &#160; &#160; &#160;类索引和父类索引都是一个u2类型的数据，而接口索引集合是一组u2类型的数据集合。类确定了这个类的全限定名，父亲索引确定这个父类的全限定名。不允许多继承，所以父类索引直邮一个。除了object都有父类。接口索引表示这个类实现了哪些接口。</p>
+<h3 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h3><p>&#160; &#160; &#160; &#160;字段表用于描述接口或类中声明的变量</p>
+<h3 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h3><p>&#160; &#160; &#160; &#160;访问标志、名称索引、描述符索引都表达清楚了，方法里面的代码经过编译器编译成字节码指令之后，存放在方法属性表集合中一个名为code的属性里面，属性表作为class文件格式最具扩展性的一种数据项目。</p>
+<h3 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h3><p>&#160; &#160; &#160; &#160;class文件、字段表、方法表都可以携带自己的属性表集合，以用于描述某些场景专有的信息。</p>
+<h2 id="class文件结构的发展"><a href="#class文件结构的发展" class="headerlink" title="class文件结构的发展"></a>class文件结构的发展</h2><p>&#160; &#160; &#160; &#160;上面这些属性大部分都用于支持Java中许多新出现的语言特性，如枚举、变长参数、泛型、动态注解。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;class文件是Java虚拟机执行引擎的数据入口，也是技术体系的基础支柱之一。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JVM之Class文件结构（三）&quot;&gt;&lt;a href=&quot;#JVM之Class文件结构（三）&quot; class=&quot;headerlink&quot; title=&quot;JVM之Class文件结构（三）&quot;&gt;&lt;/a&gt;JVM之Class文件结构（三）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，&lt;font color=red&gt;越来越多的程序语言选择了与操作系统和机器指令无关平台中立的格式作为程序编译之后的存储格式&lt;/font&gt;。这也是Java这类语言，平台无关性的基石。而且虚拟机上更有语言无关性的趋势。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+      <category term="Class文件结构" scheme="http://yoursite.com/tags/Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java虚拟机（二）</title>
     <link href="http://yoursite.com/2017/02/20/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/02/20/Java虚拟机（二）/</id>
@@ -1383,107 +1422,6 @@ create unique index 索引名  on 表名 (列表..);
     
     
       <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>算法基础篇：排序（二）</title>
-    <link href="http://yoursite.com/2016/12/06/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E7%AF%87%EF%BC%9A%E6%8E%92%E5%BA%8F%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/12/06/算法基础篇：排序（二）/</id>
-    <published>2016-12-06T02:07:42.000Z</published>
-    <updated>2017-05-06T10:21:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="改进排序算法及其Java实现"><a href="#改进排序算法及其Java实现" class="headerlink" title="改进排序算法及其Java实现"></a>改进排序算法及其Java实现</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：<font color="red"><a href="http://zh.visualgo.net" target="_blank" rel="external"><strong>学习利器</strong></a></font></p>
-  <a id="more"></a>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><p>&#160; &#160; &#160;&#160; 快速排序（Quicksort）是对<em>冒泡排序</em>的一种改进。</p>
-<p>&#160; &#160; &#160;&#160; 快速排序由C. A. R. Hoare在1962年提出。它的基本思想是：通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。快速排序对海量数据来说，相对其他排序方式是较快的， 他的时间复杂度比经典排序小且常系数也比较小才称为快速排序。以数组{49,38,65,97,76,13,27,49}为例，选择第一个元素49为基准,初始化关键字： [49,38,65,97,76,13,27,49]</p>
-<p>&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="http://img.blog.csdn.net/20160426213936501" alt=""></p>
-<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 首先随机选择数列中的一个数（可用随机数产生，但也可以就选第一个数），然后进行一个partition函数，他的思想是扫描一遍数列把大于这个基数的数都放在右边，小于这个基数的数都放在左边。最后利用分治的思想，对基数的右边和左边分别在进行这个partition操作，最后数列就有序了。我这里为了代码尽量简洁，写出以下代码。</p>
-<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>//快速排序，s代表数列，l是数列第一项索引，r是数列最后一项的索引
-public static void quicksort(int[] s,int l,int r){
-//用i，j接住首位和末位，后面分别代表小于区间和🐠等于区间。x代表基数，这里用首位代表基数，没有随机产生
-    int i=l,j=r,x=s[l];
-    //执行操作条件
-    if(l&lt;r){
-        //循环结束条件
-        while(i&lt;j){
-            //从右至左找小于基数的数
-            while(i&lt;j&amp;&amp;s[j]&gt;=x)
-                j--;//如果大于等于基数j--，因为它们顺序正确
-             //找到之后放在左边，此处精妙的使用i++
-            if(i&lt;j)
-                s[i++]=s[j];
-            //从左至右找大于等于基数的数
-            while(i&lt;j&amp;&amp;s[i]&lt;x)
-                i++;
-            //放在
-            if(i&lt;j)
-                s[j--]=s[i];
-        }
-        //最后把基数放在i位置上，完成了partition操作
-        s[i]=x;
-        //对数列左边和右边分别递归
-        quicksort(s,l,i-1);
-        quicksort(s,i+1,r);
-    }
-}
-</code></pre><h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><h3 id="算法思想-1"><a href="#算法思想-1" class="headerlink" title="算法思想"></a>算法思想</h3><p>&#160; &#160; &#160;&#160; 基本原理如下：对于给定的一组记录，利用递归与分治技术将数据序列划分成为越来越小的半子表，在对半子表排序，最后再用递归方法将排好序的半子表合并成为越来越大的有序序列。 经过第一轮比较后得到最小的记录，然后将该记录的位置与第一个记录的位置交换；接着对不包括第一个记录以外的其他记录进行第二次比较，得到最小记录并与第二个位置记录交换；重复该过程，直到进行比较的记录只剩下一个为止。</p>
-<p>&#160; &#160; &#160;&#160;以数组{50,10,90,30,70,40,80,60,20}为例，排序过程如下图：</p>
-<p><img src="http://img.blog.csdn.net/20160427172905073" alt=""></p>
-<h3 id="算法实现-1"><a href="#算法实现-1" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>public static void merge(int[] a, int low, int mid, int high) {
-    int[] temp = new int[high - low + 1];
-    int i = low;// 左指针
-    int j = mid + 1;// 右指针
-    int k = 0;
-    // 把较小的数先移到新数组中
-    while (i &lt;= mid &amp;&amp; j &lt;= high) {
-        if (a[i] &lt; a[j]) {
-            temp[k++] = a[i++];
-        } else {
-            temp[k++] = a[j++];
-        }
-    }
-    // 把左边剩余的数移入数组
-    while (i &lt;= mid) {
-        temp[k++] = a[i++];
-    }
-    // 把右边边剩余的数移入数组
-    while (j &lt;= high) {
-        temp[k++] = a[j++];
-    }
-    // 把新数组中的数覆盖nums数组
-    for (int k2 = 0; k2 &lt; temp.length; k2++) {
-        a[k2 + low] = temp[k2];
-    }
-}
-
-public static void mergeSort(int[] a, int low, int high) {
-    int mid = (low + high) / 2;
-    if (low &lt; high) {
-        // 左边
-        mergeSort(a, low, mid);
-        // 右边
-        mergeSort(a, mid + 1, high);
-        // 左右归并
-        merge(a, low, mid, high);
-        System.out.println(Arrays.toString(a));
-    }
-
-}
-</code></pre><p> &#160; &#160; &#160;&#160;&#160; &#160; &#160;&#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493531505656&amp;di=3fcca775d3be2b21bad6ac93d3a7ade9&amp;imgtype=0&amp;src=http%3A%2F%2Fimgs.aixifan.com%2Fcontent%2F2016_09_10%2F1473520477.gif" alt=""></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;改进排序算法及其Java实现&quot;&gt;&lt;a href=&quot;#改进排序算法及其Java实现&quot; class=&quot;headerlink&quot; title=&quot;改进排序算法及其Java实现&quot;&gt;&lt;/a&gt;改进排序算法及其Java实现&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节讲了经典的三个排序算法，这节将对改进的排序算法进行分析，有快速排序和归并排序。对于排序和数据结构，推荐一个很棒的网站，支持能动态的看排序过程，可以单步，调节快慢：&lt;font color=red&gt;&lt;a href=&quot;http://zh.visualgo.net&quot;&gt;&lt;strong&gt;学习利器&lt;/strong&gt;&lt;/a&gt;&lt;/font&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="经典算法" scheme="http://yoursite.com/tags/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
