@@ -1313,7 +1313,7 @@ create unique index 索引名  on 表名 (列表..);
     <link href="http://yoursite.com/2016/12/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yoursite.com/2016/12/22/计算机网络学习笔记（三）/</id>
     <published>2016-12-22T00:09:00.000Z</published>
-    <updated>2017-05-10T02:34:34.000Z</updated>
+    <updated>2017-05-10T02:47:05.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="计算机网络-运输层（三）"><a href="#计算机网络-运输层（三）" class="headerlink" title="计算机网络-运输层（三）"></a>计算机网络-运输层（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;运输层是整个网络体系结构中的关键层次。TCP／IP体系中运输层最重要的两个协议：UDP和TCP。运输层是在主机的协议栈中的，TCP是保证可靠的交付，UDP是尽最大努力的交付。重点是TCP的各种机制是如何保证可靠交付，在面向连接的可靠服务、流量控制、拥塞控制等方面作出了何种的努力，以及TCP连接的三次握手和断开连接的四次挥手以及为什么这样设计。本节篇幅很长，多图，内容很关键。</p>
   <a id="more"></a>
