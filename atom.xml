@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-10T08:42:43.000Z</updated>
+  <updated>2017-05-10T09:18:48.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/05/10/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Cweb%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/10/web服务器和web浏览器的实现原理/</id>
     <published>2017-05-10T04:31:39.000Z</published>
-    <updated>2017-05-10T08:42:43.000Z</updated>
+    <updated>2017-05-10T09:18:48.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="web服务器和web浏览器的实现原理"><a href="#web服务器和web浏览器的实现原理" class="headerlink" title="web服务器和web浏览器的实现原理"></a>web服务器和web浏览器的实现原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实际对应的底层操作简单来说就是：客户端(浏览器)面向于WEB服务器的网络通信。</p>
  <a id="more"></a>
@@ -75,6 +75,7 @@
 <p>&#160; &#160; &#160; &#160;紧接着，服务器收到请求进行处理后，返回资源给浏览器，于是得到输出信息，在改进后的tomcat服务器，我们封装了html，不过是静态的。如果在搭配html解析，就可以像我们浏览器一样，能先到解析的页面。</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-05-10%20%E4%B8%8B%E5%8D%883.39.20.png" alt=""></p>
 <p>&#160; &#160; &#160; &#160;现在我们是单线程单连接，而且没有前段操作界面的实现，我们真正使用的tomcat和浏览器当然在多线程并发、io、网络、人性化操作等方面也做了大量工作进行效率优化和简化操作，美化界面。我们通过例子是去了解基本底层原理。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
