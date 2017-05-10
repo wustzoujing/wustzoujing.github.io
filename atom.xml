@@ -92,6 +92,38 @@
   </entry>
   
   <entry>
+    <title>剑指offer：斐波那契数列相关的三道题</title>
+    <link href="http://yoursite.com/2017/05/09/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%89%E9%81%93%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/05/09/剑指offer：斐波那契数列相关的三道题/</id>
+    <published>2017-05-09T12:21:41.000Z</published>
+    <updated>2017-05-10T12:39:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要主要。</p>
+  <a id="more"></a>
+<h1 id="斐波那契数列相关的三道题"><a href="#斐波那契数列相关的三道题" class="headerlink" title="斐波那契数列相关的三道题"></a>斐波那契数列相关的三道题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。n&lt;=39。</li>
+<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+</ol>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;第一题如果用递归做，会发现效率很低，因为我们利用f(n)=f(n-1)+f(n-2)计算f(n)，导致每次的重复计算f(n-1)、f(n-2)，其实我们已经计算过这些值了，所以我们采用非递归来做。</p>
+<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第一道，我们发现这就是斐波那契数列，跳到某一台阶的次数就是跳到前一格台阶的次数加上跳到前两格台阶的次数。采用和上一题一样的做法。</p>
+<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第二道，我们用数学归纳法可以证明f(n)=2^2-1,其实这类题目也有很多，我们直接找到通式可以得到结果，像京东的几道题，还有求极限的，有兴趣可以去了解一下。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public int Fibonacci(int n) &#123;</div><div class="line"></div><div class="line">        if(n&lt;1)</div><div class="line">            return 0;</div><div class="line">        if(n==1)</div><div class="line">            return 1;</div><div class="line">        if(n==2) </div><div class="line">            return 1;</div><div class="line">        int a=1,b=1,reslut=0;</div><div class="line">        for(int i=3;i&lt;=n;++i)&#123;</div><div class="line">            reslut=a+b;</div><div class="line">            a=b;</div><div class="line">            b=reslut;</div><div class="line">        &#125;</div><div class="line">         return reslut;   </div><div class="line">    &#125;</div><div class="line">    </div><div class="line"></div><div class="line">    public int JumpFloor(int target) &#123;</div><div class="line"></div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(target==1)&#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">        if(target==2)&#123;</div><div class="line">            return 2;</div><div class="line">        &#125;</div><div class="line">        int a=1,b=2,c=0;</div><div class="line">        for(int i=3;i&lt;=target;i++)&#123;</div><div class="line">            c=b+a;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">        return c;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    public int JumpFloorII(int target) &#123;</div><div class="line">        </div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            int c=1;</div><div class="line">            for(int i=1;i&lt;target;i++)&#123;</div><div class="line">                c=2*c;</div><div class="line">            &#125;</div><div class="line">            return c;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要主要。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Servlet搭配工作Tomcat</title>
     <link href="http://yoursite.com/2017/05/08/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/08/Servlet原理和Tomcat原理/</id>
@@ -136,6 +168,35 @@
     
     
       <category term="Servlet、Tomcat" scheme="http://yoursite.com/tags/Servlet%E3%80%81Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer：旋转数组的最小数字</title>
+    <link href="http://yoursite.com/2017/05/07/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
+    <id>http://yoursite.com/2017/05/07/剑指offer：旋转数组的最小数字/</id>
+    <published>2017-05-07T11:10:20.000Z</published>
+    <updated>2017-05-10T12:19:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。</p>
+  <a id="more"></a>
+<h1 id="旋转数组的最小数字"><a href="#旋转数组的最小数字" class="headerlink" title="旋转数组的最小数字"></a>旋转数组的最小数字</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;二分查找法的核心思想就是：每次查找都可以排除不需要查找的一半，这道题我们是可以利用这个思想的。</p>
+<p>&#160; &#160; &#160; &#160;我们定义两个标志，初识是分别指向第一位和最后一位，按照题目的旋转规则，我们找到数组中间的元素，如果中间的元素位于前面的递增数组中，那他应该小于等于第二个个标志指向的元素，此时数组中最小的元素应该位于该中间元素的后面，排除了一半，利用了二分的思想；同样，如果中间元素位于后面递增子数组中，那么它应该大于等于第二个标志指向的元素。如果相等，把最高位往前移一位，最后第一个标志上就是最小值。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class minNumberInRotateArray_6 &#123;</div><div class="line"></div><div class="line">    public int minNumberInRotateArray(int [] array) &#123;</div><div class="line"></div><div class="line">        //定义两个标志指向首位索引</div><div class="line">        int low = 0 ; int high = array.length - 1;</div><div class="line">        //结束条件</div><div class="line">        while(low &lt; high)&#123;</div><div class="line">            //取中间元素</div><div class="line">            int mid = low + (high - low) / 2;</div><div class="line">            //中间元素比尾数大，最小值在后半段</div><div class="line">            if(array[mid] &gt; array[high])&#123;</div><div class="line">                low = mid + 1;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            //如果相等，高位减1</div><div class="line">            else if(array[mid] == array[high])&#123;</div><div class="line">                high = high - 1;</div><div class="line">            &#125;</div><div class="line">            //如果中间元素比尾数小，最小值在前半段</div><div class="line">            else&#123;</div><div class="line">                high = mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //循环结束，低位标志就是最小值所在</div><div class="line">        return array[low];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
     
   </entry>
   
@@ -337,6 +398,30 @@
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JDK源码阅读（一）</title>
+    <link href="http://yoursite.com/2017/03/02/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/02/JDK源码阅读（一）/</id>
+    <published>2017-03-02T11:01:19.000Z</published>
+    <updated>2017-05-10T11:06:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="JDK源码阅读（一）"><a href="#JDK源码阅读（一）" class="headerlink" title="JDK源码阅读（一）"></a>JDK源码阅读（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行解析，今天从基本类型开始。</p>
+ <a id="more"></a>
+<h2 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;JDK源码阅读（一）&quot;&gt;&lt;a href=&quot;#JDK源码阅读（一）&quot; class=&quot;headerlink&quot; title=&quot;JDK源码阅读（一）&quot;&gt;&lt;/a&gt;JDK源码阅读（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行解析，今天从基本类型开始。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JDK源码解析" scheme="http://yoursite.com/categories/JDK%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
+    
+    
+      <category term="JDK基础类型源码" scheme="http://yoursite.com/tags/JDK%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E6%BA%90%E7%A0%81/"/>
     
   </entry>
   
@@ -1067,296 +1152,6 @@ handler_read_rnd_next:这个值越高，说明查询低效。
     
     
       <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解mysql（三）</title>
-    <link href="http://yoursite.com/2017/01/18/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/01/18/深入理解mysql（三）/</id>
-    <published>2017-01-18T09:26:32.000Z</published>
-    <updated>2017-05-06T12:13:48.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="mysql学习笔记（三）"><a href="#mysql学习笔记（三）" class="headerlink" title="mysql学习笔记（三）"></a>mysql学习笔记（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。<br>  <a id="more"></a></p>
-<p>&#160; &#160; &#160; &#160;<font color="red">索引能使查询变快的原理</font>：先建了一个索引文件，就是MYI文件，然后建立查找二叉树（也叫B树，二叉搜索树，二叉排序树）。利用了二叉树算法，使搜索性能逼近二分查找，但是他比连续内存空间的二分查找优点是，插入和删除不需要移动大量数据，通常是常数开销。记录下了对应索引数值的物理位置，所以数据库换了路径，索引也失效了。</p>
-<p>&#160; &#160; &#160; &#160;学会用并利用explain来分析语句。</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86.png" alt=""></p>
-<h2 id="建立适当的索引"><a href="#建立适当的索引" class="headerlink" title="建立适当的索引"></a>建立适当的索引</h2><h3 id="主键索引"><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h3><p>&#160; &#160; &#160; &#160;当一张表，把某个列设为主键的时候，则该列就是主键索引。主键不能为null且不允许重复。</p>
-<pre><code>create table aaa
-(id int unsigned primary key auto_increment ,
-name varchar(32) not null defaul ‘’);
-</code></pre><h4 id="1"><a href="#1" class="headerlink" title="1"></a>1</h4><p>&#160; &#160; &#160; &#160;这是id 列就是主键索引。</p>
-<p>&#160; &#160; &#160; &#160;如果你创建表时，没有指定主键索引，也可以在创建表后，在添加指令:</p>
-<pre><code>alter table 表名 add primary key (列名);
-</code></pre><h4 id="2"><a href="#2" class="headerlink" title="2"></a>2</h4><p>&#160; &#160; &#160; &#160;举例:</p>
-<pre><code>create table bbb (id int , name varchar(32) not null default ‘’);
-
-alter table bbb add primary key (id);
-</code></pre><h4 id="3"><a href="#3" class="headerlink" title="3"></a>3</h4><p>&#160; &#160; &#160; &#160;添加之后发现库文件MYI文件变大。我们在我们测试样本的emp库建立主键索引，且前后查询对比如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql&gt; select * from emp where empno=3456789;</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">| empno   | ename  | job      | mgr | hiredate   | sal     | comm   | deptno |</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">| 3456789 | mFmwwU | SALESMAN |   1 | 2017-05-05 | 2000.00 | 400.00 |     82 |</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">1 row in set (0.85 sec)</div><div class="line"></div><div class="line">mysql&gt; alter table emp add primary key(empno);</div><div class="line">Query OK, 4000000 rows affected (9.47 sec)</div><div class="line">Records: 4000000  Duplicates: 0  Warnings: 0</div><div class="line"></div><div class="line">mysql&gt; select * from emp where empno=3456789;</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">| empno   | ename  | job      | mgr | hiredate   | sal     | comm   | deptno |</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">| 3456789 | mFmwwU | SALESMAN |   1 | 2017-05-05 | 2000.00 | 400.00 |     82 |</div><div class="line">+---------+--------+----------+-----+------------+---------+--------+--------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;发现时间明显变少，这就是主键索引的作用，按主键单位时间定为到准确位置，而不是从头开始找。</p>
-<h3 id="普通索引"><a href="#普通索引" class="headerlink" title="普通索引"></a>普通索引</h3><p>&#160; &#160; &#160; &#160;一般来说，普通索引的创建，是先创建表，然后在创建普通索引。</p>
-<p>&#160; &#160; &#160; &#160;比如:</p>
-<pre><code>//先建表
-create table ccc(
-id int unsigned,
-name varchar(32)
-)
-//添加索引
-create index 索引名 on 表 (列1,列名2);
-</code></pre><h3 id="创建全文索引"><a href="#创建全文索引" class="headerlink" title="创建全文索引"></a>创建全文索引</h3><p>&#160; &#160; &#160; &#160;全文索引，主要是在很针对文件、文本的检索、比如文章，全文索引仅针对MyISAM有用。我们在测试样本temp库中创建下表，并插入测试数据如下：</p>
-<h4 id="1-1"><a href="#1-1" class="headerlink" title="1"></a>1</h4><pre><code>mysql&gt; CREATE TABLE articles (
-    -&gt;        id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    -&gt;        title VARCHAR(200),
-    -&gt;        body TEXT,
-    -&gt;        FULLTEXT (title,body)
-    -&gt;      )engine=myisam charset utf8;
-Query OK, 0 rows affected (0.02 sec)
-
-mysql&gt; INSERT INTO articles (title,body) VALUES
-    -&gt;      (&apos;MySQL Tutorial&apos;,&apos;DBMS stands for DataBase ...&apos;),
-    -&gt;      (&apos;How To Use MySQL Well&apos;,&apos;After you went through a ...&apos;),
-    -&gt;      (&apos;Optimizing MySQL&apos;,&apos;In this tutorial we will show ...&apos;),
-        -&gt;      (&apos;1001 MySQL Tricks&apos;,&apos;1. Never run mysqld as root. 2. ...&apos;),
-    -&gt;      (&apos;MySQL vs. YourSQL&apos;,&apos;In the following database comparison ...&apos;),
-    -&gt;      (&apos;MySQL Security&apos;,&apos;When configured properly, MySQL ...&apos;);
-Query OK, 6 rows affected (0.00 sec)
-Records: 6  Duplicates: 0  Warnings: 0
-</code></pre><h4 id="2-1"><a href="#2-1" class="headerlink" title="2"></a>2</h4><p>然后使用下面命令看是否成功,其中\G代表按行打印：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql&gt; show index from articles\G;</div><div class="line">*************************** 1. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 0</div><div class="line">     Key_name: PRIMARY</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: id</div><div class="line">    Collation: A</div><div class="line">  Cardinality: 6</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: </div><div class="line">   Index_type: BTREE</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 2. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: title</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 3. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 2</div><div class="line">  Column_name: body</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
-<h4 id="3-1"><a href="#3-1" class="headerlink" title="3"></a>3</h4><p>&#160; &#160; &#160; &#160;使用explain来分析一个错误使用全文索引的语句。</p>
-<pre><code>mysql&gt; explain select * from articles where body like &quot;%mysql%&quot;\G;
-*************************** 1. row ***************************
-           id: 1
-  select_type: SIMPLE
-        table: articles
-   partitions: NULL
-         type: ALL
-possible_keys: NULL
-      key: NULL
-  key_len: NULL
-      ref: NULL
-     rows: 6
- filtered: 16.67
-    Extra: Using where
-1 row in set, 1 warning (0.00 sec)
-</code></pre><p>可看到possible_keys: NULL，key: NULL，说明没用到，下面例子就看到使用到了title。</p>
-<h4 id="4"><a href="#4" class="headerlink" title="4"></a>4</h4><font color="red">正确的用法：WHERE  MATCH(title,body) against(‘database’);</font>
-
-
-<pre><code>mysql&gt; explain select * from articles where match(title,body)     against(&apos;database&apos;)\G; 
-*************************** 1. row ***************************
-       id: 1
-  select_type: SIMPLE
-        table: articles
-   partitions: NULL
-     type: fulltext
-possible_keys: title
-          key: title
-      key_len: 0
-          ref: const
-         rows: 1
-     filtered: 100.00
-        Extra: Using where
-1 row in set, 1 warning (0.00 sec)
-</code></pre><p>&#160; &#160; &#160; &#160;说明：</p>
-<ol>
-<li>在mysql中fulltext 索引只针对 myisam生效</li>
-<li>mysql自己提供的fulltext针对英文生效-&gt;sphinx (coreseek) 技术处理中文</li>
-<li>使用方法是 match(字段名..) against(‘关键字’)</li>
-<li>全文索引一个 叫 停止词,  因为在一个文本中，创建索引是一个无穷大的数，因此，对一些常用词和字符，就不会创建，这些词，称为停止词.</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql&gt; select match(title,body) against(&apos;a&apos;) from articles;</div><div class="line">+--------------------------------+</div><div class="line">| match(title,body) against(&apos;a&apos;) |</div><div class="line">+--------------------------------+</div><div class="line">|                              0 |</div><div class="line">|                              0 |</div><div class="line">|                              0 |</div><div class="line">|                              0 |</div><div class="line">|                              0 |</div><div class="line">|                              0 |</div><div class="line">+--------------------------------+</div><div class="line">6 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
-<h3 id="唯一索引"><a href="#唯一索引" class="headerlink" title="唯一索引"></a>唯一索引</h3><p>&#160; &#160; &#160; &#160;当表的某列被指定为unique约束时，这列就是一个唯一索引。按照以下方式建表，name列就是唯一索引。<font color="red">唯一索引允许为空，而且允许多个。</font></p>
-<h4 id="1-2"><a href="#1-2" class="headerlink" title="1"></a>1</h4><pre><code>mysql&gt; create table ddd(id int primary key auto_increment , name varchar(32)     unique);
-Query OK, 0 rows affected (0.02 sec)
-</code></pre><h4 id="2-2"><a href="#2-2" class="headerlink" title="2"></a>2</h4><p>&#160; &#160; &#160; &#160;在创建表后，再去创建唯一索引，见如下指令：</p>
-<pre><code>create table eee(id int primary key auto_increment, name varchar(32));
-
-create unique index 索引名  on 表名 (列表..);
-</code></pre><h2 id="查询索引"><a href="#查询索引" class="headerlink" title="查询索引"></a>查询索引</h2><p>desc 表名 【该方法的缺点是：　不能够显示索引名.】</p>
-<p>show index(es) from 表名</p>
-<p>show keys from 表名</p>
-<h4 id="1-3"><a href="#1-3" class="headerlink" title="1"></a>1</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">mysql&gt; desc articles</div><div class="line">    -&gt; ;</div><div class="line">+-------+------------------+------+-----+---------+----------------+</div><div class="line">| Field | Type             | Null | Key | Default | Extra          |</div><div class="line">+-------+------------------+------+-----+---------+----------------+</div><div class="line">| id    | int(10) unsigned | NO   | PRI | NULL    | auto_increment |</div><div class="line">| title | varchar(200)     | YES  | MUL | NULL    |                |</div><div class="line">| body  | text             | YES  |     | NULL    |                |</div><div class="line">+-------+------------------+------+-----+---------+----------------+</div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line"></div><div class="line">mysql&gt; show index from articles\G;</div><div class="line">*************************** 1. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 0</div><div class="line">     Key_name: PRIMARY</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: id</div><div class="line">    Collation: A</div><div class="line">  Cardinality: 6</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: </div><div class="line">   Index_type: BTREE</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 2. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: title</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 3. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 2</div><div class="line">  Column_name: body</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">3 rows in set (0.00 sec)</div><div class="line"></div><div class="line">ERROR: </div><div class="line">No query specified</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">mysql&gt; show keys from articles\G;</div><div class="line">*************************** 1. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 0</div><div class="line">     Key_name: PRIMARY</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: id</div><div class="line">    Collation: A</div><div class="line">  Cardinality: 6</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: </div><div class="line">   Index_type: BTREE</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 2. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 1</div><div class="line">  Column_name: title</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">*************************** 3. row ***************************</div><div class="line">        Table: articles</div><div class="line">   Non_unique: 1</div><div class="line">     Key_name: title</div><div class="line"> Seq_in_index: 2</div><div class="line">  Column_name: body</div><div class="line">    Collation: NULL</div><div class="line">  Cardinality: NULL</div><div class="line">     Sub_part: NULL</div><div class="line">       Packed: NULL</div><div class="line">         Null: YES</div><div class="line">   Index_type: FULLTEXT</div><div class="line">      Comment: </div><div class="line">Index_comment: </div><div class="line">3 rows in set (0.00 sec)</div></pre></td></tr></table></figure>
-<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><p>alter table 表名 drop index 索引名; </p>
-<p>如果删除主键索引。</p>
-<p>alter table 表名 drop primary key </p>
-<h2 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h2><p>先删除再重新创建。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本节介绍的如何操作索引和索引能加快查询的原理。下篇我们看看怎么去分析索引的性能，比如explain用法，然后我们该怎么去适用索引最恰当。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;mysql学习笔记（三）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（三）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（三）&quot;&gt;&lt;/a&gt;mysql学习笔记（三）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经建立了测试数据库，然后通过相关工具找到了慢查询的语句，这些就是我们优化的对象，本篇就从索引的角度去改善我们的数据库性能。共四种索引，主键索引、唯一索引、普通索引、全文索引。索引是有消耗的，占空间的，MYI格式文件在data文件夹下。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
-    
-    
-      <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解mysql（二）</title>
-    <link href="http://yoursite.com/2017/01/12/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%BA%8C%EF%BC%89%E4%BC%98%E5%8C%96/"/>
-    <id>http://yoursite.com/2017/01/12/深入理解mysql（二）优化/</id>
-    <published>2017-01-12T05:44:47.000Z</published>
-    <updated>2017-05-05T09:26:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="mysql学习笔记（二）"><a href="#mysql学习笔记（二）" class="headerlink" title="mysql学习笔记（二）"></a>mysql学习笔记（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;之前已经了解过mysql的基本原理，重点是我们该从哪些方面去改善数据库性能，或者从设计开始怎么样去合适的设计，可以使用哪些工具和方法去帮助我们监测数据库，并根据在数据库原理的理解基础上，对不同的业务需求不同的软硬件环境，尽量做出最优的优化策略。下面就看下有哪些优化方法和适用场景，可以根据实际选用其中一部分进行优化，而且优化是一个整体的，所以不是改变一个方法就能大幅提升性能，也没有确定的套路。本文在看了传智mysql优化课程之后记录的学习笔记。</p>
-  <a id="more"></a>
-<h2 id="mysql优化"><a href="#mysql优化" class="headerlink" title="mysql优化"></a>mysql优化</h2><p>对mysql优化时一个综合性的技术，主要包括：</p>
-<ol>
-<li><p>表的设计合理化(符合3NF)</p>
-</li>
-<li><p>添加适当索引(index) [四种: 普通索引、主键索引、唯一索引unique、全文索引]</p>
-</li>
-<li>分表技术(水平分割、垂直分割)</li>
-<li>读写[写: update/delete/add]分离</li>
-<li>存储过程 [模块化编程，可以提高速度]</li>
-<li>对mysql配置优化 [配置最大并发数my.ini, 调整缓存大小 ]</li>
-<li>mysql服务器硬件升级</li>
-<li>定时的去清除不需要的数据,定时进行碎片整理(MyISAM) </li>
-</ol>
-<h3 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h3><p>表的范式，是首先符合1NF, 才能满足2NF , 进一步满足3NF</p>
-<p>&#160; &#160; &#160; &#160;1NF: 即表的列的具有原子性,不可再分解，即列的信息，不能分解, 只有数据库是关系型数据库(mysql/oracle/db2/informix/sysbase/sql server)，就自动的满足1NF。</p>
-<p>&#160; &#160; &#160; &#160;2NF: 表中的记录是唯一的, 就满足2NF, 通常我们设计一个主键来实现。</p>
-<p>&#160; &#160; &#160; &#160;3NF: 即表中不要有冗余数据, 就是说，表的信息，如果能够被推导出来，就不应该单独的设计一个字段来存放. 比如下面的设计就是不满足3NF:</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/3NF.png" alt=""></p>
-<p>需要修改成以下，消除依赖：<br><img src="http://opb7t58xj.bkt.clouddn.com/3NF2.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;反3NF : 但是，没有冗余的数据库未必是最好的数据库，有时为了提高运行效率，就必须降低范式标准，适当保留冗余数据。具体做法是： 在概念数据模型设计时遵守第三范式，降低范式标准的工作放到物理数据模型设计时考虑。降低范式就是增加字段，允许冗余。 </p>
-<p>案例 ：<br><img src="http://opb7t58xj.bkt.clouddn.com/%E5%8F%8D3NF.png" alt=""></p>
-<h3 id="show-status"><a href="#show-status" class="headerlink" title="show status"></a>show status</h3><p>&#160; &#160; &#160; &#160;查看mysql配置参数。我的运行环境是Mac，mysql5.7.18，如下图：<br><img src="http://opb7t58xj.bkt.clouddn.com/showstatus.png" alt=""><br>从图中可知，有356个变量，其中我们需要熟悉一部分，知道它代表的意义，可用下面指令查具体的：</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/show%20like.png" alt=""></p>
-<p>注意：这里结束符非常重要，区分中英文符号，是结束一条命令的标志。。。。。存储过程中还要改。因为存储过程中就有分号。</p>
-<p>这里放两个链接：<a href="http://www.cnblogs.com/zhangzhu/archive/2013/07/04/3172486.html" target="_blank" rel="external">mysql 命令大全</a>，<a href="http://blog.itpub.net/15480802/viewspace-764968/" target="_blank" rel="external">mysql较为重要的状态变量</a>。</p>
-<p>&#160; &#160; &#160; &#160;那我们如何从一个大项目中，迅速的定位执行速度慢的语句. (定位慢查询)，比如首先我们了解mysql数据库的一些运行状态如何查询(比如想知道当前mysql运行的时间/一共执行了多少次select/update/delete.. / 当前连接)。实现如下：</p>
-<p><em>show status</em></p>
-<ol>
-<li><p>常用的:<br>show status like ‘uptime’ ;<br>show  stauts like ‘com_select’  show stauts like ‘com_insert’ …类推 update  delete</p>
-</li>
-<li><p>show [session|global] status like …. 如果你不写  [session|global] 默认是session 会话，指取出当前窗口的执行，如果你想看所有(从mysql 启动到现在，则应该 global)</p>
-</li>
-<li><p>show status like ‘connections’; </p>
-</li>
-<li><p>show status like ‘slow_queries’;//显示慢查询次数</p>
-</li>
-</ol>
-<h3 id="压力测试脚本生成"><a href="#压力测试脚本生成" class="headerlink" title="压力测试脚本生成"></a>压力测试脚本生成</h3><p>&#160; &#160; &#160; &#160;如何去定位慢查询呢，我们想还原一个场景，那我们就要构建一个大表(400 万)，我们采用存储过程构建，默认情况下，mysql认为10秒才是一个慢查询.所以我们要修改mysql的慢查询时间.使用以下命令：</p>
-<p>show variables like ‘long_query_time’ ; //可以显示当前慢查询时间</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/60AEBD45-4A1C-4709-90F9-04324FBB4197.png" alt=""></p>
-<p>set long_query_time=1 ;//可以修改慢查询时间</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/manchaxun.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;而且我们构建的大表中记录是有要求的,为了满足真实性，我们采取了随机生成的方法 ，使记录不同从而使测试效果和真实的相差不大。存储过程源码我放在了GitHub上，地址如下，无耻的求个star或者fork：<a href="https://github.com/wustzoujing/BetterMysqlTestDemo" target="_blank" rel="external">wustzoujing/BetterMysqlTestDemo</a>；简要的记录下我的执行过程；<br>首先写了两个随机函数，产生指定长度的两个字符串或者数字。其中rand_string()执行结果如下：</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;上图可以知道：其中dual是亚元表，就是空表，已经随机生成了6位字符串。接下来看看存储过程执行成功如下：</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/cunshuguochen.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;最后我们调用存储过程，执行几分钟后，看下结果，已经插入成功。</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/shuju.png" alt=""></p>
-<h3 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h3><p>这时我们已经有慢查询的次数了，就是插入数据这条：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show variables like &apos;long_query_time&apos;</div><div class="line"></div><div class="line">    -&gt; ;</div><div class="line">    </div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">| Variable_name   | Value    |</div><div class="line"></div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">| long_query_time | 1.000000 |</div><div class="line"></div><div class="line">+-----------------+----------+</div><div class="line"></div><div class="line">1 row in set (0.01 sec)</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;然后我们需要开启慢查询日志（不同操作系统不同设置方式和文件路径，百度应该有很多），然后重启mysql，上面就会记录着我们的慢查询语句是什么。如下图，这是我的结果。</p>
-<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-05-05%20%E4%B8%8B%E5%8D%885.16.25.png" alt=""></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;这里我们主要是形成测试样本，利用慢查询工具，这只是一个例子，还有很多命令方法工具帮助我们来找出问题，可以参考手册来。下篇博客讲讲发现问题了，我们如何优化。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;mysql学习笔记（二）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（二）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（二）&quot;&gt;&lt;/a&gt;mysql学习笔记（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;之前已经了解过mysql的基本原理，重点是我们该从哪些方面去改善数据库性能，或者从设计开始怎么样去合适的设计，可以使用哪些工具和方法去帮助我们监测数据库，并根据在数据库原理的理解基础上，对不同的业务需求不同的软硬件环境，尽量做出最优的优化策略。下面就看下有哪些优化方法和适用场景，可以根据实际选用其中一部分进行优化，而且优化是一个整体的，所以不是改变一个方法就能大幅提升性能，也没有确定的套路。本文在看了传智mysql优化课程之后记录的学习笔记。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
-    
-    
-      <category term="mysql优化" scheme="http://yoursite.com/tags/mysql%E4%BC%98%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>深入理解mysql（一）</title>
-    <link href="http://yoursite.com/2017/01/08/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/01/08/深入理解mysql（一）/</id>
-    <published>2017-01-08T13:44:47.000Z</published>
-    <updated>2017-05-05T05:03:59.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="mysql学习笔记（一）"><a href="#mysql学习笔记（一）" class="headerlink" title="mysql学习笔记（一）"></a>mysql学习笔记（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已经接触过了，之后将做一个总结的笔记。</p>
-  <a id="more"></a>
-<h2 id="数据库的种类"><a href="#数据库的种类" class="headerlink" title="数据库的种类"></a>数据库的种类</h2><ol>
-<li>对象数据库 应用领域：地理信息系统、科学与统计数据库、多媒体系统、XML文档仓库。</li>
-<li>对象关系数据库 了解一下</li>
-<li>关系数据库，例如mysql、oracle、sql server、db2等。我们以mysql为例深入了解关系数据库。</li>
-<li>介于关系数据库与非关系数据库之间的MongoDB和完全的非关系数据库NoSql的Redis。Redis是我们了解的重点。</li>
-</ol>
-<h2 id="mysql数据库系统"><a href="#mysql数据库系统" class="headerlink" title="mysql数据库系统"></a>mysql数据库系统</h2><p>&#160; &#160; &#160; &#160;mysql由SQL接口、解析器、查询优化器、查询缓存（缓存和缓冲区）、存储引擎等几个子系统构成。</p>
-<p><img src="http://img1.51cto.com/attachment/201308/111054362.png?_=3641983" alt=""></p>
-<p>&#160; &#160; &#160; &#160;图中还有几个部分解释如下：</p>
-<p>connectors：与其他编程语言中的sql 语句进行交互，如php、java等；</p>
-<p>Management Serveices &amp; Utilities：系统管理和控制工具；</p>
-<p>Connection Pool (连接池)：管理缓冲用户连接，线程处理等需要缓存的需求。下面我们一个一个的来了解。</p>
-<h3 id="SQL接口"><a href="#SQL接口" class="headerlink" title="SQL接口"></a>SQL接口</h3><p>&#160; &#160; &#160; &#160;SQL提供了从用户接收命令并把结果返回给用户的机制。关系数据库大都支持SQL标准，基本语句都类似，比如常规的CURD操作，sql server和mysql就差不多。mysql是一个多线程应用，它为每一个连接创建一个线程，每个线程执行都独立于其他线程。接收到SQL命令，解析各个部分存入一个类结构，查询结果通过有关数据写到网络通信协议上传输给客户端。</p>
-<h3 id="解析器"><a href="#解析器" class="headerlink" title="解析器"></a>解析器</h3><p>解析器使用Lex和YACC实现，它能够把一条SQL语句分解为命令字、选项和参数等一系列最基本的语法元素，并将这些存入一个Lex类的结构中，后面查询步骤都会使用这个。规则使用Lex和YACC编写，在使用Bison编译成一个词法解析器。</p>
-<h3 id="查询优化器"><a href="#查询优化器" class="headerlink" title="查询优化器"></a>查询优化器</h3><p>&#160; &#160; &#160; &#160;查询优化策略有很多，也可以设计优化算法，高阶程序员也可以自己写查询优化器代替mysql默认的。sql server使用的查询优化策略是基于开销的，根据一系列等价规则为给定查询生成一系列查询评估计划，然后根据关于执行这个查询所需要的关系和操作性能指标数据中选出开销最小的。mysql是混合使用多种优化技术的数据库系统，围绕着选取-投影-联结策略而设计出来的，从整体上能保证生成好的，但不能保证生成最好的查询语句。属于启发式查询优化机制。</p>
-<p>&#160; &#160; &#160; &#160;具体的 <strong>选取-投影-联结</strong> 策略 ：即先更具有关的限制条件进行选取（select操作）以减少要处理的元组个数，再进行投影以减少被选取元组里的属性字段的个数，最后根据联结条件生成最终的查询结果。</p>
-<ol>
-<li>通过计算where子句里的表达式来横向排除多余的数据。</li>
-<li>只保留在属性清单里面列出来的，以及在最后执行连接子句时还需要用到的属性字段，其他数据全部排除。</li>
-<li>根据联结条件生成最终的查询结果。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;优化的第一步检查有关的表是否存在以及用户的访问权限。发现错误返回出错信息并把控制器交给线程管理器，也就是负责监听请求的listener，一旦找到了正确的表，就打开并应用适当的并发控制。<br>&#160; &#160; &#160; &#160;所有的维护和初识化任务完成后，优化器将利用Lex结构对命令中where条件进行处理，其结果作为临时表返回后续步骤做一步处理。如果查询命令里面有UNION操作法，优化器将以循环方式执行完所有的select操作之后再进行下一步。<br>&#160; &#160; &#160; &#160;优化器下一步时执行投影操作。这一步中间结果保存在临时表中且只保存指定列。最后检查Lex结构是否含有Join条件；如果有，调用join优化方法。</p>
-<p>&#160; &#160; &#160; &#160;优化内容：对条件表达式进行简化和求值，消除死分支或恒真恒假条件。总之，在执行联结操作之前，优化器会尽量减小查询命令里的条件。</p>
-<h3 id="查询执行"><a href="#查询执行" class="headerlink" title="查询执行"></a>查询执行</h3><p>&#160; &#160; &#160; &#160;查询的具体执行是由一组库方法实现，每种方法复制一种特点操作，例如CRUD。方法都有一个线程对象参数，可以让那些方法直接找到合线程访问相关的内部查询结构，加快执行速度。</p>
-<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p>&#160; &#160; &#160; &#160;查询缓存，包括查询语句解析结果和查询结果本身。把频率最高的数据放在内存中能够快速的访问来加快。速度。mysql把数据封装成某个结构（不同对象缓存，用来封装的结构不同），再把数据保存为一个链表。缓存友表缓存（为了减少打开读取和关闭表，frm文件）、记录缓存（减少数据读写频率）、键缓存（缓存各索引的热度）、权限缓存（授权信息，存为先进后出的散列表）、主机名缓存（用栈）、其他类似联结缓存。缓存有自己的监控机制，利用LRU最近最少使用页面靠换策略。</p>
-<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><p>&#160; &#160; &#160; &#160;这个是重要的一环，也是mysql最佳功能之一。数据库使用者可以根据需求选择不同的存储引擎，存储引擎是关键的一部，也是数据库管理系统最底层的一个，直接与数据库文件进行交互，也就是对数据库进行IO操作。下面介绍mysql提供的一些存储引擎。</p>
-<ol>
-<li>MyISAM 是默认的存储引擎，它在ISAM上增加了一些新的缓存和索引机制。为了提高访问速度，这类表还普遍使用了数据压缩和索引优化技术。<font color="red">此外还准备了表级的锁定机制。所以适合检索读性能。</font></li>
-<li>InnoDB 几乎总是用在需要支持事务的应用程序。支持ACID，InnoDB所有索引采用B-树结构，放在叶子节点里。改进了并发控制，提供行级的锁定。所以对频繁更新，添加，删除等类型数据库是首选存储引擎。</li>
-<li>BDB提供页面即的锁。支持散列表、B-树。</li>
-<li>内存存储引擎。HEAP表。</li>
-<li>合并存储引擎。安装特定规则分成很多小表去存储一个大表，搜索的时候可以去搜索特定的小表而不是搜索体积庞大的大表。但是缺点是：只能用相同的myisam表，不允许替换操作，与普通表相比，使用索引访问效率要低。</li>
-<li>档案。把大量数据保存为压缩格式，适合存放和检索那些不需要频繁更新的档案性或历史积累数据。比如系统日志。</li>
-<li>联合存储引擎。适合用在分布式环境</li>
-<li>群集／NDB 。 在一个高可用性和高性能的环境中使用多个mysql服务器提供数据库服务。</li>
-<li>其他的包括：CSV、黑洞、定制的。</li>
-</ol>
-<p>##小结<br>&#160; &#160; &#160; &#160;了解了一下数据库的类型，和mysql的组成，对RDBS的设计有了大致的了解，那么后面将对在此基础上对mysql优化进行一个深度的学习和总结，并找demo来实战。下面对SQL 语句执行过程进行说明：</p>
-<p>   &#160; &#160; &#160; &#160;数据库通常不会被直接使用，而是由其他编程语言通过SQL语句调用mysql，由mysql处理并返回执行结果。那么Mysql接受到SQL语句后，又是如何处理的呢？</p>
-<p>   &#160; &#160; &#160; &#160;首先程序的请求会通过mysql的connectors与其进行交互，请求到处后，会暂时存放在连接池（connection pool)中并由处理器（Management Serveices&amp;Utilities）管理。当该请求从等待队列进入到处理队列，管理器会将该请求丢给SQL接口（SQL Interface）。SQL接口接收到请求后，它会将请求进行hash处理并与缓存中的结果进行对比，如果完全匹配则通过缓存直接返回处理结果；否则，需要完整的走一趟流程：</p>
-<ol>
-<li><p>由SQL接口丢给后面的解释器（Parser），上面已经说到，解释器会判断SQL语句正确与否，若正确则将其转化为数据结构。</p>
-</li>
-<li><p>解释器处理完，便来到后面的优化器（Optimizer），它会产生多种执行计划,最终数据库会选择最优化的方案去执行,尽快返会结果。</p>
-</li>
-<li><p>确定最优执行计划后，SQL语句此时便可以交由存储引擎（Engine）处理，存储引擎将会到后端的存储设备中取得相应的数据，并原路返回给程序。</p>
-</li>
-<li><p>这里有几点需要注意：</p>
-</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;(1)如何缓存查询数据？</p>
-<p>&#160; &#160; &#160; &#160;存储引擎处理完数据，并将其返回给程序的同时，它还会将一份数据保留在缓存中，以便更快速的处理下一次相同的请求。具体情况是，mysql会将查询的语句、执行结果等进行hash，并保留在cache中，等待下次查询。</p>
-<p>&#160; &#160; &#160; &#160;(2)buffer与cache的区别？</p>
-<p>&#160; &#160; &#160; &#160;从上面的图可以看到，缓存那里实际上有buffer和cache两个，那它们之间是否有什么不同呢？简单的说就是，buffer是写缓存，cache是读缓存。</p>
-<p>&#160; &#160; &#160; &#160;(3)如何判断缓存中是否已缓存需要的数据</p>
-<p>&#160; &#160; &#160; &#160;这里可能有一个误区，觉得处理SQL语句的时候，为了判断是否已缓存查询结果，会将整个流程走一遍，取得执行结果后再与需要的进行对比，看看是否命中，并以此说，既然不管缓存中有没有缓存到查询内容，都要整个流程走一遍，那么缓存的优势又在哪里？？</p>
-<p>&#160; &#160; &#160; &#160;实际上，并非如此，在第一次查询后，mysql便将查询语句以及查询结果进行hash处理并保留在缓存中，SQL查询到达之后，对其进行同样的hash处理后，将两个hash值进行对照，如果一样，则命中，从缓存中返回查询结果；否则，需要整个流程走一遍。</p>
-<p>链接参考：<a href="http://pmghong.blog.51cto.com/3221425/1281970" target="_blank" rel="external">mysql原理</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;mysql学习笔记（一）&quot;&gt;&lt;a href=&quot;#mysql学习笔记（一）&quot; class=&quot;headerlink&quot; title=&quot;mysql学习笔记（一）&quot;&gt;&lt;/a&gt;mysql学习笔记（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;数据库是后台开发重中之重的一个环节，了解当前各种类型的数据库，并在了解各种数据库设计原理的基础上，深入学习相关优化策略，加之以实战经验，才是长久的发展之计。之后对先对关系型数据库–mysql为例进行深入学习笔记记录，毕竟开源，而且也是世界顶级的数据库，然后对非关系型数据库NoSql进行学习，以Redis为例，这些都已经接触过了，之后将做一个总结的笔记。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="深入理解mysql" scheme="http://yoursite.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3mysql/"/>
-    
-    
-      <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
     
   </entry>
   
