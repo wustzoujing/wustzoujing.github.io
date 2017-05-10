@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-10T09:18:48.000Z</updated>
+  <updated>2017-05-10T09:25:21.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>web服务器和web浏览器的实现原理</title>
+    <title>实现简易web服务器和web浏览器</title>
     <link href="http://yoursite.com/2017/05/10/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Cweb%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/10/web服务器和web浏览器的实现原理/</id>
     <published>2017-05-10T04:31:39.000Z</published>
-    <updated>2017-05-10T09:18:48.000Z</updated>
+    <updated>2017-05-10T09:25:21.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="web服务器和web浏览器的实现原理"><a href="#web服务器和web浏览器的实现原理" class="headerlink" title="web服务器和web浏览器的实现原理"></a>web服务器和web浏览器的实现原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实际对应的底层操作简单来说就是：客户端(浏览器)面向于WEB服务器的网络通信。</p>
  <a id="more"></a>
@@ -84,10 +84,33 @@
     
     </summary>
     
-      <category term="Java网络编程" scheme="http://yoursite.com/categories/Java%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+      <category term="Java Web" scheme="http://yoursite.com/categories/Java-Web/"/>
     
     
-      <category term="web服务器和浏览器" scheme="http://yoursite.com/tags/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8/"/>
+      <category term="网络编程" scheme="http://yoursite.com/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Servlet原理和Tomcat原理</title>
+    <link href="http://yoursite.com/2017/05/08/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2017/05/08/Servlet原理和Tomcat原理/</id>
+    <published>2017-05-08T09:20:19.000Z</published>
+    <updated>2017-05-10T09:26:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Servlet原理和Tomcat原理"><a href="#Servlet原理和Tomcat原理" class="headerlink" title="Servlet原理和Tomcat原理"></a>Servlet原理和Tomcat原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;Servlet原理和Tomcat原理</p>
+ <a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Servlet原理和Tomcat原理&quot;&gt;&lt;a href=&quot;#Servlet原理和Tomcat原理&quot; class=&quot;headerlink&quot; title=&quot;Servlet原理和Tomcat原理&quot;&gt;&lt;/a&gt;Servlet原理和Tomcat原理&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;Servlet原理和Tomcat原理&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java Web" scheme="http://yoursite.com/categories/Java-Web/"/>
+    
+    
+      <category term="Servlet、Tomcat" scheme="http://yoursite.com/tags/Servlet%E3%80%81Tomcat/"/>
     
   </entry>
   
@@ -1309,87 +1332,6 @@ create unique index 索引名  on 表名 (列表..);
     
     
       <category term="mysql" scheme="http://yoursite.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机网络学习笔记（四）</title>
-    <link href="http://yoursite.com/2017/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/01/03/计算机网络学习笔记（四）/</id>
-    <published>2017-01-03T10:33:32.000Z</published>
-    <updated>2017-05-10T03:08:40.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="计算机网络-应用层（四）"><a href="#计算机网络-应用层（四）" class="headerlink" title="计算机网络-应用层（四）"></a>计算机网络-应用层（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。</p>
-  <a id="more"></a>
-<p>&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E5%8F%B7.jpg" alt=""></p>
-<h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="域名系统DNS"><a href="#域名系统DNS" class="headerlink" title="域名系统DNS"></a>域名系统DNS</h3><h4 id="DNS的由来"><a href="#DNS的由来" class="headerlink" title="DNS的由来"></a>DNS的由来</h4><p>&#160; &#160; &#160; &#160;DNS是因特网使用的命名系统，用来把便于使用的机器名字转换成IP地址。其实就是名字系统，之所以加上域，是因为命名系统中使用了很多的域。也不适合直接就使用域名系统，因为使用者方便了，机器处理起来就麻烦了，但是机器处理IP就比较方便，固定长度。</p>
-<p>&#160; &#160; &#160; &#160;DNS被设计成为一个联机分布式数据库系统，并采用客户端服务器方式，大多数名字在本地进行解析，仅少量的需要在因特网上涌现，所以效率很高。</p>
-<p>&#160; &#160; &#160; &#160;域名到IP地址的解析过程的要点如下：当某一个应用程序要把主机名解析为IP地址，该应用进程就跳用解析程序，并称为一个DNS客户，把待解析的域名放在DNS请求报文中，以 <strong>UDP</strong> 用户数据报方式发给本地域名服务器，本地域名服务器在查找域名后，把对应的ip地址放在回答报文中，应用程序获得目的主机的IP地址后即可进行通信。若本地域名服务器不能回答该请求，则此域名服务器暂时成为DNS中的另一个客户，向其他域名服务器发送查询请求。</p>
-<h4 id="DNS的结构"><a href="#DNS的结构" class="headerlink" title="DNS的结构"></a>DNS的结构</h4><p>&#160; &#160; &#160; &#160;mail.cctv.com中mail、cctv、com分别为三级域名、二级域名、顶级域名。每个不要超过63个字符，其实最好不要超过12个方便记忆。不区分大小写，总共不超过255个。</p>
-<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493828954099&amp;di=d72c9e6fbec5a560b82ad6cce92d2359&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.eeing.com%2FUploadFile%2F20137810550682.jpg" alt=""></p>
-<h3 id="文件传送协议"><a href="#文件传送协议" class="headerlink" title="文件传送协议"></a>文件传送协议</h3><h4 id="FTP和NFS"><a href="#FTP和NFS" class="headerlink" title="FTP和NFS"></a>FTP和NFS</h4><p>&#160; &#160; &#160; &#160;FTP提供交互式的访问，允许客户指明文件的类型和格式，并允许文件具有的存取权限，它屏蔽了各计算机系统的细节，因而适合在于异构网络中任意计算机之间传送文件。分别有基于TCP和UDP的FTP，这是文件共享协议中的一大类，即复制整个文件；另外一类是联机访问，意味着允许多个程序同时对一个文件进行存取。和数据库系统不同的是用户不需要调用一个特殊的客户进程，而是由操作系统提供对原地共享文件进行访问的服务。</p>
-<p>&#160; &#160; &#160; &#160;FTP主要功能是消除或减少在不同操作系统下处理文件的不兼容性。</p>
-<p>&#160; &#160; &#160; &#160;FTP并非对所有数据传输都是最佳的，例如计算机A上运行的应用程序要在原地计算机B的很大一个文件末尾添加一行信息，使用FTP来回传很花时间。这时NFS网络文件系统就起作用了，NFS允许应用进程打开一个原地文件，并能在该文件的特定位置开始读写数据，在网络上传送的只是少量的修改数据。</p>
-<h4 id="TFTP简单文件传送协议"><a href="#TFTP简单文件传送协议" class="headerlink" title="TFTP简单文件传送协议"></a>TFTP简单文件传送协议</h4><p>&#160; &#160; &#160; &#160;属于TCP／IP协议族，很小但是易于实现的文件传送协议。使用UDP协议，工作模式很像停止等待协议。端口号为69.</p>
-<h3 id="远程终端协议-TELENT"><a href="#远程终端协议-TELENT" class="headerlink" title="远程终端协议 TELENT"></a>远程终端协议 TELENT</h3><p>&#160; &#160; &#160; &#160;用户用TELENT就可以在所在地使用TCP连接注册到远地的另一个主机上。其中有NVT网络虚拟终端，屏蔽了操作系统的差异。port：23</p>
-<h3 id="万维网"><a href="#万维网" class="headerlink" title="万维网"></a>万维网</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>&#160; &#160; &#160; &#160;万维网是一个大规模联机式的信息储藏所，英文简称Web，万维网用链接的方法能非常方便地从因特网上的一个站点访问另一个站点，主动按序获取丰富的信息。1993年第一个图形界面的浏览器开发成功，叫做Mosaic，万维网是一个分布式的超媒体系统，它是超文本系统的扩展，就是所有网站的集合，用浏览器来访问其他站点的网站。万维网要解决的问题如下：</p>
-<ol>
-<li>怎么标志分布在整个因特网上的万维网文档？</li>
-<li>用什么用的协议来实现万维网上各种链接？</li>
-<li>怎样使不同作者创作的不同风格的万维网文档都能在因特网上的各种主机上显示出来，同时使用户清楚知道什么地方存在着链接？</li>
-<li>怎样使用户能够很方便的找到所需的信息？</li>
-</ol>
-<h4 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h4><p>&#160; &#160; &#160; &#160;为了解决第一个问题，万维网使用统一资源定位符URL来标志万维网上的各种文档，并使每一个文档在整个因特网的范围内唯一标识符。</p>
-<p>&#160; &#160; &#160; &#160;为了解决第二个问题，我们采用HTTP超文本传送协议，是一个应用层协议，使用TCP链接进行可靠的传送。</p>
-<p>&#160; &#160; &#160; &#160;为了解决第三个问题，万维网使用HTML超文本标记语言，使设计者很方便地使用链接从本页面的某处链接到因特网的任何一个万维网页面</p>
-<p>&#160; &#160; &#160; &#160;第四个问题，浏览器和搜索工具应运而生，帮助我们在万维网上查找自己所需的信息。</p>
-<p>&#160; &#160; &#160; &#160;下面看看在此实现思路基础上的具体的实现方式。</p>
-<h4 id="URL格式"><a href="#URL格式" class="headerlink" title="URL格式"></a>URL格式</h4><p>&#160; &#160; &#160; &#160;一般形式：&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;。其中协议一般是http、https、ftp等，主机是域名，或者主机的外网ip，端口和路径有时可以省略。</p>
-<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><h5 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h5><p>&#160; &#160; &#160; &#160;HTTP协议定义了浏览器即万维网客户进程怎么样向万维网服务器请求万维网文档，以及服务器怎么样把文档传送给浏览器。HTTP是面向事务的应用层协议。通常基于TCP协议的，每个万维网网点都有一个服务器进程，不断监听TCP的端口80，以便发现是否有浏览器向他发出连接请求。一旦监听到建立TCP连接，通信结束后释放。交互必须遵循HTTP，它规定每次交互都由一个ASCII码串构成的请求和一个类MIME的响应。</p>
-<p>tips：浏览器敲入百度网址到响应的过程。</p>
-<p>&#160; &#160; &#160; &#160;（1） 当我们在浏览器上敲入一个url是， 浏览器会解析出该url的域名，接下来的动作，是将域名转化为 ID 地址，依次查询 浏览器DNS缓存、系统缓存、路由器缓存、如果没有找到 则一直查询到 根域名服务器缓存，找到域名所对应的的 IP地址。2）向IP所对应的的服务器发送请求数据，（3）服务器响应请求，发回网页内容；（4）客户端浏览器获取网页内容，解析，并显示在浏览器上。</p>
-<h5 id="HTTP报文格式"><a href="#HTTP报文格式" class="headerlink" title="HTTP报文格式"></a>HTTP报文格式</h5><p>&#160; &#160; &#160; &#160;参考这篇博文：<a href="http://blog.csdn.net/zhangliang_571/article/details/23508953" target="_blank" rel="external">http请求报文和响应报文</a>。请求报文中请求方法Get和Post的区别，区别如下列出，响应报文中状态行有200 OK，404等等。这些参考博文，写的很好，分析清楚。</p>
-<h6 id="区别："><a href="#区别：" class="headerlink" title="区别："></a>区别：</h6><p>1.提交方式</p>
-<p>&#160; &#160; &#160; &#160;GET提交，请求的数据会附在URL之后（就是把数据放置在HTTP协议头＜request-line＞中），以?分割URL和传输数据，多个参数用&amp;连接;例如：login.action?name=hyddd&amp;password=idontknow&amp;verify=%E4%BD%A0 %E5%A5%BD。如果数据是英文字母/数字，原样发送，如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如： %E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。</p>
-<p>  &#160; &#160; &#160; &#160;POST提交：把提交的数据放置在是HTTP包的包体＜request-body＞中。上文示例中红色字体标明的就是实际的传输数据</p>
-<p>  &#160; &#160; &#160; &#160;因此，GET提交的数据会在地址栏中显示出来，而POST提交，地址栏不会改变</p>
-<p>2.传输数据的大小：</p>
-<p>   &#160; &#160; &#160; &#160;首先声明,HTTP协议没有对传输的数据大小进行限制，HTTP协议规范也没有对URL长度进行限制。 而在实际开发中存在的限制主要有：</p>
-<p>   &#160; &#160; &#160; &#160;GET:特定浏览器和服务器对URL长度有限制，例如IE对URL长度的限制是2083字节(2K+35)。对于其他浏览器，如Netscape、FireFox等，理论上没有长度限制，其限制取决于操作系统的支持。</p>
-<p>   &#160; &#160; &#160; &#160;因此对于GET提交时，传输数据就会受到URL长度的限制。</p>
-<p>   &#160; &#160; &#160; &#160;POST:由于不是通过URL传值，理论上数据不受限。但实际各个WEB服务器会规定对post提交数据大小进行限制，Apache、IIS6都有各自的配置。</p>
-<p>3.安全性：</p>
-<p>&#160; &#160; &#160; &#160;POST的安全性要比GET的安全性高。注意：这里所说的安全性和上面GET提到的“安全”不是同个概念。上面“安全”的含义仅仅是不作数据修改，而这里安全的含义是真正的Security的含义，比如：通过GET提交数据，用户名和密码将明文出现在URL上，因为(1)登录页面有可能被浏览器缓存， (2)其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了。</p>
-<h6 id="常见响应"><a href="#常见响应" class="headerlink" title="常见响应"></a>常见响应</h6><p>200 OK：客户端请求成功。</p>
-<p>400 Bad Request：客户端请求有语法错误，不能被服务器所理解。</p>
-<p>401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用。</p>
-<p>403 Forbidden：服务器收到请求，但是拒绝提供服务。</p>
-<p>404 Not Found：请求资源不存在，举个例子：输入了错误的URL。</p>
-<p>500 Internal Server Error：服务器发生不可预期的错误。</p>
-<p>503 Server Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常，举个例子：HTTP/1.1 200 OK（CRLF）。</p>
-<h4 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h4><p>&#160; &#160; &#160; &#160;分为静态html和动态html还有活动万维网文档。静态文档是固定的html，只用于显示。</p>
-<p>&#160; &#160; &#160; &#160;动态文档就是指是文档内容在浏览器访问万维网时才由应用程序动态创建。所以我们需要增加一个应用程序来处理浏览器发来的数据，并动态创建文档。还要增加一个机制，用来使万维网服务器将浏览器发来的数据传送给这个应用程序，这个就叫做通用网关接口CGI。后来称为CGI程序，可以是使用Perl、REXX，JS，C，C++等语言，脚本语言和编程语言都有，为了方便找到CGI程序，都放在cgi／bin目录下。</p>
-<p>&#160; &#160; &#160; &#160;后来动态文档也不能满足了，因为动态文档一旦建立，它所包含的信息内容页固定下来了，像动画这类的效果也无法提供，后来出现服务器推送，服务器不断运行和动态文档相关联的应用，定期更新信息，缺点是为了满足很多客户的请求，服务器就要运行很多推送程序。太多导致带宽不够，网络延时也很大。另一种就是活动文档技术，每当浏览器请求一个活动文档，服务器就返回一段程序副本，使程序在浏览器端进行，像Java的applet应用，html中嵌入一个java小程序。</p>
-<h4 id="信息检索系统"><a href="#信息检索系统" class="headerlink" title="信息检索系统"></a>信息检索系统</h4><p>&#160; &#160; &#160; &#160;搜索引擎，全文检索与分类目录搜索。垂直搜索引擎，元搜索引擎。</p>
-<p>&#160; &#160; &#160; &#160;谷歌搜索核心技术就是PageRank，最搜索出来的结果按重要性进行排序。Google 论文老三篇 GFS, MapReduce, BigTable 不再赘述，近年 Google 在这些方面的研发和进步没有停滞甚至在加快。当然百度也在努力追赶，百度不仅使用 Hadoop, 而且基于 Hadoop 做了大量改进和扩展，并贡献回 Hadoop 开源社区。后面准备进行一些爬虫的实践。</p>
-<h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><h4 id="SMTP、POP3、IMAP"><a href="#SMTP、POP3、IMAP" class="headerlink" title="SMTP、POP3、IMAP"></a>SMTP、POP3、IMAP</h4><p>&#160; &#160; &#160; &#160;简单邮件传送协议，只能传送可打印的7位ASCII码邮件，后来又出现MIME通用互联网邮件扩充，后来还进行了修订。</p>
-<p>&#160; &#160; &#160; &#160;电子邮件系统应该具有三个重要的组成构件，用户代理，邮件服务器，以及邮件发送协议。区别：IMAP在服务器保存副本。参考博文：<a href="http://blog.csdn.net/ladybai/article/details/509882050" target="_blank" rel="external">电子邮件协议之SMTP、POP3和IMAP</a>。</p>
-<h3 id="DHCP动态主机配置协议"><a href="#DHCP动态主机配置协议" class="headerlink" title="DHCP动态主机配置协议"></a>DHCP动态主机配置协议</h3><p>&#160; &#160; &#160; &#160;基于UDP，为了把协议软件做成通用的和便于移植，协议软件的编写者不会把所有细节都固定在源代码中。相反会把协议软件参数化。前身是BOOTP引导程序协议，需要人工参与，DHCP是即插即用，对服务器和客户端都适用。</p>
-<h3 id="简单网络管理协议SNMP"><a href="#简单网络管理协议SNMP" class="headerlink" title="简单网络管理协议SNMP"></a>简单网络管理协议SNMP</h3><p>&#160; &#160; &#160; &#160;被管对象上运行的SNMP服务器不断监听来自管理站的SNMP客户端请求，一旦发现立即返回管理站所需信息，或者执行某个动作。</p>
-<h3 id="跨越网络的应用进程通信"><a href="#跨越网络的应用进程通信" class="headerlink" title="跨越网络的应用进程通信"></a>跨越网络的应用进程通信</h3><p>&#160; &#160; &#160; &#160;当很多的应用层协议还不能满足我们的需求，于是开放了相关的系统调用和应用程序编程接口，即网络socket编程。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;计算机网络-应用层（四）&quot;&gt;&lt;a href=&quot;#计算机网络-应用层（四）&quot; class=&quot;headerlink&quot; title=&quot;计算机网络-应用层（四）&quot;&gt;&lt;/a&gt;计算机网络-应用层（四）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;前面已经详细的讨论了计算机网络提供通信服务的过程。接下来讨论这些通信服务是如何提供给应用进程来使用的。每个应用层协议是为了解决某一类应用问题，问题的解决往往是通过位于不同主机的多个应用进程之间的通信和协同工作来完成的。应用层的协议许多都是基于客户服务器方式。即使是对等通信，实质也是一种特殊的客户服务器方式。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="计算机网络" scheme="http://yoursite.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-      <category term="计算机网络" scheme="http://yoursite.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
   </entry>
   
