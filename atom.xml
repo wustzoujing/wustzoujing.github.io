@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-10T09:25:21.000Z</updated>
+  <updated>2017-05-10T09:29:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/05/10/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Cweb%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/10/web服务器和web浏览器的实现原理/</id>
     <published>2017-05-10T04:31:39.000Z</published>
-    <updated>2017-05-10T09:25:21.000Z</updated>
+    <updated>2017-05-10T09:29:01.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="web服务器和web浏览器的实现原理"><a href="#web服务器和web浏览器的实现原理" class="headerlink" title="web服务器和web浏览器的实现原理"></a>web服务器和web浏览器的实现原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实际对应的底层操作简单来说就是：客户端(浏览器)面向于WEB服务器的网络通信。</p>
  <a id="more"></a>
@@ -60,7 +60,7 @@
 <p>&#160; &#160; &#160; &#160;客户端程序设计：</p>
 <p>&#160; &#160; &#160; &#160;当客户程序需要与服务器程序通信时，需在客户机创建一个Socket对象。Socket类有构造函数Socket(InetAddress addr，int port)和Socket(String host，intport)，两个构造函数都创建了一个基于Socket的连接服务器端流套接字的流套接字。对于第一个InetAd-dress子类对象通过addr参数获得服务器主机的IP地址，对于第二个函数host参数包被分配到InetAddress对象中，如果没有IP地址与host参数相一致，那么将抛出UnknownHostException异常对象。两个函数都通过参数port获得服务器的端口号。假设已经建立连接了，网络API将在客户端基于Socket的流套接字中捆绑客户程序的IP地址和任意一个端口号，否则两个函数都会抛出一个IOException对象。</p>
 <p>&#160; &#160; &#160; &#160;如果创建了一个Socket对象，那么它可通过get-InputStream()方法从服务程序获得输入流读传送来的信息，也可通过调用getOutputStream()方法获得输出流来发送消息。在读写活动完成之后，客户程序调用close()方法关闭流和流套接字。</p>
-<h3 id="分析demo"><a href="#分析demo" class="headerlink" title="分析demo"></a>分析demo</h3><p>&#160; &#160; &#160; &#160;在demo中，我们开启一个服务器socket来监听9090端口，所以我们在通过在浏览器中输入<a href="http://localhost:9090进行访问，经过我们demo可以得到的输出结果如下：" target="_blank" rel="external">http://localhost:9090进行访问，经过我们demo可以得到的输出结果如下：</a></p>
+<h3 id="分析demo"><a href="#分析demo" class="headerlink" title="分析demo"></a>分析demo</h3><p>&#160; &#160; &#160; &#160;在demo中，我们开启一个服务器socket来监听9090端口，所以我们在通过在浏览器中输入<a href="http://localhost:9090，进行访问，经过我们demo可以得到的输出结果如下：" target="_blank" rel="external">http://localhost:9090，进行访问，经过我们demo可以得到的输出结果如下：</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">服务器启动</div><div class="line">GET / HTTP/1.1</div><div class="line">Host: localhost:9090</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">Cookie: JSESSIONID=92E7AE4F85499378342793886884D0C0; _ga=GA1.1.1073505442.1486722778</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30</div><div class="line">Accept-Language: zh-cn</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Connection: keep-alive</div></pre></td></tr></table></figure>
 <p>&#160; &#160; &#160; &#160;通过成果我们看到，我们已经成功的实现了最简易的tomcat。不过这里需要注意的是，我们自己山寨的tomcat服务器当中，之所以也成功的输出了Http协议的请求体，是因为：我们是通过web浏览器进行访问的，如果通过普通的socket进行对serversocket的连接访问，是没有这些请求信息的。因为我们前面已经说过了，web浏览器与服务器之间的通信必须遵循Http协议。</p>
 <h2 id="实现简易浏览器"><a href="#实现简易浏览器" class="headerlink" title="实现简易浏览器"></a>实现简易浏览器</h2><p>&#160; &#160; &#160; &#160;通过前面的学习，我相信我们现在更想把浏览器功能也实现，剖析一下，接下来我们就试试：</p>
@@ -92,18 +92,43 @@
   </entry>
   
   <entry>
-    <title>Servlet原理和Tomcat原理</title>
+    <title>Servlet搭配工作Tomcat</title>
     <link href="http://yoursite.com/2017/05/08/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/08/Servlet原理和Tomcat原理/</id>
     <published>2017-05-08T09:20:19.000Z</published>
-    <updated>2017-05-10T09:26:33.000Z</updated>
+    <updated>2017-05-10T10:58:25.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Servlet原理和Tomcat原理"><a href="#Servlet原理和Tomcat原理" class="headerlink" title="Servlet原理和Tomcat原理"></a>Servlet原理和Tomcat原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;Servlet原理和Tomcat原理</p>
- <a id="more"></a>]]></content>
+    <content type="html"><![CDATA[<h1 id="Servlet搭配工作Tomcat"><a href="#Servlet搭配工作Tomcat" class="headerlink" title="Servlet搭配工作Tomcat"></a>Servlet搭配工作Tomcat</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。</p>
+ <a id="more"></a>
+<h2 id="Tomcat与Servlet搭配工作"><a href="#Tomcat与Servlet搭配工作" class="headerlink" title="Tomcat与Servlet搭配工作"></a>Tomcat与Servlet搭配工作</h2><p> <img src="http://images.cnitblog.com/blog/384192/201302/24114945-4774512d1247438fa58c37399d3999ae.jpg" alt=""></p>
+<p>步骤：</p>
+<ol>
+<li>Web Client 向Servlet容器（Tomcat）发出Http请求</li>
+<li>Servlet容器接收Web Client的请求</li>
+<li>Servlet容器创建一个HttpRequest对象，将Web Client请求的信息封装到这个对象中。</li>
+<li>Servlet容器创建一个HttpResponse对象</li>
+<li>Servlet容器调用HttpServlet对象的service方法，把HttpRequest对象与HttpResponse对象作为参数传给 HttpServlet 对象。</li>
+<li>HttpServlet调用HttpRequest对象的有关方法，获取Http请求信息。</li>
+<li>HttpServlet调用HttpResponse对象的有关方法，生成响应数据。</li>
+<li>Servlet容器把HttpServlet的响应结果传给Web Client。</li>
+</ol>
+<h2 id="Servlet工作原理："><a href="#Servlet工作原理：" class="headerlink" title="Servlet工作原理："></a>Servlet工作原理：</h2><ol>
+<li>首先简单解释一下Servlet接收和响应客户请求的过程，首先客户发送一个请求，Servlet是调用service()方法对请求进行响应的，通过源代码可见，service()方法中对请求的方式进行了匹配，选择调用doGet,doPost等这些方法，然后再进入对应的方法中调用逻辑层的方法，实现对客户的响应。在Servlet接口和GenericServlet中是没有doGet（）、doPost（）等等这些方法的，HttpServlet中定义了这些方法，但是都是返回error信息，所以，我们每次定义一个Servlet的时候，都必须实现doGet或doPost等这些方法。</li>
+<li>每一个自定义的Servlet都必须实现Servlet的接口，Servlet接口中定义了五个方法，其中比较重要的三个方法涉及到Servlet的生命周期，分别是上文提到的init(),service(),destroy()方法。GenericServlet是一个通用的，不特定于任何协议的Servlet,它实现了Servlet接口。而HttpServlet继承于GenericServlet，因此HttpServlet也实现了Servlet接口。所以我们定义Servlet的时候只需要继承HttpServlet即可。</li>
+<li>Servlet接口和GenericServlet是不特定于任何协议的，而HttpServlet是特定于HTTP协议的类，所以HttpServlet中实现了service()方法，并将请求ServletRequest、ServletResponse 强转为HttpRequest 和 HttpResponse。</li>
+</ol>
+<h2 id="创建Servlet对象的时机："><a href="#创建Servlet对象的时机：" class="headerlink" title="创建Servlet对象的时机："></a>创建Servlet对象的时机：</h2><ol>
+<li>Servlet容器启动时：读取web.xml配置文件中的信息，构造指定的Servlet对象，创建ServletConfig对象，同时将ServletConfig对象作为参数来调用Servlet对象的init方法。</li>
+<li>在Servlet容器启动后：客户首次向Servlet发出请求，Servlet容器会判断内存中是否存在指定的Servlet对象，如果没有则创建它，然后根据客户的请求创建HttpRequest、HttpResponse对象，从而调用Servlet 对象的service方法。</li>
+<li>Servlet Servlet容器在启动时自动创建Servlet，这是由在web.xml文件中为Servlet设置的<load-on-startup>属性决定的。从中我们也能看到同一个类型的Servlet对象在Servlet容器中以单例的形式存在。</load-on-startup></li>
+</ol>
+<p>参考博文：<a href="http://www.cnblogs.com/xuekyo/archive/2013/02/24/2924072.html" target="_blank" rel="external">servlet原理</a>。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Servlet原理和Tomcat原理&quot;&gt;&lt;a href=&quot;#Servlet原理和Tomcat原理&quot; class=&quot;headerlink&quot; title=&quot;Servlet原理和Tomcat原理&quot;&gt;&lt;/a&gt;Servlet原理和Tomcat原理&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;Servlet原理和Tomcat原理&lt;/p&gt;
+      &lt;h1 id=&quot;Servlet搭配工作Tomcat&quot;&gt;&lt;a href=&quot;#Servlet搭配工作Tomcat&quot; class=&quot;headerlink&quot; title=&quot;Servlet搭配工作Tomcat&quot;&gt;&lt;/a&gt;Servlet搭配工作Tomcat&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。&lt;/p&gt;
     
     </summary>
     

@@ -119,7 +119,7 @@
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
 <meta property="og:description" content="web服务器和web浏览器的实现原理前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202017-05-10%20%E4%B8%8B%E5%8D%883.39.20.png">
-<meta property="og:updated_time" content="2017-05-10T09:25:21.000Z">
+<meta property="og:updated_time" content="2017-05-10T09:29:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实现简易web服务器和web浏览器">
 <meta name="twitter:description" content="web服务器和web浏览器的实现原理前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实">
@@ -448,7 +448,7 @@
 <p>&#160; &#160; &#160; &#160;客户端程序设计：</p>
 <p>&#160; &#160; &#160; &#160;当客户程序需要与服务器程序通信时，需在客户机创建一个Socket对象。Socket类有构造函数Socket(InetAddress addr，int port)和Socket(String host，intport)，两个构造函数都创建了一个基于Socket的连接服务器端流套接字的流套接字。对于第一个InetAd-dress子类对象通过addr参数获得服务器主机的IP地址，对于第二个函数host参数包被分配到InetAddress对象中，如果没有IP地址与host参数相一致，那么将抛出UnknownHostException异常对象。两个函数都通过参数port获得服务器的端口号。假设已经建立连接了，网络API将在客户端基于Socket的流套接字中捆绑客户程序的IP地址和任意一个端口号，否则两个函数都会抛出一个IOException对象。</p>
 <p>&#160; &#160; &#160; &#160;如果创建了一个Socket对象，那么它可通过get-InputStream()方法从服务程序获得输入流读传送来的信息，也可通过调用getOutputStream()方法获得输出流来发送消息。在读写活动完成之后，客户程序调用close()方法关闭流和流套接字。</p>
-<h3 id="分析demo"><a href="#分析demo" class="headerlink" title="分析demo"></a>分析demo</h3><p>&#160; &#160; &#160; &#160;在demo中，我们开启一个服务器socket来监听9090端口，所以我们在通过在浏览器中输入<a href="http://localhost:9090进行访问，经过我们demo可以得到的输出结果如下：" target="_blank" rel="external">http://localhost:9090进行访问，经过我们demo可以得到的输出结果如下：</a></p>
+<h3 id="分析demo"><a href="#分析demo" class="headerlink" title="分析demo"></a>分析demo</h3><p>&#160; &#160; &#160; &#160;在demo中，我们开启一个服务器socket来监听9090端口，所以我们在通过在浏览器中输入<a href="http://localhost:9090，进行访问，经过我们demo可以得到的输出结果如下：" target="_blank" rel="external">http://localhost:9090，进行访问，经过我们demo可以得到的输出结果如下：</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">服务器启动</div><div class="line">GET / HTTP/1.1</div><div class="line">Host: localhost:9090</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line">Cookie: JSESSIONID=92E7AE4F85499378342793886884D0C0; _ga=GA1.1.1073505442.1486722778</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30</div><div class="line">Accept-Language: zh-cn</div><div class="line">Accept-Encoding: gzip, deflate</div><div class="line">Connection: keep-alive</div></pre></td></tr></table></figure>
 <p>&#160; &#160; &#160; &#160;通过成果我们看到，我们已经成功的实现了最简易的tomcat。不过这里需要注意的是，我们自己山寨的tomcat服务器当中，之所以也成功的输出了Http协议的请求体，是因为：我们是通过web浏览器进行访问的，如果通过普通的socket进行对serversocket的连接访问，是没有这些请求信息的。因为我们前面已经说过了，web浏览器与服务器之间的通信必须遵循Http协议。</p>
 <h2 id="实现简易浏览器"><a href="#实现简易浏览器" class="headerlink" title="实现简易浏览器"></a>实现简易浏览器</h2><p>&#160; &#160; &#160; &#160;通过前面的学习，我相信我们现在更想把浏览器功能也实现，剖析一下，接下来我们就试试：</p>
@@ -533,8 +533,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/08/Servlet原理和Tomcat原理/" rel="prev" title="Servlet原理和Tomcat原理">
-                Servlet原理和Tomcat原理 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/08/Servlet原理和Tomcat原理/" rel="prev" title="Servlet搭配工作Tomcat">
+                Servlet搭配工作Tomcat <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
