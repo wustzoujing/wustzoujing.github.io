@@ -111,13 +111,13 @@
 
 
 
-<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
+<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在有了一个大概了解之后，作为web 开发人员，我们还要重点学习某几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta name="keywords" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络学习笔记（二）">
 <meta property="og:url" content="http://yoursite.com/2016/12/15/计算机网络学习笔记（二）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在有了一个大概了解之后，作为web 开发人员，我们还要重点学习某几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494293515&di=f0143bb189d8a9c8cde2a47f038d8133&imgtype=jpg&er=1&src=http%3A%2F%2Fblog.chinaunix.net%2Fattachment%2F201402%2F14%2F26275986_1392346156Z19P.png">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494294197&di=f001c8f32c69d084119f3968d732d922&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.bo56.com%2Fwp-content%2Fuploads%2F2014%2F11%2Fip_class.png">
 <meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1493700242235&di=3a2d74e813de29bb1f389b000b2f6e86&imgtype=0&src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F672098%2F201501%2F082256050466766.png">
@@ -125,10 +125,10 @@
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084039266.jpeg">
 <meta property="og:image" content="http://up.2cto.com/2013/0805/20130805084048370.jpeg">
-<meta property="og:updated_time" content="2017-05-04T13:57:16.000Z">
+<meta property="og:updated_time" content="2017-05-10T01:14:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络学习笔记（二）">
-<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在有了一个大概了解之后，作为web 开发人员，我们还要重点学习某几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。">
 <meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494293515&di=f0143bb189d8a9c8cde2a47f038d8133&imgtype=jpg&er=1&src=http%3A%2F%2Fblog.chinaunix.net%2Fattachment%2F201402%2F14%2F26275986_1392346156Z19P.png">
 
 
@@ -204,7 +204,7 @@
       </a>
     </div>
       
-        <p class="site-subtitle">学习笔记</p>
+        <p class="site-subtitle">我的学习笔记</p>
       
   </div>
 
@@ -416,7 +416,7 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;接下来会介绍最重要的几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;在有了一个大概了解之后，作为web 开发人员，我们还要重点学习某几层，就是网络层（IP），运输层（TCP，UDP），应用层（HTTP，DNS，STMP等）。IP的分配，子网掩码，IP协议确保数据流主机到主机，而计算机通信代表的是计算上进程之间的通信，所以TCP，UDP提出端口概念，一个进程占用一个端口，这样就实现了准确的通信。</p>
  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;TCP和UDP两者的不同是：TCP先建立连接且利用相关技术保证了可靠的传输，而UDP只是尽最大限度的进行传输，是面向非连接的，是不可靠的，两者在应用层都有相关利用。另外，ip+：+port就是套接字socket。所谓的socket通信中的socket是一个编程api，设计之初它的思想是不止用于TCP／IP协议，一般的用法是它指定源套接字和目的套接字，再指定使用的协议，这样就能实现通信，它能实现TCP／IP协议的通信，具体在后面章节结合图和实例阐述。</p>
 <h1 id="计算机网络-网络层（二）"><a href="#计算机网络-网络层（二）" class="headerlink" title="计算机网络-网络层（二）"></a>计算机网络-网络层（二）</h1><h2 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h2><h3 id="网络层提供的两种服务"><a href="#网络层提供的两种服务" class="headerlink" title="网络层提供的两种服务"></a>网络层提供的两种服务</h3><p>即虚电路服务和数据报服务。</p>
@@ -424,17 +424,17 @@
 <p>&#160; &#160; &#160; &#160;数据报服务：无连接的通信方式，只提供尽最大能力交付的数据报服务。</p>
 <p>&#160; &#160; &#160; &#160;这两种方式，在当时很有争议，焦点就是到底可靠的交付是在网络层还是运输层，有人觉得借助电信网成功经验，而互联网先驱却提出崭新的设计思路：<font color="red">交给上层即计算机来进行差错处理，充分利用了计算机的处理能力。</font>多年实践证明，当时决定在交给上层去实现可靠传输就是正确决定。由于在网络层要保证可靠的传输成本很大，而现在只需成本较低的路由器就行。将可靠的交付交给运输层来解决，即我们的TCP协议。</p>
 <p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1494293515&amp;di=f0143bb189d8a9c8cde2a47f038d8133&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fblog.chinaunix.net%2Fattachment%2F201402%2F14%2F26275986_1392346156Z19P.png" alt=""></p>
-<h3 id="虚拟互连网络"><a href="#虚拟互连网络" class="headerlink" title="虚拟互连网络"></a>虚拟互连网络</h3><p>&#160; &#160; &#160; &#160;进行网络的互连可能借助以下设备：物理层-集线器；数据链路层-交换机；网络层-路由器；更高层-网关。而从网络层看使用集线器和交换机只是扩大了当前网络，并没有进行网络互连，从网络层来看它仍是一个网络。而网关比较复杂，所以一般采用<font color="red">路由器</font>进行网络互连。</p>
+<h3 id="虚拟互连网络—-解决网络互联"><a href="#虚拟互连网络—-解决网络互联" class="headerlink" title="虚拟互连网络—-解决网络互联"></a>虚拟互连网络—-解决网络互联</h3><p>&#160; &#160; &#160; &#160;进行网络的互连可能借助以下设备：物理层-集线器；数据链路层-交换机；网络层-路由器；更高层-网关。而从网络层看使用集线器和交换机只是扩大了当前网络，并没有进行网络互连，从网络层来看它仍是一个网络。而网关比较复杂，所以一般采用<font color="red">路由器</font>进行网络互连。</p>
 <p>&#160; &#160; &#160; &#160;<font color="red">TCP／IP体系中在网络层采用了标准化协议，即使互连的网络是异构的，在网络层看了它好像是一个统一的网络，但是是逻辑互连，内部差异性仍然存在。</font></p>
-<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><p>&#160; &#160; &#160; &#160;文档：RFC791；整个因特网是一个单一的，抽象的网络。IP地址就是给因特网上的每一个主机或路由器的每一个借口分配一个在全世界范围内唯一的32位标识符。IP地址表示为：{&lt;网络号&gt;,&lt;主机号&gt;}。分类如下图：</p>
+<h3 id="IP地址—-解决在互联网中准确定位一个主机"><a href="#IP地址—-解决在互联网中准确定位一个主机" class="headerlink" title="IP地址—-解决在互联网中准确定位一个主机"></a>IP地址—-解决在互联网中准确定位一个主机</h3><p>&#160; &#160; &#160; &#160;文档：RFC791；整个因特网是一个单一的，抽象的网络。IP地址就是给因特网上的每一个主机或路由器的每一个借口分配一个在全世界范围内唯一的32位标识符。IP地址表示为：{&lt;网络号&gt;,&lt;主机号&gt;}。分类如下图：</p>
 <p>&#160; &#160; &#160; &#160;<img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1494294197&amp;di=f001c8f32c69d084119f3968d732d922&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fwww.bo56.com%2Fwp-content%2Fuploads%2F2014%2F11%2Fip_class.png" alt=""></p>
 <h3 id="IP地址和硬件地址"><a href="#IP地址和硬件地址" class="headerlink" title="IP地址和硬件地址"></a>IP地址和硬件地址</h3><p>&#160; &#160; &#160; &#160;物理地址是数据链路层和物理层使用的地址，而IP地址是网络层和以上各层使用的地址，是一种逻辑地址。它们分别在IP数据报和MAC帧的首部。如下图所示：</p>
 <p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1493700242235&amp;di=3a2d74e813de29bb1f389b000b2f6e86&amp;imgtype=0&amp;src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F672098%2F201501%2F082256050466766.png" alt=""></p>
 <p>&#160; &#160; &#160; &#160;<font color="red">尽管互连在一起的网络硬件地址体系各不相同，但IP层抽象的互联网却屏蔽了下层的这些很复杂的细节。只要我们在网络层上讨论问题，就能够使用统一的、抽象的IP地址研究主机和主机或者路由器之间的通信。</font>关于这方面有重要的两个协议。ARP和RARP。</p>
-<h3 id="ARP和RARP协议"><a href="#ARP和RARP协议" class="headerlink" title="ARP和RARP协议"></a>ARP和RARP协议</h3><p>&#160; &#160; &#160; &#160;地址解析协议ARP，和逆地址解析协议RARP。来实现IP地址和硬件地址的相互转换。<font color="red">现在RARP的功能在DHCP中已经完成，所以没人再单独使用了。</font></p>
+<h3 id="ARP和RARP协议—屏蔽数据链路层的差异"><a href="#ARP和RARP协议—屏蔽数据链路层的差异" class="headerlink" title="ARP和RARP协议—屏蔽数据链路层的差异"></a>ARP和RARP协议—屏蔽数据链路层的差异</h3><p>&#160; &#160; &#160; &#160;地址解析协议ARP，和逆地址解析协议RARP。来实现IP地址和硬件地址的相互转换。<font color="red">现在RARP的功能在DHCP中已经完成，所以没人再单独使用了。<strong>而且ARP只使用在局域网</strong>。</font></p>
 <h4 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h4><p>&#160; &#160; &#160; &#160;ARP高速缓存，请求的时候广播，得到结果保存到缓存中，且定时更新，因为如果请求的主机网络适配器坏了，它的硬件地址也就坏了，改变了，定时更新防止这种情况。</p>
 <p>详细细节参考这篇博文。<a href="http://www.cnblogs.com/luckyxiaoxuan/p/3395527.html" target="_blank" rel="external">ARP协议详解</a></p>
-<h3 id="IP数据报的格式"><a href="#IP数据报的格式" class="headerlink" title="IP数据报的格式"></a>IP数据报的格式</h3><p><img src="http://opb7t58xj.bkt.clouddn.com/3B60552E-D2CB-41B7-B487-247D91DB9423.png" alt=""></p>
+<h3 id="IP数据报的格式—具体怎么传输"><a href="#IP数据报的格式—具体怎么传输" class="headerlink" title="IP数据报的格式—具体怎么传输"></a>IP数据报的格式—具体怎么传输</h3><p><img src="http://opb7t58xj.bkt.clouddn.com/3B60552E-D2CB-41B7-B487-247D91DB9423.png" alt=""></p>
 <p>（1） 版本（version）：包含IP地址的版本号，4个比特。</p>
 <p>（2） 首部长度（header length）：表示IP数据报头长度，4个比特。</p>
 <p>（3） 优先级与服务器类型（priority and type of service）:用于表示数据包的优先级和服务器类型，8个比特。</p>
@@ -448,7 +448,7 @@
 <p>（11） 源地址（SA，source ip address）：32比特位，表示数据包的源地址</p>
 <p>（12） 目的地址（DA，destination ip address），32个比特位，表示数据报道目的地址。</p>
 <p>（13） 可选项,内容其实很丰富，用来支持排错、测量以及安全等措施1-40个字节。</p>
-<h3 id="子网划分、路由表、超网——解决怎么转发"><a href="#子网划分、路由表、超网——解决怎么转发" class="headerlink" title="子网划分、路由表、超网——解决怎么转发"></a>子网划分、路由表、超网——<strong>解决怎么转发</strong></h3><h4 id="原始做法："><a href="#原始做法：" class="headerlink" title="原始做法："></a>原始做法：</h4><p>&#160; &#160; &#160; &#160;<em>数据报在网络层怎么转发</em>：分组转发算法。数据报在IP层转发分组就是从一个路由器转发到下一个路由器，直到到达目的主机。路由器中有路由表保存下面两个信息：（目的网络地址，下一跳地址），也有默认路由，中间可能经过多次的间接交付。</p>
+<h3 id="子网划分、路由表、超网——解决怎么更好转发"><a href="#子网划分、路由表、超网——解决怎么更好转发" class="headerlink" title="子网划分、路由表、超网——解决怎么更好转发"></a>子网划分、路由表、超网——<strong>解决怎么更好转发</strong></h3><h4 id="原始做法："><a href="#原始做法：" class="headerlink" title="原始做法："></a>原始做法：</h4><p>&#160; &#160; &#160; &#160;<em>数据报在网络层怎么转发</em>：分组转发算法。数据报在IP层转发分组就是从一个路由器转发到下一个路由器，直到到达目的主机。路由器中有路由表保存下面两个信息：（目的网络地址，下一跳地址），也有默认路由，中间可能经过多次的间接交付。</p>
 <p>&#160; &#160; &#160; &#160;<em>存在的问题</em>：因为，第一：IP地址空间的利用率有时很低；第二：路由表太大导致性能变坏；第三：两级IP地址不够灵活。</p>
 <p>&#160; &#160; &#160; &#160;<em>策略</em>：<font color="red">划分子网，采用三级IP地址。</font>IP地址表示为{&lt;网络号&gt;,&lt;子网号&gt;,&lt;主机号&gt;}，子网在外看仍然表现成一个网络，内部确感觉划分了若干个子网。增加灵活性，减少主机数。子网掩码：和IP按位与运算得到网络地址。在路由表中加入<font color="red">子网掩码信息</font>。</p>
 <p><img src="http://opb7t58xj.bkt.clouddn.com/ziwangyanma.png" alt=""></p>
@@ -461,10 +461,29 @@
 <h4 id="CIDR-无分类编址（构造超网）"><a href="#CIDR-无分类编址（构造超网）" class="headerlink" title="CIDR 无分类编址（构造超网）"></a>CIDR 无分类编址（构造超网）</h4><p>出现问题：IP地址都快分完了。</p>
 <p>解决办法：CIDR，特点：消除传统的A、B、C类地址以及划分子网的概念，回到二级地址，网络前缀+主机号，还可采用斜线法，斜线数字代表前缀中1的个数。</p>
 <h4 id="ipv4和ipv6"><a href="#ipv4和ipv6" class="headerlink" title="ipv4和ipv6"></a>ipv4和ipv6</h4><p>&#160; &#160; &#160; &#160;两者比较可参考这个博文：<a href="http://tech.hexun.com/2015-01-10/172249335.html" target="_blank" rel="external">ipv4和ipv6之间区别比较</a>，但是当前主流的仍然是v4，为什么，这个我看了下知乎上的答案：<a href="http://tech.hexun.com/2015-01-10/172249335.html" target="_blank" rel="external">IPv6的概念都出来好久了，为什么现在的主流还是IPv4？</a>,感觉主要是已经大范围的使用，如果要更新，很多软硬件需要换代，这样成本太高。。。</p>
-<h3 id="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><a href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠" class="headerlink" title="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"></a>ICMP网际控制报文协议——<strong>解决怎么尽最大限度的保证可靠</strong></h3><p>&#160; &#160; &#160; &#160;为了更有效的转发IP数据和提高交付机会，使用ICMP，IP层协议。应用于IP主机和路由器之间传递控制消息。它的应用有常用<font color="red">ping</font>。<br>详细细节参考博文：<a href="http://www.cnblogs.com/Akagi201/archive/2012/03/26/2418475.html" target="_blank" rel="external">ping原理和ICMP协议</a>，<a href="http://network.chinabyte.com/23/13155523.shtml" target="_blank" rel="external">ICMP协议基础讲解</a>。</p>
-<h3 id="因特网路由选择协议——解决路由选择"><a href="#因特网路由选择协议——解决路由选择" class="headerlink" title="因特网路由选择协议——解决路由选择"></a>因特网路由选择协议——<strong>解决路由选择</strong></h3><p>&#160; &#160; &#160; &#160;目前的因特网中，一个大的ISP（信息服务提供者）就是一个AS（自治系统），分两类内部网关协议IGP和外部网关协议EGP，自治系统之间的路由也叫做域间路由选择，内部叫做域内路由选择。</p>
-<h4 id="内部网关协议RIP和OSPF"><a href="#内部网关协议RIP和OSPF" class="headerlink" title="内部网关协议RIP和OSPF"></a>内部网关协议RIP和OSPF</h4><p>&#160; &#160; &#160; &#160;两者的内容和比较可以参考博文：<a href="http://www.2cto.com/net/201210/161420.html" target="_blank" rel="external">RIP和OSPF的区别比较</a>。</p>
-<h4 id="外部网关协议-BGP"><a href="#外部网关协议-BGP" class="headerlink" title="外部网关协议 BGP"></a>外部网关协议 BGP</h4><p>BGP是不同自治系统的路由器之间交换路由信息的协议。只能是力求寻找一条能够到达目的网络且比较好的路由，而并非要找到一条最佳。</p>
+<h3 id="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><a href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠" class="headerlink" title="ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"></a>ICMP网际控制报文协议——<strong>解决怎么尽最大限度的保证可靠</strong></h3><p>&#160; &#160; &#160; &#160;<nternet control="" message="" protocol="">为了更有效的转发IP数据和提高交付机会，使用ICMP，IP层协议。应用于IP主机和路由器之间传递控制消息。它的应用有常用<font color="red">ping</font>。<br>详细细节参考博文：<a href="http://www.cnblogs.com/Akagi201/archive/2012/03/26/2418475.html" target="_blank" rel="external">ping原理和ICMP协议</a>，<a href="http://network.chinabyte.com/23/13155523.shtml" target="_blank" rel="external">ICMP协议基础讲解</a>。</nternet></p>
+<h4 id="ping-的原理"><a href="#ping-的原理" class="headerlink" title="ping 的原理"></a>ping 的原理</h4><p>  &#160; &#160; &#160; &#160; ping 程序是用来探测主机到主机之间是否可通信，如果不能ping到某台主机，表明不能和这台主机建立连接。ping 使用的是ICMP协议，它发送icmp回送请求消息给目的主机。ICMP协议规定：目的主机必须返回ICMP回送应答消息给源主机。如果源主机在一定时间内收到应答，则认为主机可达。</p>
+<p> &#160; &#160; &#160; &#160;ICMP协议通过IP协议发送的，IP协议是一种无连接的，不可靠的数据包协议。在Unix/Linux，序列号从0开始计数，依次递增。而Windows　ping程序的ICMP序列号是没有规律。</p>
+<p>  &#160; &#160; &#160; &#160;ICMP协议在实际传输中数据包：20字节IP首部 + 8字节ICMP首部+ 1472字节&lt;数据大小&gt;38字节</p>
+<p> &#160; &#160; &#160; &#160;ICMP报文格式:IP首部(20字节)+8位类型+8位代码+16位校验和+(不同的类型和代码，格式也有所不同)</p>
+<h4 id="Ping工作过程"><a href="#Ping工作过程" class="headerlink" title="Ping工作过程"></a>Ping工作过程</h4><p>   &#160; &#160; &#160; &#160;假定主机A的IP地址是192.168.1.1，主机B的IP地址是192.168.1.2，都在同一子网内，则当你在主机A上运行“Ping 192.168.1.2”后，都发生了些什么呢?</p>
+<p>&#160; &#160; &#160; &#160;首先，Ping命令会构建一个固定格式的ICMP请求数据包，然后由ICMP协议将这个数据包连同地址“192.168.1.2”一起交给IP层协议（和ICMP一样，实际上是一组后台运行的进程），IP层协议将以地址“192.168.1.2”作为目的地址，本机IP地址作为源地址，加上一些其他的控制信息，构建一个IP数据包，并在一个映射表中查找出IP地址192.168.1.2所对应的物理地址（也叫MAC地址，熟悉网卡配置的朋友不会陌生，这是数据链路层协议构建数据链路层的传输单元——帧所必需的），一并交给数据链路层。后者构建一个数据帧，目的地址是IP层传过来的物理地址，源地址则是本机的物理地址，还要附加上一些控制信息，依据以太网的介质访问规则，将它们传送出去。</p>
+<p>   &#160; &#160; &#160; &#160;其中映射表由ARP实现。ARP(Address Resolution Protocol)是地址解析协议,是一种将IP地址转化成物理地址的协议。ARP具体说来就是将网络层（IP层，也就是相当于OSI的第三层）地址解析为数据连接层（MAC层，也就是相当于OSI的第二层）的MAC地址。</p>
+<p>   &#160; &#160; &#160; &#160;主机B收到这个数据帧后，先检查它的目的地址，并和本机的物理地址对比，如符合，则接收；否则丢弃。接收后检查该数据帧，将IP数据包从帧中提取出来，交给本机的IP层协议。同样，IP层检查后，将有用的信息提取后交给ICMP协议，后者处理后，马上构建一个ICMP应答包，发送给主机A，其过程和主机A发送ICMP请求包到主机B一模一样。<br>即先由IP地址，在网络层传输，然后再根据mac地址由数据链路层传送到目的主机</p>
+<h3 id="因特网路由选择协议——解决怎么进行路由选择"><a href="#因特网路由选择协议——解决怎么进行路由选择" class="headerlink" title="因特网路由选择协议——解决怎么进行路由选择"></a>因特网路由选择协议——<strong>解决怎么进行路由选择</strong></h3><p>&#160; &#160; &#160; &#160;目前的因特网中，一个大的ISP（信息服务提供者）就是一个AS（自治系统），分两类内部网关协议IGP和外部网关协议EGP，自治系统之间的路由也叫做域间路由选择，内部叫做域内路由选择。</p>
+<h4 id="内部网关协议RIP和OSPF—-同一个AS的路由"><a href="#内部网关协议RIP和OSPF—-同一个AS的路由" class="headerlink" title="内部网关协议RIP和OSPF—-同一个AS的路由"></a>内部网关协议RIP和OSPF—-同一个AS的路由</h4><p>&#160; &#160; &#160; &#160;两者的内容和比较可以参考博文：<a href="http://www.2cto.com/net/201210/161420.html" target="_blank" rel="external">RIP和OSPF的区别比较</a>。</p>
+<h4 id="结论："><a href="#结论：" class="headerlink" title="结论："></a>结论：</h4><p>&#160; &#160; &#160; &#160;RIP协议是一种传统的路由协议，适合比较小型的网络，但是当前Internet网络的迅速发展和急剧膨胀使RIP协议无法适应今天的网络。</p>
+<p>&#160; &#160; &#160; &#160;OSPF协议则是在Internet网络急剧膨胀的时候制定出来的，它克服了RIP协议的许多缺陷。RIP是距离矢量路由协议；OSPF是链路状态路由协议。</p>
+<p>&#160; &#160; &#160; &#160;RIP&amp;OSPF管理距离分别是：120和110</p>
+<ol>
+<li>RIP协议一条路由有15跳（网关或路由器）的限制，如果一个RIP网络路由跨越超过15跳（路由器），则它认为网络不可到达，而OSPF对跨越路由器的个数没有限制。</li>
+<li>OSPF协议支持可变长度子网掩码（VLSM），RIP则不支持，这使得RIP协议对当前IP地址的缺乏和可变长度子网掩码的灵活性缺少支持。</li>
+<li>RIP协议不是针对网络的实际情况而是定期地广播路由表，这对网络的带宽资源是个极大的浪费，特别对大型的广域网。OSPF协议的路由广播更新只发生在路由状态变化的时候，采用IP多路广播来发送链路状态更新信息，这样对带宽是个节约。</li>
+<li>RIP网络是一个平面网络，对网络没有分层。OSPF在网络中建立起层次概念，在自治域中可以划分网络域，使路由的广播限制在一定的范围内，避免链路中继资源的浪费。</li>
+<li>OSPF在路由广播时采用了授权机制，保证了网络安全。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;上述两者的差异显示了OSPF协议后来居上的特点，其先进性和复杂性使它适应了今天日趋庞大的Internet网，并成为主要的互联网路由协议。</p>
+<h4 id="外部网关协议-BGP—-不同AS的路由"><a href="#外部网关协议-BGP—-不同AS的路由" class="headerlink" title="外部网关协议 BGP—-不同AS的路由"></a>外部网关协议 BGP—-不同AS的路由</h4><p>BGP是不同自治系统的路由器之间交换路由信息的协议。只能是力求寻找一条能够到达目的网络且比较好的路由，而并非要找到一条最佳。</p>
 <p><a href="http://blog.csdn.net/cogbee/article/details/35228467" target="_blank" rel="external">动态路由选择三个协议之间比较</a></p>
 <h3 id="IP多播"><a href="#IP多播" class="headerlink" title="IP多播"></a>IP多播</h3><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>&#160; &#160; &#160; &#160;在因特网上进行多播，比如90个主机接收视频节目，并不能去一个个去发送，应该是发送一次，收听的人都收到。能运行多播协议的路由器叫多播路由器。</p>
 <h4 id="多播所用到的协议"><a href="#多播所用到的协议" class="headerlink" title="多播所用到的协议"></a>多播所用到的协议</h4><p>&#160; &#160; &#160; &#160;IP多播需要两种协议：网际组管协议IGMP和多播路由选择协议（尚未标准化）</p>
@@ -622,7 +641,7 @@
                alt="Jessie Zou" />
           <p class="site-author-name" itemprop="name">Jessie Zou</p>
            
-              <p class="site-description motion-element" itemprop="description">talk is cheap, show me the code.</p>
+              <p class="site-description motion-element" itemprop="description">学习需要系统深入，写博客需要总结思考。</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -714,7 +733,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络-网络层（二）"><span class="nav-number">2.</span> <span class="nav-text">计算机网络-网络层（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">2.1.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层提供的两种服务"><span class="nav-number">2.1.1.</span> <span class="nav-text">网络层提供的两种服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟互连网络"><span class="nav-number">2.1.2.</span> <span class="nav-text">虚拟互连网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址"><span class="nav-number">2.1.3.</span> <span class="nav-text">IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址和硬件地址"><span class="nav-number">2.1.4.</span> <span class="nav-text">IP地址和硬件地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP和RARP协议"><span class="nav-number">2.1.5.</span> <span class="nav-text">ARP和RARP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP协议"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">ARP协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP数据报的格式"><span class="nav-number">2.1.6.</span> <span class="nav-text">IP数据报的格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子网划分、路由表、超网——解决怎么转发"><span class="nav-number">2.1.7.</span> <span class="nav-text">子网划分、路由表、超网——解决怎么转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始做法："><span class="nav-number">2.1.7.1.</span> <span class="nav-text">原始做法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在划分子网情况下，路由器转发分组算法"><span class="nav-number">2.1.7.2.</span> <span class="nav-text">在划分子网情况下，路由器转发分组算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CIDR-无分类编址（构造超网）"><span class="nav-number">2.1.7.3.</span> <span class="nav-text">CIDR 无分类编址（构造超网）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ipv4和ipv6"><span class="nav-number">2.1.7.4.</span> <span class="nav-text">ipv4和ipv6</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><span class="nav-number">2.1.8.</span> <span class="nav-text">ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网路由选择协议——解决路由选择"><span class="nav-number">2.1.9.</span> <span class="nav-text">因特网路由选择协议——解决路由选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内部网关协议RIP和OSPF"><span class="nav-number">2.1.9.1.</span> <span class="nav-text">内部网关协议RIP和OSPF</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部网关协议-BGP"><span class="nav-number">2.1.9.2.</span> <span class="nav-text">外部网关协议 BGP</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP多播"><span class="nav-number">2.1.10.</span> <span class="nav-text">IP多播</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.10.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多播所用到的协议"><span class="nav-number">2.1.10.2.</span> <span class="nav-text">多播所用到的协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPN和NAT"><span class="nav-number">2.1.11.</span> <span class="nav-text">VPN和NAT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络-网络层（二）"><span class="nav-number">2.</span> <span class="nav-text">计算机网络-网络层（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#知识点"><span class="nav-number">2.1.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#网络层提供的两种服务"><span class="nav-number">2.1.1.</span> <span class="nav-text">网络层提供的两种服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟互连网络—-解决网络互联"><span class="nav-number">2.1.2.</span> <span class="nav-text">虚拟互连网络—-解决网络互联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址—-解决在互联网中准确定位一个主机"><span class="nav-number">2.1.3.</span> <span class="nav-text">IP地址—-解决在互联网中准确定位一个主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP地址和硬件地址"><span class="nav-number">2.1.4.</span> <span class="nav-text">IP地址和硬件地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP和RARP协议—屏蔽数据链路层的差异"><span class="nav-number">2.1.5.</span> <span class="nav-text">ARP和RARP协议—屏蔽数据链路层的差异</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP协议"><span class="nav-number">2.1.5.1.</span> <span class="nav-text">ARP协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP数据报的格式—具体怎么传输"><span class="nav-number">2.1.6.</span> <span class="nav-text">IP数据报的格式—具体怎么传输</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子网划分、路由表、超网——解决怎么更好转发"><span class="nav-number">2.1.7.</span> <span class="nav-text">子网划分、路由表、超网——解决怎么更好转发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原始做法："><span class="nav-number">2.1.7.1.</span> <span class="nav-text">原始做法：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在划分子网情况下，路由器转发分组算法"><span class="nav-number">2.1.7.2.</span> <span class="nav-text">在划分子网情况下，路由器转发分组算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CIDR-无分类编址（构造超网）"><span class="nav-number">2.1.7.3.</span> <span class="nav-text">CIDR 无分类编址（构造超网）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ipv4和ipv6"><span class="nav-number">2.1.7.4.</span> <span class="nav-text">ipv4和ipv6</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠"><span class="nav-number">2.1.8.</span> <span class="nav-text">ICMP网际控制报文协议——解决怎么尽最大限度的保证可靠</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ping-的原理"><span class="nav-number">2.1.8.1.</span> <span class="nav-text">ping 的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ping工作过程"><span class="nav-number">2.1.8.2.</span> <span class="nav-text">Ping工作过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#因特网路由选择协议——解决怎么进行路由选择"><span class="nav-number">2.1.9.</span> <span class="nav-text">因特网路由选择协议——解决怎么进行路由选择</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内部网关协议RIP和OSPF—-同一个AS的路由"><span class="nav-number">2.1.9.1.</span> <span class="nav-text">内部网关协议RIP和OSPF—-同一个AS的路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论："><span class="nav-number">2.1.9.2.</span> <span class="nav-text">结论：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外部网关协议-BGP—-不同AS的路由"><span class="nav-number">2.1.9.3.</span> <span class="nav-text">外部网关协议 BGP—-不同AS的路由</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP多播"><span class="nav-number">2.1.10.</span> <span class="nav-text">IP多播</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.10.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多播所用到的协议"><span class="nav-number">2.1.10.2.</span> <span class="nav-text">多播所用到的协议</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VPN和NAT"><span class="nav-number">2.1.11.</span> <span class="nav-text">VPN和NAT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
