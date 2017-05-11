@@ -122,7 +122,15 @@
 <meta property="og:image" content="http://img.blog.csdn.net/20140210085800921">
 <meta property="og:image" content="http://img.blog.csdn.net/20140210085841468">
 <meta property="og:image" content="http://img.blog.csdn.net/20140210085916093">
-<meta property="og:updated_time" content="2017-05-11T08:34:11.000Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20140414215015765">
+<meta property="og:image" content="http://img.blog.csdn.net/20140414214957765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ3l1bnl1bjAw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
+<meta property="og:image" content="http://img.blog.csdn.net/20140226092057593">
+<meta property="og:image" content="http://img.blog.csdn.net/20140226092128906">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/12/1355319681_6107.png">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/4.JPG">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/0.JPG">
+<meta property="og:image" content="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/5.JPG">
+<meta property="og:updated_time" content="2017-05-11T12:03:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构（一）——树">
 <meta name="twitter:description" content="数据结构（一）——树前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下。">
@@ -416,7 +424,7 @@
         <h1 id="数据结构（一）——树"><a href="#数据结构（一）——树" class="headerlink" title="数据结构（一）——树"></a>数据结构（一）——树</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下。</p>
  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;在算法题的做题当中就已经学习了简单的数据结构，hashmap中又用到散列，为了理解 TreeMap 的底层实现，必须先介绍排序二叉树和平衡二叉树，然后继续介绍红黑树。平衡二叉树和红黑树又是一种特殊的二叉排序树。二叉排序树是一种特殊结构的二叉树，可以非常方便地对树中所有节点进行排序和检索。mysql索引也是b+，b-树的原理。这里总结一下：</p>
-<h2 id="二叉排序树／二叉查找树／二叉搜索树／B-Tree"><a href="#二叉排序树／二叉查找树／二叉搜索树／B-Tree" class="headerlink" title="二叉排序树／二叉查找树／二叉搜索树／B-Tree"></a>二叉排序树／二叉查找树／二叉搜索树／B-Tree</h2><p>&#160; &#160; &#160; &#160;标题已经说明它的名称之多，我们先说下排序二叉树特性：</p>
+<h2 id="二叉排序树／二叉查找树／二叉搜索树／BST"><a href="#二叉排序树／二叉查找树／二叉搜索树／BST" class="headerlink" title="二叉排序树／二叉查找树／二叉搜索树／BST"></a>二叉排序树／二叉查找树／二叉搜索树／BST</h2><p>&#160; &#160; &#160; &#160;标题已经说明它的名称之多，我们先说下排序二叉树特性：</p>
 <ol>
 <li>若它的左子树不空，则左子树上所有节点的值均小于它的根节点的值</li>
 </ol>
@@ -443,6 +451,76 @@
 <p>&#160; &#160; &#160; &#160;如果左右子树都存在：</p>
 <p>被删除节点左右子节点不为空的情形，采用到是第一种方式维护：<br><img src="http://img.blog.csdn.net/20140210085841468" alt=""></p>
 <p>被删除节点左右子节点不为空的情形，采用到是第二种方式维护：<br><img src="http://img.blog.csdn.net/20140210085916093" alt=""></p>
+<p>&#160; &#160; &#160; &#160;TreeMap 删除节点采用上图第二种方式的情形进行维护——也就是用被删除节点的右子树中最小节点与被删节点交换的方式进行维护。</p>
+<p>&#160; &#160; &#160; &#160;在使用第二种方式进行维护时，如果使用前驱节点代替被删除的节点，则前驱节点可能还存在左子树（因为前驱节点是根节点左子树中最右边的节点），而如果是后继节点的话，这个后继节点可能还存在右子树。他们的处理方法相同，直接将子树移上去即可。</p>
+<p>&#160; &#160; &#160; &#160;<font color="red">一定要理解，无论是前驱还是后继节点，不可能同时具有左子树或右子树，这就为删除替代节点后的操作带来了方便。</font>如下图：</p>
+<p><img src="http://img.blog.csdn.net/20140414215015765" alt=""></p>
+<p>tip:直接前驱后继是按中序序列化而来。</p>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p>&#160; &#160; &#160; &#160;从二叉排序树中进行查找时，根据树的性质，节点的左子树必定小于根节点，右子树必定大于根结点。如果查找的节点值小于根节点，则进入左子树，大于进入右子树，重复这个比较步骤直到找到这个节点或者这个节点不存在。 </p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>&#160; &#160; &#160; &#160;二叉树以链式方式存储，保持了链接存储结构在执行插入或删除操作时不用移动元素的优点，只要找到合适的插入和删除位置后，仅需要修改链接指针节课。插入删除的时间性能比较好。而丢与二拆排序树的查找，走的就是从根节点到要查找的节点的路径，其比较次数等于给定值的节点在二叉排序树的层数。极端情况，最少为1次，即根节点就是要找的节点，最多也不会超过树的深度。也就是说，二叉排序树的查找性能取决于二叉排序树的形状。可问题就在于，二叉排序树的形状是不确定的。可能出现以下情况，而二叉平衡树就不会：</p>
+<p><img src="http://img.blog.csdn.net/20140414214957765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvd2FuZ3l1bnl1bjAw/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<h2 id="二叉平衡树／AVL"><a href="#二叉平衡树／AVL" class="headerlink" title="二叉平衡树／AVL"></a>二叉平衡树／AVL</h2><p>&#160; &#160; &#160; &#160;ALV树中左右子树的高度差值最大不超过1。树在查找、插入和删除时平均和最坏的情况下都是O(logn)。在一颗二叉搜索树查找一个值的平均时间复杂度为log(n)，但是若查找树的所有的节点向一边倾斜，这时候的查找就退化为线性查找，复杂度为n。为了获得更高的查找效率，就有了AVL树的概念，对于一颗非平衡的AVL树，可以通过旋转变换为AVL树。</p>
+<p>&#160; &#160; &#160; &#160;由于平衡二叉树也是排序二叉树，所以使用二叉树的插入、删除和查找操作即可。只是在操作完成后，为了下次能够保持一个好的检索效率，也为了防止这个链表退化为普通链表，则需要对树进行旋转。旋转可以再次达到平衡。主要包括：左旋转、右旋转、左右旋转、右左旋转。</p>
+<h3 id="LL"><a href="#LL" class="headerlink" title="LL"></a>LL</h3><p>&#160; &#160; &#160; &#160;插入一个新节点到根节点的左子树的左子树，导致根节点的平衡因子由1变为2.需要 右 旋转来解决。</p>
+<p><img src="http://img.blog.csdn.net/20140226092057593" alt=""></p>
+<h3 id="LR"><a href="#LR" class="headerlink" title="LR"></a>LR</h3><p>插入一个新节点到根节点的左子树的左子树，导致根节点的平衡因子由1插入一个新节点到根节点的左子树的右子树，导致根节点的平衡因子由1变为2.需要先左旋后右旋转来解决。</p>
+<p><img src="http://img.blog.csdn.net/20140226092128906" alt=""></p>
+<h3 id="RR"><a href="#RR" class="headerlink" title="RR"></a>RR</h3><p>&#160; &#160; &#160; &#160;插入一个新节点到根节点的右子树的 右 子树，导致根节点的平衡因子由1变为2.需要 左 旋转来解决。</p>
+<h3 id="RL"><a href="#RL" class="headerlink" title="RL"></a>RL</h3><p>&#160; &#160; &#160; &#160;插入一个新节点到根节点的 右 子树的左子树，导致根节点的平衡因子由1变为2.需要先 右 旋后 左 旋转来解决。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>&#160; &#160; &#160; &#160;在最坏情况下仍有较好的性能。每个操作中处理每个结点的时间都不会超过一个很小的常数，且这两个操作都只会访问一条路径上的结点，所以任何查找或者插入的成本都肯定不会超过对数级别。<br>完美平衡的2-3树要平展的多。例如，含有10亿个结点的一颗2-3树的高度仅在19到30之间。我们最多只需要访问30个结点就能在10亿个键中进行任意查找和插入操作。</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>&#160; &#160; &#160; &#160;我们需要维护两种不同类型的结点，查找和插入操作的实现需要大量的代码，而且它们所产生的额外开销可能会使算法比标准的二叉查找树更慢。平衡一棵树的初衷是为了消除最坏情况，但我们希望这种保障所需的代码能够越少越好。</p>
+<h2 id="红黑树／RBT"><a href="#红黑树／RBT" class="headerlink" title="红黑树／RBT"></a>红黑树／RBT</h2><p>&#160; &#160; &#160; &#160;红黑树是一个更高效的检索二叉树，因此常常用来实现关联数组。典型地，JDK 提供的集合类 TreeMap 本身就是一个红黑树的实现。排序二叉树的深度直接影响了检索的性能，当插入节点本身就是由小到大排列时，排序二叉树将变成一个链表，这种排序二叉树的检索性能最低：N 个节点的二叉树深度就是 N-1。但是红黑树通过上面这种限制来保证它大致是平衡的——因为红黑树的高度不会无限增高，这样保证红黑树在最坏情况下都是高效的，不会出现普通排序二叉树的情况。<br>红黑树在原有的排序二叉树增加了如下几个要求：</p>
+<p>性质 1：每个节点要么是红色，要么是黑色。</p>
+<p>性质 2：根节点永远是黑色的。</p>
+<p>性质 3：所有的叶节点都是空节点（即 nil），并且是黑色的。</p>
+<p>性质 4：每个红色节点的两个子节点都是黑色。（从每个叶子到根的路径上不会有两个连续的红色节点）。</p>
+<p>性质 5：从任一节点到其子树中每个叶子节点的路径都包含相同数量的黑色节点。</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/12/1355319681_6107.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;之前我们了解了二叉查找树的插入，接下来，咱们便来具体了解下红黑树的插入操作。红黑树的插入相当于在二叉查找树插入的基础上，为了重新恢复平衡，继续做了插入修复操作。<br>下面来看一下几个约定：</p>
+<p>&#160; &#160; &#160; &#160;（1）性质 3 中指定红黑树的每个叶子节点都是空节点，而且叶子节点都是黑色 Java 实现的红黑树将使用 null 来代表，因此遍历红黑树时将看不到黑色的叶子节点，反而看到每个叶子节点都是红色的。非叶子节点，也就是非null节点称为红黑树中的儿子节点。</p>
+<p>&#160; &#160; &#160; &#160;（2） 红黑树从根节点到每个叶子节点的路径都包含相同数量的黑色节点，因此从根节点到叶子节点的路径中包含的黑色节点数被称为树的“黑色高度”。</p>
+<p>&#160; &#160; &#160; &#160;对于给定的黑色高度为 N 的红黑树，从根到叶子节点的最短路径长度为 N-1，最长路径长度为 2 * (N-1)。</p>
+<p>&#160; &#160; &#160; &#160;假如有一棵黑色高度为 3 的红黑树：从根节点到叶节点的最短路径长度是 2，该路径上全是黑色节点（黑节点 - 黑节点 - 黑节点）。最长路径也只可能为 4，在每个黑色节点之间插入一个红色节点（黑节点 - 红节点 - 黑节点 - 红节点 - 黑节点），性质 4 保证绝不可能插入更多的红色节点。由此可见，红黑树中最长路径就是一条红黑交替的路径。</p>
+<p>&#160; &#160; &#160; &#160;红黑树能够以O(log2(N))的时间复杂度进行搜索、插入、删除操作。此外,任何不平衡都会在3次旋转之内解决。这一点是AVL所不具备的。红黑树并不追求“完全平衡”——它只要求部分地达到平衡要求，降低了对旋转的要求，从而提高了性能。  </p>
+<h2 id="B-Tree／平衡多路搜索树"><a href="#B-Tree／平衡多路搜索树" class="headerlink" title="B-Tree／平衡多路搜索树"></a>B-Tree／平衡多路搜索树</h2><p>&#160; &#160; &#160; &#160;性质如下，图片显示M=3时的例子：</p>
+<ol>
+<li>定义任意非叶子结点最多只有M个儿子；且M&gt;2；</li>
+<li>根结点的儿子数为[2, M]；</li>
+<li>除根结点以外的非叶子结点的儿子数为[M/2, M]；</li>
+<li>每个结点存放至少M/2-1（取上整）和至多M-1个关键字；（至少2个关键字）</li>
+<li>非叶子结点的关键字个数=指向儿子的指针个数-1；</li>
+<li>非叶子结点的关键字：K[1], K[2], …, K[M-1]；且K[i] &lt; K[i+1]；</li>
+<li>非叶子结点的指针：P[1], P[2], …, P[M]；其中P[1]指向关键字小于K[1]的子树，P[M]指向关键字大于K[M-1]的子树，其它P[i]指向关键字属于(K[i-1], K[i])的子树；</li>
+<li>所有叶子结点位于同一层；</li>
+</ol>
+<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/4.JPG" alt=""></p>
+<p>&#160; &#160; &#160; &#160;B-树的搜索，从根结点开始，对结点内的关键字（有序）序列进行二分查找，如果命中则结束，否则进入查询关键字所属范围的儿子结点；重复，直到所对应的儿子指针为空，或已经是叶子结点；</p>
+<h3 id="B-树的特性："><a href="#B-树的特性：" class="headerlink" title="B-树的特性："></a>B-树的特性：</h3><ol>
+<li>关键字集合分布在整颗树中；</li>
+<li>任何一个关键字出现且只出现在一个结点中；</li>
+<li>搜索有可能在非叶子结点结束；</li>
+<li>其搜索性能等价于在关键字全集内做一次二分查找；</li>
+<li>自动层次控制；</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;由于限制了除根结点以外的非叶子结点，至少含有M/2个儿子，确保了结点的至少利用率，其最底搜索性能为：</p>
+<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/0.JPG" alt=""></p>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>&#160; &#160; &#160; &#160;B+树是B-树的变体，也是一种多路搜索树：</p>
+<ol>
+<li>其定义基本与B-树同，除了：</li>
+<li>非叶子结点的子树指针与关键字个数相同；</li>
+<li>非叶子结点的子树指针P[i]，指向关键字值属于[K[i], K[i+1])的子树（B-树是开区间）；</li>
+<li>为所有叶子结点增加一个链指针；</li>
+<li>所有关键字都在叶子结点出现；</li>
+</ol>
+<p><img src="http://p.blog.csdn.net/images/p_blog_csdn_net/manesking/5.JPG" alt=""></p>
+<p>&#160; &#160; &#160; &#160;B+的搜索与B-树也基本相同，区别是B+树只有达到叶子结点才命中（B-树可以在非叶子结点命中），其性能也等价于在关键字全集做一次二分查找；</p>
+<h3 id="B-的特性："><a href="#B-的特性：" class="headerlink" title="B+的特性："></a>B+的特性：</h3><ol>
+<li>所有关键字都出现在叶子结点的链表中（稠密索引），且链表中的关键字恰好是有序的；</li>
+<li>不可能在非叶子结点命中；</li>
+<li>非叶子结点相当于是叶子结点的索引（稀疏索引），叶子结点相当于是存储（关键字）数据的数据层；</li>
+<li>更适合文件索引系统；</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;b+tree每层节点直接还有链表连接，增加局部和范围访问效率,尾部还有聚集和非聚集区别，这数据结构很适合存储引擎</p>
 
       
     </div>
@@ -671,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构（一）——树"><span class="nav-number">1.</span> <span class="nav-text">数据结构（一）——树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树／二叉查找树／二叉搜索树／B-Tree"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树／二叉查找树／二叉搜索树／B-Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">1.2.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构（一）——树"><span class="nav-number">1.</span> <span class="nav-text">数据结构（一）——树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树／二叉查找树／二叉搜索树／BST"><span class="nav-number">1.2.</span> <span class="nav-text">二叉排序树／二叉查找树／二叉搜索树／BST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">1.2.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查找"><span class="nav-number">1.2.3.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉平衡树／AVL"><span class="nav-number">1.3.</span> <span class="nav-text">二叉平衡树／AVL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#LL"><span class="nav-number">1.3.1.</span> <span class="nav-text">LL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LR"><span class="nav-number">1.3.2.</span> <span class="nav-text">LR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RR"><span class="nav-number">1.3.3.</span> <span class="nav-text">RR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RL"><span class="nav-number">1.3.4.</span> <span class="nav-text">RL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-number">1.3.5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#红黑树／RBT"><span class="nav-number">1.4.</span> <span class="nav-text">红黑树／RBT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-Tree／平衡多路搜索树"><span class="nav-number">1.5.</span> <span class="nav-text">B-Tree／平衡多路搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-树的特性："><span class="nav-number">1.5.1.</span> <span class="nav-text">B-树的特性：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-number">1.6.</span> <span class="nav-text">B+树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#B-的特性："><span class="nav-number">1.6.1.</span> <span class="nav-text">B+的特性：</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
