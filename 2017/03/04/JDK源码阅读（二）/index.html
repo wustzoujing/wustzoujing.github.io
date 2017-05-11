@@ -120,7 +120,7 @@
 <meta property="og:description" content="JDK源码阅读（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/%E9%9B%86%E5%90%88%E7%B1%BB.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/400827/201409/041358026259354.jpg">
-<meta property="og:updated_time" content="2017-05-11T07:47:52.000Z">
+<meta property="og:updated_time" content="2017-05-11T12:44:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK源码阅读（二）">
 <meta name="twitter:description" content="JDK源码阅读（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。">
@@ -474,11 +474,62 @@ static int indexFor(int h, int length) { //根据hash值和数组长度算出索
 }
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&amp;#160; &amp;#160; &amp;#160; &amp;#160;新建了一个HashMap的底层数组，上面代码中第10行为调用transfer方法，将HashMap的全部元素添加到新的HashMap中,并重新计算元素在新的数组中的索引位置</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">&amp;#160; &amp;#160; &amp;#160; &amp;#160;当HashMap中的元素越来越多的时候，hash冲突的几率也就越来越高，因为数组的长度是固定的。所以为了提高查询的效率，就要对HashMap的数组进行扩容，数组扩容这个操作也会出现在ArrayList中，这是一个常用的操作，而在HashMap数组扩容之后，最消耗性能的点就出现了：原数组中的数据必须重新计算其在新数组中的位置，并放进去，这就是resize。</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">&amp;#160; &amp;#160; &amp;#160; &amp;#160;那么HashMap什么时候进行扩容呢？当HashMap中的元素个数超过数组大小 x loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，这是一个折中的取值。也就是说，默认情况下，数组大小为16，那么当HashMap中元素个数超过16 x 0.75=12的时候，就把数组的大小扩展为 2 x 16=32，即扩大一倍，然后重新计算每个元素在数组中的位置，扩容是需要进行数组复制的，复制数组是非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。</div><div class="line"></div><div class="line">#### get</div></pre></td></tr></table></figure>
 <p>public V get(Object key) {<br>    if (key == null)<br>        return getForNullKey();<br>    int hash = hash(key.hashCode());<br>    for (Entry<k,v> e = table[indexFor(hash, table.length)];<br>        e != null;<br>        e = e.next) {<br>        Object k;<br>        if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k)))<br>            return e.value;<br>    }<br>    return null;<br>}</k,v></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&amp;#160; &amp;#160; &amp;#160; &amp;#160;有了上面存储时的hash算法作为基础，理解起来这段代码就很容易了。从上面的源代码中可以看出：从HashMap中get元素时，首先计算key的hashCode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">本文转自博文：[Java集合---HashMap源码剖析](http://www.cnblogs.com/ITtangtang/p/3948406.html)，感谢博主的总结。我们还可以从面试官的角度去想问题：参考[HashMap的工作原理](http://www.importnew.com/7099.html)。</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">## 其他的map实现</div></pre></td></tr></table></figure>
+<p>import java.util.HashMap;<br>import java.util.TreeMap;</p>
+<p>/**</p>
+<ul>
+<li><p>Created by zoujing on 2017/3/04.<br>*/<br>public class mapDemo {</p>
+<p> public static void main(String[] args) {</p>
+<pre><code>hashmap();
+
+treemap();
+
+linkedmap();
+</code></pre><p> }</p>
+<p> //按key排序；<br> public static void treemap(){</p>
+<pre><code>TreeMap&lt;String , Double&gt; map =  new TreeMap&lt;String , Double&gt;();
+map.put(&quot;ccc&quot; , 89.0);
+map.put(&quot;aaa&quot; , 80.0);
+map.put(&quot;zzz&quot; , 80.0);
+map.put(&quot;bbb&quot; , 89.0);
+System.out.println(map);
+</code></pre><p> }</p>
+<p> public static void hashmap(){</p>
+<pre><code>HashMap&lt;String,Double&gt; map=new HashMap&lt;&gt;();
+map.put(&quot;ccc&quot; , 89.0);
+map.put(&quot;aaa&quot; , 80.0);
+map.put(&quot;zzz&quot; , 80.0);
+map.put(&quot;bbb&quot; , 89.0);
+System.out.println(map);
+</code></pre><p> }</p>
+<pre><code>public static void hashmap(){
+ HashMap&lt;String,Double&gt; map=new HashMap&lt;&gt;();
+ map.put(&quot;ccc&quot; , 89.0);
+ map.put(&quot;aaa&quot; , 80.0);
+ map.put(&quot;zzz&quot; , 80.0);
+ map.put(&quot;bbb&quot; , 89.0);
+ System.out.println(map);
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}</p>
 <p>```</p>
-<p>&#160; &#160; &#160; &#160;有了上面存储时的hash算法作为基础，理解起来这段代码就很容易了。从上面的源代码中可以看出：从HashMap中get元素时，首先计算key的hashCode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。</p>
-<p>本文转自博文：<a href="http://www.cnblogs.com/ITtangtang/p/3948406.html" target="_blank" rel="external">Java集合—HashMap源码剖析</a>，感谢博主的总结。我们还可以从面试官的角度去想问题：参考<a href="http://www.importnew.com/7099.html" target="_blank" rel="external">HashMap的工作原理</a>。</p>
-<h2 id="其他的map实现"><a href="#其他的map实现" class="headerlink" title="其他的map实现"></a>其他的map实现</h2><p>　　</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<p>&#160; &#160; &#160; &#160;对于LinkedHashMap，输出顺序和插入顺序一样；对于hashmap，顺序是随机的；对于treemap。当程序执行 map.put(“ccc” , 89.0); 时，系统将直接把 “ccc”-89.0 这个 Entry 放入 Map 中，这个 Entry 就是该“红黑树”的根节点。接着程序执行 map.put(“aaa” , 80.0); 时，程序会将 “aaa”-80.0 作为新节点添加到已有的红黑树中。以后每向 TreeMap 中放入一个 key-value 对，系统都需要将该 Entry 当成一个新节点，添加成已有红黑树中，通过这种方式就可保证 TreeMap 中所有 key 总是按某种规则排列。例如我们输出上面程序，将看到如下结果（所有 key 由小到大地排列）：</p>
+<pre><code>{aaa=80.0, ccc=89.0, bbb=89.0, zzz=80.0}
+{aaa=80.0, bbb=89.0, ccc=89.0, zzz=80.0}
+{ccc=89.0, aaa=80.0, zzz=80.0, bbb=89.0}
+</code></pre><h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>&#160; &#160; &#160; &#160;TreeMap 的实现使用了红黑树数据结构，也就是一棵自平衡的排序二叉树，这样就可以保证快速检索指定节点。对于 TreeMap 而言，它采用一种被称为“红黑树”的排序二叉树来保存 Map 中每个 Entry —— 每个 Entry 都被当成“红黑树”的一个节点对待。</p>
+<p>&#160; &#160; &#160; &#160;TreeMap、TreeSet 比 HashMap、HashSet 的优势在于：TreeMap 中的所有 Entry 总是按 key 根据指定排序规则保持有序状态，TreeSet 中所有元素总是根据指定排序规则保持有序状态。但是插入性能变低。</p>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>&#160; &#160; &#160; &#160;输出顺序按输入顺序一样，是hashmap的一个子类。</p>
+<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>&#160; &#160; &#160; &#160;现在使用的较少了，是hashtable的线程安全版本，且不允许插入null值，效率较低，我们后面重点介绍concurrent包里面的效率较高的map。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>共同点：</p>
+<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。  </p>
+<p>不同点：</p>
+<ol>
+<li>HashMap里面存入的键值对在取出的时候是随机的,也是我们最常用的一个Map.它根据键的HashCode值存储数据,根据键可以直接获取它的值，具有很快的访问速度。在Map 中插入、删除和定位元素，HashMap 是最好的选择。  </li>
+<li>TreeMap取出来的是排序后的键值对。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。  </li>
+<li>LinkedHashMap 是HashMap的一个子类，如果需要输出的顺序和输入的相同,那么用LinkedHashMap可以实现.  (应用场景：购物车等需要顺序的)<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</li>
+</ol>
 
       
     </div>
@@ -711,7 +762,7 @@ static int indexFor(int h, int length) { //根据hash值和数组长度算出索
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK源码阅读（二）"><span class="nav-number">1.</span> <span class="nav-text">JDK源码阅读（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体框图"><span class="nav-number">1.2.</span> <span class="nav-text">总体框图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">1.3.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的数据结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">HashMap的数据结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他的map实现"><span class="nav-number">1.4.</span> <span class="nav-text">其他的map实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK源码阅读（二）"><span class="nav-number">1.</span> <span class="nav-text">JDK源码阅读（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总体框图"><span class="nav-number">1.2.</span> <span class="nav-text">总体框图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap"><span class="nav-number">1.3.</span> <span class="nav-text">HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap的数据结构"><span class="nav-number">1.3.2.</span> <span class="nav-text">HashMap的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeMap"><span class="nav-number">1.3.3.</span> <span class="nav-text">TreeMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LinkedHashMap"><span class="nav-number">1.3.4.</span> <span class="nav-text">LinkedHashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HashTable"><span class="nav-number">1.3.5.</span> <span class="nav-text">HashTable</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
