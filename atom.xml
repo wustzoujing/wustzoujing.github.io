@@ -218,9 +218,9 @@
     <link href="http://yoursite.com/2017/05/09/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%89%E9%81%93%E9%A2%98/"/>
     <id>http://yoursite.com/2017/05/09/剑指offer：斐波那契数列相关的三道题/</id>
     <published>2017-05-09T12:21:41.000Z</published>
-    <updated>2017-05-11T13:18:53.000Z</updated>
+    <updated>2017-05-12T02:51:54.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要主要。</p>
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。</p>
   <a id="more"></a>
 <h1 id="斐波那契数列相关的三道题"><a href="#斐波那契数列相关的三道题" class="headerlink" title="斐波那契数列相关的三道题"></a>斐波那契数列相关的三道题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
 <li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。n&lt;=39。</li>
@@ -238,7 +238,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要主要。&lt;/p&gt;
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。&lt;/p&gt;
     
     </summary>
     
@@ -524,6 +524,31 @@
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高效并发（二）</title>
+    <link href="http://yoursite.com/2017/03/07/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/07/高效并发（二）/</id>
+    <published>2017-03-07T02:55:01.000Z</published>
+    <updated>2017-05-12T05:18:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="线程的基本操作（二）"><a href="#线程的基本操作（二）" class="headerlink" title="线程的基本操作（二）"></a>线程的基本操作（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
+ <a id="more"></a>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;线程的基本操作（二）&quot;&gt;&lt;a href=&quot;#线程的基本操作（二）&quot; class=&quot;headerlink&quot; title=&quot;线程的基本操作（二）&quot;&gt;&lt;/a&gt;线程的基本操作（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="线程的基本操作" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     
   </entry>
   
@@ -1186,91 +1211,6 @@ System.out.println(map);
     
     
       <category term="自动内存管理机制" scheme="http://yoursite.com/tags/%E8%87%AA%E5%8A%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E6%9C%BA%E5%88%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java基础之面向对象（二）</title>
-    <link href="http://yoursite.com/2017/02/10/Java%E5%9F%BA%E7%A1%80%E4%B9%8B%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/02/10/Java基础之面向对象（二）/</id>
-    <published>2017-02-10T07:25:36.000Z</published>
-    <updated>2017-05-08T03:07:19.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Java面向对象特性（二）"><a href="#Java面向对象特性（二）" class="headerlink" title="Java面向对象特性（二）"></a>Java面向对象特性（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。</p>
-  <a id="more"></a>
-<h2 id="自动装箱、拆箱"><a href="#自动装箱、拆箱" class="headerlink" title="自动装箱、拆箱"></a>自动装箱、拆箱</h2><p>&#160; &#160; &#160; &#160;JDK 1.5之前，Java有8个基本数据类型不能当前Object类型，之后就才用自动装箱和拆箱，可以把一个基本数据类型直接赋值给包装类变量，也可以把包装类对象直接复制给一个对应的基本数据类型。</p>
-<h2 id="类成员"><a href="#类成员" class="headerlink" title="类成员"></a>类成员</h2><p>&#160; &#160; &#160; &#160;用static关键字修饰的成员就是类成员，static语义代表的是修饰的对象属于整个类而不属于任何实例。</p>
-<p>&#160; &#160; &#160; &#160;Java中只能包括五种：成员变量、方法、构造器、初始化块、内部类（包括接口、枚举）、以static修饰的成员就是类成员，他能修饰除构造器之外的其他四种。</p>
-<h2 id="单例"><a href="#单例" class="headerlink" title="单例"></a>单例</h2><p>&#160; &#160; &#160; &#160;在一些特殊场景下，要求不允许自由创建该类的对象，而只允许为该类创建一个对象，为了避免该类被自由创建，类的构造器使用private修饰，从而把该类的所有构造器隐藏起来。但是还要有一个public方法作为该类的访问点，用于创建该类的对象，且该方法必须使用static修饰，除此之外，该类还不许知道已经缓存过已经创建的对象，否则该类无法知道是否创建过该对象。下面就手写代码实现一个单例类：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;  </div><div class="line">    private static Singleton instance;  </div><div class="line">    private Singleton ()&#123;&#125;  </div><div class="line">  </div><div class="line">    public static Singleton getInstance() &#123;  </div><div class="line">    if (instance == null) &#123;  </div><div class="line">        instance = new Singleton();  </div><div class="line">    &#125;  </div><div class="line">    return instance;  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;但是这也只是懒汉，单线程情况，还有几种写法参考博客：<a href="https://www.oschina.net/code/snippet_107039_6062" target="_blank" rel="external">单例的5种写法</a>。</p>
-<h2 id="final修饰符"><a href="#final修饰符" class="headerlink" title="final修饰符"></a>final修饰符</h2><p>&#160; &#160; &#160; &#160;final关键字可以修饰类、变量和方法，用于它修饰的类，方法和变量不可变，类似C#中的sealed。修饰变量包括成员变量和局部变量和形参。准确说是一旦赋类初始值就不能被改变。final还可以完成C中宏定义的类似功能。</p>
-<h3 id="final成员变量"><a href="#final成员变量" class="headerlink" title="final成员变量"></a>final成员变量</h3><p>&#160; &#160; &#160; &#160;final修饰的成员变量必须由程序员显式的指定初始值。</p>
-<h3 id="final局部变量"><a href="#final局部变量" class="headerlink" title="final局部变量"></a>final局部变量</h3><p>&#160; &#160; &#160; &#160; 系统不会对局部变量进行初始化，局部变量必须由程序员显式初始化。但是用final修饰局部变量时，既可以在定义时，指定默认初始值，也可以不指定。</p>
-<h3 id="final修饰基本变量和引用变量区别"><a href="#final修饰基本变量和引用变量区别" class="headerlink" title="final修饰基本变量和引用变量区别"></a>final修饰基本变量和引用变量区别</h3><p>&#160; &#160; &#160; &#160;当使用final修饰基本变量时，不能对基本变量类型进行重新赋值，但对引用来说，仅仅是一个引用地址，final只能保证引用类型变量指定的地址不会改变，一直引用一个对象，但这个对象完全可以发生改变。</p>
-<h3 id="final方法"><a href="#final方法" class="headerlink" title="final方法"></a>final方法</h3><p>&#160; &#160; &#160; &#160;不想子类重写的可以用final修饰，比如Object中的getClass（）方法。</p>
-<h3 id="final类"><a href="#final类" class="headerlink" title="final类"></a>final类</h3><p>&#160; &#160; &#160; &#160;final类不能使用子类，比如Math类就是。保证不能被继承。</p>
-<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p>&#160; &#160; &#160; &#160;当编写一个类时候，常常会给类定义一些方法，比如形状类Shape，应该提供一个计算周长的方法，但是Shape类型不同计算周长方式不同，这时我们可以使用抽象方法，只有方法签名，没有方法实现。</p>
-<h3 id="抽象类和抽象方法"><a href="#抽象类和抽象方法" class="headerlink" title="抽象类和抽象方法"></a>抽象类和抽象方法</h3><ol>
-<li>都必须使用abstract修饰符来定义，有抽象方法的类只能被定义为抽象类，抽象方法不能有方法体。</li>
-<li>抽象类不能被实例化，<font color="red">无法使用new来调用构造器实例对象，即使不包含抽象方法。</font></li>
-<li>抽象类可以包含成员变量、方法、构造器、初始化块、内部类5个成分。主要作用是被其子类调用。</li>
-<li>含有抽象方法的类：包括直接定义来一个抽象方法，继承一个抽象父类，但没有完全实现父类包含的抽象方法，或者实现了一个接口但没有完全实现接口包含的抽象方法这三种情况）只能被定义为抽象类。</li>
-<li>不能用来修饰成员变量、局部变量、构造器。</li>
-<li>static和abstract不同时修饰一个方法，即没有所谓的类静态抽象方法。但也不是绝对互斥，它们可以修饰内部类。</li>
-<li>private和abstract不同时修饰方法。</li>
-</ol>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>&#160; &#160; &#160; &#160;在Java8中对接口进行了改进，允许接口中定义默认方法，默认方法可以提供方法实现。默认方法必须使用default修饰，且不能被static修饰。</p>
-<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>&#160; &#160; &#160; &#160;接口是从多个相似类中抽象出来的规范，规范了它实现类的基本行为规范。接口使用interface关键字。仿佛默认使用public修饰。</p>
-<p>&#160; &#160; &#160; &#160;Java8中允许接口中定义类方法，必须使用statci修饰，该方法可以使用接口来调用。</p>
-<p>&#160; &#160; &#160; &#160;接口成员默认使用public static final修饰。</p>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ol>
-<li>接口支持多继承；</li>
-<li>接口不能创建实例；</li>
-<li>接口的实现类 implents；实现类可实现多个接口。</li>
-</ol>
-<h2 id="抽象和接口的比较"><a href="#抽象和接口的比较" class="headerlink" title="抽象和接口的比较"></a>抽象和接口的比较</h2><p>&#160; &#160; &#160; &#160;一般接口来控制行为规范，抽象类用来定型。当你关注一个事物的本质的时候，用抽象类；当你关注一个操作的时候，用接口。</p>
-<p>参考这篇博客：<a href="http://www.cnblogs.com/yongjiapei/p/5494894.html" target="_blank" rel="external">抽象和接口的区别</a>。</p>
-<h2 id="面向接口编程"><a href="#面向接口编程" class="headerlink" title="面向接口编程"></a>面向接口编程</h2><h3 id="实现简单工厂模式"><a href="#实现简单工厂模式" class="headerlink" title="实现简单工厂模式"></a>实现简单工厂模式</h3><p><a href="http://www.cnblogs.com/toutou/p/4899388.html" target="_blank" rel="external">详解工厂模式三种类型</a></p>
-<h3 id="实现命令模式"><a href="#实现命令模式" class="headerlink" title="实现命令模式"></a>实现命令模式</h3><p><a href="http://blog.csdn.net/jason0539/article/details/45110355" target="_blank" rel="external">Java命令模式实现</a></p>
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><h3 id="非静态内部类"><a href="#非静态内部类" class="headerlink" title="非静态内部类"></a>非静态内部类</h3><ol>
-<li>非静态内部类可以访问外部private成员。</li>
-<li>优先在局部变量中寻找。</li>
-<li>外部不能访问非静态内部类的private成员。</li>
-<li>非静态内部类中不能定义静态成员。</li>
-</ol>
-<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><ol>
-<li>静态内部类中可以包含静态、非静态成员都可以。</li>
-<li>静态类不能访问外部成员，只能是访问静态成员。</li>
-<li>静态内部类是外部类的一个静态成员，因此外部类的所有成员可以使用静态内部类来定义，创建对象，但是不能直接访问静态内部类的成员。</li>
-<li>接口中也能定义内部类，接口中只能是静态内部类，默认使用public static。</li>
-</ol>
-<h2 id="内部类的使用"><a href="#内部类的使用" class="headerlink" title="内部类的使用"></a>内部类的使用</h2><ol>
-<li>外部类内部使用内部类：和普通类没有太大区别，唯一区别是：不要在外部类中的静态成员中使用非静态的内部类。</li>
-<li>在外部类以外使用非静态内部类：如果希望被访问，不能使用private。</li>
-<li>外部类以外访问静态内部类，无须实例外部类。</li>
-<li>局部内部类，在方法里，只能在方法内使用。</li>
-</ol>
-<h2 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h2><p>&#160; &#160; &#160; &#160;适合创建那种只需要一次使用的类，类如命令模式中的command对象。匿名内部类必须继承一个父类或实现一个接口，但最多继承一个父类或实现一个接口。不允许为抽象类，不能定义构造器，因为没有类名，但可以定义初始化块来完成构造器要完成的事情。</p>
-<p>&#160; &#160; &#160; &#160;在Java8之前，Java要求局部内部类、匿名内部类访问的局部变量必须使用final修饰，从Java8开始这个限制被取消了，Java8更加智能，自动添加final。</p>
-<p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/nerxious/archive/2013/01/25/2876489.html" target="_blank" rel="external">匿名内部类总结</a></p>
-<h2 id="lambda表达式"><a href="#lambda表达式" class="headerlink" title="lambda表达式"></a>lambda表达式</h2><p>&#160; &#160; &#160; &#160;允许用更简单的代码来创建只有一个抽象方法的接口，即函数式接口。lambda表达式完全可用于简化创建匿名内部类对象。</p>
-<p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/franson-2016/p/5593080.html" target="_blank" rel="external">lambda表达式总结</a></p>
-<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>&#160; &#160; &#160; &#160;早期会用简单的静态变量来表示枚举，但是类型不安全，没有命名空间，意义不明确，后来用类来封装，但是额外要写代码，JDK1.5之后增加了对枚举类的支持。enum。</p>
-<p>&#160; &#160; &#160; &#160;参考这篇博客：<a href="http://www.cnblogs.com/oumyye/p/4232532.html" target="_blank" rel="external">lambda表达式总结</a></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Java面向对象特性（二）&quot;&gt;&lt;a href=&quot;#Java面向对象特性（二）&quot; class=&quot;headerlink&quot; title=&quot;Java面向对象特性（二）&quot;&gt;&lt;/a&gt;Java面向对象特性（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;本篇继续讲面向对象特性，自动装箱和拆箱，抽象和接口，内部类和lambda表达式，枚举类型等方面。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java基础" scheme="http://yoursite.com/categories/Java%E5%9F%BA%E7%A1%80/"/>
-    
-    
-      <category term="面向对象特性" scheme="http://yoursite.com/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%89%B9%E6%80%A7/"/>
     
   </entry>
   
