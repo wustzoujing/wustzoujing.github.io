@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自动内存管理机制," />
+  <meta name="keywords" content="算法题," />
 
 
 
@@ -111,19 +111,17 @@
 
 
 
-<meta name="description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
-<meta name="keywords" content="自动内存管理机制">
+<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;一次写一篇效率太低，以后多几篇一起篇，特别是同一类型的题目，本次是位运算、数学计算、数组操作、链表操作的四道题应用。">
+<meta name="keywords" content="算法题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java虚拟机（一）">
-<meta property="og:url" content="http://yoursite.com/2017/02/15/Java虚拟机（一）/index.html">
+<meta property="og:title" content="剑指offer：近期整理">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/剑指offer：近期整理/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
-<meta property="og:image" content="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png">
-<meta property="og:updated_time" content="2017-05-08T08:29:14.000Z">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;一次写一篇效率太低，以后多几篇一起篇，特别是同一类型的题目，本次是位运算、数学计算、数组操作、链表操作的四道题应用。">
+<meta property="og:updated_time" content="2017-05-15T13:39:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java虚拟机（一）">
-<meta name="twitter:description" content="JVM之自动内存管理机制（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。">
-<meta name="twitter:image" content="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png">
+<meta name="twitter:title" content="剑指offer：近期整理">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;一次写一篇效率太低，以后多几篇一起篇，特别是同一类型的题目，本次是位运算、数学计算、数组操作、链表操作的四道题应用。">
 
 
 
@@ -151,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/02/15/Java虚拟机（一）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/15/剑指offer：近期整理/"/>
 
 
 
 
 
-  <title>Java虚拟机（一） | Jessie_Zou’s Homepage</title>
+  <title>剑指offer：近期整理 | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/15/Java虚拟机（一）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/15/剑指offer：近期整理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -327,7 +325,7 @@
             
             
               
-                Java虚拟机（一）
+                剑指offer：近期整理
               
             
           </h1>
@@ -342,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T11:09:08+08:00">
-                2017-02-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-15T21:27:55+08:00">
+                2017-03-15
               </time>
             
 
@@ -365,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java虚拟机/" itemprop="url" rel="index">
-                    <span itemprop="name">Java虚拟机</span>
+                  <a href="/categories/剑指offer详解/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer详解</span>
                   </a>
                 </span>
 
@@ -382,7 +380,7 @@
 
           
           
-             <span id="/2017/02/15/Java虚拟机（一）/" class="leancloud_visitors" data-flag-title="Java虚拟机（一）">
+             <span id="/2017/03/15/剑指offer：近期整理/" class="leancloud_visitors" data-flag-title="剑指offer：近期整理">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -410,53 +408,21 @@
       
 
       
-        <h1 id="JVM之自动内存管理机制（一）"><a href="#JVM之自动内存管理机制（一）" class="headerlink" title="JVM之自动内存管理机制（一）"></a>JVM之自动内存管理机制（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;这段时间准备整理下JVM的知识，了解Java就必须了解java虚拟机的特性，本节先从Java的自动内存管理机制来讲起，有一句话：<font color="red">Java与C++之间有一堵由内存动态分配和垃圾手机技术所围成的高墙，墙外面的人想进去，墙里面的人却想出来。</font></p>
-<a id="more"></a>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&#160; &#160; &#160; &#160;在c和c++中的内存管理领域，程序员拥有最高权力的皇帝，拥有每一个对象的所有权，又担负着每一个对象生命开始到结束的责任。对于java程序员来说，在虚拟机的自动内存管理机制的帮助下，不再需要为每一个new对象配对delete／free代码，而且不太容易出现内存泄漏和溢出。正是因为这样，Java程序员没有了掌控权，排除问题的时候将是异常艰难的工作。了解内存的各个区域，是翻越这个高墙的第一步。</p>
-<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><p>&#160; &#160; &#160; &#160;虚拟机在执行java程序的时候会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途、创建和销毁的时间。如下图所示：</p>
-<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://dl.iteye.com/upload/picture/pic/115264/4991b17e-a8b4-3d0a-a316-4651bb23da5e.png" alt=""></p>
-<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ol>
-<li>是一个较小的内存空间，它的作用可以看作是当前线程所执行的字节码的行号指示器。</li>
-<li>字节码解释器工作时就是通过改变这个计数起的值来选取下一条需要执行的字节码指令。</li>
-<li>分支、循环、跳转、异常处理、线程恢复等基础功能都依赖计算器。</li>
-<li>多线程时通过线程轮流切换并分配处理器执行时间的方式来实现的。</li>
-<li>由于在任何一个确定的时刻，一个处理器只能处理一个线程，所以每个线程应该需要一个独立的程序计数器，所以它被称为<font color="red">线程私有。</font></li>
-<li>如果正在执行native方法，程序计数器为空。</li>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;一次写一篇效率太低，以后多几篇一起篇，特别是同一类型的题目，本次是位运算、数学计算、数组操作、链表操作的四道题应用。</p>
+  <a id="more"></a>
+<h1 id="近期整理的四道题"><a href="#近期整理的四道题" class="headerlink" title="近期整理的四道题"></a>近期整理的四道题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</li>
+<li>给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</li>
+<li>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。</li>
+<li>输入一个链表，输出该链表中倒数第k个结点。</li>
 </ol>
-<h3 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h3><ol>
-<li>也是线程私有，生命周期和线程一样。</li>
-<li>虚拟机栈描述的是Java方法执行的内存模型：每个方法一行的时候都会产生一个栈帧，它用于存储局部变量表、操作栈、动态链接、方法出口等信息。每个方法调用直到完成就对应一个栈帧在虚拟机栈入栈道出栈的过程</li>
-<li>局部变量表存放了编译器可知的各种数据类型，包括基本类型和引用类型（这里只是一个地址）和retrunAddress类型（指向一条字节码指令的地址）。</li>
-<li>在这个区域定义了两个异常：StackOverflowError异常，栈深度大于虚拟机所允许的栈深度，栈溢出，和OutOfMemoryError，即OOM，表示动态扩展的虚拟机无法申请到足够内存时会抛出的异常。</li>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ol>
+<li>第一道题，我们采用精妙的位运算，关于位运算的应用，包括乘除，在第二题用过，交换值等我们分析过，在这道题里，<font color="red">把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0</font>。</li>
+<li>我们采用递归求指数结果，然后在考虑奇偶，正负的问题。</li>
+<li>遍历一遍数组，求出奇偶的个数，然后在遍历一遍把奇偶值填进去。</li>
+<li>我们先使一个head往前走k-1步，然后第二个head和第一个一起走，当第一个走到链表的结尾时，第二个所在的地方就是倒数第k个。</li>
 </ol>
-<h3 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h3><p>&#160; &#160; &#160; &#160;其实只不过是区别于虚拟机栈所执行方法的不同，虚拟机栈执行Java方法，本地方法栈执行native方法。比如hotspot虚拟机就把本地方法栈和虚拟机合二为一。</p>
-<h3 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h3><ol>
-<li>是虚拟机所管理的内存中的最大一块，Java堆是被所有线程共享的一块区域，在虚拟机启动时创建。</li>
-<li>存放的都是对象的实例，几乎所有的对象实例都在这里分配内存。随着及时动态编译器jit的发展和逃逸分析技术的逐渐成熟，所有的对象都分配在堆上也不是那么绝对。</li>
-<li>Java堆事垃圾回收的主要区域，也被称为GC堆。垃圾回收一般采用分代收集算法，堆中细分的话可分：新生代、老生代或者、Eden、From Survivor、To Survivor等。</li>
-<li>线程共享的Java堆可能划分出多个线程私有的分配缓冲区，不过存放内容都是对象，进一步划分事为了更好的回收对象。</li>
-</ol>
-<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ol>
-<li>和Java堆一样，是各个线程共享的区域，用于存放已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。是堆的一个逻辑部分，但是别名NonHeap，非堆。</li>
-<li>垃圾收集行为在此区域较少发生，但并非永久代，对常量池的回收和类的卸载。</li>
-<li>此区域无法满足内存分配时，会抛出OOM异常。</li>
-<li>运行时常量池时方法区的一部分，编译期已经确定的字面量和符号引用，类加载完之后就存放到方法区的运行时常量池中。</li>
-<li>不一定都在编译的时候放入常量池，比如string的intern（）方法，可把新的常量放入池中。常量池也会报OOM异常。</li>
-</ol>
-<h3 id="直接内存"><a href="#直接内存" class="headerlink" title="直接内存"></a>直接内存</h3><ol>
-<li>直接内存并不是虚拟机运行时数据区的一部分，也不是Java虚拟机规范汇总的内存区域，但是被频繁使用，而且可能导致OOM异常，比如NIO，引用了一种基于通道与缓冲区的I／O方式，它可以使用native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用进行操作。这样能显著的提高性能，因为避免了在Java堆和native堆中来回复制数据。</li>
-<li>显然直接内存不会受到堆大小的限制，但是内存都收到系统内存限制。也可能出现OOM。</li>
-</ol>
-<h2 id="对象访问"><a href="#对象访问" class="headerlink" title="对象访问"></a>对象访问</h2><p>&#160; &#160; &#160; &#160;我们分析一下下面这个简单代码的运行过程：</p>
-<pre><code>Object obj=new Object();
-</code></pre><p>&#160; &#160; &#160; &#160;这句代码中，Object obj 这部分的语义将会反映到java栈的本地变量表中，作为一个ref引用类型数据出现，而new Object（）这部分语义反映到堆中，形成一块存储了object类型所有实例数据值的结构内存，具体类型以及虚拟机实现的对象内存分布不同。另外，对象类型、父类、实现的接口、方法等信息存储在方法区中，保证能查找到对象类型数据的地址信息。</p>
-<p>&#160; &#160; &#160; &#160;主流的访问方式有两种：</p>
-<ol>
-<li>使用句柄方式，堆中还会划分出一个内存来作为句柄池，ref中存储的就是对象的句柄地址，句柄中又包含对象实例和对象类型的指针。好处是存储的是稳定的地址，在对象移动时只改变句柄中的，不用改变ref的。</li>
-<li>使用直接指针访问方式，ref中直接存储就是对象地址。最大好处就是速度更快，节省了一次指针定位的时间。hotspot就是采用这种。</li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">public int NumberOf1(int n) &#123;</div><div class="line"></div><div class="line">        int count=0;</div><div class="line">        while(n!=0)&#123;</div><div class="line">            count++;</div><div class="line">            n=(n-1)&amp;n;</div><div class="line">        &#125;</div><div class="line">        return count;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line"></div><div class="line">public double Power(double base, int exponent) &#123;</div><div class="line">        int n=Math.abs(exponent);</div><div class="line">        if(n==0)</div><div class="line">            return 1;</div><div class="line">        if(n==1)</div><div class="line">            return base;</div><div class="line">        double  result=Power(base,n&gt;&gt;1);</div><div class="line">        result*=result;</div><div class="line">        if((n&amp;1)==1)</div><div class="line">            result*=base;</div><div class="line">        if(exponent&lt;0)</div><div class="line">            result=1/result;</div><div class="line">        return result;</div><div class="line">  &#125;</div><div class="line">  </div><div class="line"> public void reOrderArray(int [] array) &#123;</div><div class="line">        int [] result = new int[array.length];</div><div class="line">        int numOfOdd = 0;</div><div class="line">        int numOfEven = 0;</div><div class="line">        for(int i=0;i&lt;array.length;i++)&#123;</div><div class="line">            if((array[i]&amp;0x1) == 1)&#123;</div><div class="line">                numOfOdd++;</div><div class="line">            &#125;else&#123;</div><div class="line">                numOfEven++;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">         </div><div class="line">        int indexOfOdd = 0;</div><div class="line">        int indexOfEven = numOfOdd;</div><div class="line">        for(int i=0;i&lt;array.length;i++)&#123;</div><div class="line">            if((array[i]&amp;0x1) == 1)&#123;</div><div class="line">                result[indexOfOdd++] = array[i];</div><div class="line">            &#125;else&#123;</div><div class="line">                result[indexOfEven++] = array[i];</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        for(int i=0;i&lt;array.length;i++)&#123;</div><div class="line">            array[i] = result[i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">public ListNode FindKthToTail(ListNode head,int k) &#123;</div><div class="line"></div><div class="line">        if(head==null||k&lt;=0)&#123;</div><div class="line">            return null;</div><div class="line">        &#125;</div><div class="line">        ListNode n1=head;</div><div class="line">        </div><div class="line">        ListNode n2=head;</div><div class="line">        for(int i=1;i&lt;k;i++)&#123;</div><div class="line">            if(n1.next!=null)&#123;</div><div class="line">                n1=n1.next;</div><div class="line">            &#125;else&#123;</div><div class="line">                return null;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">       while(n1.next!=null)&#123;</div><div class="line">           n1=n1.next;</div><div class="line">           n2=n2.next;</div><div class="line">       &#125;</div><div class="line">        return n2;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -506,7 +472,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自动内存管理机制/" rel="tag"># 自动内存管理机制</a>
+            <a href="/tags/算法题/" rel="tag"># 算法题</a>
           
         </div>
       
@@ -519,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/02/18/OOM异常实战/" rel="next" title="OOM异常实战">
-                <i class="fa fa-chevron-left"></i> OOM异常实战
+              <a href="/2017/05/08/Servlet原理和Tomcat原理/" rel="next" title="Servlet搭配工作Tomcat">
+                <i class="fa fa-chevron-left"></i> Servlet搭配工作Tomcat
               </a>
             
           </div>
@@ -529,8 +495,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/02/10/Java基础之面向对象（二）/" rel="prev" title="Java基础之面向对象（二）">
-                Java基础之面向对象（二） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/10/高效并发（二）/" rel="prev" title="高效并发（二）">
+                高效并发（二） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -688,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM之自动内存管理机制（一）"><span class="nav-number">1.</span> <span class="nav-text">JVM之自动内存管理机制（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">2.1.</span> <span class="nav-text">运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#程序计数器"><span class="nav-number">2.1.1.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机栈"><span class="nav-number">2.1.2.</span> <span class="nav-text">虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地方法栈"><span class="nav-number">2.1.3.</span> <span class="nav-text">本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java堆"><span class="nav-number">2.1.4.</span> <span class="nav-text">Java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法区"><span class="nav-number">2.1.5.</span> <span class="nav-text">方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#直接内存"><span class="nav-number">2.1.6.</span> <span class="nav-text">直接内存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象访问"><span class="nav-number">2.2.</span> <span class="nav-text">对象访问</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#近期整理的四道题"><span class="nav-number">2.</span> <span class="nav-text">近期整理的四道题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
             
 
           </div>
