@@ -93,7 +93,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线程的基本操作," />
+  <meta name="keywords" content="算法题," />
 
 
 
@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="线程的基本操作（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。">
-<meta name="keywords" content="线程的基本操作">
+<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二">
+<meta name="keywords" content="算法题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="高效并发（二）">
-<meta property="og:url" content="http://yoursite.com/2017/03/07/高效并发（二）/index.html">
+<meta property="og:title" content="剑指offer：重建二叉树">
+<meta property="og:url" content="http://yoursite.com/2017/03/05/剑指offer：重建二叉树/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="线程的基本操作（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。">
-<meta property="og:updated_time" content="2017-05-12T05:18:21.000Z">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二">
+<meta property="og:updated_time" content="2017-05-15T09:59:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高效并发（二）">
-<meta name="twitter:description" content="线程的基本操作（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。">
+<meta name="twitter:title" content="剑指offer：重建二叉树">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/07/高效并发（二）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/05/剑指offer：重建二叉树/"/>
 
 
 
 
 
-  <title>高效并发（二） | Jessie_Zou’s Homepage</title>
+  <title>剑指offer：重建二叉树 | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/高效并发（二）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/05/剑指offer：重建二叉树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -325,7 +325,7 @@
             
             
               
-                高效并发（二）
+                剑指offer：重建二叉树
               
             
           </h1>
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T10:55:01+08:00">
-                2017-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-05T17:16:00+08:00">
+                2017-03-05
               </time>
             
 
@@ -363,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/高效并发/" itemprop="url" rel="index">
-                    <span itemprop="name">高效并发</span>
+                  <a href="/categories/剑指offer详解/" itemprop="url" rel="index">
+                    <span itemprop="name">剑指offer详解</span>
                   </a>
                 </span>
 
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2017/03/07/高效并发（二）/" class="leancloud_visitors" data-flag-title="高效并发（二）">
+             <span id="/2017/03/05/剑指offer：重建二叉树/" class="leancloud_visitors" data-flag-title="剑指offer：重建二叉树">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,9 +408,17 @@
       
 
       
-        <h1 id="线程的基本操作（二）"><a href="#线程的基本操作（二）" class="headerlink" title="线程的基本操作（二）"></a>线程的基本操作（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
- <a id="more"></a>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二叉树，这题就是已经前中序要求重建二叉树。</p>
+  <a id="more"></a>
+<h1 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;我们知道在二叉树的前序遍历中，第一个总是根值。中序遍历中，根节点的值在序列的中间。左子树的根节点位于根节点的左边，右子树的结点在根节点的右边，因此我们需要扫描中序遍历才能找到根节点的值。找到根结点之后，中序遍历分成两部分，分别是左右子树的中序遍历，而我们在前序遍历中根据左右子树的个数就能确定左右子树的前序遍历，因此我们就能递归的完成。具体步骤如下：</p>
+<ol>
+<li>先进行输入序列的检查。</li>
+<li>把中序序列放入一个hashmap，值为key，索引为value，这样很方便的通过前序序列中的值得到在中序遍历中的索引，很巧妙，而且时间复杂度较低。</li>
+<li>利用递归完成树重建，为了代码的简洁性，写了preIn函数完成功能。具体输入参数和意义如下注释部分。</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</div><div class="line">    //为空则返回空，输入检查，还可检查两者长度是否相等。</div><div class="line">    if(pre==null||in==null)&#123;</div><div class="line">          return null;</div><div class="line">    &#125;   </div><div class="line">    java.util.HashMap&lt;Integer,Integer&gt; map=new java.util.HashMap&lt;Integer,Integer&gt;();</div><div class="line">    //中序遍历进map</div><div class="line">    for(int i=0;i&lt;in.length;i++)&#123;</div><div class="line">       map.put(in[i],i); </div><div class="line">    &#125;</div><div class="line">    //交给重建函数</div><div class="line">    return preIn(pre,0,pre.length-1,in,0,in.length-1,map);</div><div class="line">&#125;</div><div class="line">//p，n，map属于不变的，这样写代码简洁一点，变得是前序遍历和中序遍历在原序列中的起止索引。</div><div class="line">public TreeNode preIn(int[] p,int pi,int pj,int[] n,int ni,int nj,java.util.HashMap&lt;Integer,Integer&gt; map)&#123;</div><div class="line">    //前序遍历开始位置大于结束位置，返回空。</div><div class="line">    if(pi&gt;pj)&#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    //前序遍历开始位置就是根节点。</div><div class="line">    TreeNode head =new TreeNode(p[pi]);</div><div class="line">    //获得根节点在中序序列中的索引位置</div><div class="line">    int index=map.get(p[pi]);</div><div class="line">    //递归左子树，前序遍历pi自增1就行，结束位置算法是（pi+1）+（index-1-ni），因为</div><div class="line">    //index-1为中序遍历结束位置减去ni开始位置就是中序遍历的个数，在加上pi+1就是前序遍历</div><div class="line">    //结束为止</div><div class="line">    head.left=preIn(p,pi+1,pi+index-ni,n,ni,index-1,map);</div><div class="line">    //右子树的前序开始位置为左子树结束位置自增1，结束位置是pj，中序遍历开始是根节点位置自</div><div class="line">    //增1，结束位置是nj</div><div class="line">    head.right=preIn(p,pi+index-ni+1,pj,n,index+1,nj,map);</div><div class="line">    //重建完成返回</div><div class="line">    return head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
 
       
     </div>
@@ -461,7 +469,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线程的基本操作/" rel="tag"># 线程的基本操作</a>
+            <a href="/tags/算法题/" rel="tag"># 算法题</a>
           
         </div>
       
@@ -474,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/02/剑指offer：二维数组中的查找/" rel="next" title="剑指offer：二维数组中的查找">
-                <i class="fa fa-chevron-left"></i> 剑指offer：二维数组中的查找
+              <a href="/2017/03/06/JDK源码阅读（三）/" rel="next" title="JDK源码阅读（三）">
+                <i class="fa fa-chevron-left"></i> JDK源码阅读（三）
               </a>
             
           </div>
@@ -484,8 +492,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/06/JDK源码阅读（三）/" rel="prev" title="JDK源码阅读（三）">
-                JDK源码阅读（三） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/04/剑指offer：从尾到头打印链表/" rel="prev" title="剑指offer：从尾到头打印链表">
+                剑指offer：从尾到头打印链表 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -643,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线程的基本操作（二）"><span class="nav-number">1.</span> <span class="nav-text">线程的基本操作（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重建二叉树"><span class="nav-number">2.</span> <span class="nav-text">重建二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#友情链接"><span class="nav-number">3.</span> <span class="nav-text">友情链接</span></a></li></ol></div>
             
 
           </div>

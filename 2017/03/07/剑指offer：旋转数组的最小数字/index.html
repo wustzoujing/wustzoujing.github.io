@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;栈和队列是非常常见的数据结构。栈先进后出，队列先进先出，Java中有定义好的栈和队列数据结构。要熟悉源码。栈和队列也有很多的联系，本题就是用两个栈实现一个队列。">
+<meta name="description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。">
 <meta name="keywords" content="算法题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="剑指offer：用两个栈实现队列">
-<meta property="og:url" content="http://yoursite.com/2017/05/06/剑指offer：用两个栈实现队列/index.html">
+<meta property="og:title" content="剑指offer：旋转数组的最小数字">
+<meta property="og:url" content="http://yoursite.com/2017/03/07/剑指offer：旋转数组的最小数字/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;栈和队列是非常常见的数据结构。栈先进后出，队列先进先出，Java中有定义好的栈和队列数据结构。要熟悉源码。栈和队列也有很多的联系，本题就是用两个栈实现一个队列。">
-<meta property="og:updated_time" content="2017-05-10T09:15:47.000Z">
+<meta property="og:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。">
+<meta property="og:updated_time" content="2017-05-15T09:59:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="剑指offer：用两个栈实现队列">
-<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;栈和队列是非常常见的数据结构。栈先进后出，队列先进先出，Java中有定义好的栈和队列数据结构。要熟悉源码。栈和队列也有很多的联系，本题就是用两个栈实现一个队列。">
+<meta name="twitter:title" content="剑指offer：旋转数组的最小数字">
+<meta name="twitter:description" content="前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。">
 
 
 
@@ -149,13 +149,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/06/剑指offer：用两个栈实现队列/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/07/剑指offer：旋转数组的最小数字/"/>
 
 
 
 
 
-  <title>剑指offer：用两个栈实现队列 | Jessie_Zou’s Homepage</title>
+  <title>剑指offer：旋转数组的最小数字 | Jessie_Zou’s Homepage</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +304,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/06/剑指offer：用两个栈实现队列/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/07/剑指offer：旋转数组的最小数字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -325,7 +325,7 @@
             
             
               
-                剑指offer：用两个栈实现队列
+                剑指offer：旋转数组的最小数字
               
             
           </h1>
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-06T18:19:11+08:00">
-                2017-05-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-07T19:10:20+08:00">
+                2017-03-07
               </time>
             
 
@@ -380,7 +380,7 @@
 
           
           
-             <span id="/2017/05/06/剑指offer：用两个栈实现队列/" class="leancloud_visitors" data-flag-title="剑指offer：用两个栈实现队列">
+             <span id="/2017/03/07/剑指offer：旋转数组的最小数字/" class="leancloud_visitors" data-flag-title="剑指offer：旋转数组的最小数字">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -408,11 +408,12 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;栈和队列是非常常见的数据结构。栈先进后出，队列先进先出，Java中有定义好的栈和队列数据结构。要熟悉源码。栈和队列也有很多的联系，本题就是用两个栈实现一个队列。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。</p>
   <a id="more"></a>
-<h1 id="用两个栈实现队列"><a href="#用两个栈实现队列" class="headerlink" title="用两个栈实现队列"></a>用两个栈实现队列</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;我们知道栈是先进后出，而队列是先进先出。两个栈是可以实现先进后出的，我们模拟进队列操作时，进队列都进入第一个栈，然后出队列操作时，先把栈1全部倒入栈2，栈2出栈完成出队列操作，为了保证顺序，栈2中元素还要在倒入栈1。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">import java.util.Stack;</div><div class="line"></div><div class="line">public class Solution &#123;</div><div class="line">    //定义两个栈</div><div class="line">    Stack&lt;Integer&gt; stack1 = new Stack&lt;Integer&gt;();</div><div class="line">    Stack&lt;Integer&gt; stack2 = new Stack&lt;Integer&gt;();</div><div class="line">    //进队都往第一个栈进。</div><div class="line">    public void push(int node) &#123;</div><div class="line">        stack1.push(node);</div><div class="line">    &#125;</div><div class="line">    //出队列函数</div><div class="line">    public int pop() &#123;</div><div class="line">        //如果栈1不为空，把栈1值导入栈2，完成逆序</div><div class="line">        while(!stack1.isEmpty())&#123;</div><div class="line">            stack2.push(stack1.pop());</div><div class="line">        &#125;</div><div class="line">        //栈2栈顶出队列</div><div class="line">        int first=stack2.pop();</div><div class="line">        //这里是重点：栈2的值都要倒回栈1，因为如果不倒回，出队列操作之后，栈2还有元素，但是之</div><div class="line">        //后进队列的元素又倒回栈2，这样就乱序了，倒回保证每次栈2中先进的都在下面，整体倒入栈2</div><div class="line">        //后肯定保证是先进的元素在栈顶</div><div class="line">        while(!stack2.isEmpty())&#123;</div><div class="line">            stack1.push(stack2.pop());</div><div class="line">        &#125;</div><div class="line">        //</div><div class="line">        return first;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="旋转数组的最小数字"><a href="#旋转数组的最小数字" class="headerlink" title="旋转数组的最小数字"></a>旋转数组的最小数字</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个非递减排序的数组的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;二分查找法的核心思想就是：每次查找都可以排除不需要查找的一半，这道题我们是可以利用这个思想的。</p>
+<p>&#160; &#160; &#160; &#160;我们定义两个标志，初识是分别指向第一位和最后一位，按照题目的旋转规则，我们找到数组中间的元素，如果中间的元素位于前面的递增数组中，那他应该小于等于第二个个标志指向的元素，此时数组中最小的元素应该位于该中间元素的后面，排除了一半，利用了二分的思想；同样，如果中间元素位于后面递增子数组中，那么它应该大于等于第二个标志指向的元素。如果相等，把最高位往前移一位，最后第一个标志上就是最小值。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class minNumberInRotateArray_6 &#123;</div><div class="line"></div><div class="line">    public int minNumberInRotateArray(int [] array) &#123;</div><div class="line"></div><div class="line">        //定义两个标志指向首位索引</div><div class="line">        int low = 0 ; int high = array.length - 1;</div><div class="line">        //结束条件</div><div class="line">        while(low &lt; high)&#123;</div><div class="line">            //取中间元素</div><div class="line">            int mid = low + (high - low) / 2;</div><div class="line">            //中间元素比尾数大，最小值在后半段</div><div class="line">            if(array[mid] &gt; array[high])&#123;</div><div class="line">                low = mid + 1;</div><div class="line"></div><div class="line">            &#125;</div><div class="line">            //如果相等，高位减1</div><div class="line">            else if(array[mid] == array[high])&#123;</div><div class="line">                high = high - 1;</div><div class="line">            &#125;</div><div class="line">            //如果中间元素比尾数小，最小值在前半段</div><div class="line">            else&#123;</div><div class="line">                high = mid;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        //循环结束，低位标志就是最小值所在</div><div class="line">        return array[low];</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
 
       
@@ -477,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/07/剑指offer：旋转数组的最小数字/" rel="next" title="剑指offer：旋转数组的最小数字">
-                <i class="fa fa-chevron-left"></i> 剑指offer：旋转数组的最小数字
+              <a href="/2017/03/09/剑指offer：斐波那契数列相关的三道题/" rel="next" title="剑指offer：斐波那契数列相关的三道题">
+                <i class="fa fa-chevron-left"></i> 剑指offer：斐波那契数列相关的三道题
               </a>
             
           </div>
@@ -487,8 +488,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/05/剑指offer：重建二叉树/" rel="prev" title="剑指offer：重建二叉树">
-                剑指offer：重建二叉树 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/06/剑指offer：用两个栈实现队列/" rel="prev" title="剑指offer：用两个栈实现队列">
+                剑指offer：用两个栈实现队列 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -646,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用两个栈实现队列"><span class="nav-number">2.</span> <span class="nav-text">用两个栈实现队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#友情链接"><span class="nav-number">3.</span> <span class="nav-text">友情链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#旋转数组的最小数字"><span class="nav-number">2.</span> <span class="nav-text">旋转数组的最小数字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">2.1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#友情链接"><span class="nav-number">3.</span> <span class="nav-text">友情链接</span></a></li></ol></div>
             
 
           </div>

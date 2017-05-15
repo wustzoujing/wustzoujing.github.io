@@ -214,42 +214,6 @@
   </entry>
   
   <entry>
-    <title>剑指offer：斐波那契数列相关的三道题</title>
-    <link href="http://yoursite.com/2017/05/09/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%89%E9%81%93%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/05/09/剑指offer：斐波那契数列相关的三道题/</id>
-    <published>2017-05-09T12:21:41.000Z</published>
-    <updated>2017-05-12T02:51:54.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。</p>
-  <a id="more"></a>
-<h1 id="斐波那契数列相关的三道题"><a href="#斐波那契数列相关的三道题" class="headerlink" title="斐波那契数列相关的三道题"></a>斐波那契数列相关的三道题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
-<li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。n&lt;=39。</li>
-<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
-<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
-<li>我们可以用2 x 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 x 1的小矩形无重叠地覆盖一个2 x n 的大矩形，总共有多少种方法？</li>
-</ol>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;第一题如果用递归做，会发现效率很低，因为我们利用f(n)=f(n-1)+f(n-2)计算f(n)，导致每次的重复计算f(n-1)、f(n-2)，其实我们已经计算过这些值了，所以我们采用非递归来做。</p>
-<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第一道，我们发现这就是斐波那契数列，跳到某一台阶的次数就是跳到前一格台阶的次数加上跳到前两格台阶的次数。采用和上一题一样的做法。</p>
-<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第二道，我们用数学归纳法可以证明f(n)=2^2-1,其实这类题目也有很多，我们直接找到通式可以得到结果，像京东的几道题，还有求极限的，有兴趣可以去了解一下。</p>
-<p>&#160; &#160; &#160; &#160;方块覆盖问题，其实仔细想想，也是青蛙跳台阶一样的方法。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public int Fibonacci(int n) &#123;</div><div class="line"></div><div class="line">        if(n&lt;1)</div><div class="line">            return 0;</div><div class="line">        if(n==1)</div><div class="line">            return 1;</div><div class="line">        if(n==2) </div><div class="line">            return 1;</div><div class="line">        int a=1,b=1,reslut=0;</div><div class="line">        for(int i=3;i&lt;=n;++i)&#123;</div><div class="line">            reslut=a+b;</div><div class="line">            a=b;</div><div class="line">            b=reslut;</div><div class="line">        &#125;</div><div class="line">         return reslut;   </div><div class="line">    &#125;</div><div class="line">    </div><div class="line"></div><div class="line">    public int JumpFloor(int target) &#123;</div><div class="line"></div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(target==1)&#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">        if(target==2)&#123;</div><div class="line">            return 2;</div><div class="line">        &#125;</div><div class="line">        int a=1,b=2,c=0;</div><div class="line">        for(int i=3;i&lt;=target;i++)&#123;</div><div class="line">            c=b+a;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">        return c;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    public int JumpFloorII(int target) &#123;</div><div class="line">        </div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            int c=1;</div><div class="line">            for(int i=1;i&lt;target;i++)&#123;</div><div class="line">                c=2*c;</div><div class="line">            &#125;</div><div class="line">            return c;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    public int RectCover(int target) &#123;</div><div class="line"></div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(target==1)&#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">        if(target==2)&#123;</div><div class="line">            return 2;</div><div class="line">        &#125;</div><div class="line">        int a=1,b=2,c=0;</div><div class="line">        for(int i=3;i&lt;=target;i++)&#123;</div><div class="line">            c=b+a;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">        return c;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Servlet搭配工作Tomcat</title>
     <link href="http://yoursite.com/2017/05/08/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
     <id>http://yoursite.com/2017/05/08/Servlet原理和Tomcat原理/</id>
@@ -298,11 +262,72 @@
   </entry>
   
   <entry>
+    <title>高效并发（二）</title>
+    <link href="http://yoursite.com/2017/03/10/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/10/高效并发（二）/</id>
+    <published>2017-03-10T02:55:01.000Z</published>
+    <updated>2017-05-15T10:00:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="线程的基本操作（二）"><a href="#线程的基本操作（二）" class="headerlink" title="线程的基本操作（二）"></a>线程的基本操作（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
+ <a id="more"></a>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;线程的基本操作（二）&quot;&gt;&lt;a href=&quot;#线程的基本操作（二）&quot; class=&quot;headerlink&quot; title=&quot;线程的基本操作（二）&quot;&gt;&lt;/a&gt;线程的基本操作（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="线程的基本操作" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer：斐波那契数列相关的三道题</title>
+    <link href="http://yoursite.com/2017/03/09/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%89%E9%81%93%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/03/09/剑指offer：斐波那契数列相关的三道题/</id>
+    <published>2017-03-09T12:21:41.000Z</published>
+    <updated>2017-05-15T10:00:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。</p>
+  <a id="more"></a>
+<h1 id="斐波那契数列相关的三道题"><a href="#斐波那契数列相关的三道题" class="headerlink" title="斐波那契数列相关的三道题"></a>斐波那契数列相关的三道题</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li>大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。n&lt;=39。</li>
+<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+<li>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+<li>我们可以用2 x 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 x 1的小矩形无重叠地覆盖一个2 x n 的大矩形，总共有多少种方法？</li>
+</ol>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;第一题如果用递归做，会发现效率很低，因为我们利用f(n)=f(n-1)+f(n-2)计算f(n)，导致每次的重复计算f(n-1)、f(n-2)，其实我们已经计算过这些值了，所以我们采用非递归来做。</p>
+<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第一道，我们发现这就是斐波那契数列，跳到某一台阶的次数就是跳到前一格台阶的次数加上跳到前两格台阶的次数。采用和上一题一样的做法。</p>
+<p>&#160; &#160; &#160; &#160;青蛙跳台阶的第二道，我们用数学归纳法可以证明f(n)=2^2-1,其实这类题目也有很多，我们直接找到通式可以得到结果，像京东的几道题，还有求极限的，有兴趣可以去了解一下。</p>
+<p>&#160; &#160; &#160; &#160;方块覆盖问题，其实仔细想想，也是青蛙跳台阶一样的方法。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">public int Fibonacci(int n) &#123;</div><div class="line"></div><div class="line">        if(n&lt;1)</div><div class="line">            return 0;</div><div class="line">        if(n==1)</div><div class="line">            return 1;</div><div class="line">        if(n==2) </div><div class="line">            return 1;</div><div class="line">        int a=1,b=1,reslut=0;</div><div class="line">        for(int i=3;i&lt;=n;++i)&#123;</div><div class="line">            reslut=a+b;</div><div class="line">            a=b;</div><div class="line">            b=reslut;</div><div class="line">        &#125;</div><div class="line">         return reslut;   </div><div class="line">    &#125;</div><div class="line">    </div><div class="line"></div><div class="line">    public int JumpFloor(int target) &#123;</div><div class="line"></div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(target==1)&#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">        if(target==2)&#123;</div><div class="line">            return 2;</div><div class="line">        &#125;</div><div class="line">        int a=1,b=2,c=0;</div><div class="line">        for(int i=3;i&lt;=target;i++)&#123;</div><div class="line">            c=b+a;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">        return c;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    public int JumpFloorII(int target) &#123;</div><div class="line">        </div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            int c=1;</div><div class="line">            for(int i=1;i&lt;target;i++)&#123;</div><div class="line">                c=2*c;</div><div class="line">            &#125;</div><div class="line">            return c;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">        </div><div class="line">    public int RectCover(int target) &#123;</div><div class="line"></div><div class="line">        if(target&lt;=0)&#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        if(target==1)&#123;</div><div class="line">            return 1;</div><div class="line">        &#125;</div><div class="line">        if(target==2)&#123;</div><div class="line">            return 2;</div><div class="line">        &#125;</div><div class="line">        int a=1,b=2,c=0;</div><div class="line">        for(int i=3;i&lt;=target;i++)&#123;</div><div class="line">            c=b+a;</div><div class="line">            a=b;</div><div class="line">            b=c;</div><div class="line">        &#125;</div><div class="line">        return c;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;如果我们需要重复多次计算相同的问题，通常可以选择递归和循环两种方法，递归的代码简洁，利用分治的算法思想，但是我们就要注意递归有时候效率会很低，而且容易栈溢出，接下来几题中，我们就要注意。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>剑指offer：旋转数组的最小数字</title>
-    <link href="http://yoursite.com/2017/05/07/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
-    <id>http://yoursite.com/2017/05/07/剑指offer：旋转数组的最小数字/</id>
-    <published>2017-05-07T11:10:20.000Z</published>
-    <updated>2017-05-10T12:19:53.000Z</updated>
+    <link href="http://yoursite.com/2017/03/07/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/"/>
+    <id>http://yoursite.com/2017/03/07/剑指offer：旋转数组的最小数字/</id>
+    <published>2017-03-07T11:10:20.000Z</published>
+    <updated>2017-05-15T09:59:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;这道题找数组中的最小数字，类似的题目之前蘑菇街视频面试都考过，找数组中的最大的两个值或者三个值。直观解题方法就是循环一遍数组，这样的复杂度是O（n），但是由题目可知，数组已部分排序，我们利用二分查找的方法是可以减少我们的复杂度的，达到O（log n）。</p>
   <a id="more"></a>
@@ -328,10 +353,10 @@
   
   <entry>
     <title>剑指offer：用两个栈实现队列</title>
-    <link href="http://yoursite.com/2017/05/06/%E5%89%91%E6%8C%87offer%EF%BC%9A%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
-    <id>http://yoursite.com/2017/05/06/剑指offer：用两个栈实现队列/</id>
-    <published>2017-05-06T10:19:11.000Z</published>
-    <updated>2017-05-10T09:15:47.000Z</updated>
+    <link href="http://yoursite.com/2017/03/06/%E5%89%91%E6%8C%87offer%EF%BC%9A%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/"/>
+    <id>http://yoursite.com/2017/03/06/剑指offer：用两个栈实现队列/</id>
+    <published>2017-03-06T10:19:11.000Z</published>
+    <updated>2017-05-15T09:59:41.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;栈和队列是非常常见的数据结构。栈先进后出，队列先进先出，Java中有定义好的栈和队列数据结构。要熟悉源码。栈和队列也有很多的联系，本题就是用两个栈实现一个队列。</p>
   <a id="more"></a>
@@ -351,204 +376,6 @@
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer：重建二叉树</title>
-    <link href="http://yoursite.com/2017/05/05/%E5%89%91%E6%8C%87offer%EF%BC%9A%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
-    <id>http://yoursite.com/2017/05/05/剑指offer：重建二叉树/</id>
-    <published>2017-05-05T09:16:00.000Z</published>
-    <updated>2017-05-10T09:15:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二叉树，这题就是已经前中序要求重建二叉树。</p>
-  <a id="more"></a>
-<h1 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;我们知道在二叉树的前序遍历中，第一个总是根值。中序遍历中，根节点的值在序列的中间。左子树的根节点位于根节点的左边，右子树的结点在根节点的右边，因此我们需要扫描中序遍历才能找到根节点的值。找到根结点之后，中序遍历分成两部分，分别是左右子树的中序遍历，而我们在前序遍历中根据左右子树的个数就能确定左右子树的前序遍历，因此我们就能递归的完成。具体步骤如下：</p>
-<ol>
-<li>先进行输入序列的检查。</li>
-<li>把中序序列放入一个hashmap，值为key，索引为value，这样很方便的通过前序序列中的值得到在中序遍历中的索引，很巧妙，而且时间复杂度较低。</li>
-<li>利用递归完成树重建，为了代码的简洁性，写了preIn函数完成功能。具体输入参数和意义如下注释部分。</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</div><div class="line">    //为空则返回空，输入检查，还可检查两者长度是否相等。</div><div class="line">    if(pre==null||in==null)&#123;</div><div class="line">          return null;</div><div class="line">    &#125;   </div><div class="line">    java.util.HashMap&lt;Integer,Integer&gt; map=new java.util.HashMap&lt;Integer,Integer&gt;();</div><div class="line">    //中序遍历进map</div><div class="line">    for(int i=0;i&lt;in.length;i++)&#123;</div><div class="line">       map.put(in[i],i); </div><div class="line">    &#125;</div><div class="line">    //交给重建函数</div><div class="line">    return preIn(pre,0,pre.length-1,in,0,in.length-1,map);</div><div class="line">&#125;</div><div class="line">//p，n，map属于不变的，这样写代码简洁一点，变得是前序遍历和中序遍历在原序列中的起止索引。</div><div class="line">public TreeNode preIn(int[] p,int pi,int pj,int[] n,int ni,int nj,java.util.HashMap&lt;Integer,Integer&gt; map)&#123;</div><div class="line">    //前序遍历开始位置大于结束位置，返回空。</div><div class="line">    if(pi&gt;pj)&#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    //前序遍历开始位置就是根节点。</div><div class="line">    TreeNode head =new TreeNode(p[pi]);</div><div class="line">    //获得根节点在中序序列中的索引位置</div><div class="line">    int index=map.get(p[pi]);</div><div class="line">    //递归左子树，前序遍历pi自增1就行，结束位置算法是（pi+1）+（index-1-ni），因为</div><div class="line">    //index-1为中序遍历结束位置减去ni开始位置就是中序遍历的个数，在加上pi+1就是前序遍历</div><div class="line">    //结束为止</div><div class="line">    head.left=preIn(p,pi+1,pi+index-ni,n,ni,index-1,map);</div><div class="line">    //右子树的前序开始位置为左子树结束位置自增1，结束位置是pj，中序遍历开始是根节点位置自</div><div class="line">    //增1，结束位置是nj</div><div class="line">    head.right=preIn(p,pi+index-ni+1,pj,n,index+1,nj,map);</div><div class="line">    //重建完成返回</div><div class="line">    return head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二叉树，这题就是已经前中序要求重建二叉树。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer：从尾到头打印链表</title>
-    <link href="http://yoursite.com/2017/05/04/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
-    <id>http://yoursite.com/2017/05/04/剑指offer：从尾到头打印链表/</id>
-    <published>2017-05-04T12:41:39.000Z</published>
-    <updated>2017-05-10T09:15:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
-  <a id="more"></a>
-<p>&#160; &#160; &#160; &#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本题就给出了链表默认类。—-源自<em>百度百科</em>，觉得讲的很清楚。</p>
-<h1 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入一个链表，从尾到头打印链表每个节点的值。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;从头到尾输出链表比较简单，因为是题目要求是打印且是从尾到头，打印一般不允许我们改原链表结构的，所以反向链表在从头打印不行的，我们有两个思路：</p>
-<ol>
-<li>考虑用递归来实现，链表最后一个节点的next节点为空，这也是我们递归结束条件。如果链表当前节点的next不为空，我们递归先打印它的next节点，但是递归都怕栈溢出。</li>
-</ol>
-<ol>
-<li>考虑到这个类似先进后出，可用数据结构栈来实现这种顺序,但是没有递归简洁，而且先要遍历一遍存入栈，然后在出栈。</li>
-</ol>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> import java.util.ArrayList;</div><div class="line"> public class Solution &#123;</div><div class="line"> </div><div class="line">    ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        //递归结束条件  </div><div class="line">        if(listNode!=null)&#123;</div><div class="line">            //递归打印它的next数组</div><div class="line">            this.printListFromTailToHead(listNode.next);</div><div class="line">            arrayList.add(listNode.val);</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.Stack;</div><div class="line">public class Solution &#123;</div><div class="line">    </div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">        Stack&lt;Integer&gt; s=new Stack&lt;Integer&gt;();</div><div class="line">        //链表依次进栈</div><div class="line">        while(listNode!=null)&#123;</div><div class="line">            s.push(listNode.val);</div><div class="line">            listNode=listNode.next;</div><div class="line">        &#125;</div><div class="line">        //依次出栈到输出动态数组完成逆序打印</div><div class="line">        while(!s.empty())&#123;</div><div class="line">            arrayList.add(s.pop());</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer：替换空格</title>
-    <link href="http://yoursite.com/2017/05/03/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
-    <id>http://yoursite.com/2017/05/03/剑指offer：替换空格/</id>
-    <published>2017-05-03T07:23:15.000Z</published>
-    <updated>2017-05-10T09:15:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
-  <a id="more"></a>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：<a href="http://blog.csdn.net/qh_java/article/details/46382265" target="_blank" rel="external">从源码角度分析Java三种字符串</a>。</p>
-<p>&#160; &#160; &#160; &#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>public String replaceSpace(StringBuffer str) {
-    StringBuilder newstr =new StringBuilder();
-    for(int i=0;i&lt;str.length();i++){
-        if(str.charAt(i)==&apos; &apos; )
-            newstr.append(&quot;%&quot;).append(&quot;2&quot;).append(&quot;0&quot;);
-        else
-           newstr.append(str.charAt(i));
-    }
-           return newstr.toString();
-}
-</code></pre><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;二维数组中的查找&quot;&gt;&lt;a href=&quot;#二维数组中的查找&quot; class=&quot;headerlink&quot; title=&quot;二维数组中的查找&quot;&gt;&lt;/a&gt;二维数组中的查找&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer：二维数组中的查找</title>
-    <link href="http://yoursite.com/2017/05/02/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/"/>
-    <id>http://yoursite.com/2017/05/02/剑指offer：二维数组中的查找/</id>
-    <published>2017-05-02T08:28:06.000Z</published>
-    <updated>2017-05-10T09:15:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。</p>
-  <a id="more"></a>
-<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;遍历数组能解决问题，但是由于所给数组已经部分排序，我们可以利用这个排序规则进行不必要的比较剔除，进行优化。试想如果起点是左下角，同目标值比较，如果大于目标值，整行我们就不用比较了，如果小于目标值，本行之前也都不用比较了。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>&#160; &#160; &#160; &#160;以右上角为起点，代码如下：</p>
-<pre><code>public boolean Find(int target, int [][] a) {
-    // 右上角初始值，第一行最后一列。
-    int j=a[0].length-1;
-    int i=0;
-    //循环条件
-    while((j&gt;=0)&amp;&amp;i&lt;a.length){
-        //大于目标值，该行之后肯定都大于目标值，只会在该行，减少列数查找
-        if(a[i][j]&gt;target)
-            --j;
-        //小于目标指，则该行全小于目标值，往下一行查找
-        else if(a[i][j]&lt;target)
-            ++i;
-        //相等返回true
-        else
-            return true;
-    }
-    //循环结束还未返回true，则返回false。
-    return false;
-}
-</code></pre><p>   &#160; &#160; &#160; &#160;以左下角为起点，代码如下： </p>
-<pre><code>    public boolean Find(int target, int [][] a) {
-    //左下角初始值，最后一行，第一列
-    int i=a.length-1;
-    int j=0;
-    //循环条件
-    while((i&gt;=0)&amp;&amp;j&lt;a[0].length){
-        //大于目标值则该行都大于目标值，往上一行查找。
-        if(a[i][j]&gt;target)
-            --i;
-        //小于目标值，则该行之前都小于目标值，结果只会在该行，再增加列数查找
-        else if(a[i][j]&lt;target)
-            ++j;
-        //相等返回true
-        else
-            return true;
-    }
-    //循环结束还未返回true，则返回false。
-    return false;
-}
-</code></pre><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高效并发（二）</title>
-    <link href="http://yoursite.com/2017/03/07/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/03/07/高效并发（二）/</id>
-    <published>2017-03-07T02:55:01.000Z</published>
-    <updated>2017-05-12T05:18:21.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="线程的基本操作（二）"><a href="#线程的基本操作（二）" class="headerlink" title="线程的基本操作（二）"></a>线程的基本操作（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
- <a id="more"></a>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;线程的基本操作（二）&quot;&gt;&lt;a href=&quot;#线程的基本操作（二）&quot; class=&quot;headerlink&quot; title=&quot;线程的基本操作（二）&quot;&gt;&lt;/a&gt;线程的基本操作（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="线程的基本操作" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     
   </entry>
   
@@ -595,6 +422,75 @@
     
     
       <category term="JDK集合类源码" scheme="http://yoursite.com/tags/JDK%E9%9B%86%E5%90%88%E7%B1%BB%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer：重建二叉树</title>
+    <link href="http://yoursite.com/2017/03/05/%E5%89%91%E6%8C%87offer%EF%BC%9A%E9%87%8D%E5%BB%BA%E4%BA%8C%E5%8F%89%E6%A0%91/"/>
+    <id>http://yoursite.com/2017/03/05/剑指offer：重建二叉树/</id>
+    <published>2017-03-05T09:16:00.000Z</published>
+    <updated>2017-05-15T09:59:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二叉树，这题就是已经前中序要求重建二叉树。</p>
+  <a id="more"></a>
+<h1 id="重建二叉树"><a href="#重建二叉树" class="headerlink" title="重建二叉树"></a>重建二叉树</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;我们知道在二叉树的前序遍历中，第一个总是根值。中序遍历中，根节点的值在序列的中间。左子树的根节点位于根节点的左边，右子树的结点在根节点的右边，因此我们需要扫描中序遍历才能找到根节点的值。找到根结点之后，中序遍历分成两部分，分别是左右子树的中序遍历，而我们在前序遍历中根据左右子树的个数就能确定左右子树的前序遍历，因此我们就能递归的完成。具体步骤如下：</p>
+<ol>
+<li>先进行输入序列的检查。</li>
+<li>把中序序列放入一个hashmap，值为key，索引为value，这样很方便的通过前序序列中的值得到在中序遍历中的索引，很巧妙，而且时间复杂度较低。</li>
+<li>利用递归完成树重建，为了代码的简洁性，写了preIn函数完成功能。具体输入参数和意义如下注释部分。</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">public TreeNode reConstructBinaryTree(int [] pre,int [] in) &#123;</div><div class="line">    //为空则返回空，输入检查，还可检查两者长度是否相等。</div><div class="line">    if(pre==null||in==null)&#123;</div><div class="line">          return null;</div><div class="line">    &#125;   </div><div class="line">    java.util.HashMap&lt;Integer,Integer&gt; map=new java.util.HashMap&lt;Integer,Integer&gt;();</div><div class="line">    //中序遍历进map</div><div class="line">    for(int i=0;i&lt;in.length;i++)&#123;</div><div class="line">       map.put(in[i],i); </div><div class="line">    &#125;</div><div class="line">    //交给重建函数</div><div class="line">    return preIn(pre,0,pre.length-1,in,0,in.length-1,map);</div><div class="line">&#125;</div><div class="line">//p，n，map属于不变的，这样写代码简洁一点，变得是前序遍历和中序遍历在原序列中的起止索引。</div><div class="line">public TreeNode preIn(int[] p,int pi,int pj,int[] n,int ni,int nj,java.util.HashMap&lt;Integer,Integer&gt; map)&#123;</div><div class="line">    //前序遍历开始位置大于结束位置，返回空。</div><div class="line">    if(pi&gt;pj)&#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    //前序遍历开始位置就是根节点。</div><div class="line">    TreeNode head =new TreeNode(p[pi]);</div><div class="line">    //获得根节点在中序序列中的索引位置</div><div class="line">    int index=map.get(p[pi]);</div><div class="line">    //递归左子树，前序遍历pi自增1就行，结束位置算法是（pi+1）+（index-1-ni），因为</div><div class="line">    //index-1为中序遍历结束位置减去ni开始位置就是中序遍历的个数，在加上pi+1就是前序遍历</div><div class="line">    //结束为止</div><div class="line">    head.left=preIn(p,pi+1,pi+index-ni,n,ni,index-1,map);</div><div class="line">    //右子树的前序开始位置为左子树结束位置自增1，结束位置是pj，中序遍历开始是根节点位置自</div><div class="line">    //增1，结束位置是nj</div><div class="line">    head.right=preIn(p,pi+index-ni+1,pj,n,index+1,nj,map);</div><div class="line">    //重建完成返回</div><div class="line">    return head;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;树也是一种重要的数据结构，它的逻辑是：除了根节点之外每个节点都只有一个父节点，根节点没有父节点，除了叶节点之外所有的节点都有一个或多个字节点。我们经常用到的是二叉树（还包括一些特殊的二叉树：二叉搜索树、大小根堆、红黑树等使用也广泛），它的遍历方式有前序遍历、中序遍历、后序遍历、宽度优先遍历。知道中序遍历和前后遍历任意其他一个，我们就能重建二叉树，这题就是已经前中序要求重建二叉树。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer：从尾到头打印链表</title>
+    <link href="http://yoursite.com/2017/03/04/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BB%8E%E5%B0%BE%E5%88%B0%E5%A4%B4%E6%89%93%E5%8D%B0%E9%93%BE%E8%A1%A8/"/>
+    <id>http://yoursite.com/2017/03/04/剑指offer：从尾到头打印链表/</id>
+    <published>2017-03-04T12:41:39.000Z</published>
+    <updated>2017-05-15T09:59:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。</p>
+  <a id="more"></a>
+<p>&#160; &#160; &#160; &#160;补充说明：使用链表结构可以克服数组链表需要预先知道数据大小的缺点，链表结构可以充分利用计算机内存空间，实现灵活的内存动态管理。但是链表失去了数组随机读取的优点，同时链表由于增加了结点的指针域，空间开销比较大。链表最明显的好处就是，常规数组排列关联项目的方式可能不同于这些数据项目在记忆体或磁盘上顺序，数据的存取往往要在不同的排列顺序中转换。链表允许插入和移除表上任意位置上的节点，但是不允许随机存取。链表有很多种不同的类型：单向链表，双向链表以及循环链表。在Java中我们用自定义类来表示链表，本题就给出了链表默认类。—-源自<em>百度百科</em>，觉得讲的很清楚。</p>
+<h1 id="从尾到头打印链表"><a href="#从尾到头打印链表" class="headerlink" title="从尾到头打印链表"></a>从尾到头打印链表</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;输入一个链表，从尾到头打印链表每个节点的值。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;从头到尾输出链表比较简单，因为是题目要求是打印且是从尾到头，打印一般不允许我们改原链表结构的，所以反向链表在从头打印不行的，我们有两个思路：</p>
+<ol>
+<li>考虑用递归来实现，链表最后一个节点的next节点为空，这也是我们递归结束条件。如果链表当前节点的next不为空，我们递归先打印它的next节点，但是递归都怕栈溢出。</li>
+</ol>
+<ol>
+<li>考虑到这个类似先进后出，可用数据结构栈来实现这种顺序,但是没有递归简洁，而且先要遍历一遍存入栈，然后在出栈。</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="递归实现"><a href="#递归实现" class="headerlink" title="递归实现"></a>递归实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> import java.util.ArrayList;</div><div class="line"> public class Solution &#123;</div><div class="line"> </div><div class="line">    ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        //递归结束条件  </div><div class="line">        if(listNode!=null)&#123;</div><div class="line">            //递归打印它的next数组</div><div class="line">            this.printListFromTailToHead(listNode.next);</div><div class="line">            arrayList.add(listNode.val);</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="栈实现"><a href="#栈实现" class="headerlink" title="栈实现"></a>栈实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">import java.util.ArrayList;</div><div class="line">import java.util.Stack;</div><div class="line">public class Solution &#123;</div><div class="line">    </div><div class="line">    public ArrayList&lt;Integer&gt; printListFromTailToHead(ListNode listNode) &#123;</div><div class="line">        ArrayList&lt;Integer&gt; arrayList=new ArrayList&lt;Integer&gt;();</div><div class="line">        Stack&lt;Integer&gt; s=new Stack&lt;Integer&gt;();</div><div class="line">        //链表依次进栈</div><div class="line">        while(listNode!=null)&#123;</div><div class="line">            s.push(listNode.val);</div><div class="line">            listNode=listNode.next;</div><div class="line">        &#125;</div><div class="line">        //依次出栈到输出动态数组完成逆序打印</div><div class="line">        while(!s.empty())&#123;</div><div class="line">            arrayList.add(s.pop());</div><div class="line">        &#125;</div><div class="line">        return arrayList;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
     
   </entry>
   
@@ -740,6 +636,43 @@ System.out.println(map);
   </entry>
   
   <entry>
+    <title>剑指offer：替换空格</title>
+    <link href="http://yoursite.com/2017/03/03/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
+    <id>http://yoursite.com/2017/03/03/剑指offer：替换空格/</id>
+    <published>2017-03-03T07:23:15.000Z</published>
+    <updated>2017-05-15T09:58:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
+  <a id="more"></a>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：<a href="http://blog.csdn.net/qh_java/article/details/46382265" target="_blank" rel="external">从源码角度分析Java三种字符串</a>。</p>
+<p>&#160; &#160; &#160; &#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>public String replaceSpace(StringBuffer str) {
+    StringBuilder newstr =new StringBuilder();
+    for(int i=0;i&lt;str.length();i++){
+        if(str.charAt(i)==&apos; &apos; )
+            newstr.append(&quot;%&quot;).append(&quot;2&quot;).append(&quot;0&quot;);
+        else
+           newstr.append(str.charAt(i));
+    }
+           return newstr.toString();
+}
+</code></pre><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;二维数组中的查找&quot;&gt;&lt;a href=&quot;#二维数组中的查找&quot; class=&quot;headerlink&quot; title=&quot;二维数组中的查找&quot;&gt;&lt;/a&gt;二维数组中的查找&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JDK源码阅读（一）</title>
     <link href="http://yoursite.com/2017/03/02/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/02/JDK源码阅读（一）/</id>
@@ -787,6 +720,73 @@ System.out.println(map);
     
     
       <category term="JDK基础类型源码" scheme="http://yoursite.com/tags/JDK%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>剑指offer：二维数组中的查找</title>
+    <link href="http://yoursite.com/2017/03/02/%E5%89%91%E6%8C%87offer%EF%BC%9A%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE/"/>
+    <id>http://yoursite.com/2017/03/02/剑指offer：二维数组中的查找/</id>
+    <published>2017-03-02T08:28:06.000Z</published>
+    <updated>2017-05-15T09:59:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&#160; &#160; &#160; &#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。</p>
+  <a id="more"></a>
+<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;遍历数组能解决问题，但是由于所给数组已经部分排序，我们可以利用这个排序规则进行不必要的比较剔除，进行优化。试想如果起点是左下角，同目标值比较，如果大于目标值，整行我们就不用比较了，如果小于目标值，本行之前也都不用比较了。</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>&#160; &#160; &#160; &#160;以右上角为起点，代码如下：</p>
+<pre><code>public boolean Find(int target, int [][] a) {
+    // 右上角初始值，第一行最后一列。
+    int j=a[0].length-1;
+    int i=0;
+    //循环条件
+    while((j&gt;=0)&amp;&amp;i&lt;a.length){
+        //大于目标值，该行之后肯定都大于目标值，只会在该行，减少列数查找
+        if(a[i][j]&gt;target)
+            --j;
+        //小于目标指，则该行全小于目标值，往下一行查找
+        else if(a[i][j]&lt;target)
+            ++i;
+        //相等返回true
+        else
+            return true;
+    }
+    //循环结束还未返回true，则返回false。
+    return false;
+}
+</code></pre><p>   &#160; &#160; &#160; &#160;以左下角为起点，代码如下： </p>
+<pre><code>    public boolean Find(int target, int [][] a) {
+    //左下角初始值，最后一行，第一列
+    int i=a.length-1;
+    int j=0;
+    //循环条件
+    while((i&gt;=0)&amp;&amp;j&lt;a[0].length){
+        //大于目标值则该行都大于目标值，往上一行查找。
+        if(a[i][j]&gt;target)
+            --i;
+        //小于目标值，则该行之前都小于目标值，结果只会在该行，再增加列数查找
+        else if(a[i][j]&lt;target)
+            ++j;
+        //相等返回true
+        else
+            return true;
+    }
+    //循环结束还未返回true，则返回false。
+    return false;
+}
+</code></pre><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;剑指offer是非常经典的算法面试题，之前在牛客网上做过一遍，现在做第二遍并且分析记录。博客中还会出现数据结构和经典算法的篇幅，但是剑指offer单独拿出来，总共60多个题，分析一下，到时候也可以给师弟网友学习过程中作为参考。我自己也能熟悉面试题，巩固算法知识，保持编程状态。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
+    
+    
+      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
     
   </entry>
   
