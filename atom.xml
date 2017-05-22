@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-11T12:03:15.000Z</updated>
+  <updated>2017-05-22T12:01:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2017/05/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%88%E4%B8%80%EF%BC%89%E2%80%94%E2%80%94%E6%A0%91/"/>
     <id>http://yoursite.com/2017/05/11/数据结构（一）——树/</id>
     <published>2017-05-11T07:51:41.000Z</published>
-    <updated>2017-05-11T12:03:15.000Z</updated>
+    <updated>2017-05-22T12:01:06.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="数据结构（一）——树"><a href="#数据结构（一）——树" class="headerlink" title="数据结构（一）——树"></a>数据结构（一）——树</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下。</p>
+    <content type="html"><![CDATA[<h1 id="数据结构（一）——树"><a href="#数据结构（一）——树" class="headerlink" title="数据结构（一）——树"></a>数据结构（一）——树</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下,今天重点说下树。</p>
  <a id="more"></a>
 <p>&#160; &#160; &#160; &#160;在算法题的做题当中就已经学习了简单的数据结构，hashmap中又用到散列，为了理解 TreeMap 的底层实现，必须先介绍排序二叉树和平衡二叉树，然后继续介绍红黑树。平衡二叉树和红黑树又是一种特殊的二叉排序树。二叉排序树是一种特殊结构的二叉树，可以非常方便地对树中所有节点进行排序和检索。mysql索引也是b+，b-树的原理。这里总结一下：</p>
 <h2 id="二叉排序树／二叉查找树／二叉搜索树／BST"><a href="#二叉排序树／二叉查找树／二叉搜索树／BST" class="headerlink" title="二叉排序树／二叉查找树／二叉搜索树／BST"></a>二叉排序树／二叉查找树／二叉搜索树／BST</h2><p>&#160; &#160; &#160; &#160;标题已经说明它的名称之多，我们先说下排序二叉树特性：</p>
@@ -126,7 +126,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;数据结构（一）——树&quot;&gt;&lt;a href=&quot;#数据结构（一）——树&quot; class=&quot;headerlink&quot; title=&quot;数据结构（一）——树&quot;&gt;&lt;/a&gt;数据结构（一）——树&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下。&lt;/p&gt;
+      &lt;h1 id=&quot;数据结构（一）——树&quot;&gt;&lt;a href=&quot;#数据结构（一）——树&quot; class=&quot;headerlink&quot; title=&quot;数据结构（一）——树&quot;&gt;&lt;/a&gt;数据结构（一）——树&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在数据结构的学习当中，看到后面树，图，散列的时候已经有点难度，理解的较浅，学习完后面的知识，就发现，这些数据结构和经典算法都用在了一些常用工具的实现原理上，所以需要把这些知识总结一下,今天重点说下树。&lt;/p&gt;
     
     </summary>
     
