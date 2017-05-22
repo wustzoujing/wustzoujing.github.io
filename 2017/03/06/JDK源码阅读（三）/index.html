@@ -111,17 +111,17 @@
 
 
 
-<meta name="description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list相关的一些类。本文转自博文：Java集合类剖析。">
+<meta name="description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list接口相关的一些类。本文转自系列博文：Java集合类剖析。">
 <meta name="keywords" content="JDK集合类源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDK源码阅读（三）">
 <meta property="og:url" content="http://yoursite.com/2017/03/06/JDK源码阅读（三）/index.html">
 <meta property="og:site_name" content="Jessie_Zou’s Homepage">
-<meta property="og:description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list相关的一些类。本文转自博文：Java集合类剖析。">
-<meta property="og:updated_time" content="2017-05-12T02:17:33.000Z">
+<meta property="og:description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list接口相关的一些类。本文转自系列博文：Java集合类剖析。">
+<meta property="og:updated_time" content="2017-05-22T12:12:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK源码阅读（三）">
-<meta name="twitter:description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list相关的一些类。本文转自博文：Java集合类剖析。">
+<meta name="twitter:description" content="JDK源码阅读（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习map类之后，我们今天了解list接口相关的一些类。本文转自系列博文：Java集合类剖析。">
 
 
 
@@ -408,7 +408,7 @@
       
 
       
-        <h1 id="JDK源码阅读（三）"><a href="#JDK源码阅读（三）" class="headerlink" title="JDK源码阅读（三）"></a>JDK源码阅读（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习map类之后，我们今天了解list相关的一些类。本文转自博文：<a href="http://blog.csdn.net/column/details/collection.html?page=1" target="_blank" rel="external">Java集合类剖析</a>。</p>
+        <h1 id="JDK源码阅读（三）"><a href="#JDK源码阅读（三）" class="headerlink" title="JDK源码阅读（三）"></a>JDK源码阅读（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习map类之后，我们今天了解list接口相关的一些类。本文转自系列博文：<a href="http://blog.csdn.net/column/details/collection.html?page=1" target="_blank" rel="external">Java集合类剖析</a>。</p>
  <a id="more"></a>
 <h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h2><p>&#160; &#160; &#160; &#160; ArrayList是基于数组实现的，是一个动态数组，其容量能自动增长，类似于C语言中的动态申请内存，动态增长内存。</p>
 <p>&#160; &#160; &#160; &#160;ArrayList不是线程安全的，只能用在单线程环境下，多线程环境下可以考虑用Collections.synchronizedList(List l)函数返回一个线程安全的ArrayList类，也可以使用concurrent并发包下的CopyOnWriteArrayList类。</p>
