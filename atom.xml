@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-22T12:01:06.000Z</updated>
+  <updated>2017-05-22T12:16:58.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次JAVA爬虫之旅</title>
+    <link href="http://yoursite.com/2017/05/22/%E4%B8%80%E6%AC%A1JAVA%E7%88%AC%E8%99%AB%E4%B9%8B%E6%97%85/"/>
+    <id>http://yoursite.com/2017/05/22/一次JAVA爬虫之旅/</id>
+    <published>2017-05-22T12:14:05.000Z</published>
+    <updated>2017-05-22T12:16:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一次JAVA爬虫之旅"><a href="#一次JAVA爬虫之旅" class="headerlink" title="一次JAVA爬虫之旅"></a>一次JAVA爬虫之旅</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;好久就想做一下爬虫，最近终于完成了。爬了知乎用户信息，现在知乎确实正规了好多，各种反爬虫机制，遇到了不少坑，还好都克服了，现在来记录下这个过程，和把结果展示一下。</p>
+  <a id="more"></a>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一次JAVA爬虫之旅&quot;&gt;&lt;a href=&quot;#一次JAVA爬虫之旅&quot; class=&quot;headerlink&quot; title=&quot;一次JAVA爬虫之旅&quot;&gt;&lt;/a&gt;一次JAVA爬虫之旅&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;好久就想做一下爬虫，最近终于完成了。爬了知乎用户信息，现在知乎确实正规了好多，各种反爬虫机制，遇到了不少坑，还好都克服了，现在来记录下这个过程，和把结果展示一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://yoursite.com/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构（一）——树</title>
@@ -1087,59 +1111,6 @@ transient int modCount;//被修改的次数
     
     
       <category term="垃圾收集器与内存分配策略" scheme="http://yoursite.com/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>OOM异常实战</title>
-    <link href="http://yoursite.com/2017/02/18/OOM%E5%BC%82%E5%B8%B8%E5%AE%9E%E6%88%98/"/>
-    <id>http://yoursite.com/2017/02/18/OOM异常实战/</id>
-    <published>2017-02-18T08:27:03.000Z</published>
-    <updated>2017-05-09T02:09:43.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="OOM异常实战"><a href="#OOM异常实战" class="headerlink" title="OOM异常实战"></a>OOM异常实战</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。</p>
-<a id="more"></a>
-<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><h3 id="重要参数"><a href="#重要参数" class="headerlink" title="重要参数"></a>重要参数</h3><p>&#160; &#160; &#160; &#160;有几个重要参数设置如下：</p>
-<ol>
-<li><p>-Xms  堆大小的最小值设置参数</p>
-</li>
-<li><p>-Xmx  堆的大小最大值，如果设置为最小值一样，则不允许自动扩展。</p>
-</li>
-<li><p>-XX：+HeapDumpOnOutOfMemoryError  让内存溢出时Dump出当前内存堆转储快照。</p>
-</li>
-</ol>
-<h3 id="模拟产生方法"><a href="#模拟产生方法" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果我们不断的创建对象，并且保证GC Roots到对象之间有可达路径来避免垃圾回收机制回收这些对象，就能模拟抛出OOM异常的情景。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>&#160; &#160; &#160; &#160;<br>使用内存映像分析工具：Eclipse Memory Analyzer对dump出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，即要搞明白是内存泄漏还是内存溢出。 </p>
-<ol>
-<li>内存泄漏导致的OOM：new出来的很多对象已经不需要了，但仍然有引用指向，所以垃圾回收机制无法回收。 </li>
-<li>内存溢出：new出来的对象都是需要的，但堆内存太小装不下了。 </li>
-</ol>
-<p>&#160; &#160; &#160; &#160;<font color="red">如果是内存泄漏，通过工具查看泄漏对象到GC Roots的引用链。找到泄漏对象是通过怎样的路径与GC Roots发生关联，然后导致垃圾回收机制无法自动回收的。如果不存在内存泄漏，也就是所有的对象都必须存在，这时候就调大堆内存。</font></p>
-<h2 id="虚拟机栈和本地方法溢出"><a href="#虚拟机栈和本地方法溢出" class="headerlink" title="虚拟机栈和本地方法溢出"></a>虚拟机栈和本地方法溢出</h2><p>&#160; &#160; &#160; &#160;在hotspot中不区分虚拟机和本地方法栈，因此对于hotspot来说，-Xoss参数存在但是无效，栈容量只由-Xss参数决定。</p>
-<p>&#160; &#160; &#160; &#160;书上的实验结果表明；</p>
-<ol>
-<li>在单个线程下，无论是由于栈帧太大还是虚拟机容量太小，当内存无法分配的时候，虚拟机抛出的都是StackOverflowError。</li>
-<li>不限于单线程可以模拟出OOM，但是这种产生的内存溢出与栈空间足够大不存在联系，而且越大反而更容易产生内存溢出。原因：<font color="red">内存有限，每个线程分配到的栈容量越大，可以建立的线程数就越少，建立线程的时候就越容易把剩下的内存耗尽。</font></li>
-<li>所以在多线程开发中特别注意，StackOverflowError有错误堆栈可以阅读，相对排查简单一些。大多数情况下达到1000～2000完全没有问题，对于正常的递归大多数情况下完全够用了。<font color="red">如果是多线程导致内存溢出的话，就只能减少最大堆或者栈的容量来获得更多的线程。</font></li>
-</ol>
-<h2 id="常量池溢出"><a href="#常量池溢出" class="headerlink" title="常量池溢出"></a>常量池溢出</h2><h3 id="模拟产生方法-1"><a href="#模拟产生方法-1" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;如果要向运行时内存中添加内容，最简单的方式是使用string.intern（）。</p>
-<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：PermSize        &#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;-XX：MaxPermSize。溢出后提示信息是PermGen space。</p>
-<h3 id="方法区溢出"><a href="#方法区溢出" class="headerlink" title="方法区溢出"></a>方法区溢出</h3><p>&#160; &#160; &#160; &#160;方法区存放class信息，比如类名、访问修饰符、常量池、字段描述、方法描述等。</p>
-<h3 id="模拟产生方法-2"><a href="#模拟产生方法-2" class="headerlink" title="模拟产生方法"></a>模拟产生方法</h3><p>&#160; &#160; &#160; &#160;产生许多类区填满方法区，直到溢出。还可以反射和动态代理，还可以用CGLIB直接操作字符码，生成动态类。（框架中精彩需要对类进行增强，都会使用到CGLIB，增强的类越多，就需要越大的方法区保证动态生成的class可以加载入内存）。</p>
-<p>&#160; &#160; &#160; &#160;方法区溢出也是常见的内存溢出，一个类如果要被垃圾收集器回收掉条件是十分苛刻的。在动态生成大量Class文件的应用中，需要特别注意类的回收状况。常见的还有JSP应用。</p>
-<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><p>-XX：MaxDirectMemorySize，如果不指定默认和堆一样大。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;OOM异常实战&quot;&gt;&lt;a href=&quot;#OOM异常实战&quot; class=&quot;headerlink&quot; title=&quot;OOM异常实战&quot;&gt;&lt;/a&gt;OOM异常实战&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在Java虚拟机除了程序计数器外，其他几个运行时内存区域都可能发生OOM，下面实例一下溢出场景，并分析。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="JVM进阶" scheme="http://yoursite.com/categories/JVM%E8%BF%9B%E9%98%B6/"/>
-    
-    
-      <category term="OOM异常" scheme="http://yoursite.com/tags/OOM%E5%BC%82%E5%B8%B8/"/>
     
   </entry>
   
