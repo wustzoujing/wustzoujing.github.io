@@ -163,10 +163,10 @@
   
   <entry>
     <title>实现简易web服务器和web浏览器</title>
-    <link href="http://yoursite.com/2017/05/10/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Cweb%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2017/05/10/web服务器和web浏览器的实现原理/</id>
-    <published>2017-05-10T04:31:39.000Z</published>
-    <updated>2017-05-10T09:29:01.000Z</updated>
+    <link href="http://yoursite.com/2017/04/02/web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8Cweb%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2017/04/02/web服务器和web浏览器的实现原理/</id>
+    <published>2017-04-02T04:31:39.000Z</published>
+    <updated>2017-05-23T05:30:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="web服务器和web浏览器的实现原理"><a href="#web服务器和web浏览器的实现原理" class="headerlink" title="web服务器和web浏览器的实现原理"></a>web服务器和web浏览器的实现原理</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;预警：此篇篇幅很长，可通过菜单导航观看。最近在复习计算机网络的知识，因为想在Java web方面深入了解，所以在思考B／S结构模式的工作是怎样的过程呢，刚好找了好些资料和别人的总结，现在把这些都整理一下。在基础中已经学习了socket和http协议，我们也知道通过浏览器输入一个地址，访问一个网页的操作。实际对应的底层操作简单来说就是：客户端(浏览器)面向于WEB服务器的网络通信。</p>
  <a id="more"></a>
@@ -239,10 +239,10 @@
   
   <entry>
     <title>Servlet搭配工作Tomcat</title>
-    <link href="http://yoursite.com/2017/05/08/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2017/05/08/Servlet原理和Tomcat原理/</id>
-    <published>2017-05-08T09:20:19.000Z</published>
-    <updated>2017-05-10T10:58:25.000Z</updated>
+    <link href="http://yoursite.com/2017/03/29/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2017/03/29/Servlet原理和Tomcat原理/</id>
+    <published>2017-03-29T09:20:19.000Z</published>
+    <updated>2017-05-23T05:30:42.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Servlet搭配工作Tomcat"><a href="#Servlet搭配工作Tomcat" class="headerlink" title="Servlet搭配工作Tomcat"></a>Servlet搭配工作Tomcat</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。</p>
  <a id="more"></a>
@@ -286,6 +286,205 @@
   </entry>
   
   <entry>
+    <title>高效并发（五）</title>
+    <link href="http://yoursite.com/2017/03/24/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%94%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/24/高效并发（五）/</id>
+    <published>2017-03-24T05:22:25.000Z</published>
+    <updated>2017-05-23T05:27:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="concurrent包总结（三）"><a href="#concurrent包总结（三）" class="headerlink" title="concurrent包总结（三）"></a>concurrent包总结（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经分析了线程池和同步工具。这里我们来介绍原子类和forkjoin框架。</p>
+ <a id="more"></a>
+<h2 id="forkjoin框架"><a href="#forkjoin框架" class="headerlink" title="forkjoin框架"></a>forkjoin框架</h2><h2 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;concurrent包总结（三）&quot;&gt;&lt;a href=&quot;#concurrent包总结（三）&quot; class=&quot;headerlink&quot; title=&quot;concurrent包总结（三）&quot;&gt;&lt;/a&gt;concurrent包总结（三）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经分析了线程池和同步工具。这里我们来介绍原子类和forkjoin框架。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="concurrent包总结" scheme="http://yoursite.com/tags/concurrent%E5%8C%85%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高效并发（四）</title>
+    <link href="http://yoursite.com/2017/03/21/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/21/高效并发（四）/</id>
+    <published>2017-03-21T05:22:10.000Z</published>
+    <updated>2017-05-23T05:27:30.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="concurrent包总结（二）"><a href="#concurrent包总结（二）" class="headerlink" title="concurrent包总结（二）"></a>concurrent包总结（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经分析了lock和concurrent提供的集合类包括阻塞队列和容器类。这里我们来介绍</p>
+ <a id="more"></a>
+<h2 id="executor线程池"><a href="#executor线程池" class="headerlink" title="executor线程池"></a>executor线程池</h2><h2 id="同步工具类"><a href="#同步工具类" class="headerlink" title="同步工具类"></a>同步工具类</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;concurrent包总结（二）&quot;&gt;&lt;a href=&quot;#concurrent包总结（二）&quot; class=&quot;headerlink&quot; title=&quot;concurrent包总结（二）&quot;&gt;&lt;/a&gt;concurrent包总结（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经分析了lock和concurrent提供的集合类包括阻塞队列和容器类。这里我们来介绍&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="concurrent包总结" scheme="http://yoursite.com/tags/concurrent%E5%8C%85%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高效并发（三）</title>
+    <link href="http://yoursite.com/2017/03/18/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/18/高效并发（三）/</id>
+    <published>2017-03-18T01:16:03.000Z</published>
+    <updated>2017-05-23T05:32:19.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="concurrent包总结（一）"><a href="#concurrent包总结（一）" class="headerlink" title="concurrent包总结（一）"></a>concurrent包总结（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在前面的基础知识之上，我们开始对concurrent包的全面分析。</p>
+ <a id="more"></a>
+<h2 id="concureent包中并发框架"><a href="#concureent包中并发框架" class="headerlink" title="concureent包中并发框架"></a>concureent包中并发框架</h2><p>&#160; &#160; &#160; &#160;JDK5后，提供了concurrent包来进行高效的并发，我们一个个来分析它，从部分重要的源码上去理解。</p>
+<h3 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h3><p>&#160; &#160; &#160; &#160;可参考博文：<a href="http://www.importnew.com/24594.html" target="_blank" rel="external">并发集合总结</a>。</p>
+<h4 id="Concurrent-Colleciton相关"><a href="#Concurrent-Colleciton相关" class="headerlink" title="Concurrent Colleciton相关"></a>Concurrent Colleciton相关</h4><h5 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h5><p>&#160; &#160; &#160; &#160;采用了锁分离技术，它使用了多个锁代替HashTable中的单个锁，其中get方法并没有加锁。它把区间按照并发级别(concurrentLevel)，分成了若干个segment。默认情况下内部按并发级别为16来创建。对于每个segment的容量，默认情况也是16。当然并发级别(concurrentLevel)和每个段(segment)的初始容量都是可以通过构造函数设定的。</p>
+<p>参考博文：<a href="http://www.importnew.com/21781.html" target="_blank" rel="external">concurrenthashmap详解</a></p>
+<p><img src="http://images.cnitblog.com/blog/587773/201409/062059451104363.jpg" alt=""></p>
+<p>&#160; &#160; &#160; &#160;看起来只是把以前HashTable的一个hash bucket创建了16份而已。那还有其他特殊的吗？其中Segment继承了ReentrantLock，表明每个segment都可以当做一个锁。我们就从put，get，remove方法重点去了解。</p>
+<p>&#160; &#160; &#160; &#160;get方法：count变量表示segment中存在entry的个数,hashentry数据结构，还有get方法没有加同步监视器。我们来看下如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">V get(Object key, int hash) &#123;</div><div class="line">        if (count != 0) &#123; // read-volatile // ①</div><div class="line">            HashEntry&lt;K,V&gt; e = getFirst(hash); </div><div class="line">            while (e != null) &#123;</div><div class="line">                if (e.hash == hash &amp;&amp; key.equals(e.key)) &#123;</div><div class="line">                    V v = e.value;</div><div class="line">                    if (v != null)  // ② 注意这里，结合双层检测锁DCL</div><div class="line">                        return v;</div><div class="line">                    return readValueUnderLock(e); // recheck</div><div class="line">                &#125;</div><div class="line">                e = e.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">transient volatile int count;</div><div class="line"></div><div class="line"></div><div class="line">static final class HashEntry&lt;K,V&gt; &#123;</div><div class="line">    final K key;</div><div class="line">    final int hash;</div><div class="line">    volatile V value;</div><div class="line">    final HashEntry&lt;K,V&gt; next;</div><div class="line">    。。。</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>&#160; &#160; &#160; &#160;count和value使用了volatile来修改。我们前文说过，Java5之后，JMM实现了对volatile的保证：对volatile域的写入操作happens-before于每一个后续对同一个域的读写操作。所以，每次判断count变量的时候，即使恰好其他线程改变了segment也会体现出来。</p>
+<h5 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h5><p>&#160; &#160; &#160; &#160;CopyOnWrite容器即写时复制的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器。</p>
+<p>我们要注意以下两点：</p>
+<ol>
+<li><p>减少扩容开销。根据实际需要，初始化CopyOnWriteMap的大小，避免写时CopyOnWriteMap扩容的开销。</p>
+</li>
+<li><p>使用批量添加。因为每次添加，容器每次都会进行复制，所以减少添加次数，可以减少容器的复制次数。如使用上面代码里的addBlackList方法。</p>
+</li>
+</ol>
+<p>缺点：</p>
+<p>&#160; &#160; &#160; &#160;一、内存占用问题。因为CopyOnWrite的写时复制机制，所以在进行写操作的时候，内存里会同时驻扎两个对象的内存，旧的对象和新写入的对象（注意:在复制的时候只是复制容器里的引用，只是在写的时候会创建新对象添加到新容器里，而旧容器的对象还在使用，所以有两份对象内存）。如果这些对象占用的内存比较大，比如说200M左右，那么再写入100M数据进去，内存就会占用300M，那么这个时候很有可能造成频繁的Yong GC和Full GC。之前我们系统中使用了一个服务由于每晚使用CopyOnWrite机制更新大对象，造成了每晚15秒的Full GC，应用响应时间也随之变长。</p>
+<p>&#160; &#160; &#160; &#160;针对内存占用问题，可以通过压缩容器中的元素的方法来减少大对象的内存消耗，比如，如果元素全是10进制的数字，可以考虑把它压缩成36进制或64进制。或者不使用CopyOnWrite容器，而使用其他的并发容器，如ConcurrentHashMap。</p>
+<p>&#160; &#160; &#160; &#160;二、数据一致性问题。CopyOnWrite容器只能保证数据的最终一致性，不能保证数据的实时一致性。所以如果你希望写入的的数据，马上能读到，请不要使用CopyOnWrite容器。</p>
+<p>参考博文：<a href="http://www.importnew.com/22470.html" target="_blank" rel="external">copyonwriteArrayList解析</a></p>
+<h5 id="ConcurrentSkipListmap"><a href="#ConcurrentSkipListmap" class="headerlink" title="ConcurrentSkipListmap"></a>ConcurrentSkipListmap</h5><p>&#160; &#160; &#160; &#160;跳跃表其实也是一种通过“空间来换取时间”的一个算法，通过在每个节点中增加了向前的指针，从而提升查找的效率。跳跃表使用概率均衡技术而不是使用强制性均衡技术，因此，对于插入和删除结点比传统上的平衡树算法更为简洁高效。 跳表是一种随机化的数据结构，目前开源软件 Redis 和 LevelDB 都有用到它。</p>
+<p><img src="http://img.blog.csdn.net/20160820163336489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
+<p>参考博文：<a href="http://blog.csdn.net/sunxianghuang/article/details/52221913" target="_blank" rel="external">concurrentskipListmap解析</a></p>
+<h4 id="Queue接口相关"><a href="#Queue接口相关" class="headerlink" title="Queue接口相关"></a>Queue接口相关</h4><h5 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h5><p>&#160; &#160; &#160; &#160;在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现 。</p>
+<p>&#160; &#160; &#160; &#160;ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列，它采用先进先出的规则对节点进行排序，当我们添加一个元素的时候，它会添加到队列的尾部，当我们获取一个元素时，它会返回队列头部的元素。它采用了“wait－free”算法来实现。参考博文：<a href="http://ifeve.com/concurrentlinkedqueue/" target="_blank" rel="external">ConcurrentLinkedQueue解析</a>。</p>
+<p>&#160; &#160; &#160; &#160;ConcurrentLinkedQueue由head节点和tair节点组成，每个节点（Node）由节点元素（item）和指向下一个节点的引用(next)组成，节点与节点之间就是通过这个next关联起来，从而组成一张链表结构的队列。默认情况下head节点存储的元素为空，tair节点等于head节点。</p>
+<pre><code>private transient volatile Node&lt;e&gt; tail = head;
+</code></pre><p><img src="http://ifeve.com/wp-content/uploads/2013/01/ConcurrentLinekedQueue队列入队结构变化图.jpg" alt=""></p>
+<p>&#160; &#160; &#160; &#160;我们主要来看入队和出队操作，如上图是入队操作，发现入队主要做两件事情，第一是将入队节点设置成当前队列尾节点的下一个节点。第二是更新tail节点，如果tail节点的next节点不为空，则将入队节点设置成tail节点，如果tail节点的next节点为空，则将入队节点设置成tail的next节点，所以tail节点不总是尾节点。这时单线程的方式，而多线程是采用CAS方式来实现：</p>
+<h5 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h5><p>&#160; &#160; &#160; &#160;参考博文：<a href="http://blog.csdn.net/suifeng3051/article/details/48807423" target="_blank" rel="external">BlockingQueue解析</a>。BlockingQueue即阻塞队列，从阻塞这个词可以看出，在某些情况下对阻塞队列的访问可能会造成阻塞。被阻塞的情况主要有如下两种：</p>
+<ol>
+<li>当队列满了的时候进行入队列操作</li>
+<li>当队列空了的时候进行出队列操作</li>
+</ol>
+<p>阻塞队列主要用在生产者/消费者的场景:</p>
+<p><img src="http://img.blog.csdn.net/20150929153140497" alt=""></p>
+<p>&#160; &#160; &#160; &#160;负责生产的线程不断的制造新对象并插入到阻塞队列中，直到达到这个队列的上限值。队列达到上限值之后生产线程将会被阻塞，直到消费的线程对这个队列进行消费。同理，负责消费的线程不断的从队列中消费对象，直到这个队列为空，当队列为空时，消费线程将会被阻塞，除非队列中有新的对象被插入。</p>
+<p>在Java6中，BlockingQueue的实现类主要有以下几种：</p>
+<ol>
+<li>ArrayBlockingQueue</li>
+<li>DelayQueue</li>
+<li>LinkedBlockingQueue</li>
+<li>PriorityBlockingQueue</li>
+<li>SynchronousQueue</li>
+</ol>
+<h6 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h6><p>&#160; &#160; &#160; &#160; ArrayBlockingQueue:一个有边界的阻塞队列，它的内部实现是一个数组。有边界的意思是它的容量是有限的，我们必须在其初始化的时候指定它的容量大小，容量大小一旦指定就不可改变。ArrayBlockingQueue是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">BlockingQueue queue = new ArrayBlockingQueue(1024);</div><div class="line">queue.put(&quot;1&quot;);</div><div class="line">Object object = queue.take();</div></pre></td></tr></table></figure>
+<h6 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h6><p>&#160; &#160; &#160; &#160;DelayQueue阻塞的是其内部元素，DelayQueue中的元素必须实现 java.util.concurrent.Delayed接口，这个接口的定义非常简单：</p>
+<pre><code>public interface Delayed extends Comparable&lt;Delayed&gt; {
+long getDelay(TimeUnit unit);
+}
+</code></pre><p>&#160; &#160; &#160; &#160;getDelay()方法的返回值就是队列元素被释放前的保持时间，如果返回0或者一个负值，就意味着该元素已经到期需要被释放，此时DelayedQueue会通过其take()方法释放此对象。从上面Delayed 接口定义可以看到，它还继承了Comparable接口，这是因为DelayedQueue中的元素需要进行排序，一般情况，我们都是按元素过期时间的优先级进行排序。其实DelayQueue应用场景很多，比如定时关闭连接、缓存对象，超时处理等各种场景。</p>
+<h6 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h6><p>LinkedBlockingQueue阻塞队列大小的配置是可选的，如果我们初始化时指定一个大小，它就是有边界的，如果不指定，它就是无边界的。说是无边界，其实是采用了默认大小为Integer.MAX_VALUE的容量 。它的内部实现是一个链表。和ArrayBlockingQueue一样，LinkedBlockingQueue 也是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。下面是一个初始化和使用LinkedBlockingQueue的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">BlockingQueue&lt;String&gt; unbounded = new LinkedBlockingQueue&lt;String&gt;();</div><div class="line">BlockingQueue&lt;String&gt; bounded   = new LinkedBlockingQueue&lt;String&gt;(1024);</div><div class="line">bounded.put(&quot;Value&quot;);</div><div class="line">String value = bounded.take();</div></pre></td></tr></table></figure>
+<h6 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h6><p>&#160; &#160; &#160; &#160;一个没有边界的队列，它的排序规则和 java.util.PriorityQueue一样。需要注意，PriorityBlockingQueue中允许插入null对象。所有插入PriorityBlockingQueue的对象必须实现 java.lang.Comparable接口，队列优先级的排序规则就是按照我们对这个接口的实现来定义的。另外，我们可以从PriorityBlockingQueue获得一个迭代器Iterator，但这个迭代器并不保证按照优先级顺序进行迭代。</p>
+<h6 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h6><p>&#160; &#160; &#160; &#160;队列内部仅允许容纳一个元素。当一个线程插入一个元素后会被阻塞，除非这个元素被另一个线程消费。</p>
+<h3 id="lock锁"><a href="#lock锁" class="headerlink" title="lock锁"></a>lock锁</h3><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;concurrent包总结（一）&quot;&gt;&lt;a href=&quot;#concurrent包总结（一）&quot; class=&quot;headerlink&quot; title=&quot;concurrent包总结（一）&quot;&gt;&lt;/a&gt;concurrent包总结（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在前面的基础知识之上，我们开始对concurrent包的全面分析。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="concurrent包总结" scheme="http://yoursite.com/tags/concurrent%E5%8C%85%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高效并发（二）</title>
+    <link href="http://yoursite.com/2017/03/16/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/16/高效并发（二）/</id>
+    <published>2017-03-16T02:55:01.000Z</published>
+    <updated>2017-05-23T01:50:06.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="并发基本知识总结（二）"><a href="#并发基本知识总结（二）" class="headerlink" title="并发基本知识总结（二）"></a>并发基本知识总结（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
+ <a id="more"></a>
+<h2 id="传统方式"><a href="#传统方式" class="headerlink" title="传统方式"></a>传统方式</h2><h3 id="产生线程的方法"><a href="#产生线程的方法" class="headerlink" title="产生线程的方法"></a>产生线程的方法</h3><ol>
+<li>继承thread，重写run方法</li>
+<li>thread+runnable</li>
+<li>callable+future（新型）</li>
+</ol>
+<h3 id="控制线程"><a href="#控制线程" class="headerlink" title="控制线程"></a>控制线程</h3><ol>
+<li>join</li>
+<li>sleep</li>
+<li>yield</li>
+<li>修改优先级</li>
+</ol>
+<h3 id="传统线程里面的通信"><a href="#传统线程里面的通信" class="headerlink" title="传统线程里面的通信"></a>传统线程里面的通信</h3><ol>
+<li>notify</li>
+<li>notifyAll</li>
+<li>wait</li>
+</ol>
+<h2 id="并发必要知识"><a href="#并发必要知识" class="headerlink" title="并发必要知识"></a>并发必要知识</h2><p>&#160; &#160; &#160; &#160;由第一节我们知道了jvm的内存模型的特点：原子性、可见性、有序性。其中多个过程之间内存可见性的顺序可能不一致，比如下面的程序例子。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class Test1 &#123;</div><div class="line">    private int a=1, b=2;</div><div class="line"> </div><div class="line">    public void foo()&#123;  // 线程1 </div><div class="line">        a=3;</div><div class="line">        b=4;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    public int getA()&#123; // 线程2</div><div class="line">        return a;</div><div class="line">    &#125;    </div><div class="line">    public int getB()&#123; // 线程2</div><div class="line">        return b;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">//可能出现的结果</div><div class="line"></div><div class="line">A：a=1, b=2  // 都未改变</div><div class="line">B：a=3, b=4  // 都改变了</div><div class="line">C：a=3, b=2  //  a改变了，b未改变</div><div class="line">D：a=1, b=4  //  b改变了，a未改变</div></pre></td></tr></table></figure>
+<p>造成这个的原因有下面两个：</p>
+<font color="red"><br><br>1. Java编译器的重排序(Reording)操作有可能导致执行顺序和代码顺序不一致<br><br><br>2. 从线程工作内存写回主存时顺序无法保证。<br><br><br></font><br>&#160; &#160; &#160; &#160;正因为上面的那些问题，JMM中一个重要问题就是：如何让多线程之间，对象的状态对于各线程的“可视性”是顺序一致的。它的解决方式就是 Happens-before 规则：<br>JMM为所有程序内部动作定义了一个偏序关系，叫做happens-before。要想保证执行动作B的线程看到动作A的结果（无论A和B是否发生在同一个线程中），A和B之间就必须满足happens-before关系。<br><br><img src="http://opb7t58xj.bkt.clouddn.com/happen-before.png" alt=""><br><br>&#160; &#160; &#160; &#160;<font color="red">我们重点关注的是②，③，这两条也是我们通常编程中常用的。也就是加锁（包括新的lock类和synchronized）和volatile（语义增强了），当然也有不变类（final）和atomic原子类。</font>
+
+<h3 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h3><p>&#160; &#160; &#160; &#160;早期Java中的锁只有最基本的synchronized，它是一种互斥的实现方式。在Java5之后，增加了一些其它锁，比如ReentrantLock，它基本作用和synchronized相似，但提供了更多的操作方式，比如在获取锁时不必像synchronized那样只是傻等，可以设置定时，轮询，或者中断，这些方法使得它在获取多个锁的情况可以避免死锁操作。</p>
+<p>&#160; &#160; &#160; &#160;而我们需要了解的是ReentrantLock的性能相对synchronized来说有很大的提高。（不过据说Java6后对synchronized进行了优化，两者已经接近了。）在ConcurrentHashMap中，每个hash区间使用的锁正是ReentrantLock。</p>
+<h3 id="增强的volatile语义"><a href="#增强的volatile语义" class="headerlink" title="增强的volatile语义"></a>增强的volatile语义</h3><p>&#160; &#160; &#160; &#160;Volatile可以看做一种轻量级的锁，但又和锁有些不同。</p>
+<ol>
+<li>它对于多线程，不是一种互斥（mutex）关系。</li>
+<li>用volatile修饰的变量，不能保证该变量状态的改变对于其他线程来说是一种“原子化操作”。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;在Java5之前，JMM对Volatile的定义是：保证读写volatile都直接发生在main memory中，线程的working memory不进行缓存。它只承诺了读和写过程的可见性，并没有对Reording做限制，所以旧的Volatile并不太可靠。在Java5之后，JMM对volatile的语义进行了增强。就是我们看到的③ volatile变量法则。对volatile域的写入操作先行于每一个后续的读写操作。</p>
+<p>&#160; &#160; &#160; &#160;所以，在使用Volatile时，需要注意：首先，需不需要互斥；其次，对象状态的改变是不是原子化的。</p>
+<h3 id="不变模式（immutable）"><a href="#不变模式（immutable）" class="headerlink" title="不变模式（immutable）"></a>不变模式（immutable）</h3><p>&#160; &#160; &#160; &#160;多线程安全里最简单的一种保障方式。因为你拿他没有办法，想改变它也没有机会。不变模式主要通过final关键字来限定的。在JMM中final关键字还有特殊的语义。Final域使得确保初始化安全性（initialization safety）成为可能，初始化安全性让不可变形对象不需要同步就能自由地被访问和共享。</p>
+<h3 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h3><p>&#160; &#160; &#160; &#160;如果操作都是原子操作，那就实现线程安全了。</p>
+<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>&#160; &#160; &#160; &#160;四种进程或线程同步互斥的控制方法：</p>
+<ol>
+<li><p>临界区:通过对多线程的串行化来访问公共资源或一段代码，速度快，适合控制数据访问。 </p>
+</li>
+<li><p>互斥量:为协调共同对一个共享资源的单独访问而设计的。 </p>
+</li>
+<li><p>信号量:为控制一个具有有限数量用户资源而设计。 </p>
+</li>
+<li><p>事件:用来通知线程有一些事件已发生，从而启动后继任务的开始。</p>
+</li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;并发基本知识总结（二）&quot;&gt;&lt;a href=&quot;#并发基本知识总结（二）&quot; class=&quot;headerlink&quot; title=&quot;并发基本知识总结（二）&quot;&gt;&lt;/a&gt;并发基本知识总结（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
+    
+    
+      <category term="并发基础知识" scheme="http://yoursite.com/tags/%E5%B9%B6%E5%8F%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>剑指offer：近期整理</title>
     <link href="http://yoursite.com/2017/03/15/%E5%89%91%E6%8C%87offer%EF%BC%9A%E8%BF%91%E6%9C%9F%E6%95%B4%E7%90%86/"/>
     <id>http://yoursite.com/2017/03/15/剑指offer：近期整理/</id>
@@ -320,31 +519,6 @@
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高效并发（二）</title>
-    <link href="http://yoursite.com/2017/03/10/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/03/10/高效并发（二）/</id>
-    <published>2017-03-10T02:55:01.000Z</published>
-    <updated>2017-05-15T10:00:20.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="线程的基本操作（二）"><a href="#线程的基本操作（二）" class="headerlink" title="线程的基本操作（二）"></a>线程的基本操作（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
- <a id="more"></a>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;线程的基本操作（二）&quot;&gt;&lt;a href=&quot;#线程的基本操作（二）&quot; class=&quot;headerlink&quot; title=&quot;线程的基本操作（二）&quot;&gt;&lt;/a&gt;线程的基本操作（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="线程的基本操作" scheme="http://yoursite.com/tags/%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
     
   </entry>
   
@@ -886,231 +1060,6 @@ transient int modCount;//被修改的次数
     
     
       <category term="Java内存模型" scheme="http://yoursite.com/tags/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java虚拟机（四）</title>
-    <link href="http://yoursite.com/2017/02/25/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/02/25/Java虚拟机（四）/</id>
-    <published>2017-02-25T02:16:03.000Z</published>
-    <updated>2017-05-09T05:07:39.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JVM之类加载机制（四）"><a href="#JVM之类加载机制（四）" class="headerlink" title="JVM之类加载机制（四）"></a>JVM之类加载机制（四）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。<font color="red">而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？</font>。这是我们接下来要学习的内容。</p>
- <a id="more"></a>
-<p>&#160; &#160; &#160; &#160;虚拟机把描述类的数据从calss文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。<font color="red">与那些在编译期需要进行连接的工作语言不同，在Java语言里，类加载荷连接过程都是在程序运行期间完成的，这样会在类加载时稍微增加一些性能开销，但是却能为程序提供高度的灵活性</font>，动态扩展的特性也就是依赖运行期间动态加载和动态连接这个特点实现的。如面向接口的编程。</p>
-<h2 id="类加载的时机"><a href="#类加载的时机" class="headerlink" title="类加载的时机"></a>类加载的时机</h2><p>&#160; &#160; &#160; &#160;类从加载到虚拟机内存中开始，到卸载出内存为止，它的生命周期共包含七个阶段，如下图：</p>
-<p>&#160; &#160; &#160; &#160;<img src="http://img.blog.csdn.net/20140105211344671" alt=""></p>
-<p>&#160; &#160; &#160; &#160;其中类加载的过程包括了加载、验证、准备、解析、初始化五个阶段。在这五个阶段中，加载、验证、准备和初始化这四个阶段发生的顺序是确定的，而解析阶段则不一定，它在某些情况下可以在初始化阶段之后开始，这是为了支持Java语言的运行时绑定（也成为动态绑定或晚期绑定）。另外注意这里的几个阶段是按顺序开始，而不是按顺序进行或完成，因为这些阶段通常都是互相交叉地混合进行的，通常在一个阶段执行的过程中调用或激活另一个阶段。</p>
-<h3 id="初始化规范"><a href="#初始化规范" class="headerlink" title="初始化规范"></a>初始化规范</h3><p>&#160; &#160; &#160; &#160;虚拟机规范中堆什么情况需要开始类加载的第一个阶段，加载并没有强制约束，但是对初始化阶段，规范了有且只有4种情况必须立即对类进行初始化。</p>
-<ol>
-<li>遇到new、getstatic、putstatic或者invokestatic这4条字节码指令时（比如在使用new创建对象的时候，读取或设置一个类静态字段、调用一个类的静态方法）</li>
-<li>使用java.lang.relect包的方法对类进行反射调用的时候，如果类没有进行初始化，首先出发初始化。</li>
-<li>当初始化一个类，发现父类还没有进行初始化，先出发父类的初始化。</li>
-<li>当虚拟机启动时，用户需要指定一个要执行的主类（包含main方法的哪个类），虚拟机会先初始化这个主类。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;以上四种是对类的主动引用，下面说几种被动引用：</p>
-<ol>
-<li>通过子类来引用父类中定义的静态字段，只会触发父类的初始化而不会触发子类的初始化。</li>
-<li>一个类的成员进入常量池，另一个类引用只是对常量池的引用，两个class就无关了。</li>
-<li>接口加载和类加载稍微有点不同，只有真正使用到父接口的时候才会初始化。</li>
-</ol>
-<h2 id="类加载的过程"><a href="#类加载的过程" class="headerlink" title="类加载的过程"></a>类加载的过程</h2><p>&#160; &#160; &#160; &#160;接下来讲解一下类加载的全过程，也就是加载、验证、准备、解析和初始化这五个过程。</p>
-<h3 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h3><ol>
-<li>通过一个类的全限定名来获取定义此类的二进制字节流。</li>
-<li>将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</li>
-<li>在Java堆中生成一个代表这个类的java.lang.Class对象，作为方法去访问数据的访问入口。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;正是因为没有指明具体的从哪获取，怎么获取，所以充满活力的开发前辈玩出了很多花样：</p>
-<ol>
-<li>从zip包中读取，最后成为jar，EAR，WAR格式的基础。</li>
-<li>从网络中获取，比如Applet</li>
-<li>从计算机运行生成，比如动态代理</li>
-<li>其他文件，比如JSP</li>
-<li>从数据库读取，有些中间件服务器可以把程序安装到数据库中来完成程序代码在集群间的分发。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;相对其他过程，加载是开发期可控性最强的阶段。可以使用系统的加载器，也可以自定义类加载器。</p>
-<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><ol>
-<li>文件格式验证；比如魔数、主次版本号；常量池是否含有不支持的常量类型；等等。。。经过验证才会进入内存的方法区进行存储。所以下面的几个验证阶段全部都是基于方法区的存储结构进行的。</li>
-</ol>
-<ol>
-<li>元数据验证；验证点比如：这个类是否有父类，父亲是否成常量不允许基础的类，如果这个类不是抽象类，是否实现了父类或接口之中要求实现的索引方法，类中的字段、方法是否和父类产生了矛盾等。这一阶段主要进行语义检验，保证不存在不符合Java语言规范的元数据信息。</li>
-</ol>
-<ol>
-<li><p>字节码检验；是最复杂的的一个阶段，主要工作是进行数据流和控制流分析。在第二个阶段堆数据类型做完校验之后，这阶段对类的方法体进行校验分析。比如：保证任何时刻操作数类型和指令码序列都能配合工作、保证跳转指令不会跳转到方法体以外的字节码指令、保证类型转换时有效的。如果通过不一定安全，不通过一定不安全。</p>
-</li>
-<li><p>符号引用；对类自身以外的信息进行匹配性校验。比如：全限定名能否找到该类，指定类中是否存在符合方法的字段描述符。</p>
-</li>
-</ol>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>&#160; &#160; &#160; &#160;此阶段时正式为类变量（ 不包括实例变量）分配内存并设置类变量初始值的阶段，这些内存都将在方法区中进行分配，</p>
-<h3 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h3><p>&#160; &#160; &#160; &#160;解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。解析动作主要针对类或接口、字段、类方法四类符号引用。</p>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>&#160; &#160; &#160; &#160;对类的静态变量，静态代码块执行初始化操作。</p>
-<p>参考这边博文：<a href="http://www.cnblogs.com/ITtangtang/p/3978102.html" target="_blank" rel="external">类加载机制及反射</a>。</p>
-<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>&#160; &#160; &#160; &#160;虚拟机设计团队把类加载阶段中的“通过一个类的全限定名来获取描述此类的二进制字节流”这个动作放到Java虚拟机外部去实现，实现这个动作的代码块称为类加载器。它在Java Applet、类层次划分、OSGi、热部署、代码加密等领域大放异彩。</p>
-<p>&#160; &#160; &#160; &#160;对任意一个类都需要由加载它的类加载器和这个类本身一同确定它在虚拟机中的唯一性。对虚拟机里来说只有两种不同的类加载器，一种是启动类加载器由C++实现，另一种就是Java写的，都继承java.lang.ClassLoader。对于开发人员来说它还进一步分为扩展类的和应用程序类的加载器。分别加载／lib/etc目录下的，和calsspath用户路径下的。</p>
-<p><img src="http://img.my.csdn.net/uploads/201009/25/0_1285421756PHyZ.gif" alt=""></p>
-<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>&#160; &#160; &#160; &#160;工作过程：如果一个类加载器接收到了类加载的请求，它首先把这个请求委托给他的父类加载器去完成，每个层次的类加载器都是如此，因此所有的加载请求都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它在搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。在classload的loadclass（）方法中实现。</p>
-<p>&#160; &#160; &#160; &#160;好处：java类随着它的类加载器一起具备了一种带有优先级的层次关系。例如类java.lang.Object，它存放在rt.jar中，无论哪个类加载器要加载这个类，最终都会委派给启动类加载器进行加载，因此Object类在程序的各种类加载器环境中都是同一个类。相反，如果用户自己写了一个名为java.lang.Object的类，并放在程序的Classpath中，那系统中将会出现多个不同的Object类，java类型体系中最基础的行为也无法保证，应用程序也会变得一片混乱。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JVM之类加载机制（四）&quot;&gt;&lt;a href=&quot;#JVM之类加载机制（四）&quot; class=&quot;headerlink&quot; title=&quot;JVM之类加载机制（四）&quot;&gt;&lt;/a&gt;JVM之类加载机制（四）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;我们已经了解了Class文件存储格式的具体细节，在Class文件中描述的各种信息，最终都需要加载到虚拟机中之后才能被运行和使用。&lt;font color=red&gt;而虚拟机如何加载这些Class文件？这些信息进入到虚拟机后会发生什么变化？&lt;/font&gt;。这是我们接下来要学习的内容。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-    
-      <category term="类加载机制" scheme="http://yoursite.com/tags/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java虚拟机（三）</title>
-    <link href="http://yoursite.com/2017/02/22/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%B8%89%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/02/22/Java虚拟机（三）/</id>
-    <published>2017-02-22T00:36:37.000Z</published>
-    <updated>2017-05-09T02:07:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JVM之Class文件结构（三）"><a href="#JVM之Class文件结构（三）" class="headerlink" title="JVM之Class文件结构（三）"></a>JVM之Class文件结构（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，<font color="red">越来越多的程序语言选择了与操作系统和机器指令无关平台中立的格式作为程序编译之后的存储格式</font>。这也是Java这类语言，平台无关性的基石。而且虚拟机上更有语言无关性的趋势。</p>
-<a id="more"></a>
-<h2 id="Class类文件的结构"><a href="#Class类文件的结构" class="headerlink" title="Class类文件的结构"></a>Class类文件的结构</h2><p>&#160; &#160; &#160; &#160;Class文件是一组以8位字节为基础的二进制，各个数据项目严格按照顺序紧凑的排列Class文件之间，中间没有添加任何分隔符，这使得整个Class文件中存储的内容几乎全部都是程序运行的必要数据。</p>
-<p>&#160; &#160; &#160; &#160;虚拟机规范：Class文件格式采用一种类似于C语言结构体的伪结构来存储，这种伪结构中还有两种数据结构：无符号和表，后面的解析都要以这两种数据类型为基础。</p>
-<p>&#160; &#160; &#160; &#160;无符号数属于基本的数据类型，用u1,u2,u4,u8分别代表1个字节、2个字节、4个字节、8个字节的无符号数，可以用来描述数字、索引引用、数量值，或者按照UTF-8编码构成字符串值。</p>
-<p>&#160; &#160; &#160; &#160;表是由多个无符号数或其他数据项构成的复合结构数据，整个class文件本质上就是一张表。</p>
-<h3 id="魔数"><a href="#魔数" class="headerlink" title="魔数"></a>魔数</h3><p>&#160; &#160; &#160; &#160;每个class文件的头四个字节被称为魔数，它的唯一作用是确定这个文件是否为一个能被虚拟机接受的Class文件。很多图片格式在文件头都有魔数。Java中为：0XCAFFBABE；</p>
-<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>&#160; &#160; &#160; &#160;紧接着4个字节存储的是Class文件的版本号：5-6是次版本，7-8是主版本。</p>
-<h3 id="常量池"><a href="#常量池" class="headerlink" title="常量池"></a>常量池</h3><p>&#160; &#160; &#160; &#160;主次版本号之后是常量池的入口，也是与其他项目关联最多的数据类型，也是占用class文件空间最大的项目之一，同时还是第一个出现的表类型。主要存放字面量和引用。</p>
-<h3 id="访问标志"><a href="#访问标志" class="headerlink" title="访问标志"></a>访问标志</h3><p>&#160; &#160; &#160; &#160;在常量池之后，紧接2个字节代表访问标志，包括是接口还是类，是否public，abstract，final等等。</p>
-<h3 id="类索引、父亲索引与接口索引集合"><a href="#类索引、父亲索引与接口索引集合" class="headerlink" title="类索引、父亲索引与接口索引集合"></a>类索引、父亲索引与接口索引集合</h3><p>&#160; &#160; &#160; &#160;类索引和父类索引都是一个u2类型的数据，而接口索引集合是一组u2类型的数据集合。类确定了这个类的全限定名，父亲索引确定这个父类的全限定名。不允许多继承，所以父类索引直邮一个。除了object都有父类。接口索引表示这个类实现了哪些接口。</p>
-<h3 id="字段表集合"><a href="#字段表集合" class="headerlink" title="字段表集合"></a>字段表集合</h3><p>&#160; &#160; &#160; &#160;字段表用于描述接口或类中声明的变量</p>
-<h3 id="方法表集合"><a href="#方法表集合" class="headerlink" title="方法表集合"></a>方法表集合</h3><p>&#160; &#160; &#160; &#160;访问标志、名称索引、描述符索引都表达清楚了，方法里面的代码经过编译器编译成字节码指令之后，存放在方法属性表集合中一个名为code的属性里面，属性表作为class文件格式最具扩展性的一种数据项目。</p>
-<h3 id="属性表集合"><a href="#属性表集合" class="headerlink" title="属性表集合"></a>属性表集合</h3><p>&#160; &#160; &#160; &#160;class文件、字段表、方法表都可以携带自己的属性表集合，以用于描述某些场景专有的信息。</p>
-<h2 id="class文件结构的发展"><a href="#class文件结构的发展" class="headerlink" title="class文件结构的发展"></a>class文件结构的发展</h2><p>&#160; &#160; &#160; &#160;上面这些属性大部分都用于支持Java中许多新出现的语言特性，如枚举、变长参数、泛型、动态注解。</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;class文件是Java虚拟机执行引擎的数据入口，也是技术体系的基础支柱之一。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JVM之Class文件结构（三）&quot;&gt;&lt;a href=&quot;#JVM之Class文件结构（三）&quot; class=&quot;headerlink&quot; title=&quot;JVM之Class文件结构（三）&quot;&gt;&lt;/a&gt;JVM之Class文件结构（三）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;以前计算机程序课上老师总说：计算机只认识0和1，写的程序都会编译成为0和1组成的二进制格式才能被计算机执行。然而10多年的时间过去了，今天的计算机仍然只能识别0和1，但是建立在虚拟机之上的大量程序语言发展迅速，将2我们编写的程序编译成二进制本地机器码（native code）已不再是唯一的选择，&lt;font color=red&gt;越来越多的程序语言选择了与操作系统和机器指令无关平台中立的格式作为程序编译之后的存储格式&lt;/font&gt;。这也是Java这类语言，平台无关性的基石。而且虚拟机上更有语言无关性的趋势。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-    
-      <category term="Class文件结构" scheme="http://yoursite.com/tags/Class%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java虚拟机（二）</title>
-    <link href="http://yoursite.com/2017/02/20/Java%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/02/20/Java虚拟机（二）/</id>
-    <published>2017-02-20T10:01:02.000Z</published>
-    <updated>2017-05-08T14:14:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JVM之垃圾回收机制（二）"><a href="#JVM之垃圾回收机制（二）" class="headerlink" title="JVM之垃圾回收机制（二）"></a>JVM之垃圾回收机制（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在了解了Java运行时内存区域之后，我们知道虚拟机可能造成内存溢出OOM，虽然有垃圾回收机制，但是可能也不能避免，<font color="red">我们现在就看看Java的垃圾收集机制为例避免内存溢出异常已经做出了哪些努力。</font></p>
-<a id="more"></a>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>说起GC，我们需要做下面三件事情：</p>
-<ol>
-<li>哪些内存需要回收？</li>
-<li>何时回收？</li>
-<li>如何回收？</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;现在内存的动态分配、垃圾回收技术已经相当的成熟，那我们为什么还要去学习内存分配和GC呢？答案：<font color="red">当需要排查各种OOM问题时，当垃圾收集成为系统达到更高并发量的瓶颈时，我就需要对自动化的技术实施必要的监控和调节。</font></p>
-<h2 id="怎么判断对象已死？"><a href="#怎么判断对象已死？" class="headerlink" title="怎么判断对象已死？"></a>怎么判断对象已死？</h2><h3 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h3><p>&#160; &#160; &#160; &#160;给对象添加一个引用计数器，每当有一个地方引用它，计数器就加1；失效就减1；任何时刻为0的对象就是不可能再被使用的。</p>
-<p>&#160; &#160; &#160; &#160;确定：不能解决循环引用的问题。</p>
-<h3 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h3><p>&#160; &#160; &#160; &#160;Java和C#所采用的方式，基本原理：通过一系列名为GC Roots的对象为起点，从这些根节点向下搜索，走过的路径叫引用链，当一个对象到GC Roots没有任何引用链相连，则证明此对象是不可用的。</p>
-<p>&#160; &#160; &#160; &#160;Java语言中可作为GC Roots的对象包括：虚拟机栈中（本地变量表）引用的对象、方法区中的类静态属性引用的对象、方法区中的常量引用对象、本地方法栈中JNI，native方法引用的对象。</p>
-<h2 id="引用的几个类型"><a href="#引用的几个类型" class="headerlink" title="引用的几个类型"></a>引用的几个类型</h2><p>&#160; &#160; &#160; &#160;无论是哪种方式，判断存活都与引用有关。引用概念在JDK1.2之后进行了扩充，包括四种：</p>
-<ol>
-<li>强引用；只要引用存在，垃圾回收器永远不会回收。</li>
-<li>软引用；系统将要发生内存溢出之前，会把这些对象列进回收范围并进行第二次回收。如果还不够菜抛出异常。</li>
-<li>弱引用；只能存活到下一次垃圾回收发生之前。</li>
-<li>虚引用；一个对象是否有虚引用的存在，完全不会对其生命时间构成影响，也无法通过虚引用来获得实例，完全只是为了希望在对这个回收时收到一个系统通知。</li>
-</ol>
-<h2 id="生存还是死亡？"><a href="#生存还是死亡？" class="headerlink" title="生存还是死亡？"></a>生存还是死亡？</h2><p>&#160; &#160; &#160; &#160;根搜索算法不可达的对象也并不是一定被回收，这时候它处于缓刑阶段。至少要经历两次标记过程。如果发现没有引用链，那么标记一次并且进行一次筛选，条件是对象是否有必要执行finalize（），当对象没有覆盖finalize方法，或者已经被虚拟机调用过，都是为没有必要执行。</p>
-<p>&#160; &#160; &#160; &#160;如果判断为有必要执行，就会放置在一个F-Queue队列之中，并在稍后由一条虚拟机自动建立的、低优先级的Finalize线程区执行。但是并不承诺等待它运行结束，原因是：如果一个对象的finalize方法执行缓慢或者死循环了，其他对象将出现永久等待。</p>
-<p>&#160; &#160; &#160; &#160;finalize（）是对象逃脱死亡命运的最后一次机会，稍后GC将对F-Queue中的对象进行第二次标记，如果对象在finalize中拯救自己—只要重新与引用链上的任何一个对象相连即可。只能自救一次，因为finalize最多使用一次。</p>
-<h2 id="回收方法区"><a href="#回收方法区" class="headerlink" title="回收方法区"></a>回收方法区</h2><p>&#160; &#160; &#160; &#160;主要回收内容：废弃常量和无用的类。回收废弃常量与回收Java堆中的对象类似。</p>
-<p>&#160; &#160; &#160; &#160;判断无用的类得满足下面三个条件：</p>
-<ol>
-<li>加载该类的加载器已被回收</li>
-<li>所有类的实例已经被回收</li>
-<li>该类的java.lang.Class对象没有任何地方引用，无法反射得到。</li>
-</ol>
-<p>满足了也不一定回收，常用的参数如下：</p>
-<ol>
-<li>-verbose：class</li>
-<li>-xx：+TraceClassLoading</li>
-<li>-XX：+TraceClassUnLoding</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;在大量使用反射、动态代理、CGLib等bytecode框架的时候，以及JSP、OSGi这类频繁自定义ClassLoader的场景都需要虚拟机具备类卸载的功能。</p>
-<h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="标记-清除"><a href="#标记-清除" class="headerlink" title="标记-清除"></a>标记-清除</h3><p>&#160; &#160; &#160; &#160;首先标记出所有需要回收的对象，在标记完之后统一回收。</p>
-<p>&#160; &#160; &#160; &#160;缺点：效率低，产生的碎片多。</p>
-<h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a>复制算法</h3><p>&#160; &#160; &#160; &#160;他将可用的内存划分为等大小的两块，每次只使用其中一块，当用完了，把存活的对象都复制到另一半上，然后把第一块的一次性清理。</p>
-<p>缺点：内存利用率低</p>
-<h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h3><p>&#160; &#160; &#160; &#160;让所有存活的对象都向一端移动，然后直接清楚掉端边界以外的内存。</p>
-<h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p>&#160; &#160; &#160; &#160;当前商业虚拟机都常用分代收集算法，更具对象的存活周期的不同将内存划分为几块，一般是新生代和老年代，这样就可以根据各个年代的特点采用最适当的<strong>收集算法</strong>。在新生代中，每次都有大批对象死去，只有少量的存活，那就选用复制算法。（复制的内容比较少，复制少量存活对象成本），而老年代中因为对象存活率高，就必须使用标记-清理或者标记-整理。</p>
-<h2 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h2><p>&#160; &#160; &#160; &#160;包含的收集器如下：<br><img src="http://img.my.csdn.net/uploads/201210/03/1349278110_8410.jpg" alt=""></p>
-<h3 id="serial"><a href="#serial" class="headerlink" title="serial"></a>serial</h3><p>&#160; &#160; &#160; &#160;单线程收集器，垃圾收集时，必须暂停所有工作线程。“Stop The World”。</p>
-<p>优势：简单而高效，没有线程切换，在客户端模式是个很好选择。</p>
-<h3 id="ParNew"><a href="#ParNew" class="headerlink" title="ParNew"></a>ParNew</h3><p>&#160; &#160; &#160; &#160;是Serial的多线程版本（在新生代垃圾回收的时候采用多GC线程），是服务器模式下首选的新生代收集器，目前只有它能与CMS收集器配合工作。但是作为老年代的收集器，却无法和Parallel Scavenge配合工作。</p>
-<p>&#160; &#160; &#160; &#160;它在单核环境中绝对不会比serial效果好，多核也不能百分之百比serial好。</p>
-<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-10.png" alt=""></p>
-<h3 id="Parallel-Scavenge"><a href="#Parallel-Scavenge" class="headerlink" title="Parallel Scavenge"></a>Parallel Scavenge</h3><p>&#160; &#160; &#160; &#160;是一个新生代收集器，它是使用复制算法的收集器，又是并行的多线程收集器，特别之处是它注重达到一个可控制的吞吐量，可通过设置参数来完成。</p>
-<h3 id="serial-Old"><a href="#serial-Old" class="headerlink" title="serial Old"></a>serial Old</h3><p>&#160; &#160; &#160; &#160;是serial的老年代版本，采用的是标记-整理算法。主要意义是客户端模式下使用。如果使用在服务器模式下，主要有两个用途：搭配Parallel Scavenge使用，或者作为CMS收集器的后备预案。</p>
-<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-9.jpg" alt=""></p>
-<h3 id="Parallel-Old"><a href="#Parallel-Old" class="headerlink" title="Parallel Old"></a>Parallel Old</h3><p>&#160; &#160; &#160; &#160;之前新生代 Parallel Scavenge很尴尬，因为只能喝serial old组，被单线程所拖累。知道Parallel Old出现，吞吐量优先收集器终于有了比较名副其实的应用组合。</p>
-<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-11.jpg" alt=""></p>
-<h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>&#160; &#160; &#160; &#160;是一种以获取最短回收停顿时间为目标的收集器。目前很多一部分的Java应用都集中在服务器上，尤其注重响应速度，希望系统停顿的时间越短越好。CMS就非常符合这个要求。</p>
-<p>&#160; &#160; &#160; &#160;基于标记-清除的，但是改进了分以下四步：</p>
-<ol>
-<li>初识标记；仍需要暂停其他线程，仅仅是标记一下GC Roots能直接关联的对象，速度很快。</li>
-<li>并发标记；进行GC Roots Tracing过程</li>
-<li>重新标记；仍需要暂停其他线程，修正并发标记期间，因用户程序继续运行而导致的一部分改变，会比👨‍🍳标记消耗时间长一些，比并发标记时间短。</li>
-<li>并发清除；消耗时间也较长。</li>
-</ol>
-<p><img src="http://7xkjk9.com1.z0.glb.clouddn.com/jvm-12.jpg" alt=""></p>
-<h4 id="CMS-优缺点"><a href="#CMS-优缺点" class="headerlink" title="CMS 优缺点"></a>CMS 优缺点</h4><p>&#160; &#160; &#160; &#160;CMS的优点很明显：并发收集、低停顿（由于进行垃圾收集的时间主要耗在并发标记与并发清除这两个过程，虽然初始标记和重新标记仍然需要暂停用户线程，但是从总体上看，这部分占用的时间相比其他两个步骤很小，所以可以认为是低停顿的）。</p>
-<p>&#160; &#160; &#160; &#160;尽管如此，CMS收集器的缺点也是很明显的：</p>
-<p>&#160; &#160; &#160; &#160;1.对CPU资源太敏感，这点可以这么理解，虽然在并发标记阶段用户线程没有暂停，但是由于收集器占用了一部分CPU资源，导致程序的响应速度变慢。（增量式并发收集器i-CMS）</p>
-<p>&#160; &#160; &#160; &#160;2.CMS收集器无法处理浮动垃圾。所谓的“浮动垃圾”，就是在并发标记阶段，由于用户程序在运行，那么自然就会有新的垃圾产生，这部分垃圾被标记过后，CMS无法在当次集中处理它们（为什么？原因在于CMS是以获取最短停顿时间为目标的，自然不可能在一次垃圾处理过程中花费太多时间），只好在下一次GC的时候处理。这部分未处理的垃圾就称为“浮动垃圾”。（调高-XX：CMSInitiatingOccupancyFraction参数，太高又会造成CMF失败，后备预案就是采用Serial收集器对老年代进行，反而效率会降低）。</p>
-<p>&#160; &#160; &#160; &#160;3.由于CMS收集器是基于“标记-清除”算法的，前面说过这个算法会导致大量的空间碎片的产生，一旦空间碎片过多，大对象就没办法给其分配内存,那么即使内存还有剩余空间容纳这个大对象，但是却没有连续的足够大的空间放下这个对象，所以虚拟机就会触发一次Full GC（这个后面还会提到）这个问题的解决是通过控制参数-XX:+UseCMSCompactAtFullCollection，用于在CMS垃圾收集器顶不住要进行FullGC的时候开启空间碎片的合并整理过程。相应停顿也不得不变长。</p>
-<h3 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h3><p>&#160; &#160; &#160; &#160;G1时当前收集器技术中最前沿的成果。相比之前的CMS收集器又两个改进：</p>
-<ol>
-<li>基于标记-整理算法实现，也就是说不会产生碎片。</li>
-<li>精确的控制停顿，在M毫秒哪，收集时间不超过N毫秒，这几乎已经时实时java（RTSJ）的垃圾收集器特征了。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;将整个Java堆划分为多个大小固定的独立区域，并且跟踪这些区域厘米的垃圾堆积程度，后台维护一个优先列表，每次根据允许的收集时间，优先回收垃圾最多的区域，这就是Garbage First的由来。保证有效时间内获得更高的收集效率。</p>
-<h2 id="内存分配与回收策略"><a href="#内存分配与回收策略" class="headerlink" title="内存分配与回收策略"></a>内存分配与回收策略</h2><p>&#160; &#160; &#160; &#160;Java技术体系中所提倡的自动内存管理最终归结为自动化解决了两个问题：给内存分配对象以及回收分配给对象的内存。接下来再来说说内存分配，往大方向讲，就是在堆上分配。<br>根据设置参数和收集器的使用组合不同，内存分配机制可能不同，但是我们讲述一般性规则，分析之前先看看两种GC：</p>
-<ol>
-<li>新生代GC（Minor GC）：指发生在新生代的垃圾收集动作，比较频繁，回收速度也快。</li>
-<li>老年代GC （Full GC／Major GC）：发生在老年代的GC，经常伴随着至少一次Minor GC，但不是绝对，速度较慢，。</li>
-</ol>
-<h3 id="对象优先在Eden中分配"><a href="#对象优先在Eden中分配" class="headerlink" title="对象优先在Eden中分配"></a>对象优先在Eden中分配</h3><p>&#160; &#160; &#160; &#160;大多数情况下，对象优先在新生代Eden区中分配。当Eden没有足够空间的时候，会发起一次Minor GC。</p>
-<h3 id="大对象直接进入老年代"><a href="#大对象直接进入老年代" class="headerlink" title="大对象直接进入老年代"></a>大对象直接进入老年代</h3><p>&#160; &#160; &#160; &#160;需要大量连续空间的Java对象，很长的字符串及数组等，所以程序中不要写短命大对象。（不进入Eden和Survivor时因为他们采用复制算法）。</p>
-<h3 id="长期存活的对象进入老年代"><a href="#长期存活的对象进入老年代" class="headerlink" title="长期存活的对象进入老年代"></a>长期存活的对象进入老年代</h3><p>&#160; &#160; &#160; &#160;虚拟机给每一个对象一个年龄计数器，默认15岁。</p>
-<h3 id="动态对象年龄判断"><a href="#动态对象年龄判断" class="headerlink" title="动态对象年龄判断"></a>动态对象年龄判断</h3><p>&#160; &#160; &#160; &#160;如果Survivor空间中相同年龄所以对象总和大于空间的一半，年龄大于等于该年龄的进入老年代。</p>
-<h3 id="空间分配担保"><a href="#空间分配担保" class="headerlink" title="空间分配担保"></a>空间分配担保</h3><p>&#160; &#160; &#160; &#160;发生 Minor GC时，虚拟机会检测晋升到老年代的空间是否够，如果不够就发起一次Full GC，如果小于，如果参数HannlePromotionFailure设置允许担保失败，就只会进行Minor GC；</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>&#160; &#160; &#160; &#160;本次介绍了垃圾收集算法和多种收集器，以及自动内存分配的一些机制。内存回收与垃圾收集在很多时候都是影响系统性能、并发俄力的主要因素之一，虚拟机提供了多种不同收集器与大量调节参数。必须要了解每个具体收集器行为、优点缺点。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JVM之垃圾回收机制（二）&quot;&gt;&lt;a href=&quot;#JVM之垃圾回收机制（二）&quot; class=&quot;headerlink&quot; title=&quot;JVM之垃圾回收机制（二）&quot;&gt;&lt;/a&gt;JVM之垃圾回收机制（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了Java运行时内存区域之后，我们知道虚拟机可能造成内存溢出OOM，虽然有垃圾回收机制，但是可能也不能避免，&lt;font color=red&gt;我们现在就看看Java的垃圾收集机制为例避免内存溢出异常已经做出了哪些努力。&lt;/font&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java虚拟机" scheme="http://yoursite.com/categories/Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
-    
-    
-      <category term="垃圾收集器与内存分配策略" scheme="http://yoursite.com/tags/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/"/>
     
   </entry>
   
