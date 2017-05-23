@@ -338,20 +338,19 @@
     <link href="http://yoursite.com/2017/03/18/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%B8%89%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/18/高效并发（三）/</id>
     <published>2017-03-18T01:16:03.000Z</published>
-    <updated>2017-05-23T05:32:19.000Z</updated>
+    <updated>2017-05-23T11:16:17.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="concurrent包总结（一）"><a href="#concurrent包总结（一）" class="headerlink" title="concurrent包总结（一）"></a>concurrent包总结（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在前面的基础知识之上，我们开始对concurrent包的全面分析。</p>
  <a id="more"></a>
-<h2 id="concureent包中并发框架"><a href="#concureent包中并发框架" class="headerlink" title="concureent包中并发框架"></a>concureent包中并发框架</h2><p>&#160; &#160; &#160; &#160;JDK5后，提供了concurrent包来进行高效的并发，我们一个个来分析它，从部分重要的源码上去理解。</p>
-<h3 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h3><p>&#160; &#160; &#160; &#160;可参考博文：<a href="http://www.importnew.com/24594.html" target="_blank" rel="external">并发集合总结</a>。</p>
-<h4 id="Concurrent-Colleciton相关"><a href="#Concurrent-Colleciton相关" class="headerlink" title="Concurrent Colleciton相关"></a>Concurrent Colleciton相关</h4><h5 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h5><p>&#160; &#160; &#160; &#160;采用了锁分离技术，它使用了多个锁代替HashTable中的单个锁，其中get方法并没有加锁。它把区间按照并发级别(concurrentLevel)，分成了若干个segment。默认情况下内部按并发级别为16来创建。对于每个segment的容量，默认情况也是16。当然并发级别(concurrentLevel)和每个段(segment)的初始容量都是可以通过构造函数设定的。</p>
+<h2 id="线程安全集合类"><a href="#线程安全集合类" class="headerlink" title="线程安全集合类"></a>线程安全集合类</h2><p>&#160; &#160; &#160; &#160;可参考博文：<a href="http://www.importnew.com/24594.html" target="_blank" rel="external">并发集合总结</a>。</p>
+<h3 id="Concurrent-Colleciton相关"><a href="#Concurrent-Colleciton相关" class="headerlink" title="Concurrent Colleciton相关"></a>Concurrent Colleciton相关</h3><h4 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h4><p>&#160; &#160; &#160; &#160;采用了锁分离技术，它使用了多个锁代替HashTable中的单个锁，其中get方法并没有加锁。它把区间按照并发级别(concurrentLevel)，分成了若干个segment。默认情况下内部按并发级别为16来创建。对于每个segment的容量，默认情况也是16。当然并发级别(concurrentLevel)和每个段(segment)的初始容量都是可以通过构造函数设定的。</p>
 <p>参考博文：<a href="http://www.importnew.com/21781.html" target="_blank" rel="external">concurrenthashmap详解</a></p>
 <p><img src="http://images.cnitblog.com/blog/587773/201409/062059451104363.jpg" alt=""></p>
 <p>&#160; &#160; &#160; &#160;看起来只是把以前HashTable的一个hash bucket创建了16份而已。那还有其他特殊的吗？其中Segment继承了ReentrantLock，表明每个segment都可以当做一个锁。我们就从put，get，remove方法重点去了解。</p>
 <p>&#160; &#160; &#160; &#160;get方法：count变量表示segment中存在entry的个数,hashentry数据结构，还有get方法没有加同步监视器。我们来看下如下代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">V get(Object key, int hash) &#123;</div><div class="line">        if (count != 0) &#123; // read-volatile // ①</div><div class="line">            HashEntry&lt;K,V&gt; e = getFirst(hash); </div><div class="line">            while (e != null) &#123;</div><div class="line">                if (e.hash == hash &amp;&amp; key.equals(e.key)) &#123;</div><div class="line">                    V v = e.value;</div><div class="line">                    if (v != null)  // ② 注意这里，结合双层检测锁DCL</div><div class="line">                        return v;</div><div class="line">                    return readValueUnderLock(e); // recheck</div><div class="line">                &#125;</div><div class="line">                e = e.next;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line">transient volatile int count;</div><div class="line"></div><div class="line"></div><div class="line">static final class HashEntry&lt;K,V&gt; &#123;</div><div class="line">    final K key;</div><div class="line">    final int hash;</div><div class="line">    volatile V value;</div><div class="line">    final HashEntry&lt;K,V&gt; next;</div><div class="line">    。。。</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&#160; &#160; &#160; &#160;count和value使用了volatile来修改。我们前文说过，Java5之后，JMM实现了对volatile的保证：对volatile域的写入操作happens-before于每一个后续对同一个域的读写操作。所以，每次判断count变量的时候，即使恰好其他线程改变了segment也会体现出来。</p>
-<h5 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h5><p>&#160; &#160; &#160; &#160;CopyOnWrite容器即写时复制的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器。</p>
+<h4 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h4><p>&#160; &#160; &#160; &#160;CopyOnWrite容器即写时复制的容器。通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一个新的容器，然后新的容器里添加元素，添加完元素之后，再将原容器的引用指向新的容器。这样做的好处是我们可以对CopyOnWrite容器进行并发的读，而不需要加锁，因为当前容器不会添加任何元素。所以CopyOnWrite容器也是一种读写分离的思想，读和写不同的容器。</p>
 <p>我们要注意以下两点：</p>
 <ol>
 <li><p>减少扩容开销。根据实际需要，初始化CopyOnWriteMap的大小，避免写时CopyOnWriteMap扩容的开销。</p>
@@ -364,16 +363,16 @@
 <p>&#160; &#160; &#160; &#160;针对内存占用问题，可以通过压缩容器中的元素的方法来减少大对象的内存消耗，比如，如果元素全是10进制的数字，可以考虑把它压缩成36进制或64进制。或者不使用CopyOnWrite容器，而使用其他的并发容器，如ConcurrentHashMap。</p>
 <p>&#160; &#160; &#160; &#160;二、数据一致性问题。CopyOnWrite容器只能保证数据的最终一致性，不能保证数据的实时一致性。所以如果你希望写入的的数据，马上能读到，请不要使用CopyOnWrite容器。</p>
 <p>参考博文：<a href="http://www.importnew.com/22470.html" target="_blank" rel="external">copyonwriteArrayList解析</a></p>
-<h5 id="ConcurrentSkipListmap"><a href="#ConcurrentSkipListmap" class="headerlink" title="ConcurrentSkipListmap"></a>ConcurrentSkipListmap</h5><p>&#160; &#160; &#160; &#160;跳跃表其实也是一种通过“空间来换取时间”的一个算法，通过在每个节点中增加了向前的指针，从而提升查找的效率。跳跃表使用概率均衡技术而不是使用强制性均衡技术，因此，对于插入和删除结点比传统上的平衡树算法更为简洁高效。 跳表是一种随机化的数据结构，目前开源软件 Redis 和 LevelDB 都有用到它。</p>
+<h4 id="ConcurrentSkipListmap"><a href="#ConcurrentSkipListmap" class="headerlink" title="ConcurrentSkipListmap"></a>ConcurrentSkipListmap</h4><p>&#160; &#160; &#160; &#160;跳跃表其实也是一种通过“空间来换取时间”的一个算法，通过在每个节点中增加了向前的指针，从而提升查找的效率。跳跃表使用概率均衡技术而不是使用强制性均衡技术，因此，对于插入和删除结点比传统上的平衡树算法更为简洁高效。 跳表是一种随机化的数据结构，目前开源软件 Redis 和 LevelDB 都有用到它。</p>
 <p><img src="http://img.blog.csdn.net/20160820163336489?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt=""></p>
 <p>参考博文：<a href="http://blog.csdn.net/sunxianghuang/article/details/52221913" target="_blank" rel="external">concurrentskipListmap解析</a></p>
-<h4 id="Queue接口相关"><a href="#Queue接口相关" class="headerlink" title="Queue接口相关"></a>Queue接口相关</h4><h5 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h5><p>&#160; &#160; &#160; &#160;在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现 。</p>
+<h3 id="Queue接口相关"><a href="#Queue接口相关" class="headerlink" title="Queue接口相关"></a>Queue接口相关</h3><h4 id="ConcurrentLinkedQueue"><a href="#ConcurrentLinkedQueue" class="headerlink" title="ConcurrentLinkedQueue"></a>ConcurrentLinkedQueue</h4><p>&#160; &#160; &#160; &#160;在并发编程中我们有时候需要使用线程安全的队列。如果我们要实现一个线程安全的队列有两种实现方式一种是使用阻塞算法，另一种是使用非阻塞算法。使用阻塞算法的队列可以用一个锁（入队和出队用同一把锁）或两个锁（入队和出队用不同的锁）等方式来实现，而非阻塞的实现方式则可以使用循环CAS的方式来实现 。</p>
 <p>&#160; &#160; &#160; &#160;ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列，它采用先进先出的规则对节点进行排序，当我们添加一个元素的时候，它会添加到队列的尾部，当我们获取一个元素时，它会返回队列头部的元素。它采用了“wait－free”算法来实现。参考博文：<a href="http://ifeve.com/concurrentlinkedqueue/" target="_blank" rel="external">ConcurrentLinkedQueue解析</a>。</p>
 <p>&#160; &#160; &#160; &#160;ConcurrentLinkedQueue由head节点和tair节点组成，每个节点（Node）由节点元素（item）和指向下一个节点的引用(next)组成，节点与节点之间就是通过这个next关联起来，从而组成一张链表结构的队列。默认情况下head节点存储的元素为空，tair节点等于head节点。</p>
 <pre><code>private transient volatile Node&lt;e&gt; tail = head;
 </code></pre><p><img src="http://ifeve.com/wp-content/uploads/2013/01/ConcurrentLinekedQueue队列入队结构变化图.jpg" alt=""></p>
 <p>&#160; &#160; &#160; &#160;我们主要来看入队和出队操作，如上图是入队操作，发现入队主要做两件事情，第一是将入队节点设置成当前队列尾节点的下一个节点。第二是更新tail节点，如果tail节点的next节点不为空，则将入队节点设置成tail节点，如果tail节点的next节点为空，则将入队节点设置成tail的next节点，所以tail节点不总是尾节点。这时单线程的方式，而多线程是采用CAS方式来实现：</p>
-<h5 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h5><p>&#160; &#160; &#160; &#160;参考博文：<a href="http://blog.csdn.net/suifeng3051/article/details/48807423" target="_blank" rel="external">BlockingQueue解析</a>。BlockingQueue即阻塞队列，从阻塞这个词可以看出，在某些情况下对阻塞队列的访问可能会造成阻塞。被阻塞的情况主要有如下两种：</p>
+<h4 id="BlockingQueue"><a href="#BlockingQueue" class="headerlink" title="BlockingQueue"></a>BlockingQueue</h4><p>&#160; &#160; &#160; &#160;参考博文：<a href="http://blog.csdn.net/suifeng3051/article/details/48807423" target="_blank" rel="external">BlockingQueue解析</a>。BlockingQueue即阻塞队列，从阻塞这个词可以看出，在某些情况下对阻塞队列的访问可能会造成阻塞。被阻塞的情况主要有如下两种：</p>
 <ol>
 <li>当队列满了的时候进行入队列操作</li>
 <li>当队列空了的时候进行出队列操作</li>
@@ -389,18 +388,57 @@
 <li>PriorityBlockingQueue</li>
 <li>SynchronousQueue</li>
 </ol>
-<h6 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h6><p>&#160; &#160; &#160; &#160; ArrayBlockingQueue:一个有边界的阻塞队列，它的内部实现是一个数组。有边界的意思是它的容量是有限的，我们必须在其初始化的时候指定它的容量大小，容量大小一旦指定就不可改变。ArrayBlockingQueue是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。</p>
+<h5 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h5><p>&#160; &#160; &#160; &#160; ArrayBlockingQueue:一个有边界的阻塞队列，它的内部实现是一个数组。有边界的意思是它的容量是有限的，我们必须在其初始化的时候指定它的容量大小，容量大小一旦指定就不可改变。ArrayBlockingQueue是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">BlockingQueue queue = new ArrayBlockingQueue(1024);</div><div class="line">queue.put(&quot;1&quot;);</div><div class="line">Object object = queue.take();</div></pre></td></tr></table></figure>
-<h6 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h6><p>&#160; &#160; &#160; &#160;DelayQueue阻塞的是其内部元素，DelayQueue中的元素必须实现 java.util.concurrent.Delayed接口，这个接口的定义非常简单：</p>
+<h5 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h5><p>&#160; &#160; &#160; &#160;DelayQueue阻塞的是其内部元素，DelayQueue中的元素必须实现 java.util.concurrent.Delayed接口，这个接口的定义非常简单：</p>
 <pre><code>public interface Delayed extends Comparable&lt;Delayed&gt; {
 long getDelay(TimeUnit unit);
 }
 </code></pre><p>&#160; &#160; &#160; &#160;getDelay()方法的返回值就是队列元素被释放前的保持时间，如果返回0或者一个负值，就意味着该元素已经到期需要被释放，此时DelayedQueue会通过其take()方法释放此对象。从上面Delayed 接口定义可以看到，它还继承了Comparable接口，这是因为DelayedQueue中的元素需要进行排序，一般情况，我们都是按元素过期时间的优先级进行排序。其实DelayQueue应用场景很多，比如定时关闭连接、缓存对象，超时处理等各种场景。</p>
-<h6 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h6><p>LinkedBlockingQueue阻塞队列大小的配置是可选的，如果我们初始化时指定一个大小，它就是有边界的，如果不指定，它就是无边界的。说是无边界，其实是采用了默认大小为Integer.MAX_VALUE的容量 。它的内部实现是一个链表。和ArrayBlockingQueue一样，LinkedBlockingQueue 也是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。下面是一个初始化和使用LinkedBlockingQueue的例子：</p>
+<h5 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h5><p>LinkedBlockingQueue阻塞队列大小的配置是可选的，如果我们初始化时指定一个大小，它就是有边界的，如果不指定，它就是无边界的。说是无边界，其实是采用了默认大小为Integer.MAX_VALUE的容量 。它的内部实现是一个链表。和ArrayBlockingQueue一样，LinkedBlockingQueue 也是以先进先出的方式存储数据，最新插入的对象是尾部，最新移出的对象是头部。下面是一个初始化和使用LinkedBlockingQueue的例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">BlockingQueue&lt;String&gt; unbounded = new LinkedBlockingQueue&lt;String&gt;();</div><div class="line">BlockingQueue&lt;String&gt; bounded   = new LinkedBlockingQueue&lt;String&gt;(1024);</div><div class="line">bounded.put(&quot;Value&quot;);</div><div class="line">String value = bounded.take();</div></pre></td></tr></table></figure>
-<h6 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h6><p>&#160; &#160; &#160; &#160;一个没有边界的队列，它的排序规则和 java.util.PriorityQueue一样。需要注意，PriorityBlockingQueue中允许插入null对象。所有插入PriorityBlockingQueue的对象必须实现 java.lang.Comparable接口，队列优先级的排序规则就是按照我们对这个接口的实现来定义的。另外，我们可以从PriorityBlockingQueue获得一个迭代器Iterator，但这个迭代器并不保证按照优先级顺序进行迭代。</p>
-<h6 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h6><p>&#160; &#160; &#160; &#160;队列内部仅允许容纳一个元素。当一个线程插入一个元素后会被阻塞，除非这个元素被另一个线程消费。</p>
-<h3 id="lock锁"><a href="#lock锁" class="headerlink" title="lock锁"></a>lock锁</h3><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h5 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h5><p>&#160; &#160; &#160; &#160;一个没有边界的队列，它的排序规则和 java.util.PriorityQueue一样。需要注意，PriorityBlockingQueue中允许插入null对象。所有插入PriorityBlockingQueue的对象必须实现 java.lang.Comparable接口，队列优先级的排序规则就是按照我们对这个接口的实现来定义的。另外，我们可以从PriorityBlockingQueue获得一个迭代器Iterator，但这个迭代器并不保证按照优先级顺序进行迭代。</p>
+<h5 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h5><p>&#160; &#160; &#160; &#160;队列内部仅允许容纳一个元素。当一个线程插入一个元素后会被阻塞，除非这个元素被另一个线程消费。</p>
+<h3 id="lock锁"><a href="#lock锁" class="headerlink" title="lock锁"></a>lock锁</h3><p>&#160; &#160; &#160; &#160;这里首先我们需要总结的是我们应该聪明的使用锁，在jvm的学习中我们已经知道了一些锁优化机制，一些锁的类型，那就是我们在使用的时候应该注意些什么。</p>
+<p>这里有一些博文可以参考：<a href="https://www.ibm.com/developerworks/cn/java/j-lo-lock/" target="_blank" rel="external">如何聪明地使用锁</a>。竞争锁是造成多线程应用程序性能瓶颈的主要原因，在保证程序正确性的前提下，解决同步带来的性能损失的第一步不是去除锁，而是降低锁的竞争。通常，有以下三类方法可以降低锁的竞争：减少持有锁的时间，降低请求锁的频率，或者用其他协调机制取代独占锁。</p>
+<h4 id="ReentranLock"><a href="#ReentranLock" class="headerlink" title="ReentranLock"></a>ReentranLock</h4><p>&#160; &#160; &#160; &#160;ReentrantLock是可重入锁，什么是可重入锁呢？可重入锁就是当前持有该锁的线程能够多次获取该锁，无需等待。可重入锁是如何实现的呢？这要从ReentrantLock的一个内部类Sync的父类说起，Sync的父类是AbstractQueuedSynchronizer（后面简称AQS）。Sync被设计成为安全的外部不可访问的内部类。参考博文：<a href="http://www.importnew.com/24006.html" target="_blank" rel="external">ReentranLock解析</a>，<a href="http://www.codeceo.com/article/reentrantlock-learn.html" target="_blank" rel="external">ReentranLock解析2</a>.</p>
+<p><img src="http://static.codeceo.com/images/2016/08/reentrantlock01.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;这里我们首先来说一下AQS。AQS是JDK1.5提供的一个基于FIFO等待队列实现的一个用于实现同步器的基础框架，这个基础框架的重要性可以这么说，JCU包里面几乎所有的有关锁、多线程并发以及线程同步器等重要组件的实现都是基于AQS这个框架。参考博文：<a href="http://www.importnew.com/22924.html" target="_blank" rel="external">深度解析AQS</a>。<a href="http://www.importnew.com/22102.html" target="_blank" rel="external">AQS实现分析（上）</a>,<a href="http://www.importnew.com/22108.html" target="_blank" rel="external">AQS实现分析（下）</a></p>
+<p>&#160; &#160; &#160; &#160;<font color="red">AQS的核心思想是基于volatile int state这样的一个属性同时配合Unsafe工具对其原子性的操作来实现对当前锁的状态进行修改。当state的值为0的时候，标识改Lock不被任何线程所占有。</font>我们假设目前有三个线程Thread1、Thread2、Thread3同时去竞争锁，如果结果是Thread1获取了锁，Thread2和Thread3进入了等待队列，那么他们的样子如下：</p>
+<p><img src="http://static.oschina.net/uploads/space/2016/0403/104016_XiVq_1759553.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;AQS的等待队列基于一个双向链表实现的，HEAD节点不关联线程，后面两个节点分别关联Thread2和Thread3，他们将会按照先后顺序被串联在这个队列上。这个时候如果后面再有线程进来的话将会被当做队列的TAIL。</p>
+<p>&#160; &#160; &#160; &#160;三个线程同时进来，他们会首先会通过CAS去修改state的状态，如果修改成功，那么竞争成功，因此这个时候三个线程只有一个CAS成功，其他两个线程失败，也就是tryAcquire返回false。addWaiter会把将当前线程关联的EXCLUSIVE类型的节点入队列，如果队尾节点不为null，则说明队列中已经有线程在等待了，那么直接入队尾。对于我们举的例子，这边的逻辑应该是走enq，也就是开始队尾是null，其实这个时候整个队列都是null的。</p>
+<p>&#160; &#160; &#160; &#160;<font color="red">他们是如何实现不进行加锁，当有多个线程，或者说很多很多的线程同时执行的时候，怎么能保证最终他们都能够乖乖的入队列而不会出现并发问题的呢？这也是这部分代码的经典之处，多线程竞争，热点、单点在队列尾部，多个线程都通过【CAS+死循环】这个free-lock黄金搭档来对队列进行修改，每次能够保证只有一个成功，如果失败下次重试，如果是N个线程，那么每个线程最多loop N次，最终都能够成功。</font></p>
+<p>&#160; &#160; &#160; &#160;羊群效应：</p>
+<p>&#160; &#160; &#160; &#160;这里说一下羊群效应，当有多个线程去竞争同一个锁的时候，假设锁被某个线程占用，那么如果有成千上万个线程在等待锁，有一种做法是同时唤醒这成千上万个线程去去竞争锁，这个时候就发生了羊群效应，海量的竞争必然造成资源的剧增和浪费，因此终究只能有一个线程竞争成功，其他线程还是要老老实实的回去等待。<font color="red">AQS的FIFO的等待队列给解决在锁竞争方面的羊群效应问题提供了一个思路：保持一个FIFO队列，队列每个节点只关心其前一个节点的状态，线程唤醒也只唤醒队头等待线程。其实这个思路已经被应用到了分布式锁的实践中，</font>见：Zookeeper分布式锁的改进实现方案。</p>
+<h4 id="ReetrantReadWriteLock"><a href="#ReetrantReadWriteLock" class="headerlink" title="ReetrantReadWriteLock"></a>ReetrantReadWriteLock</h4><p>&#160; &#160; &#160; &#160;ReadWriteLock管理一组锁，一个是只读的锁，一个是写锁。读锁可以在没有写锁的时候被多个线程同时持有，写锁是独占的。 所有读写锁的实现必须确保写操作对读操作的内存影响。换句话说，一个获得了读锁的线程必须能看到前一个释放的写锁所更新的内容。 读写锁比互斥锁允许对于共享数据更大程度的并发。每次只能有一个写线程，但是同时可以有多个线程并发地读数据。ReadWriteLock适用于读多写少的并发情况。ReadWriteLock是一个接口，主要有两个方法，如下： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public interface ReadWriteLock &#123;</div><div class="line">    /**</div><div class="line">     * 返回读锁</div><div class="line">     */</div><div class="line">    Lock readLock();</div><div class="line"></div><div class="line">    /**</div><div class="line">     * 返回写锁</div><div class="line">     */</div><div class="line">    Lock writeLock();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参考博文：<a href="http://blog.csdn.net/qq_19431333/article/details/70568478" target="_blank" rel="external">ReetrantReadWriteLock解析</a>，</p>
+<h4 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h4><p>&#160; &#160; &#160; &#160;Condition 将 Object 监视器方法（wait、notify 和 notifyAll）分解成截然不同的对象，以便通过将这些对象与任意 Lock 实现组合使用，为每个对象提供多个等待 set （wait-set）。其中，Lock 替代了 synchronized 方法和语句的使用，Condition 替代了 Object 监视器方法的使用。</p>
+<p>&#160; &#160; &#160; &#160;在Condition中，用await()替换wait()，用signal()替换notify()，用signalAll()替换notifyAll()，传统线程的通信方式，Condition都可以实现，这里注意，Condition是被绑定到Lock上的，要创建一个Lock的Condition必须用newCondition()方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">class BoundedBuffer &#123;  </div><div class="line">   final Lock lock = new ReentrantLock();//锁对象  </div><div class="line">   final Condition notFull  = lock.newCondition();//写线程条件   </div><div class="line">   final Condition notEmpty = lock.newCondition();//读线程条件   </div><div class="line">  </div><div class="line">   final Object[] items = new Object[100];//缓存队列  </div><div class="line">   int putptr/*写索引*/, takeptr/*读索引*/, count/*队列中存在的数据个数*/;  </div><div class="line">  </div><div class="line">   public void put(Object x) throws InterruptedException &#123;  </div><div class="line">     lock.lock();  </div><div class="line">     try &#123;  </div><div class="line">       while (count == items.length)//如果队列满了   </div><div class="line">         notFull.await();//阻塞写线程  </div><div class="line">       items[putptr] = x;//赋值   </div><div class="line">       if (++putptr == items.length) putptr = 0;//如果写索引写到队列的最后一个位置了，那么置为0  </div><div class="line">       ++count;//个数++  </div><div class="line">       notEmpty.signal();//唤醒读线程  </div><div class="line">     &#125; finally &#123;  </div><div class="line">       lock.unlock();  </div><div class="line">     &#125;  </div><div class="line">   &#125;  </div><div class="line">  </div><div class="line">   public Object take() throws InterruptedException &#123;  </div><div class="line">     lock.lock();  </div><div class="line">     try &#123;  </div><div class="line">       while (count == 0)//如果队列为空  </div><div class="line">         notEmpty.await();//阻塞读线程  </div><div class="line">       Object x = items[takeptr];//取值   </div><div class="line">       if (++takeptr == items.length) takeptr = 0;//如果读索引读到队列的最后一个位置了，那么置为0  </div><div class="line">       --count;//个数--  </div><div class="line">       notFull.signal();//唤醒写线程  </div><div class="line">       return x;  </div><div class="line">     &#125; finally &#123;  </div><div class="line">       lock.unlock();  </div><div class="line">     &#125;  </div><div class="line">   &#125;   </div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<p>&#160; &#160; &#160; &#160;这是一个处于多线程工作环境下的缓存区，缓存区提供了两个方法，put和take，put是存数据，take是取数据，内部有个缓存队列，具体变量和方法说明见代码，这个缓存区类实现的功能：有多个线程往里面存数据和从里面取数据，其缓存队列(先进先出后进后出)能缓存的最大数值是100，多个线程间是互斥的，当缓存队列中存储的值达到100时，将写线程阻塞，并唤醒读线程，当缓存队列中存储的值为0时，将读线程阻塞，并唤醒写线程，这也是ArrayBlockingQueue的内部实现。下面分析一下代码的执行过程：</p>
+<ol>
+<li><p>一个写线程执行，调用put方法；</p>
+</li>
+<li><p>判断count是否为100，显然没有100；</p>
+</li>
+<li><p>继续执行，存入值；</p>
+</li>
+<li><p>判断当前写入的索引位置++后，是否和100相等，相等将写入索引值变为0，并将count+1；</p>
+</li>
+<li><p>仅唤醒读线程阻塞队列中的一个；</p>
+</li>
+<li><p>一个读线程执行，调用take方法；</p>
+</li>
+<li><p>……</p>
+</li>
+<li><p>仅唤醒写线程阻塞队列中的一个。</p>
+</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;这就是多个Condition的强大之处，假设缓存队列中已经存满，那么阻塞的肯定是写线程，唤醒的肯定是读线程，相反，阻塞的肯定是读线程，唤醒的肯定是写线程，那么假设只有一个Condition会有什么效果呢，缓存队列中已经存满，这个Lock不知道唤醒的是读线程还是写线程了，如果唤醒的是读线程，皆大欢喜，如果唤醒的是写线程，那么线程刚被唤醒，又被阻塞了，这时又去唤醒，这样就浪费了很多时间。</p>
+<p>参考博文：<a href="http://blog.csdn.net/luonanqin/article/details/41894755" target="_blank" rel="external">Condition的await-signal流程详解</a>,<a href="http://blog.csdn.net/ghsau/article/details/7481142" target="_blank" rel="external">Condition-线程通信更高效的方式</a>,<a href="http://www.importnew.com/9281.html" target="_blank" rel="external">怎么理解Condition</a>.</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
@@ -421,7 +459,7 @@ long getDelay(TimeUnit unit);
     <link href="http://yoursite.com/2017/03/16/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/16/高效并发（二）/</id>
     <published>2017-03-16T02:55:01.000Z</published>
-    <updated>2017-05-23T01:50:06.000Z</updated>
+    <updated>2017-05-23T06:56:37.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="并发基本知识总结（二）"><a href="#并发基本知识总结（二）" class="headerlink" title="并发基本知识总结（二）"></a>并发基本知识总结（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
  <a id="more"></a>
@@ -454,8 +492,13 @@ long getDelay(TimeUnit unit);
 <li>用volatile修饰的变量，不能保证该变量状态的改变对于其他线程来说是一种“原子化操作”。</li>
 </ol>
 <p>&#160; &#160; &#160; &#160;在Java5之前，JMM对Volatile的定义是：保证读写volatile都直接发生在main memory中，线程的working memory不进行缓存。它只承诺了读和写过程的可见性，并没有对Reording做限制，所以旧的Volatile并不太可靠。在Java5之后，JMM对volatile的语义进行了增强。就是我们看到的③ volatile变量法则。对volatile域的写入操作先行于每一个后续的读写操作。</p>
-<p>&#160; &#160; &#160; &#160;所以，在使用Volatile时，需要注意：首先，需不需要互斥；其次，对象状态的改变是不是原子化的。</p>
-<h3 id="不变模式（immutable）"><a href="#不变模式（immutable）" class="headerlink" title="不变模式（immutable）"></a>不变模式（immutable）</h3><p>&#160; &#160; &#160; &#160;多线程安全里最简单的一种保障方式。因为你拿他没有办法，想改变它也没有机会。不变模式主要通过final关键字来限定的。在JMM中final关键字还有特殊的语义。Final域使得确保初始化安全性（initialization safety）成为可能，初始化安全性让不可变形对象不需要同步就能自由地被访问和共享。</p>
+<p>&#160; &#160; &#160; &#160;所以，在使用Volatile时，需要注意：首先，需不需要互斥；其次，对象状态的改变是不是原子化的。它可以简化实现或者同步策略，确保引用对象的可见性，比如标志生命周期的事件：开始或者关闭。</p>
+<p>&#160; &#160; &#160; &#160;脆弱的使用条件：</p>
+<ol>
+<li>写入变量不依赖变量的当前值，或者能够保证只有单一的线程修改变量的值。</li>
+<li>变量不需要和其他变量共同参与不变约束。</li>
+<li>访问变量时不需要其他原因加锁。<h3 id="不变模式（immutable）"><a href="#不变模式（immutable）" class="headerlink" title="不变模式（immutable）"></a>不变模式（immutable）</h3>&#160; &#160; &#160; &#160;多线程安全里最简单的一种保障方式。因为你拿他没有办法，想改变它也没有机会。不变模式主要通过final关键字来限定的。在JMM中final关键字还有特殊的语义。Final域使得确保初始化安全性（initialization safety）成为可能，初始化安全性让不可变形对象不需要同步就能自由地被访问和共享。</li>
+</ol>
 <h3 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h3><p>&#160; &#160; &#160; &#160;如果操作都是原子操作，那就实现线程安全了。</p>
 <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>&#160; &#160; &#160; &#160;四种进程或线程同步互斥的控制方法：</p>
 <ol>

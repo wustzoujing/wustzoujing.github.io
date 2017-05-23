@@ -119,7 +119,7 @@
 <meta property="og:site_name" content="街灯晚餐的个人博客">
 <meta property="og:description" content="并发基本知识总结（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。">
 <meta property="og:image" content="http://opb7t58xj.bkt.clouddn.com/happen-before.png">
-<meta property="og:updated_time" content="2017-05-23T01:50:06.000Z">
+<meta property="og:updated_time" content="2017-05-23T06:56:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高效并发（二）">
 <meta name="twitter:description" content="并发基本知识总结（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。">
@@ -441,8 +441,13 @@
 <li>用volatile修饰的变量，不能保证该变量状态的改变对于其他线程来说是一种“原子化操作”。</li>
 </ol>
 <p>&#160; &#160; &#160; &#160;在Java5之前，JMM对Volatile的定义是：保证读写volatile都直接发生在main memory中，线程的working memory不进行缓存。它只承诺了读和写过程的可见性，并没有对Reording做限制，所以旧的Volatile并不太可靠。在Java5之后，JMM对volatile的语义进行了增强。就是我们看到的③ volatile变量法则。对volatile域的写入操作先行于每一个后续的读写操作。</p>
-<p>&#160; &#160; &#160; &#160;所以，在使用Volatile时，需要注意：首先，需不需要互斥；其次，对象状态的改变是不是原子化的。</p>
-<h3 id="不变模式（immutable）"><a href="#不变模式（immutable）" class="headerlink" title="不变模式（immutable）"></a>不变模式（immutable）</h3><p>&#160; &#160; &#160; &#160;多线程安全里最简单的一种保障方式。因为你拿他没有办法，想改变它也没有机会。不变模式主要通过final关键字来限定的。在JMM中final关键字还有特殊的语义。Final域使得确保初始化安全性（initialization safety）成为可能，初始化安全性让不可变形对象不需要同步就能自由地被访问和共享。</p>
+<p>&#160; &#160; &#160; &#160;所以，在使用Volatile时，需要注意：首先，需不需要互斥；其次，对象状态的改变是不是原子化的。它可以简化实现或者同步策略，确保引用对象的可见性，比如标志生命周期的事件：开始或者关闭。</p>
+<p>&#160; &#160; &#160; &#160;脆弱的使用条件：</p>
+<ol>
+<li>写入变量不依赖变量的当前值，或者能够保证只有单一的线程修改变量的值。</li>
+<li>变量不需要和其他变量共同参与不变约束。</li>
+<li>访问变量时不需要其他原因加锁。<h3 id="不变模式（immutable）"><a href="#不变模式（immutable）" class="headerlink" title="不变模式（immutable）"></a>不变模式（immutable）</h3>&#160; &#160; &#160; &#160;多线程安全里最简单的一种保障方式。因为你拿他没有办法，想改变它也没有机会。不变模式主要通过final关键字来限定的。在JMM中final关键字还有特殊的语义。Final域使得确保初始化安全性（initialization safety）成为可能，初始化安全性让不可变形对象不需要同步就能自由地被访问和共享。</li>
+</ol>
 <h3 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h3><p>&#160; &#160; &#160; &#160;如果操作都是原子操作，那就实现线程安全了。</p>
 <h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p>&#160; &#160; &#160; &#160;四种进程或线程同步互斥的控制方法：</p>
 <ol>
