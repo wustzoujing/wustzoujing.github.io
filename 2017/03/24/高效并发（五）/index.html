@@ -118,10 +118,14 @@
 <meta property="og:url" content="http://yoursite.com/2017/03/24/高效并发（五）/index.html">
 <meta property="og:site_name" content="街灯晚餐的个人博客">
 <meta property="og:description" content="concurrent包总结（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经分析了线程池和同步工具。这里我们来介绍原子类和forkjoin框架。">
-<meta property="og:updated_time" content="2017-05-23T05:27:24.000Z">
+<meta property="og:image" content="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/21.png">
+<meta property="og:image" content="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/image3.png">
+<meta property="og:image" content="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/31.png">
+<meta property="og:updated_time" content="2017-05-25T01:08:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高效并发（五）">
 <meta name="twitter:description" content="concurrent包总结（三）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;上篇已经分析了线程池和同步工具。这里我们来介绍原子类和forkjoin框架。">
+<meta name="twitter:image" content="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/21.png">
 
 
 
@@ -410,7 +414,27 @@
       
         <h1 id="concurrent包总结（三）"><a href="#concurrent包总结（三）" class="headerlink" title="concurrent包总结（三）"></a>concurrent包总结（三）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上篇已经分析了线程池和同步工具。这里我们来介绍原子类和forkjoin框架。</p>
  <a id="more"></a>
-<h2 id="forkjoin框架"><a href="#forkjoin框架" class="headerlink" title="forkjoin框架"></a>forkjoin框架</h2><h2 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h2>
+<h2 id="forkjoin框架"><a href="#forkjoin框架" class="headerlink" title="forkjoin框架"></a>forkjoin框架</h2><p>&#160; &#160; &#160; &#160;Fork/Join框架是Java7提供了的一个用于并行执行任务的框架， 是一个把大任务分割成若干个小任务，最终汇总每个小任务结果后得到大任务结果的框架。</p>
+<p>&#160; &#160; &#160; &#160;我们再通过Fork和Join这两个单词来理解下Fork/Join框架，Fork就是把一个大任务切分为若干子任务并行的执行，Join就是合并这些子任务的执行结果，最后得到这个大任务的结果。比如计算1+2+。。＋10000，可以分割成10个子任务，每个子任务分别对1000个数进行求和，最终汇总这10个子任务的结果。Fork/Join的运行流程图如下：</p>
+<p><img src="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/21.png" alt=""></p>
+<h3 id="工作窃取算法"><a href="#工作窃取算法" class="headerlink" title="工作窃取算法"></a>工作窃取算法</h3><p>&#160; &#160; &#160; &#160; 工作窃取（work-stealing）算法是指某个线程从其他队列里窃取任务来执行。工作窃取的运行流程图如下：</p>
+<p><img src="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/image3.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;工作窃取算法的优点是充分利用线程进行并行计算，并减少了线程间的竞争，其缺点是在某些情况下还是存在竞争，比如双端队列里只有一个任务时。并且消耗了更多的系统资源，比如创建多个线程和多个双端队列。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>&#160; &#160; &#160; &#160;第一步分割任务。首先我们需要有一个fork类来把大任务分割成子任务，有可能子任务还是很大，所以还需要不停的分割，直到分割出的子任务足够小。</p>
+<p>&#160; &#160; &#160; &#160;第二步执行任务并合并结果。分割的子任务分别放在双端队列里，然后几个启动线程分别从双端队列里获取任务执行。子任务执行完的结果都统一放在一个队列里，启动一个线程从队列里拿数据，然后合并这些数据。</p>
+<p>Fork/Join使用两个类来完成以上两件事情：</p>
+<p>&#160; &#160; &#160; &#160;ForkJoinTask：我们要使用ForkJoin框架，必须首先创建一个ForkJoin任务。它提供在任务中执行fork()和join()操作的机制，通常情况下我们不需要直接继承ForkJoinTask类，而只需要继承它的子类，Fork/Join框架提供了以下两个子类：</p>
+<ol>
+<li>RecursiveAction：用于没有返回结果的任务。</li>
+<li>RecursiveTask ：用于有返回结果的任务。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;ForkJoinPool ：ForkJoinTask需要通过ForkJoinPool来执行，任务分割出的子任务会添加到当前工作线程所维护的双端队列中，进入队列的头部。当一个工作线程的队列里暂时没有任务时，它会随机从其他工作线程的队列的尾部获取一个任务。</p>
+<p>&#160; &#160; &#160; &#160;使用例子如下,需求是：计算1+2+3+4的结果。：</p>
+<p><img src="http://cdn3.infoqstatic.com/statics_s2_20170523-0350/resource/articles/fork-join-introduction/zh/resources/31.png" alt=""></p>
+<h2 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h2><p>&#160; &#160; &#160; &#160;源代码中没有volatile或者synchronized这些同步机制也没有锁，其实它的同步是通过硬件指令实现。Integer内部方法不是线程安全的所以并发编程推荐使用AtomicInteger类来替换包装类，但是原子类不是 java.lang.Integer 和相关类的通用替换方法，它们不定义诸如 hashCode 和 compareTo 之类的方法。</p>
+<p>&#160; &#160; &#160; &#160;Java提供的原子类是靠 sun 基于 CAS 实现的，CAS 是一种乐观锁。</p>
+<p>&#160; &#160; &#160; &#160;原子变量类相当于一种泛化的 volatile 变量，能够支持原子的和有条件的读-改-写操作。AtomicInteger 表示一个int类型的值，并提供了 get 和 set 方法，这些 Volatile 类型的int变量在读取和写入上有着相同的内存语义。它还提供了一个原子的 compareAndSet 方法（如果该方法成功执行，那么将实现与读取/写入一个 volatile 变量相同的内存效果），以及原子的添加、递增和递减等方法。AtomicInteger 表面上非常像一个扩展的 Counter 类，但在发生竞争的情况下能提供更高的可伸缩性，因为它直接利用了硬件对并发的支持。</p>
+
       
     </div>
 
@@ -642,7 +666,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#concurrent包总结（三）"><span class="nav-number">1.</span> <span class="nav-text">concurrent包总结（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forkjoin框架"><span class="nav-number">1.2.</span> <span class="nav-text">forkjoin框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子类"><span class="nav-number">1.3.</span> <span class="nav-text">原子类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#concurrent包总结（三）"><span class="nav-number">1.</span> <span class="nav-text">concurrent包总结（三）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#forkjoin框架"><span class="nav-number">1.2.</span> <span class="nav-text">forkjoin框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工作窃取算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">工作窃取算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原子类"><span class="nav-number">1.3.</span> <span class="nav-text">原子类</span></a></li></ol></li></ol></div>
             
 
           </div>
