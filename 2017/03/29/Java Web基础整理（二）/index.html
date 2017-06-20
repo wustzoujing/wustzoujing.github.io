@@ -111,18 +111,19 @@
 
 
 
-<meta name="description" content="Servlet搭配工作Tomcat前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。">
+<meta name="description" content="Java Web基础整理（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：Java Web发展历史">
 <meta name="keywords" content="Servlet、Tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Servlet搭配工作Tomcat">
-<meta property="og:url" content="http://yoursite.com/2017/03/29/Servlet原理和Tomcat原理/index.html">
+<meta property="og:title" content="Java Web基础整理（二）">
+<meta property="og:url" content="http://yoursite.com/2017/03/29/Java Web基础整理（二）/index.html">
 <meta property="og:site_name" content="街灯晚餐的个人博客">
-<meta property="og:description" content="Servlet搭配工作Tomcat前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。">
+<meta property="og:description" content="Java Web基础整理（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：Java Web发展历史">
 <meta property="og:image" content="http://images.cnitblog.com/blog/384192/201302/24114945-4774512d1247438fa58c37399d3999ae.jpg">
-<meta property="og:updated_time" content="2017-05-23T05:30:42.000Z">
+<meta property="og:image" content="http://images.blogjava.net/blogjava_net/fancydeepin/myself/servlet.png">
+<meta property="og:updated_time" content="2017-06-20T07:42:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Servlet搭配工作Tomcat">
-<meta name="twitter:description" content="Servlet搭配工作Tomcat前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。">
+<meta name="twitter:title" content="Java Web基础整理（二）">
+<meta name="twitter:description" content="Java Web基础整理（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：Java Web发展历史">
 <meta name="twitter:image" content="http://images.cnitblog.com/blog/384192/201302/24114945-4774512d1247438fa58c37399d3999ae.jpg">
 
 
@@ -151,13 +152,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/29/Servlet原理和Tomcat原理/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/29/Java Web基础整理（二）/"/>
 
 
 
 
 
-  <title>Servlet搭配工作Tomcat | 街灯晚餐的个人博客</title>
+  <title>Java Web基础整理（二） | 街灯晚餐的个人博客</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/Servlet原理和Tomcat原理/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/29/Java Web基础整理（二）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jessie Zou">
@@ -327,7 +328,7 @@
             
             
               
-                Servlet搭配工作Tomcat
+                Java Web基础整理（二）
               
             
           </h1>
@@ -382,17 +383,6 @@
 
           
           
-             <span id="/2017/03/29/Servlet原理和Tomcat原理/" class="leancloud_visitors" data-flag-title="Servlet搭配工作Tomcat">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
 
           
 
@@ -410,8 +400,13 @@
       
 
       
-        <h1 id="Servlet搭配工作Tomcat"><a href="#Servlet搭配工作Tomcat" class="headerlink" title="Servlet搭配工作Tomcat"></a>Servlet搭配工作Tomcat</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。</p>
+        <h1 id="Java-Web基础整理（二）"><a href="#Java-Web基础整理（二）" class="headerlink" title="Java Web基础整理（二）"></a>Java Web基础整理（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：<a href="http://blog.csdn.net/javaeeteacher/article/details/6478450" target="_blank" rel="external">Java Web发展历史</a></p>
  <a id="more"></a>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>&#160; &#160; &#160; &#160;Servlet是一个Java应用程序，运行在服务器端，用来处理客户端请求并作出响应的程序。</p>
+<p>&#160; &#160; &#160; &#160;Servlet多线程体系结构是建立在Java多线程机制之上的，它的生命周期是由Web容器负责的。</p>
+<p> &#160; &#160; &#160; &#160;对于Servlet，它被设计为多线程的（如果它是单线程的，你就可以想象，当1000个人同时请求一个网页时，在第一个人获得请求结果之前，其它999个人都在郁闷地等待），如果为每个用户的每一次请求都创建 一个新的线程对象来运行的话，系统就会在创建线程和销毁线程上耗费很大的开销，大大降低系统的效率。</p>
+<p>&#160; &#160; &#160; &#160;因此，Servlet多线程机制背后有一个线程池在支持，线程池在初始化初期就创建了一定数量的线程对象，通过提高对这些对象的利用率，避免高频率地创建对象，从而达到提高程序的效率的目的。（由线程来执行Servlet的service方法，servlet在Tomcat中是以单例模式存在的， Servlet的线程安全问题只有在大量的并发访问时才会显现出来，并且很难发现，因此在编写Servlet程序时要特别注意。线程安全问题主要是由实例变量造成的,因此在Servlet中应避免使用实例变量。如果应用程设计无法避免使用实例变量，那么使用同步来保护要使用的实例变量，但为保证系统的最佳性能，应该同步可用性最小的代码路径）</p>
+<p> &#160; &#160; &#160; &#160;<font color="red">解决servlet线程安全的方案：同步对共享数据的操作 Synchronized (this){…}、避免使用实例变量。</font></p>
 <h2 id="Tomcat与Servlet搭配工作"><a href="#Tomcat与Servlet搭配工作" class="headerlink" title="Tomcat与Servlet搭配工作"></a>Tomcat与Servlet搭配工作</h2><p> <img src="http://images.cnitblog.com/blog/384192/201302/24114945-4774512d1247438fa58c37399d3999ae.jpg" alt=""></p>
 <p>步骤：</p>
 <ol>
@@ -424,6 +419,19 @@
 <li>HttpServlet调用HttpResponse对象的有关方法，生成响应数据。</li>
 <li>Servlet容器把HttpServlet的响应结果传给Web Client。</li>
 </ol>
+<h2 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h2><p>&#160; &#160; &#160; &#160;由Servlet容器决定，即一般是tomcat。如上过程。</p>
+<p>&#160; &#160; &#160; &#160;Servlet生命周期分为三个阶段：</p>
+<p>　　1，初始化阶段  调用init()方法</p>
+<p>　　2，响应客户请求阶段　　调用service()方法</p>
+<p>　　3，终止阶段　　调用destroy()方法</p>
+<p>&#160; &#160; &#160; &#160;Servlet初始化阶段：</p>
+<p>　　在下列时刻Servlet容器装载Servlet：</p>
+<p>　　　　1，Servlet容器启动时自动装载某些Servlet，实现它只需要在web.XML文件中的<servlet></servlet>之间添加如下代码：</p>
+<pre><code>&lt;loadon-startup&gt;1&lt;/loadon-startup&gt; 
+</code></pre><p>　　　　2，在Servlet容器启动后，客户首次向Servlet发送请求</p>
+<p>　　　　3，Servlet类文件被更新后，重新装载Servlet</p>
+<p>　　Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。</p>
+<p><img src="http://images.blogjava.net/blogjava_net/fancydeepin/myself/servlet.png" alt=""></p>
 <h2 id="Servlet工作原理："><a href="#Servlet工作原理：" class="headerlink" title="Servlet工作原理："></a>Servlet工作原理：</h2><ol>
 <li>首先简单解释一下Servlet接收和响应客户请求的过程，首先客户发送一个请求，Servlet是调用service()方法对请求进行响应的，通过源代码可见，service()方法中对请求的方式进行了匹配，选择调用doGet,doPost等这些方法，然后再进入对应的方法中调用逻辑层的方法，实现对客户的响应。在Servlet接口和GenericServlet中是没有doGet（）、doPost（）等等这些方法的，HttpServlet中定义了这些方法，但是都是返回error信息，所以，我们每次定义一个Servlet的时候，都必须实现doGet或doPost等这些方法。</li>
 <li>每一个自定义的Servlet都必须实现Servlet的接口，Servlet接口中定义了五个方法，其中比较重要的三个方法涉及到Servlet的生命周期，分别是上文提到的init(),service(),destroy()方法。GenericServlet是一个通用的，不特定于任何协议的Servlet,它实现了Servlet接口。而HttpServlet继承于GenericServlet，因此HttpServlet也实现了Servlet接口。所以我们定义Servlet的时候只需要继承HttpServlet即可。</li>
@@ -435,6 +443,11 @@
 <li>Servlet Servlet容器在启动时自动创建Servlet，这是由在web.xml文件中为Servlet设置的<load-on-startup>属性决定的。从中我们也能看到同一个类型的Servlet对象在Servlet容器中以单例的形式存在。</load-on-startup></li>
 </ol>
 <p>参考博文：<a href="http://www.cnblogs.com/xuekyo/archive/2013/02/24/2924072.html" target="_blank" rel="external">servlet原理</a>。</p>
+<h2 id="session和cookies"><a href="#session和cookies" class="headerlink" title="session和cookies"></a>session和cookies</h2><p>&#160; &#160; &#160; &#160;cookie在客户端，session在服务端，某个会话数据会在服务端保存，内存缓存或持久化，对应一个sessionID，返回客户端放入cookie，如果客户端禁用了cookie，那么可以重定向在URL后面加sid=xxx，J sessionID是tomcat对sessionID的称呼，现在通过sessionID和https可以较为安全的工作。</p>
+<p>参考博文：<a href="http://blog.csdn.net/fangaoxin/article/details/6952954/" target="_blank" rel="external">Cookie/Session机制详解</a></p>
+<h2 id="Servlet与JSP的比较："><a href="#Servlet与JSP的比较：" class="headerlink" title="Servlet与JSP的比较："></a>Servlet与JSP的比较：</h2><p>　　有许多相似之处，都可以生成动态网页。</p>
+<p>　　JSP的优点是擅长于网页制作，生成动态页面比较直观，缺点是不容易跟踪与排错。</p>
+<p>　　Servlet是纯Java语言，擅长于处理流程和业务逻辑，缺点是生成动态网页不直观。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 
       
@@ -509,8 +522,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/03/24/高效并发（五）/" rel="prev" title="高效并发（五）">
-                高效并发（五） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/26/Java Web基础整理（一）/" rel="prev" title="Java Web基础整理（一）">
+                Java Web基础整理（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -584,7 +597,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">39</span>
+                <span class="site-state-item-count">40</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -606,7 +619,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -668,7 +681,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet搭配工作Tomcat"><span class="nav-number">1.</span> <span class="nav-text">Servlet搭配工作Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat与Servlet搭配工作"><span class="nav-number">1.2.</span> <span class="nav-text">Tomcat与Servlet搭配工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet工作原理："><span class="nav-number">1.3.</span> <span class="nav-text">Servlet工作原理：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Servlet对象的时机："><span class="nav-number">1.4.</span> <span class="nav-text">创建Servlet对象的时机：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-Web基础整理（二）"><span class="nav-number">1.</span> <span class="nav-text">Java Web基础整理（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet"><span class="nav-number">1.2.</span> <span class="nav-text">Servlet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat与Servlet搭配工作"><span class="nav-number">1.3.</span> <span class="nav-text">Tomcat与Servlet搭配工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet生命周期"><span class="nav-number">1.4.</span> <span class="nav-text">Servlet生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet工作原理："><span class="nav-number">1.5.</span> <span class="nav-text">Servlet工作原理：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Servlet对象的时机："><span class="nav-number">1.6.</span> <span class="nav-text">创建Servlet对象的时机：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session和cookies"><span class="nav-number">1.7.</span> <span class="nav-text">session和cookies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet与JSP的比较："><span class="nav-number">1.8.</span> <span class="nav-text">Servlet与JSP的比较：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">2.</span> <span class="nav-text">说明</span></a></li></ol></div>
             
 
           </div>
@@ -879,113 +892,6 @@
 
 
   
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("M7yofldRrFvn70AWv3mgUx0y-gzGzoHsz", "NUrCAtMBGo8JjxRoAqXFPm0W");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
 
   
 

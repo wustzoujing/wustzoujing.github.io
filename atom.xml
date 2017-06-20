@@ -239,14 +239,19 @@
   </entry>
   
   <entry>
-    <title>Servlet搭配工作Tomcat</title>
-    <link href="http://yoursite.com/2017/03/29/Servlet%E5%8E%9F%E7%90%86%E5%92%8CTomcat%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2017/03/29/Servlet原理和Tomcat原理/</id>
+    <title>Java Web基础整理（二）</title>
+    <link href="http://yoursite.com/2017/03/29/Java%20Web%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/29/Java Web基础整理（二）/</id>
     <published>2017-03-29T09:20:19.000Z</published>
-    <updated>2017-05-23T05:30:42.000Z</updated>
+    <updated>2017-06-20T07:42:11.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Servlet搭配工作Tomcat"><a href="#Servlet搭配工作Tomcat" class="headerlink" title="Servlet搭配工作Tomcat"></a>Servlet搭配工作Tomcat</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。</p>
+    <content type="html"><![CDATA[<h1 id="Java-Web基础整理（二）"><a href="#Java-Web基础整理（二）" class="headerlink" title="Java Web基础整理（二）"></a>Java Web基础整理（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：<a href="http://blog.csdn.net/javaeeteacher/article/details/6478450" target="_blank" rel="external">Java Web发展历史</a></p>
  <a id="more"></a>
+<h2 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h2><p>&#160; &#160; &#160; &#160;Servlet是一个Java应用程序，运行在服务器端，用来处理客户端请求并作出响应的程序。</p>
+<p>&#160; &#160; &#160; &#160;Servlet多线程体系结构是建立在Java多线程机制之上的，它的生命周期是由Web容器负责的。</p>
+<p> &#160; &#160; &#160; &#160;对于Servlet，它被设计为多线程的（如果它是单线程的，你就可以想象，当1000个人同时请求一个网页时，在第一个人获得请求结果之前，其它999个人都在郁闷地等待），如果为每个用户的每一次请求都创建 一个新的线程对象来运行的话，系统就会在创建线程和销毁线程上耗费很大的开销，大大降低系统的效率。</p>
+<p>&#160; &#160; &#160; &#160;因此，Servlet多线程机制背后有一个线程池在支持，线程池在初始化初期就创建了一定数量的线程对象，通过提高对这些对象的利用率，避免高频率地创建对象，从而达到提高程序的效率的目的。（由线程来执行Servlet的service方法，servlet在Tomcat中是以单例模式存在的， Servlet的线程安全问题只有在大量的并发访问时才会显现出来，并且很难发现，因此在编写Servlet程序时要特别注意。线程安全问题主要是由实例变量造成的,因此在Servlet中应避免使用实例变量。如果应用程设计无法避免使用实例变量，那么使用同步来保护要使用的实例变量，但为保证系统的最佳性能，应该同步可用性最小的代码路径）</p>
+<p> &#160; &#160; &#160; &#160;<font color="red">解决servlet线程安全的方案：同步对共享数据的操作 Synchronized (this){…}、避免使用实例变量。</font></p>
 <h2 id="Tomcat与Servlet搭配工作"><a href="#Tomcat与Servlet搭配工作" class="headerlink" title="Tomcat与Servlet搭配工作"></a>Tomcat与Servlet搭配工作</h2><p> <img src="http://images.cnitblog.com/blog/384192/201302/24114945-4774512d1247438fa58c37399d3999ae.jpg" alt=""></p>
 <p>步骤：</p>
 <ol>
@@ -259,6 +264,19 @@
 <li>HttpServlet调用HttpResponse对象的有关方法，生成响应数据。</li>
 <li>Servlet容器把HttpServlet的响应结果传给Web Client。</li>
 </ol>
+<h2 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h2><p>&#160; &#160; &#160; &#160;由Servlet容器决定，即一般是tomcat。如上过程。</p>
+<p>&#160; &#160; &#160; &#160;Servlet生命周期分为三个阶段：</p>
+<p>　　1，初始化阶段  调用init()方法</p>
+<p>　　2，响应客户请求阶段　　调用service()方法</p>
+<p>　　3，终止阶段　　调用destroy()方法</p>
+<p>&#160; &#160; &#160; &#160;Servlet初始化阶段：</p>
+<p>　　在下列时刻Servlet容器装载Servlet：</p>
+<p>　　　　1，Servlet容器启动时自动装载某些Servlet，实现它只需要在web.XML文件中的<servlet></servlet>之间添加如下代码：</p>
+<pre><code>&lt;loadon-startup&gt;1&lt;/loadon-startup&gt; 
+</code></pre><p>　　　　2，在Servlet容器启动后，客户首次向Servlet发送请求</p>
+<p>　　　　3，Servlet类文件被更新后，重新装载Servlet</p>
+<p>　　Servlet被装载后，Servlet容器创建一个Servlet实例并且调用Servlet的init()方法进行初始化。在Servlet的整个生命周期内，init()方法只被调用一次。</p>
+<p><img src="http://images.blogjava.net/blogjava_net/fancydeepin/myself/servlet.png" alt=""></p>
 <h2 id="Servlet工作原理："><a href="#Servlet工作原理：" class="headerlink" title="Servlet工作原理："></a>Servlet工作原理：</h2><ol>
 <li>首先简单解释一下Servlet接收和响应客户请求的过程，首先客户发送一个请求，Servlet是调用service()方法对请求进行响应的，通过源代码可见，service()方法中对请求的方式进行了匹配，选择调用doGet,doPost等这些方法，然后再进入对应的方法中调用逻辑层的方法，实现对客户的响应。在Servlet接口和GenericServlet中是没有doGet（）、doPost（）等等这些方法的，HttpServlet中定义了这些方法，但是都是返回error信息，所以，我们每次定义一个Servlet的时候，都必须实现doGet或doPost等这些方法。</li>
 <li>每一个自定义的Servlet都必须实现Servlet的接口，Servlet接口中定义了五个方法，其中比较重要的三个方法涉及到Servlet的生命周期，分别是上文提到的init(),service(),destroy()方法。GenericServlet是一个通用的，不特定于任何协议的Servlet,它实现了Servlet接口。而HttpServlet继承于GenericServlet，因此HttpServlet也实现了Servlet接口。所以我们定义Servlet的时候只需要继承HttpServlet即可。</li>
@@ -270,12 +288,17 @@
 <li>Servlet Servlet容器在启动时自动创建Servlet，这是由在web.xml文件中为Servlet设置的<load-on-startup>属性决定的。从中我们也能看到同一个类型的Servlet对象在Servlet容器中以单例的形式存在。</load-on-startup></li>
 </ol>
 <p>参考博文：<a href="http://www.cnblogs.com/xuekyo/archive/2013/02/24/2924072.html" target="_blank" rel="external">servlet原理</a>。</p>
+<h2 id="session和cookies"><a href="#session和cookies" class="headerlink" title="session和cookies"></a>session和cookies</h2><p>&#160; &#160; &#160; &#160;cookie在客户端，session在服务端，某个会话数据会在服务端保存，内存缓存或持久化，对应一个sessionID，返回客户端放入cookie，如果客户端禁用了cookie，那么可以重定向在URL后面加sid=xxx，J sessionID是tomcat对sessionID的称呼，现在通过sessionID和https可以较为安全的工作。</p>
+<p>参考博文：<a href="http://blog.csdn.net/fangaoxin/article/details/6952954/" target="_blank" rel="external">Cookie/Session机制详解</a></p>
+<h2 id="Servlet与JSP的比较："><a href="#Servlet与JSP的比较：" class="headerlink" title="Servlet与JSP的比较："></a>Servlet与JSP的比较：</h2><p>　　有许多相似之处，都可以生成动态网页。</p>
+<p>　　JSP的优点是擅长于网页制作，生成动态页面比较直观，缺点是不容易跟踪与排错。</p>
+<p>　　Servlet是纯Java语言，擅长于处理流程和业务逻辑，缺点是生成动态网页不直观。</p>
 <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Servlet搭配工作Tomcat&quot;&gt;&lt;a href=&quot;#Servlet搭配工作Tomcat&quot; class=&quot;headerlink&quot; title=&quot;Servlet搭配工作Tomcat&quot;&gt;&lt;/a&gt;Servlet搭配工作Tomcat&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，先了解一下Servlet和Tomcat的搭配工作过程。&lt;/p&gt;
+      &lt;h1 id=&quot;Java-Web基础整理（二）&quot;&gt;&lt;a href=&quot;#Java-Web基础整理（二）&quot; class=&quot;headerlink&quot; title=&quot;Java Web基础整理（二）&quot;&gt;&lt;/a&gt;Java Web基础整理（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;最近再看Tomcat原理与Java Web这本书，作为准备，了解了JSP内置对象、JavaBean和一些基本概念之后我们在了解一下Servlet和Tomcat的搭配工作过程。还有一个讲Java Web发展历程的博文可以参考：&lt;a href=&quot;http://blog.csdn.net/javaeeteacher/article/details/6478450&quot;&gt;Java Web发展历史&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     
@@ -283,6 +306,40 @@
     
     
       <category term="Servlet、Tomcat" scheme="http://yoursite.com/tags/Servlet%E3%80%81Tomcat/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java Web基础整理（一）</title>
+    <link href="http://yoursite.com/2017/03/26/Java%20Web%E5%9F%BA%E7%A1%80%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/26/Java Web基础整理（一）/</id>
+    <published>2017-03-26T05:45:33.000Z</published>
+    <updated>2017-06-20T06:43:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Java-Web基础整理（一）"><a href="#Java-Web基础整理（一）" class="headerlink" title="Java Web基础整理（一）"></a>Java Web基础整理（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;Java最先的流行就是从Web上的动态页面小程序开始的，万维网的流行，Java Web的发展也很快，从最先的页面，到JSP，添加内置对象，JavaBean出现实现业务逻辑分离，到Servlet的发展。这里回顾一下这些发展历程。</p>
+ <a id="more"></a>
+<h2 id="JSP内置对象"><a href="#JSP内置对象" class="headerlink" title="JSP内置对象"></a>JSP内置对象</h2><p>&#160; &#160; &#160; &#160;JSP提供了由容器实现和管理的内置对象，首先一个问题就是为什么会出现内置对象呢，他的作用是什么？</p>
+<p>&#160; &#160; &#160; &#160;答：JSP使用Java作文脚本程序语言，具有巨大的对象处理能力，动态创建Web页面，而在Java语言中，需要创建实例才能引用，操作繁琐，为了简化，<font color="red">JSP提供了9大内置对象和4个作用域，作用域如下图，对象分别是request、response、session、application、out、page、config、exception、pageContext。</font></p>
+<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://img2.tuicool.com/2Ejm63.jpg!web" alt=""></p>
+<p>&#160; &#160; &#160; &#160;内置对象的作用可参考博文，文字较多。<a href="http://www.tuicool.com/articles/VNB3AjA" target="_blank" rel="external">九大内置对象作用</a>。</p>
+<p>&#160; &#160; &#160; &#160;重要的是request、response分别包装了Http请求和响应信息，session是适用于同一个应用程序中每个客户端的各个页面的共享数据，application是全局共享数据，out用于在JSP中输出各种类型数据。</p>
+<p>&#160; &#160; &#160; &#160;这里需要补充的是容器、JSP容器，servlet容器，web容器，web服务器，应用服务器的概念。参考博文：<a href="http://blog.csdn.net/qmw19910301/article/details/53463285" target="_blank" rel="external">Servlet，Servlet容器，Jsp容器，Web容器</a>，<a href="https://www.zhihu.com/question/20096067" target="_blank" rel="external">Web 服务器与应用服务器的区别</a>。</p>
+<h2 id="JavaBean"><a href="#JavaBean" class="headerlink" title="JavaBean"></a>JavaBean</h2><p>&#160; &#160; &#160; &#160;JavaBean的产生使JSP页面中的业务逻辑变得更加清晰，程序中的实体对象及业务逻辑可以单独封装到Java类中。不仅提高可读性和易维护性，还提高了可重用性。</p>
+<p>&#160; &#160; &#160; &#160;在JSP网页初级阶段开源社区还没有那么活跃，也并没有分层和框架的出现，将大量代码嵌入HTML中效率很低，JavaBean出现和JSP组合开发模式将业务逻辑，如数据库操作通过引用JavaBean组件来完成。</p>
+<p>&#160; &#160; &#160; &#160;Spring中也有很多实例的Bean，类似类的实例了，有一些概念，如PO,VO,BO,POJO等，参考博文<a href="http://blog.chinaunix.net/uid-20556037-id-2810927.html" target="_blank" rel="external">PO、VO、BO、DTO、POJO、DAO之间的关系 </a>。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Java-Web基础整理（一）&quot;&gt;&lt;a href=&quot;#Java-Web基础整理（一）&quot; class=&quot;headerlink&quot; title=&quot;Java Web基础整理（一）&quot;&gt;&lt;/a&gt;Java Web基础整理（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;Java最先的流行就是从Web上的动态页面小程序开始的，万维网的流行，Java Web的发展也很快，从最先的页面，到JSP，添加内置对象，JavaBean出现实现业务逻辑分离，到Servlet的发展。这里回顾一下这些发展历程。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java Web" scheme="http://yoursite.com/categories/Java-Web/"/>
+    
+    
+      <category term="JSP、JavaBean" scheme="http://yoursite.com/tags/JSP%E3%80%81JavaBean/"/>
     
   </entry>
   
@@ -537,7 +594,7 @@ long getDelay(TimeUnit unit);
     <link href="http://yoursite.com/2017/03/16/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/16/高效并发（二）/</id>
     <published>2017-03-16T02:55:01.000Z</published>
-    <updated>2017-05-23T06:56:37.000Z</updated>
+    <updated>2017-06-16T08:22:30.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="并发基本知识总结（二）"><a href="#并发基本知识总结（二）" class="headerlink" title="并发基本知识总结（二）"></a>并发基本知识总结（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在学习完虚拟机之后，我们了解了java的内存模型、实现线程安全的方法和jvm的一些锁优化机制，我们现在就把方向在往线程的基本操作，到concurrent包里面的线程安全类、原子类和一些lock的实现类。了解整个java并发基础。</p>
  <a id="more"></a>
@@ -589,7 +646,7 @@ long getDelay(TimeUnit unit);
 <li><p>事件:用来通知线程有一些事件已发生，从而启动后继任务的开始。</p>
 </li>
 </ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！q q q</p>
 ]]></content>
     
     <summary type="html">
@@ -1103,84 +1160,6 @@ transient int modCount;//被修改的次数
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高效并发（一）</title>
-    <link href="http://yoursite.com/2017/02/28/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/02/28/高效并发（一）/</id>
-    <published>2017-02-28T05:20:54.000Z</published>
-    <updated>2017-05-09T07:44:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Java内存模型与线程（一）"><a href="#Java内存模型与线程（一）" class="headerlink" title="Java内存模型与线程（一）"></a>Java内存模型与线程（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;并发处理的广泛应用是使得Amdahl定律代替摩尔定律称为计算机性能发展源动力的根本原因，也是人类压榨计算机能力最有力的武器。</p>
- <a id="more"></a>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&#160; &#160; &#160; &#160;多任务处理在现代操作系统中几乎已是一项必备的功能了，许多情况下，让计算机同时去做几件事，只是处理器的运算能力太强大了，与通讯子系统差距太大，大部分时间花了在磁盘i／o，网络通讯和数据库访问。后来在主内存和处理器之间加入了高速缓冲区cache，java的内存模型也是参考那样的方式设计的如下图：</p>
-<p><img src="http://img.my.csdn.net/uploads/201302/06/1360141335_1299.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;线程间通信的步骤：首先，线程A把本地内存A中更新过的共享变量刷新到主内存中去。然后，线程B到主内存中去读取线程A之前已更新过的共享变量。</p>
-<h2 id="内存间的交互操作"><a href="#内存间的交互操作" class="headerlink" title="内存间的交互操作"></a>内存间的交互操作</h2><p>&#160; &#160; &#160; &#160;八种操作来完成：来完成一个变量从主内存拷贝到工作内存、以及工作内存同步回主内存之内。</p>
-<ol>
-<li>Lock（锁定）：作用于主内存的变量，将主内存该变量标记成当前线程私有的，其他线程无法访问。</li>
-<li>Unlock（解锁）：作用于主内存的变量，解除主内存中该变量的锁定状态，让他变成线程共享变量。</li>
-<li>Read（读取）：作用于主内存的变量，将该变量读取到当前线程的工作内存中，以便进行load操作。</li>
-<li>Load（加载）：作用于工作内存中的变量，将read获取到的变量载入工作内存的变量副本中。</li>
-<li>Use（使用）：作用于工作内存中的变量，虚拟机执行引擎在执行字节码指令的时候，碰到了一个变量就会执行该操作，使用该变量。</li>
-<li>Assgin（赋值）：作用于工作内存中的变量，虚拟机执行引擎在执行字节码指令的时候，碰到了变量赋值的指令就会执行该操作。</li>
-<li>Store（存储）：作用于工作内存中的变量，将工作内存中的变量放入主内存，以便进行write操作。</li>
-<li>Write（写入）：作用于主内存中的变量，将store得到的变量放入主内存的变量中。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;说明：如果要把一个变量从主内存复制到工作内存，那就要按顺序地执行read和load操作，如果要把变量从工作内存同步回主内存，就要按顺序的执行store和write操作。这两个操作必须按顺序执行，但是没有保证是连续执行，也就是说read与load之间、store与write之间是可插入其他指令的。除此之外，Java内存模型还规定了在执行上述八种基本操作时必须满足如下规则：</p>
-<ol>
-<li>不允许read和load、store和write操作之一单独出现，即不允许一个变量从主内存读取了但工作内存不接受，或者从工作内存发起回写了但主内存不接受的情况。</li>
-<li>不允许一个线程丢弃它的最近assign操作，即变量在工作内存中改变了之后必须把该变化同步回主内存。</li>
-<li>不允许一个线程无原因的（没有发生过任何assign操作）把数据从线程的工作内存同步回主内存中。</li>
-<li>一个新的变量只能在主内存中诞生，不允许在工作内存中直接使用一个未被初始化（load或assign）的变量，就是对一个变量执行use和store之前必须先执行过了assign和load操作。</li>
-<li>一个变量在同一个时刻只允许一条线程对其进行lock操作，但lock操作可以被同一条线程重复执行多次，多次执行lock后，只有执行相同次数的unlock操作，变量才会被解锁。</li>
-<li>如果对一个变量执行lock操作，僵尸清空工作内存中此变量的值，在执行引擎使用这个变量前，需要重新执行load或assign操作初始化变量的值。</li>
-<li>如果一个变量事先没有被lock操作锁定，则不允许对它执行unlock操作，也不允许去unlock一个被其他线程锁定住的变量。</li>
-<li>对一个变量执行unlock操作之前，必须先把此变量同步回主内存中。</li>
-</ol>
-<h2 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h2><p>&#160; &#160; &#160; &#160;它有两个语义：</p>
-<ol>
-<li>保证该变量对所以线程的可见性，但不是总能保证线程安全性，因为java的操作并非原子操作。</li>
-<li>禁止指令重排序。指令重排序会干扰并发程序的执行。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;我们如何选择：volatile的效率是高于锁的，只是在写操作上因为防止重排序插入了内存屏障指令高于普通变量。我们重点放到只使用volatile是否就能满足我们的业务需求，而且对double和long类型变量我们一般不会用到，可能会读到半个变量。</p>
-<p>&#160; &#160; &#160; &#160;Java内存模型中对volatile变量定义的特殊规则：</p>
-<ol>
-<li>在工作内存中，每次使用volatile变量前都必须从主内存中刷新最新的值，用于保证能看到其他线程对变量V所做的修改后的值。</li>
-<li>在工作内存中，每次修改后的值都必须立刻同步回主内存中，用于保证其他线程可以看到自己对变量的修改。</li>
-<li>volatile修饰的变量不会被指令重排优化，保证代码的执行顺序与程序的顺序相同。</li>
-</ol>
-<h2 id="内存模型的特点"><a href="#内存模型的特点" class="headerlink" title="内存模型的特点"></a>内存模型的特点</h2><h3 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h3><p>&#160; &#160; &#160; &#160;由Java内存模型来直接保证的原子性变量操作包括read、load、assign、use、store和write这六个，我们可以大致的认为基本数据类型的访问读写是具备原子性的（long和double除外）。Java代码中的同步块即synchronized关键字，因此在synchronized块之间的操作也具备原子性。内部是通过字节码指令monitorenter和monitorexit来实现。</p>
-<h3 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h3><p>&#160; &#160; &#160; &#160;就是当一个线程修改了共享变量的值，其他线程能够立即得知这个修改。Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值。关键字synchronized和final也能保证可见性。首先同步块是因为对变量执行unlock操作之前，必须先把次变量同步回主内存中。而final关键字的可见性是指：被final修饰的字段在构造器中一旦被初始化完成，并且构造器没有把this指针传递出去，那么在其他线程中就能看见final字段的值。</p>
-<h3 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h3><p>&#160; &#160; &#160; &#160;用synchronized和volatile关键字来保证线程操作之间的有序性。volatile本省就包含禁止指令重排序的语义，而synchronized则是因为：一个变量在同一时刻只允许一条线程对齐进行lock操作。这个规则决定了持有同一个锁的两个同步块只能串行的进入。</p>
-<h2 id="先行发生原则"><a href="#先行发生原则" class="headerlink" title="先行发生原则"></a>先行发生原则</h2><p>&#160; &#160; &#160; &#160;如果Java内存模型中所有的有序性都只靠volatile和synchronized来完成，那么有一些操作将会变得很啰嗦。java内存模型中的一个重点原则——先行发生原则（Happens-Before），使用这个原则作为依据，来指导你判断是否存在线程安全和竞争问题。</p>
-<ol>
-<li>程序顺序规则：在程序中，如果A操作在B操作之前（比如A代码在B代码上面，或者由A程序调用B程序），那么在这个线程中，A操作将在B操作之前执行。</li>
-<li>管理锁定规则：一个unlock操作先于后面对同一个锁的lock操作之前执行。<br>volatile变量规则：对一个volatile变量的写操作必须在对该变量的读操作之前发生。</li>
-<li>线程启动规则：线程的Thread.start()必须在该线程所有其他操作之前发生。</li>
-<li>线程终止规则：线程中所有操作都先行发生于该线程的终止检测。可以通过Thread.join()方法结束、Thread.isAlive()的返回值判断线程是否终止。</li>
-<li>线程中断规则：对线程interrupt()方法的调用必须在被中断线程的代码检测到interrupt调用之前执行。</li>
-<li>对象终结规则：对象的初始化（构造函数的调用）必须在该对象的finalize()方法完成。<br>传递性：如果A先行发生于B，B先行发生于C，那么A先行发生于C。</li>
-</ol>
-<h2 id="线程的实现"><a href="#线程的实现" class="headerlink" title="线程的实现"></a>线程的实现</h2><p>&#160; &#160; &#160; &#160;主要有三种方式：使用内核线程KLT、用户线程UT、使用用户和轻量级进程LWP混合。操作系统支持怎么样的线程模型，很大程度决定了java采用何种线程实现方式，对于java程序的编码和运行来说是差异是透明的。</p>
-<h3 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h3><p>&#160; &#160; &#160; &#160;分为协同式和抢占式两种。</p>
-<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><p>&#160; &#160; &#160; &#160;分为以下几种：新建、运行、无限期等待、限期等待、阻塞、结束</p>
-<p><img src="http://img.blog.csdn.net/20160717080817309" alt=""></p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Java内存模型与线程（一）&quot;&gt;&lt;a href=&quot;#Java内存模型与线程（一）&quot; class=&quot;headerlink&quot; title=&quot;Java内存模型与线程（一）&quot;&gt;&lt;/a&gt;Java内存模型与线程（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;并发处理的广泛应用是使得Amdahl定律代替摩尔定律称为计算机性能发展源动力的根本原因，也是人类压榨计算机能力最有力的武器。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="高效并发" scheme="http://yoursite.com/categories/%E9%AB%98%E6%95%88%E5%B9%B6%E5%8F%91/"/>
-    
-    
-      <category term="Java内存模型" scheme="http://yoursite.com/tags/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"/>
     
   </entry>
   
