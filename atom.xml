@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-05-22T12:01:06.000Z</updated>
+  <updated>2017-06-28T11:39:45.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一次JAVA爬虫之旅</title>
+    <link href="http://yoursite.com/2017/05/22/%E4%B8%80%E6%AC%A1JAVA%E7%88%AC%E8%99%AB%E4%B9%8B%E6%97%85/"/>
+    <id>http://yoursite.com/2017/05/22/一次JAVA爬虫之旅/</id>
+    <published>2017-05-22T12:14:05.000Z</published>
+    <updated>2017-06-28T11:39:45.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="一次JAVA爬虫之旅"><a href="#一次JAVA爬虫之旅" class="headerlink" title="一次JAVA爬虫之旅"></a>一次JAVA爬虫之旅</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;好早就想做一下爬虫，最近终于完成了。爬了知乎用户信息，现在知乎确实正规了好多，各种反爬虫机制，遇到了不少坑，还好都克服了，现在来记录下这个过程，和把结果展示一下。</p>
+  <a id="more"></a>
+<h2 id="准备知识"><a href="#准备知识" class="headerlink" title="准备知识"></a>准备知识</h2><p>&#160; &#160; &#160; &#160;我们每天都在浏览网页，如果对其中的某些信息特别感兴趣，我们会选择将其保存下来，但当数据数量很多的时候，我们就会选择用程序来实现这样一个过程，实现自动浏览网页，自动根据我们的要求，保存我们想要的数据。于是，爬虫就应运而生了。所以，简单来说，爬虫就是实现网页自动浏览，数据自动保存，根据我们的需要进行自动化浏览器的操作或者自动化测试的这样一种程序。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1498659629614&amp;di=5a920e203a547e3594b2c44077f570d3&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20160429%2F9769904ae8b34174b6f67ae5d90be143_th.jpg" alt=""></p>
+<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p>&#160; &#160; &#160; &#160;计算机网络中必学的协议，我们之前已经模拟过web服务器和浏览器，这也需要http基础，理解http协议，然后根据不同的语言去用不同的工具包，模拟http请求，得到响应页面。其中我们要注意的是，要模拟登陆，就要用到cookies等。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1498659736502&amp;di=d83687259ca11abd3fa21ff6a5a7716d&amp;imgtype=0&amp;src=http%3A%2F%2Fimages.cnitblog.com%2Fblog%2F434462%2F201303%2F21132402-b67f3fea251d40e493c26c439885ffed.jpg" alt=""></p>
+<h3 id="前端基础"><a href="#前端基础" class="headerlink" title="前端基础"></a>前端基础</h3><p>&#160; &#160; &#160; &#160;要有一定的前端基础，能会分析出请求地址，通过firebug等分析网页元素，我甚至看过一个github项目，通过手机访问和路由器、抓包软件找出了摩拜单车的一些业务请求地址，然后进行爬虫，单车也是最近很流行。</p>
+<p><img src="http://opb7t58xj.bkt.clouddn.com/%E5%AE%A1%E6%9F%A5%E5%85%83%E7%B4%A0.png" alt=""></p>
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>&#160; &#160; &#160; &#160;当我们已经得到了html的响应页面，那么肯定需要筛选出我们想要的信息，这时候我们就需要用到正则表达式了，相关类似的还有XPath、CSS选择器等，可以根据匹配规则筛选信息，也有很多在线网站可以验证我们写的正则表达式的正确性。</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1498660014837&amp;di=fd3bd6f03a0e4207658f25029eb9b46d&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.gaixue.com%2Fuploads%2Feditor%2Fimage%2F20130828%2F20130828121847_34621.png" alt=""></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>&#160; &#160; &#160; &#160;一种编程语言，这里我们使用的是java，之后都是java相关的。为了让程序更高效，我们还用到了JUC中的阻塞队列、线程池、原子类、可重入锁等技术，如果要数据持久化的话，我们还要一定的数据库基础，更深层次的可以研究比如：直接下载html网页保存，然后用搜索引擎，比如我看过一个项目使用ElasticSerch保存下载的html网页，ElasticSerch是一个搜索服务器，apache的子项目，或许你知道PageRank，知道谷歌的几大论文，想象百度和谷歌怎么检索那么多网站，并进行相关度排行，爬虫也可以分布式，比如nutch就是一个分布式爬虫的框架。最后数据保存了，还可以使用数据可视化工作，做出比较好看的直观的图表来展现爬取的数据。</p>
+<h2 id="相关框架"><a href="#相关框架" class="headerlink" title="相关框架"></a>相关框架</h2><p>&#160; &#160; &#160; &#160;python可以用scrapy，java的我使用的是webmagic，还有分布式的nutch等，虽然使用框架，但是对于框架本身我们还要了解一下。这里重点说说webmagic。</p>
+<h3 id="webmagic"><a href="#webmagic" class="headerlink" title="webmagic"></a>webmagic</h3><p>&#160; &#160; &#160; &#160;首先献上官方文档：<a href="http://webmagic.io/docs/zh/" target="_blank" rel="external">WebMagic中文版官方文档</a>。</p>
+<p><img src="http://code4craft.github.io/images/posts/webmagic.png" alt=""></p>
+<p>&#160; &#160; &#160; &#160;如上图就是整体框架图，Downloader负责从互联网上下载页面，以便后续处理。WebMagic默认使用了Apache HttpClient作为下载工具。之后我们对比一些java中模拟http请求的工具包。PageProcessor负责解析页面，抽取有用信息，以及发现新的链接。WebMagic使用Jsoup作为HTML解析工具，并基于其开发了解析XPath的工具Xsoup，也就是我们页面信息提取部分。Pipeline负责抽取结果的处理，包括计算、持久化到文件、数据库等。WebMagic默认提供了“输出到控制台”和“保存到文件”两种结果处理方案，根据我们持久化方式也可以自定义。</p>
+<p>&#160; &#160; &#160; &#160;webmagic封装了很多api给用户用，而且采用链式api方式，很多方面也许你只需要设置一下。而且如果知识简单的爬虫，自己需要书写的代码也很少。有了基础知识的准备，我们应该再去看看框架的源码，比较一下各种工具，也许更方便我们的使用。</p>
+<h2 id="框架分析"><a href="#框架分析" class="headerlink" title="框架分析"></a>框架分析</h2><p>&#160; &#160; &#160; &#160;这里我们针对核心包的一些内容学习。</p>
+<h2 id="思路、调试、结果"><a href="#思路、调试、结果" class="headerlink" title="思路、调试、结果"></a>思路、调试、结果</h2><h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;一次JAVA爬虫之旅&quot;&gt;&lt;a href=&quot;#一次JAVA爬虫之旅&quot; class=&quot;headerlink&quot; title=&quot;一次JAVA爬虫之旅&quot;&gt;&lt;/a&gt;一次JAVA爬虫之旅&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;好早就想做一下爬虫，最近终于完成了。爬了知乎用户信息，现在知乎确实正规了好多，各种反爬虫机制，遇到了不少坑，还好都克服了，现在来记录下这个过程，和把结果展示一下。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://yoursite.com/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="http://yoursite.com/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构（一）——树</title>
@@ -1124,57 +1164,6 @@ transient int modCount;//被修改的次数
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDK源码阅读（一）</title>
-    <link href="http://yoursite.com/2017/03/02/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/03/02/JDK源码阅读（一）/</id>
-    <published>2017-03-02T11:01:19.000Z</published>
-    <updated>2017-06-28T01:29:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JDK源码阅读（一）"><a href="#JDK源码阅读（一）" class="headerlink" title="JDK源码阅读（一）"></a>JDK源码阅读（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行整理，之前已经看了集合类，今天从基本类型开始，关键是多看，每次看都有新发现，这里主要列出别人整理过的深层次理解，方便自己经常结合源码看。</p>
- <a id="more"></a>
-<p>&#160; &#160; &#160; &#160;我们运行的demo的时候，肯定想看自己的结果，所以首先的基础内容就是java的格式化输出，包括保留几位小数啦、进制之间的转换，不同类型之间的转化啦。这里就给几个整理的非常好的总结博客：<a href="http://blog.csdn.net/lonely_fireworks/article/details/7962171/" target="_blank" rel="external">String.format的用法</a>、<a href="http://www.cnblogs.com/huhx/p/javaFormatter.html" target="_blank" rel="external">Formatter的用法</a>、<a href="http://blog.csdn.net/feiyudiaoling/article/details/51354413" target="_blank" rel="external">Java基础类型和字符串之间的转化</a>。而且我们看源码，不是看了就懂的，作为准备得有一定的基础知识的补充才行，补充之后在进行一定拓展我这里就按照这种方式，整理出一个系统完全的学习笔记。每个类的测试demo，我放在了Github上，传送门：<a href="">wustzoujing/Java_Learning</a>.</p>
-<h2 id="Object类"><a href="#Object类" class="headerlink" title="Object类"></a>Object类</h2><p>&#160; &#160; &#160; &#160;Java中所有的类都有一个共同的祖先，它就是Object类，我们首先就学习它。他有12个成员方法。按照用途如下：构造函数 ；hashCode和equale函数用来判断对象是否相同;wait(), wait(long), wait(long,int), notify(), notifyAll() ;toString()和getClass； clone() 用途是用来另存一个当前存在的对象。；finalize() 用于在垃圾回收；</p>
-<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://img.blog.csdn.net/20161205181623207" alt=""></p>
-<p>这里是整理的博客，和应该关注的重点！！！</p>
-<p><a href="http://www.cnblogs.com/langtianya/archive/2013/01/31/2886572.html" target="_blank" rel="external">全方法注释解析</a>。源码上英文注释，我们试着翻译一下。注意native方法。   </p>
-<p><a href="http://blog.csdn.net/liuyanbohome/article/details/8899964" target="_blank" rel="external">equal和==、hashcode</a> String和hashmap等重写了这两个方法，必须一起重写，理由和怎么写？看博客。  </p>
-<p><a href="http://blog.csdn.net/zhangjg_blog/article/details/18369201" target="_blank" rel="external">clone。浅拷贝和深拷贝</a>  这时C++里面重要的概念，应为C++中要delete，自己回收，而java不用。</p>
-<p><a href="http://longdick.iteye.com/blog/453615" target="_blank" rel="external">wait notify notifyall实例</a>    理解这三个函数的作用。</p>
-<h2 id="Integer"><a href="#Integer" class="headerlink" title="Integer"></a>Integer</h2><p>&#160; &#160; &#160; &#160;我们这里拿Integer类来学习Java中的基本数据类型，在JDK源码中有大量的位运算和空间换时间的设计来优化速度。下面是整理的重点知识。</p>
-<p><a href="http://blog.csdn.net/javazejian/article/details/51192130" target="_blank" rel="external">Java中参数传递</a>。这个是在运行自己写的交换函数的时候发现的问题。Java中其实都是值传递，都是栈空间中的，要么是基本类型，要么是引用类型，就是一个地址。</p>
-<p><a href="http://blog.csdn.net/morewindows/article/details/7354571" target="_blank" rel="external">位运算总结</a>。位运算有判断奇偶、交换两数、变换符号及求绝对值等上的小技巧。源码在项目上。</p>
-<p><a href="http://blog.csdn.net/mazhimazh/article/details/16799925" target="_blank" rel="external">Java中的数据类型</a>。基本分类和引用类型及详细介绍。</p>
-<p><a href="http://blog.csdn.net/mazhimazh/article/details/17684701" target="_blank" rel="external">Integer类源码解读(一)</a></p>
-<p><a href="http://blog.csdn.net/mazhimazh/article/details/17681787" target="_blank" rel="external">Integer类源码解读(二)</a></p>
-<h2 id="String-StringBuffer-StringBuiler"><a href="#String-StringBuffer-StringBuiler" class="headerlink" title="String\StringBuffer\StringBuiler"></a>String\StringBuffer\StringBuiler</h2><p>&#160; &#160; &#160; &#160;String被final修饰的，不可变的，重写了hashcode和equal方法，compareTo方法。首先来看一下字符串常见的几个问题：</p>
-<p>（1）String s = new String(“xyz”);创建了几个String 对象？<br>&#160; &#160; &#160; &#160;两个或一个，”xyz”对应一个对象，这个对象放在字符串常量缓冲区，常量”xyz”不管出现多少遍，都是缓冲区中的那一个，类似与缓存Byte数值的-128~127数值。New String每写一遍，就创建一个新的对象，那个常量”xyz”对象的内容来创建出一个新String对象。如果以前就用过’xyz’，这句代表就不会创建”xyz”自己了，直接从缓冲区拿。</p>
-<p>&#160; &#160; &#160; &#160;所以，凡是通过构造器创建的对象都会进行内存分配，所以他就不会指向缓存池中已有的对象而指向新的对象，这样就会造成缓存池中存在多个值相同的字符串对象，浪费资源。所以一般要直接为字符串指定值即可。</p>
-<p>&#160; &#160; &#160; &#160;这里需要介绍一下缓存池：为了节省内存，提高资源的复用，jvm引入了常量池这个概念，它属于方法区的一部分，作用之一就是存放编译期间生产的各种字面量和符号引用。方法区的垃圾回收行为是比较少出现的，该区中的对象基本不会被回收，可以理解成是永久存在的。</p>
-<p>（2）String s=”a”+”b”+”c”+”d”;创建了几个String对象？<br>&#160; &#160; &#160; &#160;一个，因为Javac在做编译时已经对这些字符串进行了合并操作，预先做了优化处理。</p>
-<p>（3）String name = “ab”;  name = name + “c”;两条语句总共创建了多少个字符串对象？<br>&#160; &#160; &#160; &#160;创建了两个对象，这两个对象都会放到缓存池中，只是name的引用由”ab”改变为”abc”了。我们在这样用的时候，还需要考虑其他问题，如这个程序会造成内在泄漏，因为缓存池中的在缓存池中的字符串是不会被垃圾回收机制回收的，基本都是常驻内存，所以过多使用String类，可能会出现内存溢出。</p>
-<p>（4）字符串比较</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String s1 = &quot;a&quot;;  </div><div class="line">String s2 = s1 + &quot;b&quot;;  </div><div class="line">String s3 = &quot;ab&quot;;   </div><div class="line">System.out.println(s2 == s3);//false</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;可以看到s2与s3的引用并不相同。由于s2字符串在编译时并不能进行确定，所以首先进入缓存池中的有s1和s3，随后会创建一个新的s2字符串对象，两者当然不一样了。如果程序的字符串连接表达式中没有使用变量或者调用方法，那么该字符串变量的值就能够在编译期间确定下来，并且将该字符换缓存在缓冲区中，同时让该变量指向该字符串；否则将无法利用缓冲区，因为使用了变量和调用了方法之后的字符串变量的值只能在运行期间才能确定连接式的值，也就无法在编译期间确定字符串变量的值，从而无法将字符串变量增加到缓冲区并加以利用。如果要对s1与s2加上final关键字后，结果就为true了。因为会在编译期进行优化处理。所以如果有字符串拼接之类的操作，建议使用StringBuilder类型或StringBuffer类。而StringBuffer在方法加上了同步关键字，多线程情况下使用。</p>
-<p>&#160; &#160; &#160; &#160;还可以参考如下博客：</p>
-<p><a href="https://my.oschina.net/jiangmitiao/blog/480549" target="_blank" rel="external">String 源码浅析</a>。</p>
-<p><a href="http://www.cnblogs.com/A_ming/archive/2010/04/13/1711395.html" target="_blank" rel="external">String\StringBuffer\StringBuiler比较</a>。</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JDK源码阅读（一）&quot;&gt;&lt;a href=&quot;#JDK源码阅读（一）&quot; class=&quot;headerlink&quot; title=&quot;JDK源码阅读（一）&quot;&gt;&lt;/a&gt;JDK源码阅读（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行整理，之前已经看了集合类，今天从基本类型开始，关键是多看，每次看都有新发现，这里主要列出别人整理过的深层次理解，方便自己经常结合源码看。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="JDK源码解析" scheme="http://yoursite.com/categories/JDK%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-    
-      <category term="JDK基础类型源码" scheme="http://yoursite.com/tags/JDK%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B%E6%BA%90%E7%A0%81/"/>
     
   </entry>
   
