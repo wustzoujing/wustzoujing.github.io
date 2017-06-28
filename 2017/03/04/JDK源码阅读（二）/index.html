@@ -122,7 +122,7 @@
 <meta property="og:image" content="http://images.cnitblog.com/blog/400827/201409/041358026259354.jpg">
 <meta property="og:image" content="http://img.blog.csdn.net/20140716084631981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20140716084409234?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2017-05-20T12:45:43.000Z">
+<meta property="og:updated_time" content="2017-06-28T01:55:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK源码阅读（二）">
 <meta name="twitter:description" content="JDK源码阅读（二）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。">
@@ -473,7 +473,7 @@ transient int modCount;//被修改的次数
 <li>Hashtable计算hash值，直接用key的hashCode()，而HashMap重新计算了key的hash值，Hashtable在求hash值对应的位置索引时，用取模运算，而HashMap在求位置索引时，则用与运算，且这里一般先用hash&amp;0x7FFFFFFF后，再对length取模，&amp;0x7FFFFFFF的目的是为了将负的hash值转化为正值，因为hash值有可能为负数，而&amp;0x7FFFFFFF后，只有符号外改变，而后面的位都不变。</li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>共同点：</p>
-<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。  </p>
+<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。还有不常用的weakHashMap和identityHashMap。  </p>
 <p>不同点：</p>
 <ol>
 <li>HashMap里面存入的键值对在取出的时候是随机的,也是我们最常用的一个Map.它根据键的HashCode值存储数据,根据键可以直接获取它的值，具有很快的访问速度。在Map 中插入、删除和定位元素，HashMap 是最好的选择。  </li>

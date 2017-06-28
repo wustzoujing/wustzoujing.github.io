@@ -119,7 +119,7 @@
 <meta property="og:site_name" content="街灯晚餐的个人博客">
 <meta property="og:description" content="JDK源码阅读（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行整理，之前已经看了集合类，今天从基本类型开始，关键是多看，每次看都有新发现，这里主要列出别人整理过的深层次理解，方便自己经常结合源码看。">
 <meta property="og:image" content="http://img.blog.csdn.net/20161205181623207">
-<meta property="og:updated_time" content="2017-05-11T06:44:52.000Z">
+<meta property="og:updated_time" content="2017-06-28T01:29:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK源码阅读（一）">
 <meta name="twitter:description" content="JDK源码阅读（一）前言&amp;#160; &amp;#160; &amp;#160; &amp;#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行整理，之前已经看了集合类，今天从基本类型开始，关键是多看，每次看都有新发现，这里主要列出别人整理过的深层次理解，方便自己经常结合源码看。">
@@ -415,7 +415,7 @@
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/16799925" target="_blank" rel="external">Java中的数据类型</a>。基本分类和引用类型及详细介绍。</p>
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/17684701" target="_blank" rel="external">Integer类源码解读(一)</a></p>
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/17681787" target="_blank" rel="external">Integer类源码解读(二)</a></p>
-<h2 id="String-StringBuffer-StringBuiler"><a href="#String-StringBuffer-StringBuiler" class="headerlink" title="String\StringBuffer\StringBuiler"></a>String\StringBuffer\StringBuiler</h2><p>&#160; &#160; &#160; &#160;String不final修饰的，不可变的，重写了hashcode和equal方法，compareTo方法。首先来看一下字符串常见的几个问题：</p>
+<h2 id="String-StringBuffer-StringBuiler"><a href="#String-StringBuffer-StringBuiler" class="headerlink" title="String\StringBuffer\StringBuiler"></a>String\StringBuffer\StringBuiler</h2><p>&#160; &#160; &#160; &#160;String被final修饰的，不可变的，重写了hashcode和equal方法，compareTo方法。首先来看一下字符串常见的几个问题：</p>
 <p>（1）String s = new String(“xyz”);创建了几个String 对象？<br>&#160; &#160; &#160; &#160;两个或一个，”xyz”对应一个对象，这个对象放在字符串常量缓冲区，常量”xyz”不管出现多少遍，都是缓冲区中的那一个，类似与缓存Byte数值的-128~127数值。New String每写一遍，就创建一个新的对象，那个常量”xyz”对象的内容来创建出一个新String对象。如果以前就用过’xyz’，这句代表就不会创建”xyz”自己了，直接从缓冲区拿。</p>
 <p>&#160; &#160; &#160; &#160;所以，凡是通过构造器创建的对象都会进行内存分配，所以他就不会指向缓存池中已有的对象而指向新的对象，这样就会造成缓存池中存在多个值相同的字符串对象，浪费资源。所以一般要直接为字符串指定值即可。</p>
 <p>&#160; &#160; &#160; &#160;这里需要介绍一下缓存池：为了节省内存，提高资源的复用，jvm引入了常量池这个概念，它属于方法区的一部分，作用之一就是存放编译期间生产的各种字面量和符号引用。方法区的垃圾回收行为是比较少出现的，该区中的对象基本不会被回收，可以理解成是永久存在的。</p>

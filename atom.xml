@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-26T09:21:16.000Z</updated>
+  <updated>2017-05-22T12:01:06.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,113 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Redis学习笔记（二）</title>
-    <link href="http://yoursite.com/2017/06/26/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/06/26/Redis学习笔记（二）/</id>
-    <published>2017-06-26T08:54:09.000Z</published>
-    <updated>2017-06-26T09:21:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Redis学习笔记（二）"><a href="#Redis学习笔记（二）" class="headerlink" title="Redis学习笔记（二）"></a>Redis学习笔记（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节总结了Redis的基本操作、特性和原理，我们还需要从使用技巧，优化策略等方面来学习。</p>
- <a id="more"></a>
-<h2 id="redis和关系型数据库适用场景"><a href="#redis和关系型数据库适用场景" class="headerlink" title="redis和关系型数据库适用场景"></a>redis和关系型数据库适用场景</h2><ol>
-<li><a href="http://www.jb51.net/article/62646.htm" target="_blank" rel="external">Redis数据库的使用场景介绍</a></li>
-<li><a href="http://blog.csdn.net/a2534725767/article/details/54017956" target="_blank" rel="external">对比使用实例说明</a></li>
-</ol>
-<h2 id="key设计原则"><a href="#key设计原则" class="headerlink" title="key设计原则"></a>key设计原则</h2><p>参考实例：<a href="http://blog.csdn.net/zdp072/article/details/50986702" target="_blank" rel="external">redis key设计技巧</a>，<a href="http://www.oschina.net/question/12_27517" target="_blank" rel="external">浅谈 Redis 数据库的键值设计</a></p>
-<p>总结如下：</p>
-<ol>
-<li>表达从属关系（一对多，多对多），最好用集合； 比如： 书名和标签，关注与被关注（微博粉丝关系）等等。</li>
-<li>求最近的，一般利用链表后入后出的特性。比如：最近N个登录的用户，可以维护一个登录的链表，控制他的长度，使得里面永远保存的是最近的N个登录用户。</li>
-<li>对于排序，积分榜这类需求，可以用有序集合，比如：我们把用户和登录次数统一存储在一个sorted set里，然后就可以求出登录次数最多用户。</li>
-<li>对于大数据量的非是即否关系，还可以通过位图（setbit）的方式，比如：1亿个用户, 每个用户 登陆/做任意操作,记为今天活跃,否则记为不活跃；（每天一个位图来记录，会员id就是位图的位置）；</li>
-</ol>
-<h2 id="优化策略"><a href="#优化策略" class="headerlink" title="优化策略"></a>优化策略</h2><ol>
-<li><a href="http://blog.sina.com.cn/s/blog_4be888450100z2ze.html" target="_blank" rel="external">Redis优化经验</a></li>
-<li><a href="http://www.4wei.cn/archives/1002605" target="_blank" rel="external">Redis 优化要点</a></li>
-</ol>
-<p>总结：</p>
-<ol>
-<li>根据业务需要选择合适的数据类型，并为不同的应用场景设置相应的紧凑存储参数。</li>
-<li>当业务场景不需要数据持久化时，关闭所有的持久化方式可以获得最佳的性能以及最大的内存使用量。</li>
-<li>如果需要使用持久化，根据是否可以容忍重启丢失部分数据在快照方式与语句追加方式之间选择其一，不要使用虚拟内存以及diskstore方式。</li>
-<li>不要让你的Redis所在机器物理内存使用超过实际内存总量的3/5。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;redis.conf中的maxmemory选项，该选项是告诉Redis当使用了多少物理内存后就开始拒绝后续的写入请求，该参数能很好的保护好你的Redis不会因为使用了过多的物理内存而导致swap,最终严重影响性能甚至崩溃。<br>redis.conf文件中 vm-enabled 为 no</p>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Redis学习笔记（二）&quot;&gt;&lt;a href=&quot;#Redis学习笔记（二）&quot; class=&quot;headerlink&quot; title=&quot;Redis学习笔记（二）&quot;&gt;&lt;/a&gt;Redis学习笔记（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节总结了Redis的基本操作、特性和原理，我们还需要从使用技巧，优化策略等方面来学习。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
-    
-    
-      <category term="NoSql" scheme="http://yoursite.com/tags/NoSql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis学习笔记（一）</title>
-    <link href="http://yoursite.com/2017/06/26/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/06/26/Redis学习笔记（一）/</id>
-    <published>2017-06-26T01:00:20.000Z</published>
-    <updated>2017-06-26T08:58:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Redis学习笔记（一）"><a href="#Redis学习笔记（一）" class="headerlink" title="Redis学习笔记（一）"></a>Redis学习笔记（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;Redis作为一种典型的NoSql，可以做缓存也可以持久化，我们要从事务，消息订阅，持久化机制，集群部署，客户端使用等方面进行学习。</p>
- <a id="more"></a>
-<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>&#160; &#160; &#160; &#160;安装部署可以根据自己的系统去找安装教程，这个不多说。Redis官方介绍说是一种开源的，BSD许可的，高级的key-value,单线程存储系统，可以用来存储字符串，哈希，链表，集合，索所以常用来提供数据结构。</p>
-<p>&#160; &#160; &#160; &#160;相比另一个缓存数据看memcached，他的特点如下：</p>
-<ol>
-<li>Redis有持久化机制，除了缓存还可以做存储。</li>
-<li>Redis数据结构丰富，而memcached只有字符串。</li>
-</ol>
-<p>&#160; &#160; &#160; &#160;安装成功后，有五个文件夹，分别是redis性能测试工具，aof日志工具，rdb日志工具，连接客户端和redis服务进程。</p>
-<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>&#160; &#160; &#160; &#160;相关指令有get，set，move，select，ttl等等，支持模糊匹配，还有一些配置设置，不同数据结构不一样，可以查API，Redis对Java，C#，C++，PHP等语言的支持，其实也就是这些操作的语言的工具包。</p>
-<h2 id="数据结构底层原理"><a href="#数据结构底层原理" class="headerlink" title="数据结构底层原理"></a>数据结构底层原理</h2><ol>
-<li><a href="http://blog.csdn.net/caishenfans/article/details/44784131" target="_blank" rel="external">Redis的五种对象类型及其底层实现</a>. </li>
-<li><a href="http://blog.csdn.net/hanhuili/article/details/17710781" target="_blank" rel="external">深入理解Redis：底层数据结构</a></li>
-</ol>
-<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ol>
-<li><a href="http://www.jb51.net/article/54774.htm" target="_blank" rel="external">Redis中5种数据结构的使用场景介绍</a></li>
-<li><a href="http://blog.csdn.net/u011204847/article/details/51302109" target="_blank" rel="external">Redis高级特性及应用场景</a></li>
-</ol>
-<h2 id="事务和锁"><a href="#事务和锁" class="headerlink" title="事务和锁"></a>事务和锁</h2><ol>
-<li><a href="http://blog.csdn.net/hechurui/article/details/49508749" target="_blank" rel="external">Redis事务介绍</a></li>
-<li><a href="http://blog.csdn.net/bugall/article/details/52386698" target="_blank" rel="external">redis 事务实现原理</a></li>
-</ol>
-<h2 id="消息发布和订阅"><a href="#消息发布和订阅" class="headerlink" title="消息发布和订阅"></a>消息发布和订阅</h2><ol>
-<li><a href="http://blog.csdn.net/clh604/article/details/19754939" target="_blank" rel="external">Redis 发布/订阅机制原理分析</a></li>
-<li><a href="http://www.cnblogs.com/redcreen/archive/2011/02/15/1955521.html" target="_blank" rel="external">redis 发布订阅</a></li>
-</ol>
-<h2 id="持久化机制"><a href="#持久化机制" class="headerlink" title="持久化机制"></a>持久化机制</h2><p>&#160; &#160; &#160; &#160;持久化有两种，快照rdb和日志aof。</p>
-<ol>
-<li><a href="http://blog.csdn.net/yinxiangbing/article/details/48627997" target="_blank" rel="external">redis 的两种持久化方式及原理</a></li>
-<li><a href="http://www.cnblogs.com/Fairy-02-11/p/6182478.html" target="_blank" rel="external">redis持久化方法对比分析</a></li>
-<li><a href="http://blog.csdn.net/freebird_lb/article/details/7778981" target="_blank" rel="external">Redis持久化</a></li>
-</ol>
-<h2 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h2><ol>
-<li><a href="https://my.oschina.net/pwd/blog/381212" target="_blank" rel="external">redis集群,主从复制</a></li>
-</ol>
-<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Redis学习笔记（一）&quot;&gt;&lt;a href=&quot;#Redis学习笔记（一）&quot; class=&quot;headerlink&quot; title=&quot;Redis学习笔记（一）&quot;&gt;&lt;/a&gt;Redis学习笔记（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;Redis作为一种典型的NoSql，可以做缓存也可以持久化，我们要从事务，消息订阅，持久化机制，集群部署，客户端使用等方面进行学习。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
-    
-    
-      <category term="NoSql" scheme="http://yoursite.com/tags/NoSql/"/>
-    
-  </entry>
   
   <entry>
     <title>数据结构（一）——树</title>
@@ -783,6 +676,55 @@ long getDelay(TimeUnit unit);
   </entry>
   
   <entry>
+    <title>Redis学习笔记（二）</title>
+    <link href="http://yoursite.com/2017/03/12/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/12/Redis学习笔记（二）/</id>
+    <published>2017-03-12T08:54:09.000Z</published>
+    <updated>2017-06-28T03:16:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Redis学习笔记（二）"><a href="#Redis学习笔记（二）" class="headerlink" title="Redis学习笔记（二）"></a>Redis学习笔记（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;上节总结了Redis的基本操作、特性和原理，我们还需要从使用技巧，优化策略等方面来学习。</p>
+ <a id="more"></a>
+<h2 id="redis和关系型数据库适用场景"><a href="#redis和关系型数据库适用场景" class="headerlink" title="redis和关系型数据库适用场景"></a>redis和关系型数据库适用场景</h2><ol>
+<li><a href="http://www.jb51.net/article/62646.htm" target="_blank" rel="external">Redis数据库的使用场景介绍</a></li>
+<li><a href="http://blog.csdn.net/a2534725767/article/details/54017956" target="_blank" rel="external">对比使用实例说明</a></li>
+</ol>
+<h2 id="key设计原则"><a href="#key设计原则" class="headerlink" title="key设计原则"></a>key设计原则</h2><p>参考实例：<a href="http://blog.csdn.net/zdp072/article/details/50986702" target="_blank" rel="external">redis key设计技巧</a>，<a href="http://www.oschina.net/question/12_27517" target="_blank" rel="external">浅谈 Redis 数据库的键值设计</a></p>
+<p>总结如下：</p>
+<ol>
+<li>表达从属关系（一对多，多对多），最好用集合； 比如： 书名和标签，关注与被关注（微博粉丝关系）等等。</li>
+<li>求最近的，一般利用链表后入后出的特性。比如：最近N个登录的用户，可以维护一个登录的链表，控制他的长度，使得里面永远保存的是最近的N个登录用户。</li>
+<li>对于排序，积分榜这类需求，可以用有序集合，比如：我们把用户和登录次数统一存储在一个sorted set里，然后就可以求出登录次数最多用户。</li>
+<li>对于大数据量的非是即否关系，还可以通过位图（setbit）的方式，比如：1亿个用户, 每个用户 登陆/做任意操作,记为今天活跃,否则记为不活跃；（每天一个位图来记录，会员id就是位图的位置）；</li>
+</ol>
+<h2 id="优化策略"><a href="#优化策略" class="headerlink" title="优化策略"></a>优化策略</h2><ol>
+<li><a href="http://blog.sina.com.cn/s/blog_4be888450100z2ze.html" target="_blank" rel="external">Redis优化经验</a></li>
+<li><a href="http://www.4wei.cn/archives/1002605" target="_blank" rel="external">Redis 优化要点</a></li>
+</ol>
+<p>总结：</p>
+<ol>
+<li>根据业务需要选择合适的数据类型，并为不同的应用场景设置相应的紧凑存储参数。</li>
+<li>当业务场景不需要数据持久化时，关闭所有的持久化方式可以获得最佳的性能以及最大的内存使用量。</li>
+<li>如果需要使用持久化，根据是否可以容忍重启丢失部分数据在快照方式与语句追加方式之间选择其一，不要使用虚拟内存以及diskstore方式。</li>
+<li>不要让你的Redis所在机器物理内存使用超过实际内存总量的3/5。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;redis.conf中的maxmemory选项，该选项是告诉Redis当使用了多少物理内存后就开始拒绝后续的写入请求，该参数能很好的保护好你的Redis不会因为使用了过多的物理内存而导致swap,最终严重影响性能甚至崩溃。<br>redis.conf文件中 vm-enabled 为 no</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Redis学习笔记（二）&quot;&gt;&lt;a href=&quot;#Redis学习笔记（二）&quot; class=&quot;headerlink&quot; title=&quot;Redis学习笔记（二）&quot;&gt;&lt;/a&gt;Redis学习笔记（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;上节总结了Redis的基本操作、特性和原理，我们还需要从使用技巧，优化策略等方面来学习。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="NoSql" scheme="http://yoursite.com/tags/NoSql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>剑指offer：斐波那契数列相关的三道题</title>
     <link href="http://yoursite.com/2017/03/09/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%89%E9%81%93%E9%A2%98/"/>
     <id>http://yoursite.com/2017/03/09/剑指offer：斐波那契数列相关的三道题/</id>
@@ -815,6 +757,64 @@ long getDelay(TimeUnit unit);
     
     
       <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis学习笔记（一）</title>
+    <link href="http://yoursite.com/2017/03/08/Redis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/08/Redis学习笔记（一）/</id>
+    <published>2017-03-08T01:00:20.000Z</published>
+    <updated>2017-06-28T03:16:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Redis学习笔记（一）"><a href="#Redis学习笔记（一）" class="headerlink" title="Redis学习笔记（一）"></a>Redis学习笔记（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;Redis作为一种典型的NoSql，可以做缓存也可以持久化，我们要从事务，消息订阅，持久化机制，集群部署，客户端使用等方面进行学习。</p>
+ <a id="more"></a>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>&#160; &#160; &#160; &#160;安装部署可以根据自己的系统去找安装教程，这个不多说。Redis官方介绍说是一种开源的，BSD许可的，高级的key-value,单线程存储系统，可以用来存储字符串，哈希，链表，集合，索所以常用来提供数据结构。</p>
+<p>&#160; &#160; &#160; &#160;相比另一个缓存数据看memcached，他的特点如下：</p>
+<ol>
+<li>Redis有持久化机制，除了缓存还可以做存储。</li>
+<li>Redis数据结构丰富，而memcached只有字符串。</li>
+</ol>
+<p>&#160; &#160; &#160; &#160;安装成功后，有五个文件夹，分别是redis性能测试工具，aof日志工具，rdb日志工具，连接客户端和redis服务进程。</p>
+<h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p>&#160; &#160; &#160; &#160;相关指令有get，set，move，select，ttl等等，支持模糊匹配，还有一些配置设置，不同数据结构不一样，可以查API，Redis对Java，C#，C++，PHP等语言的支持，其实也就是这些操作的语言的工具包。</p>
+<h2 id="数据结构底层原理"><a href="#数据结构底层原理" class="headerlink" title="数据结构底层原理"></a>数据结构底层原理</h2><ol>
+<li><a href="http://blog.csdn.net/caishenfans/article/details/44784131" target="_blank" rel="external">Redis的五种对象类型及其底层实现</a>. </li>
+<li><a href="http://blog.csdn.net/hanhuili/article/details/17710781" target="_blank" rel="external">深入理解Redis：底层数据结构</a></li>
+</ol>
+<h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><ol>
+<li><a href="http://www.jb51.net/article/54774.htm" target="_blank" rel="external">Redis中5种数据结构的使用场景介绍</a></li>
+<li><a href="http://blog.csdn.net/u011204847/article/details/51302109" target="_blank" rel="external">Redis高级特性及应用场景</a></li>
+</ol>
+<h2 id="事务和锁"><a href="#事务和锁" class="headerlink" title="事务和锁"></a>事务和锁</h2><ol>
+<li><a href="http://blog.csdn.net/hechurui/article/details/49508749" target="_blank" rel="external">Redis事务介绍</a></li>
+<li><a href="http://blog.csdn.net/bugall/article/details/52386698" target="_blank" rel="external">redis 事务实现原理</a></li>
+</ol>
+<h2 id="消息发布和订阅"><a href="#消息发布和订阅" class="headerlink" title="消息发布和订阅"></a>消息发布和订阅</h2><ol>
+<li><a href="http://blog.csdn.net/clh604/article/details/19754939" target="_blank" rel="external">Redis 发布/订阅机制原理分析</a></li>
+<li><a href="http://www.cnblogs.com/redcreen/archive/2011/02/15/1955521.html" target="_blank" rel="external">redis 发布订阅</a></li>
+</ol>
+<h2 id="持久化机制"><a href="#持久化机制" class="headerlink" title="持久化机制"></a>持久化机制</h2><p>&#160; &#160; &#160; &#160;持久化有两种，快照rdb和日志aof。</p>
+<ol>
+<li><a href="http://blog.csdn.net/yinxiangbing/article/details/48627997" target="_blank" rel="external">redis 的两种持久化方式及原理</a></li>
+<li><a href="http://www.cnblogs.com/Fairy-02-11/p/6182478.html" target="_blank" rel="external">redis持久化方法对比分析</a></li>
+<li><a href="http://blog.csdn.net/freebird_lb/article/details/7778981" target="_blank" rel="external">Redis持久化</a></li>
+</ol>
+<h2 id="集群部署"><a href="#集群部署" class="headerlink" title="集群部署"></a>集群部署</h2><ol>
+<li><a href="https://my.oschina.net/pwd/blog/381212" target="_blank" rel="external">redis集群,主从复制</a></li>
+</ol>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Redis学习笔记（一）&quot;&gt;&lt;a href=&quot;#Redis学习笔记（一）&quot; class=&quot;headerlink&quot; title=&quot;Redis学习笔记（一）&quot;&gt;&lt;/a&gt;Redis学习笔记（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;Redis作为一种典型的NoSql，可以做缓存也可以持久化，我们要从事务，消息订阅，持久化机制，集群部署，客户端使用等方面进行学习。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Redis" scheme="http://yoursite.com/categories/Redis/"/>
+    
+    
+      <category term="NoSql" scheme="http://yoursite.com/tags/NoSql/"/>
     
   </entry>
   
@@ -995,7 +995,7 @@ long getDelay(TimeUnit unit);
     <link href="http://yoursite.com/2017/03/04/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/04/JDK源码阅读（二）/</id>
     <published>2017-03-04T06:46:22.000Z</published>
-    <updated>2017-05-20T12:45:43.000Z</updated>
+    <updated>2017-06-28T01:55:16.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JDK源码阅读（二）"><a href="#JDK源码阅读（二）" class="headerlink" title="JDK源码阅读（二）"></a>JDK源码阅读（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。</p>
  <a id="more"></a>
@@ -1068,7 +1068,7 @@ transient int modCount;//被修改的次数
 <li>Hashtable计算hash值，直接用key的hashCode()，而HashMap重新计算了key的hash值，Hashtable在求hash值对应的位置索引时，用取模运算，而HashMap在求位置索引时，则用与运算，且这里一般先用hash&amp;0x7FFFFFFF后，再对length取模，&amp;0x7FFFFFFF的目的是为了将负的hash值转化为正值，因为hash值有可能为负数，而&amp;0x7FFFFFFF后，只有符号外改变，而后面的位都不变。</li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>共同点：</p>
-<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。  </p>
+<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。还有不常用的weakHashMap和identityHashMap。  </p>
 <p>不同点：</p>
 <ol>
 <li>HashMap里面存入的键值对在取出的时候是随机的,也是我们最常用的一个Map.它根据键的HashCode值存储数据,根据键可以直接获取它的值，具有很快的访问速度。在Map 中插入、删除和定位元素，HashMap 是最好的选择。  </li>
@@ -1132,7 +1132,7 @@ transient int modCount;//被修改的次数
     <link href="http://yoursite.com/2017/03/02/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <id>http://yoursite.com/2017/03/02/JDK源码阅读（一）/</id>
     <published>2017-03-02T11:01:19.000Z</published>
-    <updated>2017-05-11T06:44:52.000Z</updated>
+    <updated>2017-06-28T01:29:56.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="JDK源码阅读（一）"><a href="#JDK源码阅读（一）" class="headerlink" title="JDK源码阅读（一）"></a>JDK源码阅读（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;看JDK的源码是非常有效的学习方法，对深入学习和理解起着关键作用，要保持阅读源码的习惯，之后我们会经常对一些重要的源码进行整理，之前已经看了集合类，今天从基本类型开始，关键是多看，每次看都有新发现，这里主要列出别人整理过的深层次理解，方便自己经常结合源码看。</p>
  <a id="more"></a>
@@ -1150,7 +1150,7 @@ transient int modCount;//被修改的次数
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/16799925" target="_blank" rel="external">Java中的数据类型</a>。基本分类和引用类型及详细介绍。</p>
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/17684701" target="_blank" rel="external">Integer类源码解读(一)</a></p>
 <p><a href="http://blog.csdn.net/mazhimazh/article/details/17681787" target="_blank" rel="external">Integer类源码解读(二)</a></p>
-<h2 id="String-StringBuffer-StringBuiler"><a href="#String-StringBuffer-StringBuiler" class="headerlink" title="String\StringBuffer\StringBuiler"></a>String\StringBuffer\StringBuiler</h2><p>&#160; &#160; &#160; &#160;String不final修饰的，不可变的，重写了hashcode和equal方法，compareTo方法。首先来看一下字符串常见的几个问题：</p>
+<h2 id="String-StringBuffer-StringBuiler"><a href="#String-StringBuffer-StringBuiler" class="headerlink" title="String\StringBuffer\StringBuiler"></a>String\StringBuffer\StringBuiler</h2><p>&#160; &#160; &#160; &#160;String被final修饰的，不可变的，重写了hashcode和equal方法，compareTo方法。首先来看一下字符串常见的几个问题：</p>
 <p>（1）String s = new String(“xyz”);创建了几个String 对象？<br>&#160; &#160; &#160; &#160;两个或一个，”xyz”对应一个对象，这个对象放在字符串常量缓冲区，常量”xyz”不管出现多少遍，都是缓冲区中的那一个，类似与缓存Byte数值的-128~127数值。New String每写一遍，就创建一个新的对象，那个常量”xyz”对象的内容来创建出一个新String对象。如果以前就用过’xyz’，这句代表就不会创建”xyz”自己了，直接从缓冲区拿。</p>
 <p>&#160; &#160; &#160; &#160;所以，凡是通过构造器创建的对象都会进行内存分配，所以他就不会指向缓存池中已有的对象而指向新的对象，这样就会造成缓存池中存在多个值相同的字符串对象，浪费资源。所以一般要直接为字符串指定值即可。</p>
 <p>&#160; &#160; &#160; &#160;这里需要介绍一下缓存池：为了节省内存，提高资源的复用，jvm引入了常量池这个概念，它属于方法区的一部分，作用之一就是存放编译期间生产的各种字面量和符号引用。方法区的垃圾回收行为是比较少出现的，该区中的对象基本不会被回收，可以理解成是永久存在的。</p>
