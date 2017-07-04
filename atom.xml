@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-28T12:40:59.000Z</updated>
+  <updated>2017-06-28T13:00:47.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/05/22/%E4%B8%80%E6%AC%A1JAVA%E7%88%AC%E8%99%AB%E4%B9%8B%E6%97%85/"/>
     <id>http://yoursite.com/2017/05/22/一次JAVA爬虫之旅/</id>
     <published>2017-05-22T12:14:05.000Z</published>
-    <updated>2017-06-28T12:40:59.000Z</updated>
+    <updated>2017-06-28T13:00:47.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="一次JAVA爬虫之旅"><a href="#一次JAVA爬虫之旅" class="headerlink" title="一次JAVA爬虫之旅"></a>一次JAVA爬虫之旅</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;好早就想做一下爬虫，最近终于完成了。爬了知乎用户信息，现在知乎确实正规了好多，各种反爬虫机制，遇到了不少坑，还好都克服了，现在来记录下这个过程，和把结果展示一下。</p>
   <a id="more"></a>
@@ -186,6 +186,171 @@
     
     
       <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMvc学习笔记（二）</title>
+    <link href="http://yoursite.com/2017/04/10/SpringMvc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/04/10/SpringMvc学习笔记（二）/</id>
+    <published>2017-04-10T08:24:44.000Z</published>
+    <updated>2017-07-04T10:47:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SpringMvc学习笔记（二）"><a href="#SpringMvc学习笔记（二）" class="headerlink" title="SpringMvc学习笔记（二）"></a>SpringMvc学习笔记（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;项目最先用到了.Net MVC，其实我的Web开发经历一开始就是MVC模式，学习SpringMvc的过程中，也发现很多类似之处，学习SpringMvc过程中更注重原理，之前更注重使用。下面记录学习的一些体会。</p>
+ <a id="more"></a>
+<h2 id="回顾总结"><a href="#回顾总结" class="headerlink" title="回顾总结"></a>回顾总结</h2><h3 id="框架相关"><a href="#框架相关" class="headerlink" title="框架相关"></a>框架相关</h3><ol>
+<li>DispatcherServlet前端控制器：接收request，进行response</li>
+<li>HandlerMapping处理器映射器：根据url查找Handler。（可以通过xml配置方式，注解方式）</li>
+<li>HandlerAdapter处理器适配器：根据特定规则去执行Handler，编写Handler时需要按照HandlerAdapter的要求去编写。</li>
+<li>Handler处理器（后端控制器）：需要程序员去编写，常用注解开发方式。<br> Handler处理器执行后结果 是ModelAndView，具体开发时Handler返回方法值类型包括 ：ModelAndView、String（逻辑视图名）、void（通过在Handler形参中添加request和response，类似原始 servlet开发方式，注意：可以通过指定response响应的结果类型实现json数据输出）</li>
+<li>View resolver视图解析器：根据逻辑视图名生成真正的视图（在springmvc中使用View对象表示）</li>
+<li>View视图:jsp页面，仅是数据展示，没有业务逻辑。</li>
+</ol>
+<h3 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h3><p>&#160; &#160; &#160; &#160;使用mvc注解驱动mvc:annotation-driven来进行处理器映射器和适配器的配置。</p>
+<p>&#160; &#160; &#160; &#160;@controller注解必须要加，作用标识类是一个Handler处理器。</p>
+<p>&#160; &#160; &#160; &#160;@requestMapping注解必须要加，作用：</p>
+<p>1、对url和Handler的方法进行映射。</p>
+<p>2、可以窄化请求映射，设置Handler的根路径，url就是根路径+子路径请求方式</p>
+<p>3、可以限制http请求的方法。映射成功后，springmvc框架生成一个Handler对象，对象中只包括 一个映射成功的method。</p>
+<p>&#160; &#160; &#160; &#160;注解开发中的参数绑定，默认支持：</p>
+<p>1、默认支持很多类型，HttpServletRequest、response、session、model/modelMap(将模型数据填充到request域)</p>
+<p>2、支持简单数据类型，整型、字符串、日期</p>
+<p>&#160; &#160; &#160; &#160;只要保证request请求的参数名和形参名称一致，自动绑定成功</p>
+<p>&#160; &#160; &#160; &#160;如果request请求的参数名和形参名称不一致，可以使用@RequestParam（指定request请求的参数名），@RequestParam加在形参的前边。</p>
+<p>3、支持pojo类型</p>
+<p>&#160; &#160; &#160; &#160;只要保证request请求的参数名称和pojo中的属性名一致，自动将request请求的参数设置到pojo的属性中。</p>
+<p>&#160; &#160; &#160; &#160;注意：形参中即有pojo类型又有简单类型，参数绑定互不影响。</p>
+<h2 id="使用技巧"><a href="#使用技巧" class="headerlink" title="使用技巧"></a>使用技巧</h2><h3 id="数据校验"><a href="#数据校验" class="headerlink" title="数据校验"></a>数据校验</h3><p>&#160; &#160; &#160; &#160;springmvc使用的是hibernate的校验框架vaildation，但是和hibernate一点关系都没有。目的是解耦前台数据检验和错误信息返回。参考博文：<a href="http://jinnianshilongnian.iteye.com/blog/1733708" target="_blank" rel="external">SpringMVC数据验证</a>.</p>
+<h3 id="数据回显"><a href="#数据回显" class="headerlink" title="数据回显"></a>数据回显</h3><p>&#160; &#160; &#160; &#160;提交数据失败之后，数据在填入表单。<a href="http://www.cnblogs.com/lcngu/p/5517877.html" target="_blank" rel="external">SpringMVC学习–数据回显</a>.</p>
+<h3 id="统一异常处理"><a href="#统一异常处理" class="headerlink" title="统一异常处理"></a>统一异常处理</h3><p>&#160; &#160; &#160; &#160;Java异常类层次结构图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/27/1354020417_5176.jpg" alt=""></p>
+<p>关于异常可参考博文：<a href="http://blog.csdn.net/hguisu/article/details/6155636" target="_blank" rel="external">深入理解java异常处理机制</a>.</p>
+<p>springmvc中异常处理思路是：系统的dao、service、controller出现都通过throwsException向上抛出，最后由springmvc的前端控制器交由异常处理器（一个系统只有一个，由框架提供）进行异常处理。</p>
+<p>处理的思路是：解析出异常的类型，如果是自定义的直接取出异常信息，在错误页面展示。如果不是系统自定义的，构造一个自定义的异常类型，为未知错误。提供HandlerExceptionResolver接口</p>
+<h3 id="RESTful"><a href="#RESTful" class="headerlink" title="RESTful"></a>RESTful</h3><p>&#160; &#160; &#160; &#160;RESTful架构：是一种设计的风格，并不是标准，只是提供了一组设计原则和约束条件，也是目前比较流行的一种互联网软件架构。它结构清晰、符合标准、易于理解、扩展方便，所以正得到越来越多网站的采用。参考：<a href="http://www.cnblogs.com/huaixiaoz/p/5782954.html" target="_blank" rel="external">SPRINGMVC中的RESTFUL架构风格
+</a>.</p>
+<h3 id="json交互"><a href="#json交互" class="headerlink" title="json交互"></a>json交互</h3><p>&#160; &#160; &#160; &#160;json格式在接口调用中、html页面中常用，格式比较简单，解析还比较方便。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;SpringMvc学习笔记（二）&quot;&gt;&lt;a href=&quot;#SpringMvc学习笔记（二）&quot; class=&quot;headerlink&quot; title=&quot;SpringMvc学习笔记（二）&quot;&gt;&lt;/a&gt;SpringMvc学习笔记（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;项目最先用到了.Net MVC，其实我的Web开发经历一开始就是MVC模式，学习SpringMvc的过程中，也发现很多类似之处，学习SpringMvc过程中更注重原理，之前更注重使用。下面记录学习的一些体会。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SSM框架" scheme="http://yoursite.com/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="SpringMvc" scheme="http://yoursite.com/tags/SpringMvc/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringMvc学习笔记（一）</title>
+    <link href="http://yoursite.com/2017/04/04/SpringMvc%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/04/04/SpringMvc学习笔记（一）/</id>
+    <published>2017-04-04T05:49:59.000Z</published>
+    <updated>2017-07-04T08:11:56.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="SpringMvc学习笔记（一）"><a href="#SpringMvc学习笔记（一）" class="headerlink" title="SpringMvc学习笔记（一）"></a>SpringMvc学习笔记（一）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;项目最先用到了.Net MVC，其实我的Web开发经历一开始就是MVC模式，学习SpringMvc的过程中，也发现很多类似之处，学习SpringMvc过程中更注重原理，之前更注重使用。下面记录学习的一些体会。</p>
+ <a id="more"></a>
+<h2 id="SpringMvc框架原理"><a href="#SpringMvc框架原理" class="headerlink" title="SpringMvc框架原理"></a>SpringMvc框架原理</h2><p>&#160; &#160; &#160; &#160;MVC全名是Model View Controller，是模型(model)－视图(view)－控制器(controller)的缩写，一种软件设计典范，用一种业务逻辑、数据、界面显示分离的方法组织代码，将业务逻辑聚集到一个部件里面，在改进和个性化定制界面及用户交互的同时，不需要重新编写业务逻辑。MVC被独特的发展起来用于映射传统的输入、处理和输出功能在一个逻辑的图形化用户界面的结构中。</p>
+<p>&#160; &#160; &#160; &#160;SpringMvc中有一些组件包括：前端控制器、处理器映射器、处理器适配器、视图解析器。</p>
+<ol>
+<li><p>前端控制器（DispatcherServlet）：接收请求，响应结果，相当于电脑的CPU。</p>
+</li>
+<li><p>处理器映射器（HandlerMapping）：根据URL去查找处理器</p>
+</li>
+<li><p>处理器（Handler）：（需要程序员去写代码处理逻辑的）</p>
+</li>
+<li><p>处理器适配器（HandlerAdapter）：会把处理器包装成适配器，这样就可以支持多种类型的处理器，类比笔记本的适配器（适配器模式的应用）</p>
+</li>
+<li><p>视图解析器（ViewResovler）：进行视图解析，多返回的字符串，进行处理，可以解析成对应的页面</p>
+</li>
+</ol>
+<p>运行的框架图如下：</p>
+<p><img src="http://img.my.csdn.net/uploads/201211/16/1353059506_5137.jpg" alt=""></p>
+<p>运行的步骤可以概述如下：</p>
+<p>第一步：发起请求到前端控制器(DispatcherServlet)</p>
+<p>第二步：前端控制器请求HandlerMapping查找 Handler可以根据xml配置、注解进行查找</p>
+<p>第三步：处理器映射器HandlerMapping向前端控制器返回Handler执行链。</p>
+<p>第四步：前端控制器调用处理器适配器去执行Handler</p>
+<p>第五步：处理器适配器去执行Handler（需人为编写的Handler得实现适配器的相关接口）</p>
+<p>第六步：Handler执行完成给适配器返回ModelAndView</p>
+<p>第七步：处理器适配器向前端控制器返回ModelAndViewModelAndView是springmvc框架的一个底层对象，包括 Model和view</p>
+<p>第八步：前端控制器请求视图解析器去进行视图解析根据逻辑视图名解析成真正的视图(jsp)</p>
+<p>第九步：视图解析器向前端控制器返回View</p>
+<p>第十步：前端控制器进行视图渲染视图渲染，就是将模型数据(在ModelAndView对象中)填充到request域</p>
+<p>第十一步：前端控制器向用户响应结果 </p>
+<h2 id="初识源码"><a href="#初识源码" class="headerlink" title="初识源码"></a>初识源码</h2><h3 id="SpringMVC接口解释"><a href="#SpringMVC接口解释" class="headerlink" title="SpringMVC接口解释"></a>SpringMVC接口解释</h3><ol>
+<li><p>DispatcherServlet接口：<br>Spring提供的前端控制器，所有的请求都有经过它来统一分发。在DispatcherServlet将请求分发给Spring Controller之前，需要借助于Spring提供的HandlerMapping定位到具体的Controller。</p>
+</li>
+<li><p>HandlerMapping接口：<br>能够完成客户请求到Controller映射。</p>
+</li>
+<li><p>Controller接口：<br>需要为并发用户处理上述请求，因此实现Controller接口时，必须保证线程安全并且可重用。<br>Controller将处理用户请求，这和Struts Action扮演的角色是一致的。一旦Controller处理完用户请求，则返回ModelAndView对象给DispatcherServlet前端控制器，ModelAndView中包含了模型（Model）和视图（View）。<br>从宏观角度考虑，DispatcherServlet是整个Web应用的控制器；从微观考虑，Controller是单个Http请求处理过程中的控制器，而ModelAndView是Http请求过程中返回的模型（Model）和视图（View）。</p>
+</li>
+<li><p>ViewResolver接口：<br>Spring提供的视图解析器（ViewResolver）在Web应用中查找View对象，从而将相应结果渲染给客户。</p>
+</li>
+</ol>
+<h3 id="执行过程"><a href="#执行过程" class="headerlink" title="执行过程"></a>执行过程</h3><p>第一步：前端控制器接收请求，调用doDiapatch方法</p>
+<p>第二步：前端控制器调用处理器映射器查找 Handler，getHandler方法根据url找到执行链，包括拦截器和控制器。</p>
+<p>第三步：调用处理器适配器执行Handler，得到执行结果ModelAndView</p>
+<p>第四步：视图渲染，view的render方法，将model数据填充到request域。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>首先前端控制器是一个DispatcherServlet，要在web.xml中配置。这里类似Servlet的配置，可以参考博文：<a href="http://www.cnblogs.com/hxsyl/p/3435412.html" target="_blank" rel="external">JavaWeb工程中web.xml基本配置</a>。</li>
+<li><p>servlet中声明的springmvc.xml中需要配置处理器映射器、处理器适配器、视图解析器。 这些都是接口抽象类高扩展性的编写方式，非注解模式一般使用simpleControllerHandlerAdapter作为适配器，BeanForNameHadnlerMapping作为映射器（根据bean的name作为url来查找，这就需要配置）。视图解析器使用InternalResourceViewSolver，能够解析jsp。现在一般使用注解模式。</p>
+</li>
+<li><p>编写hadler，即实现controller接口的业务逻辑处理类，返回ModelAndView。</p>
+</li>
+<li>前台页面编写。</li>
+</ol>
+<h2 id="SpringMvc和Mybatis整合"><a href="#SpringMvc和Mybatis整合" class="headerlink" title="SpringMvc和Mybatis整合"></a>SpringMvc和Mybatis整合</h2><p>&#160; &#160; &#160; &#160;整合思想如下：</p>
+<p>第一步：整合dao层</p>
+<p>&#160; &#160; &#160; &#160;mybatis和spring整合，通过spring管理mapper接口。</p>
+<p>&#160; &#160; &#160; &#160;使用mapper的扫描器自动扫描mapper接口在spring中进行注册。</p>
+<p>第二步：整合service层</p>
+<p>&#160; &#160; &#160; &#160;通过spring管理 service接口。</p>
+<p>&#160; &#160; &#160; &#160;使用配置方式将service接口配置在spring配置文件中。</p>
+<p>&#160; &#160; &#160; &#160;实现事务控制。</p>
+<p>第三步：整合springmvc</p>
+<p>&#160; &#160; &#160; &#160;由于springmvc是spring的模块，不需要整合。</p>
+<h2 id="tip"><a href="#tip" class="headerlink" title="tip"></a>tip</h2><ol>
+<li>视图解析器可以配置前缀和后缀。</li>
+<li>前台往后台传值，后台往前台传值的参数绑定和使用方式。</li>
+</ol>
+<h2 id="springmvc和struts2区别"><a href="#springmvc和struts2区别" class="headerlink" title="springmvc和struts2区别"></a>springmvc和struts2区别</h2><ol>
+<li>Struts2是类级别的拦截， 一个类对应一个request上下文，SpringMVC是方法级别的拦截，一个方法对应一个request上下文，而方法同时又跟一个url对应,所以说从架构本身上SpringMVC就容易实现restful url,而struts2的架构实现起来要费劲，因为Struts2中Action的一个方法可以对应一个url，而其类属性却被所有方法共享，这也就无法用注解或其他方式标识其所属方法了。</li>
+<li>由上边原因，SpringMVC的方法之间基本上独立的，独享request response数据，请求数据通过参数获取，处理结果通过ModelMap交回给框架，方法之间不共享变量，而Struts2搞的就比较乱，虽然方法之间也是独立的，但其所有Action变量是共享的，这不会影响程序运行，却给我们编码 读程序时带来麻烦，每次来了请求就创建一个Action，一个Action对象对应一个request上下文。</li>
+<li>由于Struts2需要针对每个request进行封装，把request，session等servlet生命周期的变量封装成一个一个Map，供给每个Action使用，并保证线程安全，所以在原则上，是比较耗费内存的。</li>
+<li>拦截器实现机制上，Struts2有以自己的interceptor机制，SpringMVC用的是独立的AOP方式，这样导致Struts2的配置文件量还是比SpringMVC大。</li>
+<li>SpringMVC的入口是servlet，而Struts2是filter（这里要指出，filter和servlet是不同的。以前认为filter是servlet的一种特殊），这就导致了二者的机制不同，这里就牵涉到servlet和filter的区别了。</li>
+<li>SpringMVC集成了Ajax，使用非常方便，只需一个注解@ResponseBody就可以实现，然后直接返回响应文本即可，而Struts2拦截器集成了Ajax，在Action中处理时一般必须安装插件或者自己写代码集成进去，使用起来也相对不方便。</li>
+<li>SpringMVC验证支持JSR303，处理起来相对更加灵活方便，而Struts2验证比较繁琐，感觉太烦乱。</li>
+<li>spring MVC和Spring是无缝的。从这个项目的管理和安全上也比Struts2高（当然Struts2也可以通过不同的目录结构和相关配置做到SpringMVC一样的效果，但是需要xml配置的地方不少）。</li>
+<li>设计思想上，Struts2更加符合OOP的编程思想， SpringMVC就比较谨慎，在servlet上扩展。</li>
+<li>SpringMVC开发效率和性能高于Struts2。</li>
+<li>SpringMVC可以认为已经100%零配置。</li>
+</ol>
+<p>转自：<a href="http://blog.csdn.net/chenleixing/article/details/44570681" target="_blank" rel="external">SpringMVC与Struts2区别与比较总结</a>。</p>
+<p>简介一些的可以看下面叙述：</p>
+<p>一、pringmvc基于方法开发的，struts2基于类开发的。</p>
+<p>springmvc将url和controller方法映射。映射成功后springmvc生成一个Handler对象，对象中只包括了一个method。<br>方法执行结束，形参数据销毁。<br>springmvc的controller开发类似service开发。</p>
+<p>二、springmvc可以进行单例开发，并且建议使用单例开发，struts2通过类的成员变量接收参数，无法使用单例，只能使用多例。</p>
+<p>三、经过实际测试，struts2速度慢，在于使用struts标签，如果使用struts建议使用jstl。</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;SpringMvc学习笔记（一）&quot;&gt;&lt;a href=&quot;#SpringMvc学习笔记（一）&quot; class=&quot;headerlink&quot; title=&quot;SpringMvc学习笔记（一）&quot;&gt;&lt;/a&gt;SpringMvc学习笔记（一）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;项目最先用到了.Net MVC，其实我的Web开发经历一开始就是MVC模式，学习SpringMvc的过程中，也发现很多类似之处，学习SpringMvc过程中更注重原理，之前更注重使用。下面记录学习的一些体会。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SSM框架" scheme="http://yoursite.com/categories/SSM%E6%A1%86%E6%9E%B6/"/>
+    
+    
+      <category term="SpringMvc" scheme="http://yoursite.com/tags/SpringMvc/"/>
     
   </entry>
   
@@ -1032,143 +1197,6 @@ long getDelay(TimeUnit unit);
     <summary type="html">
     
       &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;链表是常见的数据结构，上面篇已经讲了字符串和数组，这题就有关链表，从数据结构中我们知道了链表的基本性质：链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，结点可以在运行时动态生成。每个结点包括两个部分：一个是存储数据元素的数据域，另一个是存储下一个结点地址的指针域。 相比于线性表顺序结构，操作复杂。由于不必须按顺序存储，链表在插入的时候可以达到O(1)的复杂度，比另一种线性表顺序表快得多，但是查找一个节点或者访问特定编号的节点则需要O(n)的时间，而线性表和顺序表相应的时间复杂度分别是O(logn)和O(1)。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="剑指offer详解" scheme="http://yoursite.com/categories/%E5%89%91%E6%8C%87offer%E8%AF%A6%E8%A7%A3/"/>
-    
-    
-      <category term="算法题" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JDK源码阅读（二）</title>
-    <link href="http://yoursite.com/2017/03/04/JDK%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/03/04/JDK源码阅读（二）/</id>
-    <published>2017-03-04T06:46:22.000Z</published>
-    <updated>2017-06-28T01:55:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JDK源码阅读（二）"><a href="#JDK源码阅读（二）" class="headerlink" title="JDK源码阅读（二）"></a>JDK源码阅读（二）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&#160; &#160; &#160; &#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。</p>
- <a id="more"></a>
-<h2 id="总体框图"><a href="#总体框图" class="headerlink" title="总体框图"></a>总体框图</h2><p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://opb7t58xj.bkt.clouddn.com/%E9%9B%86%E5%90%88%E7%B1%BB.png" alt=""></p>
-<p>&#160; &#160; &#160; &#160;图中就说明了集合类之间的一些关系，包含接口、抽象类和实现类还有继承实现的关系。</p>
-<h2 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>&#160; &#160; &#160; &#160;HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections类的静态方法synchronizedMap获得线程安全的HashMap。现在又出现了concurrent包里面的，我们更要知道，在并发情况下更高效。</p>
-<h3 id="HashMap的数据结构"><a href="#HashMap的数据结构" class="headerlink" title="HashMap的数据结构"></a>HashMap的数据结构</h3><p>&#160; &#160; &#160; &#160;HashMap的底层主要是基于<font color="red">数组和链表</font>来实现的，它之所以有相当快的查询速度主要是因为它是通过计算散列码来决定存储的位置。HashMap中主要是通过key的hashCode来计算hash值的，只要hashCode相同，计算出来的hash值就一样。如果存储的对象对多了，就有可能不同的对象所算出来的hash值是相同的，这就出现了所谓的hash冲突。学过数据结构的同学都知道，解决hash冲突的方法有很多，HashMap底层是通过链表来解决hash冲突的。</p>
-<p>&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;&#160; &#160; &#160; &#160;<img src="http://images.cnitblog.com/blog/400827/201409/041358026259354.jpg" alt=""></p>
-<p>&#160; &#160; &#160; &#160;图中，紫色部分即代表哈希表，也称为哈希数组，数组的每个元素都是一个单链表的头节点，链表是用来解决冲突的，如果不同的key映射到了数组的同一位置处，就将其放入单链表中。我们看看HashMap中Entry类的代码：　</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line">/** Entry是单向链表。    </div><div class="line">     * 它是 “HashMap链式存储法”对应的链表。    </div><div class="line">     *它实现了Map.Entry 接口，即实现getKey(), getValue(), setValue(V value), equals(Object o), hashCode()这些函数  </div><div class="line">    **/  </div><div class="line">    static class Entry&lt;K,V&gt; implements Map.Entry&lt;K,V&gt; &#123;    </div><div class="line">        final K key;    </div><div class="line">        V value;    </div><div class="line">        // 指向下一个节点    </div><div class="line">        Entry&lt;K,V&gt; next;    </div><div class="line">        final int hash;    </div><div class="line">   </div><div class="line">        // 构造函数。    </div><div class="line">        // 输入参数包括&quot;哈希值(h)&quot;, &quot;键(k)&quot;, &quot;值(v)&quot;, &quot;下一节点(n)&quot;    </div><div class="line">        Entry(int h, K k, V v, Entry&lt;K,V&gt; n) &#123;    </div><div class="line">            value = v;    </div><div class="line">            next = n;    </div><div class="line">            key = k;    </div><div class="line">            hash = h;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        public final K getKey() &#123;    </div><div class="line">            return key;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        public final V getValue() &#123;    </div><div class="line">            return value;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        public final V setValue(V newValue) &#123;    </div><div class="line">            V oldValue = value;    </div><div class="line">            value = newValue;    </div><div class="line">            return oldValue;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        // 判断两个Entry是否相等    </div><div class="line">        // 若两个Entry的“key”和“value”都相等，则返回true。    </div><div class="line">        // 否则，返回false    </div><div class="line">        public final boolean equals(Object o) &#123;    </div><div class="line">            if (!(o instanceof Map.Entry))    </div><div class="line">                return false;    </div><div class="line">            Map.Entry e = (Map.Entry)o;    </div><div class="line">            Object k1 = getKey();    </div><div class="line">            Object k2 = e.getKey();    </div><div class="line">            if (k1 == k2 || (k1 != null &amp;&amp; k1.equals(k2))) &#123;    </div><div class="line">                Object v1 = getValue();    </div><div class="line">                Object v2 = e.getValue();    </div><div class="line">                if (v1 == v2 || (v1 != null &amp;&amp; v1.equals(v2)))    </div><div class="line">                    return true;    </div><div class="line">            &#125;    </div><div class="line">            return false;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        // 实现hashCode()    </div><div class="line">        public final int hashCode() &#123;    </div><div class="line">            return (key==null   ? 0 : key.hashCode()) ^    </div><div class="line">                   (value==null ? 0 : value.hashCode());    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        public final String toString() &#123;    </div><div class="line">            return getKey() + &quot;=&quot; + getValue();    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        // 当向HashMap中添加元素时，绘调用recordAccess()。    </div><div class="line">        // 这里不做任何处理    </div><div class="line">        void recordAccess(HashMap&lt;K,V&gt; m) &#123;    </div><div class="line">        &#125;    </div><div class="line">   </div><div class="line">        // 当从HashMap中删除元素时，绘调用recordRemoval()。    </div><div class="line">        // 这里不做任何处理    </div><div class="line">        void recordRemoval(HashMap&lt;K,V&gt; m) &#123;    </div><div class="line">        &#125;    </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;<font color="red">HashMap其实就是一个Entry数组，Entry对象中包含了键和值，其中next也是一个Entry对象，它就是用来处理hash冲突的，形成一个链表。</font>　</p>
-<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><h4 id="关键属性"><a href="#关键属性" class="headerlink" title="关键属性"></a>关键属性</h4><p>&#160; &#160; &#160; &#160;这是hashmap一些重要属性。</p>
-<pre><code>transient Entry[] table;//存储元素的实体数组
-
-transient int size;//存放元素的个数
-
-int threshold; //临界值   当实际大小超过临界值时，会进行扩容threshold = 加载因子*容量
-
-final float loadFactor; //加载因子
-
-transient int modCount;//被修改的次数
-</code></pre><p>&#160; &#160; &#160; &#160;其中loadFactor加载因子是表示Hsah表中元素的填满的程度.</p>
-<p>&#160; &#160; &#160; &#160;若:加载因子越大,填满的元素越多,好处是,空间利用率高了,但:冲突的机会加大了.链表长度会越来越长,查找效率降低。反之,加载因子越小,填满的元素越少,好处是:冲突的机会减小了,但:空间浪费多了.表中的数据将过于稀疏（很多空间还没用，就开始扩容了）。冲突的机会越大,则查找的成本越高.</p>
-<p>&#160; &#160; &#160; &#160;因此,必须在 “冲突的机会”与”空间利用率”之间寻找一种平衡与折衷. 这种平衡与折衷本质上是数据结构中有名的”时-空”矛盾的平衡与折衷.</p>
-<p>&#160; &#160; &#160; &#160;如果机器内存足够，并且想要提高查询速度的话可以将加载因子设置小一点；相反如果机器内存紧张，并且对查询速度没有什么要求的话可以将加载因子设置大一点。不过一般我们都不用去设置它，让它取默认值0.75就好了。</p>
-<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">public HashMap(int initialCapacity, float loadFactor) &#123;</div><div class="line">        //确保数字合法</div><div class="line">        if (initialCapacity &lt; 0)</div><div class="line">            throw new IllegalArgumentException(&quot;Illegal initial capacity: &quot; +</div><div class="line">                                              initialCapacity);</div><div class="line">        if (initialCapacity &gt; MAXIMUM_CAPACITY)</div><div class="line">            initialCapacity = MAXIMUM_CAPACITY;</div><div class="line">        if (loadFactor &lt;= 0 || Float.isNaN(loadFactor))</div><div class="line">            throw new IllegalArgumentException(&quot;Illegal load factor: &quot; +</div><div class="line">                                              loadFactor);</div><div class="line"></div><div class="line">        // Find a power of 2 &gt;= initialCapacity</div><div class="line">        int capacity = 1;   //初始容量</div><div class="line">        while (capacity &lt; initialCapacity)   //确保容量为2的n次幂，使capacity为大于initialCapacity的最小的2的n次幂</div><div class="line">            capacity &lt;&lt;= 1;</div><div class="line"></div><div class="line">        this.loadFactor = loadFactor;</div><div class="line">        threshold = (int)(capacity * loadFactor);</div><div class="line">        table = new Entry[capacity];</div><div class="line">       init();</div><div class="line">   &#125;</div><div class="line"></div><div class="line">    public HashMap(int initialCapacity) &#123;</div><div class="line">        this(initialCapacity, DEFAULT_LOAD_FACTOR);</div><div class="line">   &#125;</div><div class="line"></div><div class="line">    public HashMap() &#123;</div><div class="line">        this.loadFactor = DEFAULT_LOAD_FACTOR;</div><div class="line">        threshold = (int)(DEFAULT_INITIAL_CAPACITY * DEFAULT_LOAD_FACTOR);</div><div class="line">        table = new Entry[DEFAULT_INITIAL_CAPACITY];</div><div class="line">       init();</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;我们可以看到在构造HashMap的时候如果我们指定了加载因子和初始容量的话就调用第一个构造方法，否则的话就是用默认的。默认初始容量为16，默认加载因子为0.75。我们可以看到上面代码中13-15行，这段代码的作用是确保容量为2的n次幂，使capacity为大于initialCapacity的最小的2的n次幂，至于为什么要把容量设置为2的n次幂，我们等下再看。</p>
-<h4 id="put"><a href="#put" class="headerlink" title="put"></a>put</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public V put(K key, V value) &#123;</div><div class="line">     // 若“key为null”，则将该键值对添加到table[0]中。</div><div class="line">         if (key == null) </div><div class="line">            return putForNullKey(value);</div><div class="line">     // 若“key不为null”，则计算该key的哈希值，然后将其添加到该哈希值对应的链表中。</div><div class="line">         int hash = hash(key.hashCode());</div><div class="line">     //搜索指定hash值在对应table中的索引</div><div class="line">         int i = indexFor(hash, table.length);</div><div class="line">     // 循环遍历Entry数组,若“该key”对应的键值对已经存在，则用新的value取代旧的value。然后退出！</div><div class="line">         for (Entry&lt;K,V&gt; e = table[i]; e != null; e = e.next) &#123; </div><div class="line">             Object k;</div><div class="line">              if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k))) &#123; //如果key相同则覆盖并返回旧值</div><div class="line">                  V oldValue = e.value;</div><div class="line">                 e.value = value;</div><div class="line">                 e.recordAccess(this);</div><div class="line">                 return oldValue;</div><div class="line">              &#125;</div><div class="line">         &#125;</div><div class="line">     //修改次数+1</div><div class="line">         modCount++;</div><div class="line">     //将key-value添加到table[i]处</div><div class="line">     addEntry(hash, key, value, i);</div><div class="line">     return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;上面程序中用到了一个重要的内部接口：Map.Entry，每个 Map.Entry 其实就是一个 key-value 对。从上面程序中可以看出：当系统决定存储 HashMap 中的 key-value 对时，完全没有考虑 Entry 中的 value，仅仅只是根据 key 来计算并决定每个 Entry 的存储位置。这也说明了前面的结论：我们完全可以把 Map 集合中的 value 当成 key 的附属，当系统决定了 key 的存储位置之后，value 随之保存在那里即可。</p>
-<p>&#160; &#160; &#160; &#160;注意：第2和3行的作用就是处理key值为null的情况,如果key为null的话，hash值为0，对象存储在数组中索引为0的位置。即table[0].我们再回去看看put方法中第4行，它是通过key的hashCode值计算hash码,得到hash码之后就会通过hash码去计算出应该存储在数组中的索引,这个我们要重点说下，我们一般对哈希表的散列很自然地会想到用hash值对length取模（即除法散列法），Hashtable中也是这样实现的，这种方法基本能保证元素在哈希表中散列的比较均匀，但取模会用到除法运算，效率很低，HashMap中则通过h&amp;(length-1)的方法来代替取模，同样实现了均匀的散列，但效率要高很多，这也是HashMap对Hashtable的一个改进。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">private V putForNullKey(V value) &#123;</div><div class="line">        for (Entry&lt;K,V&gt; e = table[0]; e != null; e = e.next) &#123;</div><div class="line">            if (e.key == null) &#123;   //如果有key为null的对象存在，则覆盖掉</div><div class="line">                V oldValue = e.value;</div><div class="line">                e.value = value;</div><div class="line">                e.recordAccess(this);</div><div class="line">                return oldValue;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">        modCount++;</div><div class="line">        addEntry(0, null, value, 0); //如果键为null的话，则hash值为0</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    //计算hash值的方法 通过键的hashCode来计算</div><div class="line">    static int hash(int h) &#123;</div><div class="line">        // This function ensures that hashCodes that differ only by</div><div class="line">        // constant multiples at each bit position have a bounded</div><div class="line">        // number of collisions (approximately 8 at default load factor).</div><div class="line">        h ^= (h &gt;&gt;&gt; 20) ^ (h &gt;&gt;&gt; 12);</div><div class="line">        return h ^ (h &gt;&gt;&gt; 7) ^ (h &gt;&gt;&gt; 4);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    </div><div class="line">    static int indexFor(int h, int length) &#123; //根据hash值和数组长度算出索引值</div><div class="line">       //这里不能随便算取，用hash&amp;(length-1)是有原因的，</div><div class="line">       //这样可以确保算出来的索引是在数组大小范围内，不会超出</div><div class="line">         return h &amp; (length-1);  </div><div class="line">     &#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;根据上面 put 方法的源代码可以看出，当程序试图将一个key-value对放入HashMap中时，程序首先根据该 key 的 hashCode() 返回值决定该 Entry 的存储位置：如果两个 Entry 的 key 的 hashCode() 返回值相同，那它们的存储位置相同。如果这两个 Entry 的 key 通过 equals 比较返回 true，新添加 Entry 的 value 将覆盖集合中原有 Entry 的 value，但key不会覆盖。如果这两个 Entry 的 key 通过 equals 比较返回 false，新添加的 Entry 将与集合中原有 Entry 形成 Entry 链，而且新添加的 Entry 位于 Entry 链的头部——具体说明继续看 addEntry() 方法的说明。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">void addEntry(int hash, K key, V value, int bucketIndex) &#123;</div><div class="line">         //如果要加入的位置有值，将该位置原先的值设置为新entry的next,</div><div class="line">        //也就是新entry链表的下一个节点</div><div class="line">        Entry&lt;K,V&gt; e = table[bucketIndex]; </div><div class="line">        table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);</div><div class="line">        if (size++ &gt;= threshold) //如果大于临界值就扩容</div><div class="line">            resize(2 * table.length); //以2的倍数扩容</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;参数bucketIndex就是indexFor函数计算出来的索引值，第2行代码是取得数组中索引为bucketIndex的Entry对象，第3行就是用hash、key、value构建一个新的Entry对象放到索引为bucketIndex的位置，并且将该位置原先的对象设置为新对象的next构成链表。第4行和第5行就是判断put后size是否达到了临界值threshold，如果达到了临界值就要进行扩容，HashMap扩容是扩为原来的两倍。resize()如下:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">void resize(int newCapacity) &#123;</div><div class="line">        Entry[] oldTable = table;</div><div class="line">        int oldCapacity = oldTable.length;</div><div class="line">        if (oldCapacity == MAXIMUM_CAPACITY) &#123;</div><div class="line">            threshold = Integer.MAX_VALUE;</div><div class="line">            return;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">        Entry[] newTable = new Entry[newCapacity];</div><div class="line">        transfer(newTable);//用来将原先table的元素全部移到newTable里面</div><div class="line">        table = newTable;  //再将newTable赋值给table</div><div class="line">        threshold = (int)(newCapacity * loadFactor);//重新计算临界值</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;新建了一个HashMap的底层数组，上面代码中第10行为调用transfer方法，将HashMap的全部元素添加到新的HashMap中,并重新计算元素在新的数组中的索引位置</p>
-<p>&#160; &#160; &#160; &#160;当HashMap中的元素越来越多的时候，hash冲突的几率也就越来越高，因为数组的长度是固定的。所以为了提高查询的效率，就要对HashMap的数组进行扩容，数组扩容这个操作也会出现在ArrayList中，这是一个常用的操作，而在HashMap数组扩容之后，最消耗性能的点就出现了：原数组中的数据必须重新计算其在新数组中的位置，并放进去，这就是resize。</p>
-<p>&#160; &#160; &#160; &#160;那么HashMap什么时候进行扩容呢？当HashMap中的元素个数超过数组大小 x loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，这是一个折中的取值。也就是说，默认情况下，数组大小为16，那么当HashMap中元素个数超过16 x 0.75=12的时候，就把数组的大小扩展为 2 x 16=32，即扩大一倍，然后重新计算每个元素在数组中的位置，扩容是需要进行数组复制的，复制数组是非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。</p>
-<h4 id="get"><a href="#get" class="headerlink" title="get"></a>get</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public V get(Object key) &#123;   </div><div class="line">    if (key == null)   </div><div class="line">        return getForNullKey();   </div><div class="line">    int hash = hash(key.hashCode());   </div><div class="line">    for (Entry&lt;K,V&gt; e = table[indexFor(hash, table.length)];   </div><div class="line">        e != null;   </div><div class="line">        e = e.next) &#123;   </div><div class="line">        Object k;   </div><div class="line">        if (e.hash == hash &amp;&amp; ((k = e.key) == key || key.equals(k)))   </div><div class="line">            return e.value;   </div><div class="line">    &#125;   </div><div class="line">    return null;   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;有了上面存储时的hash算法作为基础，理解起来这段代码就很容易了。从上面的源代码中可以看出：从HashMap中get元素时，首先计算key的hashCode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。</p>
-<p>本文转自博文：<a href="http://www.cnblogs.com/ITtangtang/p/3948406.html" target="_blank" rel="external">Java集合—HashMap源码剖析</a>，感谢博主的总结。我们还可以从面试官的角度去想问题：参考<a href="http://www.importnew.com/7099.html" target="_blank" rel="external">HashMap的工作原理</a>。</p>
-<h2 id="其他的map实现"><a href="#其他的map实现" class="headerlink" title="其他的map实现"></a>其他的map实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">import java.util.HashMap;</div><div class="line">import java.util.TreeMap;</div><div class="line"></div><div class="line">/**</div><div class="line"> * Created by zoujing on 2017/3/04.</div><div class="line"> */</div><div class="line">public class mapDemo &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        hashmap();</div><div class="line"></div><div class="line">        treemap();</div><div class="line">        </div><div class="line">        linkedmap();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    //按key排序；</div><div class="line">    public static void treemap()&#123;</div><div class="line">        TreeMap&lt;String , Double&gt; map =  new TreeMap&lt;String , Double&gt;();</div><div class="line">        map.put(&quot;ccc&quot; , 89.0);</div><div class="line">        map.put(&quot;aaa&quot; , 80.0);</div><div class="line">        map.put(&quot;zzz&quot; , 80.0);</div><div class="line">        map.put(&quot;bbb&quot; , 89.0);</div><div class="line">        System.out.println(map);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void hashmap()&#123;</div><div class="line">        HashMap&lt;String,Double&gt; map=new HashMap&lt;&gt;();</div><div class="line">        map.put(&quot;ccc&quot; , 89.0);</div><div class="line">        map.put(&quot;aaa&quot; , 80.0);</div><div class="line">        map.put(&quot;zzz&quot; , 80.0);</div><div class="line">        map.put(&quot;bbb&quot; , 89.0);</div><div class="line">        System.out.println(map);</div><div class="line">    &#125;</div><div class="line">       public static void hashmap()&#123;</div><div class="line">        HashMap&lt;String,Double&gt; map=new HashMap&lt;&gt;();</div><div class="line">        map.put(&quot;ccc&quot; , 89.0);</div><div class="line">        map.put(&quot;aaa&quot; , 80.0);</div><div class="line">        map.put(&quot;zzz&quot; , 80.0);</div><div class="line">        map.put(&quot;bbb&quot; , 89.0);</div><div class="line">        System.out.println(map);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>&#160; &#160; &#160; &#160;对于LinkedHashMap，输出顺序和插入顺序一样；对于hashmap，顺序是随机的；对于treemap。当程序执行 map.put(“ccc” , 89.0); 时，系统将直接把 “ccc”-89.0 这个 Entry 放入 Map 中，这个 Entry 就是该“红黑树”的根节点。接着程序执行 map.put(“aaa” , 80.0); 时，程序会将 “aaa”-80.0 作为新节点添加到已有的红黑树中。以后每向 TreeMap 中放入一个 key-value 对，系统都需要将该 Entry 当成一个新节点，添加成已有红黑树中，通过这种方式就可保证 TreeMap 中所有 key 总是按某种规则排列。例如我们输出上面程序，将看到如下结果（所有 key 由小到大地排列）：</p>
-<pre><code>{aaa=80.0, ccc=89.0, bbb=89.0, zzz=80.0}
-{aaa=80.0, bbb=89.0, ccc=89.0, zzz=80.0}
-{ccc=89.0, aaa=80.0, zzz=80.0, bbb=89.0}
-</code></pre><h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>&#160; &#160; &#160; &#160;TreeMap 的实现使用了红黑树数据结构，也就是一棵自平衡的排序二叉树，这样就可以保证快速检索指定节点。对于 TreeMap 而言，它采用一种被称为“红黑树”的排序二叉树来保存 Map 中每个 Entry —— 每个 Entry 都被当成“红黑树”的一个节点对待。</p>
-<p>&#160; &#160; &#160; &#160;TreeMap、TreeSet 比 HashMap、HashSet 的优势在于：TreeMap 中的所有 Entry 总是按 key 根据指定排序规则保持有序状态，TreeSet 中所有元素总是根据指定排序规则保持有序状态。但是插入性能变低。</p>
-<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>&#160; &#160; &#160; &#160;输出顺序按输入顺序一样，是hashmap的一个子类,也允许一个null的key。</p>
-<p><img src="http://img.blog.csdn.net/20140716084631981?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br><img src="http://img.blog.csdn.net/20140716084409234?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbnNfY29kZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<p>&#160; &#160; &#160; &#160; 关于LinkedHashMap的源码，给出以下几点比较重要的总结：</p>
-<ol>
-<li>从源码中可以看出，LinkedHashMap中加入了一个head头结点，将所有插入到该LinkedHashMap中的Entry按照插入的先后顺序依次加入到以head为头结点的双向循环链表的尾部。</li>
-</ol>
-<ol>
-<li>实际上就是HashMap和LinkedList两个集合类的存储结构的结合。在LinkedHashMapMap中，所有put进来的Entry都保存在如第一个图所示的哈希表中，但它又额外定义了一个以head为头结点的空的双向循环链表，每次put进来Entry，除了将其保存到对哈希表中对应的位置上外，还要将其插入到双向循环链表的尾部。</li>
-</ol>
-<ol>
-<li>注意源码中的accessOrder标志位，当它false时，表示双向链表中的元素按照Entry插入LinkedHashMap到中的先后顺序排序，即每次put到LinkedHashMap中的Entry都放在双向链表的尾部，这样遍历双向链表时，Entry的输出顺序便和插入的顺序一致，这也是默认的双向链表的存储顺序；当它为true时，表示双向链表中的元素按照访问的先后顺序排列，可以看到，虽然Entry插入链表的顺序依然是按照其put到LinkedHashMap中的顺序，但put和get方法均有调用recordAccess方法（put方法在key相同，覆盖原有的Entry的情况下调用recordAccess方法），该方法判断accessOrder是否为true，如果是，则将当前访问的Entry（put进来的Entry或get出来的Entry）移到双向链表的尾部（key不相同时，put新Entry时，会调用addEntry，它会调用creatEntry，该方法同样将新插入的元素放入到双向链表的尾部，既符合插入的先后顺序，又符合访问的先后顺序，因为这时该Entry也被访问了），否则，什么也不做。</li>
-</ol>
-<ol>
-<li>注意构造方法，前四个构造方法都将accessOrder设为false，说明默认是按照插入顺序排序的，而第五个构造方法可以自定义传入的accessOrder的值，因此可以指定双向循环链表中元素的排序规则，一般要用LinkedHashMap实现LRU算法，就要用该构造方法，将accessOrder置为true。</li>
-</ol>
-<h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>&#160; &#160; &#160; &#160;现在使用的较少了，是hashtable的线程安全版本，且不允许插入null值，效率较低，我们后面重点介绍concurrent包里面的效率较高的map。这里针对Hashtable，我们同样给出几点比较重要的总结，但要结合与HashMap的比较来总结。</p>
-<ol>
-<li>二者的存储结构和解决冲突的方法都是相同的。</li>
-<li>HashTable在不指定容量的情况下的默认容量为11，而HashMap为16，Hashtable不要求底层数组的容量一定要为2的整数次幂，而HashMap则要求一定为2的整数次幂。</li>
-<li>Hashtable中key和value都不允许为null，而HashMap中key和value都允许为null</li>
-<li>Hashtable扩容时，将容量变为原来的2倍加1，而HashMap扩容时，将容量变为原来的2倍。</li>
-<li>Hashtable计算hash值，直接用key的hashCode()，而HashMap重新计算了key的hash值，Hashtable在求hash值对应的位置索引时，用取模运算，而HashMap在求位置索引时，则用与运算，且这里一般先用hash&amp;0x7FFFFFFF后，再对length取模，&amp;0x7FFFFFFF的目的是为了将负的hash值转化为正值，因为hash值有可能为负数，而&amp;0x7FFFFFFF后，只有符号外改变，而后面的位都不变。</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>共同点：</p>
-<p>&#160; &#160; &#160; &#160;HashMap,LinkedHashMap,TreeMap都属于Map；Map 主要用于存储键(key)值(value)对，根据键得到值，因此键不允许键重复,但允许值重复。还有不常用的weakHashMap和identityHashMap。  </p>
-<p>不同点：</p>
-<ol>
-<li>HashMap里面存入的键值对在取出的时候是随机的,也是我们最常用的一个Map.它根据键的HashCode值存储数据,根据键可以直接获取它的值，具有很快的访问速度。在Map 中插入、删除和定位元素，HashMap 是最好的选择。  </li>
-<li>TreeMap取出来的是排序后的键值对。但如果您要按自然顺序或自定义顺序遍历键，那么TreeMap会更好。  </li>
-<li>LinkedHashMap 是HashMap的一个子类，如果需要输出的顺序和输入的相同,那么用LinkedHashMap可以实现.  (应用场景：购物车等需要顺序的)<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1>&#160; &#160; &#160; &#160;文中出现的图片，文字描述有些来自互联网，但是出处无法考究，如果侵犯您的相关权益，请联系我，核实后我会马上加上转载说明。谢谢！！！</li>
-</ol>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JDK源码阅读（二）&quot;&gt;&lt;a href=&quot;#JDK源码阅读（二）&quot; class=&quot;headerlink&quot; title=&quot;JDK源码阅读（二）&quot;&gt;&lt;/a&gt;JDK源码阅读（二）&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;在了解了基类和基础数据类型加上字符串的基础上，我们就要开始集合类的学习了，这些就是我们需要经常用到的一些。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="JDK源码解析" scheme="http://yoursite.com/categories/JDK%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/"/>
-    
-    
-      <category term="JDK集合类源码" scheme="http://yoursite.com/tags/JDK%E9%9B%86%E5%90%88%E7%B1%BB%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>剑指offer：替换空格</title>
-    <link href="http://yoursite.com/2017/03/03/%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC/"/>
-    <id>http://yoursite.com/2017/03/03/剑指offer：替换空格/</id>
-    <published>2017-03-03T07:23:15.000Z</published>
-    <updated>2017-05-15T09:58:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>&#160; &#160; &#160; &#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</p>
-  <a id="more"></a>
-<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>&#160; &#160; &#160; &#160;C／C++中每个字符串都已字符’\0’作为结尾，这样我吗就能很方便的找到字符串的末位，但是这个特点导致字符串都有一个额外的开销。而在Java和C#中，String是不可变的，一旦试图改变，将产生一个新的实例。所以要活用StringBuilder和StringBuffer。可参考这个博文：<a href="http://blog.csdn.net/qh_java/article/details/46382265" target="_blank" rel="external">从源码角度分析Java三种字符串</a>。</p>
-<p>&#160; &#160; &#160; &#160;用Java实现本题，输入的是一个StringBuffer，我们可以先定义一个返回字符串StringBuffer类型，遍历一遍字符串，使用charAt（int i）方法，如果当前字符没空字符，则使用append（char c）添加给定字符，如果不是则添加该字符。最后把StringBuffer变成String返回。使用toStirng（）方法。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><pre><code>public String replaceSpace(StringBuffer str) {
-    StringBuilder newstr =new StringBuilder();
-    for(int i=0;i&lt;str.length();i++){
-        if(str.charAt(i)==&apos; &apos; )
-            newstr.append(&quot;%&quot;).append(&quot;2&quot;).append(&quot;0&quot;);
-        else
-           newstr.append(str.charAt(i));
-    }
-           return newstr.toString();
-}
-</code></pre><h1 id="友情链接"><a href="#友情链接" class="headerlink" title="友情链接"></a>友情链接</h1><p>所有的剑指offer代码，我托管到GitHub上了，可以直接运行，对照博客理解思路。<a href="https://github.com/wustzoujing/Algorithm_Learning" target="_blank" rel="external">wustzoujing/Algorithm_Learning</a>。觉得还可以的麻烦fork一下。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;二维数组中的查找&quot;&gt;&lt;a href=&quot;#二维数组中的查找&quot; class=&quot;headerlink&quot; title=&quot;二维数组中的查找&quot;&gt;&lt;/a&gt;二维数组中的查找&lt;/h1&gt;&lt;h2 id=&quot;题目&quot;&gt;&lt;a href=&quot;#题目&quot; class=&quot;headerlink&quot; title=&quot;题目&quot;&gt;&lt;/a&gt;题目&lt;/h2&gt;&lt;p&gt;&amp;#160; &amp;#160; &amp;#160; &amp;#160;请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。&lt;/p&gt;
     
     </summary>
     
